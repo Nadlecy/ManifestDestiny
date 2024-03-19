@@ -17,12 +17,19 @@ namespace ManifestDestiny
 
         public void ShowDisplay()
         {
+            Console.SetCursorPosition(0, 0);
             foreach (List<WorldTile> line in _currentDisplay)
             {
                 foreach (WorldTile tile in line)
                 {
-                    Console.BackgroundColor = tile.ColorBackground;
-                    Console.ForegroundColor = tile.ColorText;
+                    if (Console.BackgroundColor != tile.ColorBackground)
+                    {
+                        Console.BackgroundColor = tile.ColorBackground;
+                    }
+                    if (Console.ForegroundColor != tile.ColorText)
+                    {
+                        Console.ForegroundColor = tile.ColorText;
+                    }
                     Console.Write(tile.Apparence);
                 }
                 Console.BackgroundColor = ConsoleColor.Black;
