@@ -25,23 +25,23 @@ class Seraph
     public enum Stats
     {
         hp,
-        power,
-        resistance,
+        attack,
+        defense,
         mana,
         magic,
         speed
     }
 
-    Dictionary<Stats, int> _baseStats;
-    Dictionary<Stats, int> _currentStats;
-    Dictionary<Stats, int> _statsAlterations;
+    public Dictionary<Stats, int> _baseStats;
+    public Dictionary<Stats, int> _currentStats;
+    public Dictionary<Stats, int> _statsAlterations;
     //Dictionary<StatusEffect, int> Effect;
 
     Dictionary<int, Ability> _abilitiesUnlocks; // List of all abilities this seraph can have, and the level at which it unlocks them.
     Ability[] _abilities;
     Dictionary<int, int> _xpForLevel;
 
-    public Seraph(string name, string type, Dictionary<Stats, int> baseStats, Dictionary<int,int> xpForLevel, Ability[] abilities, Dictionary<int, Ability> AbilitiesUnlocks, string description)
+    public Seraph(string name, string type, Dictionary<Stats, int> baseStats, int experienceReward, Dictionary<int,int> xpForLevel, Ability[] abilities, Dictionary<int, Ability> AbilitiesUnlocks, string description)
     {
         Name = name;
         Type = type;
@@ -51,8 +51,8 @@ class Seraph
         _currentStats = baseStats;
         _statsAlterations = new Dictionary<Stats, int>()
         {
-            {Stats.power, 0 },
-            {Stats.resistance, 0 },
+            {Stats.attack, 0 },
+            {Stats.defense, 0 },
             {Stats.mana, 0 },
             {Stats.magic, 0 },
             {Stats.speed, 0 },
@@ -64,13 +64,26 @@ class Seraph
         Level = 0;
         _experience = 0;
         _xpForLevel = xpForLevel;
+        _experienceReward = experienceReward;
     }
+
+
+    public event Action OnLevelUp;
 
     public int Experience {
         get => _experience;
         set { 
             _experience = value;
             // Compare to see if lvl up
+            if(_experience >= _xpForLevel[Level+1])
+            {
+                // Level up
+                OnLevelUp?.Invoke();
+                Level ++;
+            }
         }
-    }
+        
+}
+
+    
 }

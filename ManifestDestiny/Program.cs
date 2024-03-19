@@ -3,6 +3,8 @@
 using ManifestDestiny;
 class Program
 {
+    public static Random rnd = new Random();
+
     static void Main(string[] args)
     {
         WorldMap worldMap = new WorldMap();
