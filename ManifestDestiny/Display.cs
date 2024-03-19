@@ -10,7 +10,7 @@ namespace ManifestDestiny
     {
         List<List<WorldTile>> _currentDisplay;
 
-        public void SetDiplay(List<List<WorldTile>> worldMap)
+        public void SetDisplay(List<List<WorldTile>> worldMap)
         {
             _currentDisplay = worldMap;
         }

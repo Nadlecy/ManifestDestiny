@@ -9,7 +9,7 @@ class Program
         worldMap.Init();
         worldMap.CreateMap("Map01.txt");
         Display display = new Display();
-        display.SetDiplay(worldMap.WorldMapTiles);
+        display.SetDisplay(worldMap.WorldMapTiles);
         display.ShowDisplay();
     }
 }
