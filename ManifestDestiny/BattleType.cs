@@ -23,7 +23,7 @@ class BattleType
     public BattleType(string typeName)
     {
         Name = typeName;
-
+        StatusEffectImmunity = "";
 
         switch (Name)
         {
