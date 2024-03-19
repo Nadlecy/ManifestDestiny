@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 class BattleType
 {
-    public string Name { get; set; }
     public string StatusEffectImmunity{ get; set; }
 
     Dictionary<string, float> _typeRelations = new Dictionary<string, float>()
@@ -22,10 +21,9 @@ class BattleType
 
     public BattleType(string typeName)
     {
-        Name = typeName;
         StatusEffectImmunity = "";
 
-        switch (Name)
+        switch (typeName)
         {
             case "Scramble":
                 _typeRelations["Wild"] = 2.0f;
