@@ -6,25 +6,14 @@ using System.Threading.Tasks;
 
 class BattleType
 {
-    string _name;
+    public string Name { get; set; }
+    public string StatusEffectImmunity{ get; set; }
+
     Dictionary<string, float> _typeRelations = new Dictionary<string, float>();
-    string _statusEffectImmunity;
-
-    public string Name
-    {
-        get => _name;
-        set => _name = value;
-    }
-
-    public string StatusEffectImmunity
-    {
-        get => _statusEffectImmunity;
-        set => _statusEffectImmunity = value;
-    }
 
     public BattleType(string typeName)
     {
-        _name = typeName;
+        Name = typeName;
 
         _typeRelations.Add("Scramble",1.0f);
         _typeRelations.Add("Occult", 1.0f);
@@ -34,7 +23,7 @@ class BattleType
         _typeRelations.Add("Vermin", 1.0f);
         _typeRelations.Add("Absolute", 1.0f);
 
-        switch (_name)
+        switch (Name)
         {
             case "Scramble":
                 _typeRelations["Wild"] = 2.0f;
@@ -46,6 +35,7 @@ class BattleType
                 _typeRelations["Mechanic"] = 0.5f;
                 _typeRelations["Wild"] = 2.0f;
                 _typeRelations["Vermin"] = 2.0f;
+                StatusEffectImmunity = "Stun";
                 break;
 
             case "Mechanic":
@@ -55,6 +45,7 @@ class BattleType
                 _typeRelations["Wild"] = 0.5f;
                 _typeRelations["Fluid"] = 2.0f;
                 _typeRelations["Vermin"] = 0.0f;
+                StatusEffectImmunity = "Bleed";
                 break;
 
             case "Wild":
@@ -68,6 +59,7 @@ class BattleType
                 _typeRelations["Occult"] = 2.0f;
                 _typeRelations["Mechanic"] = 0.5f;
                 _typeRelations["Wild"] = 0.5f;
+                StatusEffectImmunity = "Burn";
                 break;
 
             case "Vermin":
@@ -76,12 +68,18 @@ class BattleType
                 _typeRelations["Wild"] = 0.5f;
                 _typeRelations["Fluid"] = 2.0f;
                 _typeRelations["Vermin"] = 0.5f;
+                StatusEffectImmunity = "Poison";
                 break;
 
             default:
-                _name = "Absolute";
+                Name = "Absolute";
                 break;
 
         }
+    }
+
+    public float GetBattleTypeInteraction(string type)
+    {
+        return _typeRelations[type];
     }
 }
