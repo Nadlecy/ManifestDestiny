@@ -15,9 +15,9 @@ class Program
 
         while (true)
         {
+            gameManager.keyInfo = Console.ReadKey();
+
             display.SetDisplay(worldMap.WorldMapTiles);
-
-
             display.ShowDisplay();
         }
     }

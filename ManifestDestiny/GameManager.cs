@@ -11,7 +11,7 @@ class GameManager
         Battle,
     }
     
-    ConsoleKeyInfo keyInfo;
+    public ConsoleKeyInfo keyInfo;
     public static Random rand;
 
     public GameManager()
