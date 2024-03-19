@@ -34,6 +34,7 @@ class Ability
         if (caster.Type == battleType.Name) STAB = 1.5f;
         float TypeEffectiveness = battleType.GetBattleTypeInteraction(target.Type);
         float randomMultiplyer = GameManager.rand.Next(217,256)/255;
+        // Damage is in % of max HP
         float damage = ((((((2 * caster.Level * Critical)/5) + 2) * Power * caster._currentStats[Seraph.Stats.attack] / target._currentStats[Seraph.Stats.defense])/50 + 2) * STAB * TypeEffectiveness * randomMultiplyer);
     }
 }
