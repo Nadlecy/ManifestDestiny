@@ -10,6 +10,7 @@ namespace ManifestDestiny
     {
         List<List<WorldTile>> _worldMapTiles = new List<List<WorldTile>>();
         Dictionary<string, WorldTile> _worldTiles = new Dictionary<string, WorldTile>();
+        int[] _playerPosition = new int[2];
 
         public List<List<WorldTile>> WorldMapTiles { get => _worldMapTiles; }
 
@@ -20,9 +21,15 @@ namespace ManifestDestiny
 
             WorldTile grass = new WorldTile("▓", ConsoleColor.Green, ConsoleColor.DarkGreen);
             _worldTiles.Add("grass", grass);
+
+            WorldTile exterior = new WorldTile(" ", ConsoleColor.DarkGray, ConsoleColor.White);
+            _worldTiles.Add("exterior", exterior);
+
+            WorldTile player = new WorldTile("@", ConsoleColor.Black, ConsoleColor.Red);
+            _worldTiles.Add("player", player);
         }
 
-        public void CreateMap(string textFile)
+        public void SetMap(string textFile)
         {
             string path = "../../../";
             if (File.Exists(path + textFile))
@@ -38,10 +45,17 @@ namespace ManifestDestiny
                         if (c == 'f')
                         {
                             row.Add(_worldTiles["floor"]);
+                            row.Add(_worldTiles["floor"]);
                         }
                         else if (c == 'g')
                         {
                             row.Add(_worldTiles["grass"]);
+                            row.Add(_worldTiles["grass"]);
+                        }
+                        else if (c == 'e')
+                        {
+                            row.Add(_worldTiles["exterior"]);
+                            row.Add(_worldTiles["exterior"]);
                         }
                     }
                     _worldMapTiles.Add(row);

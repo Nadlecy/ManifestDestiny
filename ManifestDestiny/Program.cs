@@ -7,7 +7,7 @@ class Program
     {
         WorldMap worldMap = new WorldMap();
         worldMap.Init();
-        worldMap.CreateMap("Map01.txt");
+        worldMap.SetMap("Map01.txt");
         Display display = new Display();
         display.SetDisplay(worldMap.WorldMapTiles);
         display.ShowDisplay();
