@@ -16,6 +16,7 @@ class GameManager
 
     public GameManager()
     {
+        rand = new Random();
         GameStates gameState = GameStates.Exploration;
     }
 }
