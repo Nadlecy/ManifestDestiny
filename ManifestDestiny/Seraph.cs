@@ -41,7 +41,7 @@ class Seraph
     Ability[] _abilities;
     Dictionary<int, int> _xpForLevel;
 
-    public Seraph(string name, string type, Dictionary<Stats, int> baseStats, Dictionary<int,int> xpForLevel, Ability[] abilities, Dictionary<int, Ability> AbilitiesUnlocks, string description)
+    public Seraph(string name, string type, Dictionary<Stats, int> baseStats, int experienceReward, Dictionary<int,int> xpForLevel, Ability[] abilities, Dictionary<int, Ability> AbilitiesUnlocks, string description)
     {
         Name = name;
         Type = type;
@@ -64,13 +64,25 @@ class Seraph
         Level = 0;
         _experience = 0;
         _xpForLevel = xpForLevel;
+        _experienceReward = experienceReward;
     }
+
+
+    public event Action OnLevelUp;
 
     public int Experience {
         get => _experience;
         set { 
             _experience = value;
             // Compare to see if lvl up
+            if(_experience >= _xpForLevel[Level+1])
+            {
+                // Level up
+                OnLevelUp?.Invoke();
+            }
         }
-    }
+        
+}
+
+    
 }
