@@ -33,7 +33,7 @@ class Ability
         float STAB = 1.0f; // Same Type Attack Bonus (1.5 if the move is the same type as the user)
         if (caster.Type == battleType.Name) STAB = 1.5f;
         float TypeEffectiveness = battleType.GetBattleTypeInteraction(target.Type);
-        float randomMultiplyer = Program.rnd.Next(217,256)/255;
+        float randomMultiplyer = GameManager.rand.Next(217,256)/255;
         float damage = ((((((2 * caster.Level * Critical)/5) + 2) * Power * caster._currentStats[Seraph.Stats.attack] / target._currentStats[Seraph.Stats.defense])/50 + 2) * STAB * TypeEffectiveness * randomMultiplyer);
     }
 }

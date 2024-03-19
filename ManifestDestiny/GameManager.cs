@@ -12,7 +12,7 @@ class GameManager
     }
     
     ConsoleKeyInfo keyInfo;
-    Random rand;
+    public static Random rand;
 
     public GameManager()
     {
