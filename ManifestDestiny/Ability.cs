@@ -6,26 +6,23 @@ using System.Threading.Tasks;
 
 class Ability
 {
-    public string _name;
-    public string _type;
-    public int _accuracy;
-    public int _critChance;
-    public int _power;
-    public int _cost;
-    public string _description;
-
-    public Dictionary<string, float> _typeRelations = new Dictionary<string, float>();
-    public string _statusEffectImmunity;
+    public string Name { get; set; }
+    public string Type { get; set; }
+    public int Accuracy { get; set; }
+    public int CritChance { get; set; }
+    public int Power { get; set; }
+    public int Cost { get; set; }
+    public string Description { get; set; }
 
     public Ability(string name, string type, int accuracy, int critChance, int power, int cost, string description)
     {
-        _name = name;
-        _type = type;
-        _accuracy = accuracy;
-        _critChance = critChance;
-        _power = power;
-        _cost = cost;
-        _description = description;
+        Name = name;
+        Type = type;
+        Accuracy = accuracy;
+        CritChance = critChance;
+        Power = power;
+        Cost = cost;
+        Description = description;
     }
 
     public void Use() {
