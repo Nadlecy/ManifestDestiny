@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManifestDestiny", "ManifestDestiny\ManifestDestiny.csproj", "{3088F026-7F3F-426E-9A0F-1B5789C63F42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3088F026-7F3F-426E-9A0F-1B5789C63F42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3088F026-7F3F-426E-9A0F-1B5789C63F42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3088F026-7F3F-426E-9A0F-1B5789C63F42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3088F026-7F3F-426E-9A0F-1B5789C63F42}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {59E9F137-DB9F-4BAD-95D2-D461F92A8614}
+	EndGlobalSection
+EndGlobal
