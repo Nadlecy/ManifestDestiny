@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 class Ability
 {
     public string Name { get; set; }
-    public string Type { get; set; }
+    public BattleType battleType{ get; set; }
     public int Accuracy { get; set; }
     public int CritChance { get; set; }
     public int Power { get; set; }
     public int Cost { get; set; }
     public string Description { get; set; }
 
-    public Ability(string name, string type, int accuracy, int critChance, int power, int cost, string description)
+    public Ability(string name, BattleType type, int accuracy, int critChance, int power, int cost, string description)
     {
         Name = name;
-        Type = type;
+        battleType = type;
         Accuracy = accuracy;
         CritChance = critChance;
         Power = power;
