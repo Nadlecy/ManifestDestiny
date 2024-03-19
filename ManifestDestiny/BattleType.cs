@@ -76,7 +76,6 @@ class BattleType
             default:
                 Name = "Absolute";
                 break;
-
         }
     }
 
