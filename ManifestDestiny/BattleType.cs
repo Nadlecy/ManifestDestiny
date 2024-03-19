@@ -9,19 +9,21 @@ class BattleType
     public string Name { get; set; }
     public string StatusEffectImmunity{ get; set; }
 
-    Dictionary<string, float> _typeRelations = new Dictionary<string, float>();
+    Dictionary<string, float> _typeRelations = new Dictionary<string, float>()
+    {
+        {"Scramble",1.0f},
+        {"Occult", 1.0f},
+        {"Mechanic", 1.0f},
+        {"Wild", 1.0f},
+        {"Fluid", 1.0f},
+        {"Vermin", 1.0f},
+        {"Absolute", 1.0f},
+    };
 
     public BattleType(string typeName)
     {
         Name = typeName;
 
-        _typeRelations.Add("Scramble",1.0f);
-        _typeRelations.Add("Occult", 1.0f);
-        _typeRelations.Add("Mechanic", 1.0f);
-        _typeRelations.Add("Wild", 1.0f);
-        _typeRelations.Add("Fluid", 1.0f);
-        _typeRelations.Add("Vermin", 1.0f);
-        _typeRelations.Add("Absolute", 1.0f);
 
         switch (Name)
         {
