@@ -79,6 +79,7 @@ class Seraph
             {
                 // Level up
                 OnLevelUp?.Invoke();
+                Level ++;
             }
         }
         
