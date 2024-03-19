@@ -8,7 +8,7 @@ namespace ManifestDestiny
 {
     internal class Display
     {
-        List<List<WorldTile>> _currentDisplay;
+        List<List<WorldTile>> _currentDisplay = new List<List<WorldTile>>();
 
         public void SetDisplay(List<List<WorldTile>> worldMap)
         {
