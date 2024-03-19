@@ -7,11 +7,19 @@ class Program
 
     static void Main(string[] args)
     {
+        GameManager gameManager = new GameManager();
+
         WorldMap worldMap = new WorldMap();
         worldMap.Init();
         worldMap.SetMap("Map01.txt");
         Display display = new Display();
-        display.SetDisplay(worldMap.WorldMapTiles);
-        display.ShowDisplay();
+
+        while (true)
+        {
+            display.SetDisplay(worldMap.WorldMapTiles);
+
+
+            display.ShowDisplay();
+        }
     }
 }
