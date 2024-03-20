@@ -9,10 +9,11 @@ class GameManager
     enum GameStates {
         Exploration,
         Battle,
+        Menu,
     }
     
-    ConsoleKeyInfo keyInfo;
-    Random rand;
+    public ConsoleKeyInfo keyInfo;
+    public static Random rand;
 
     public GameManager()
     {

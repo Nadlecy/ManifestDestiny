@@ -3,10 +3,13 @@
 using ManifestDestiny;
 class Program
 {
-    public static Random rnd = new Random();
 
     static void Main(string[] args)
     {
+        //a few setting changes before we start
+        Console.CursorVisible = false;
+
+        //entering the code proper
         GameManager gameManager = new GameManager();
 
         WorldMap worldMap = new WorldMap();
@@ -16,10 +19,12 @@ class Program
 
         while (true)
         {
-            display.SetDisplay(worldMap.WorldMapTiles);
+            gameManager.keyInfo = Console.ReadKey();
 
 
-            display.ShowDisplay();
+
+            display.SetWorldDisplay(worldMap.WorldMapTiles);
+            display.WorldDisplay();
         }
     }
 }

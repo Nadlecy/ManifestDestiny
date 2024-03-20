@@ -11,9 +11,14 @@ namespace ManifestDestiny
         List<List<WorldTile>> _currentDisplay = new List<List<WorldTile>>();
         int[] _playerPosition = new int[2];
 
-        public void SetDisplay(List<List<WorldTile>> worldMap)
+        public void SetWorldDisplay(List<List<WorldTile>> worldMap)
         {
-            _currentDisplay = worldMap;
+            _currentWorldDisplay = worldMap;
+        }
+
+        public void PlayerWorldDisplay()
+        {
+
         }
 
         public void SetPlayerPosition(int x, int y)
@@ -22,10 +27,10 @@ namespace ManifestDestiny
             _playerPosition[1] = y;
         }
 
-        public void ShowDisplay()
+        public void WorldDisplay()
         {
             Console.SetCursorPosition(0, 0);
-            foreach (List<WorldTile> line in _currentDisplay)
+            foreach (List<WorldTile> line in _currentWorldDisplay)
             {
                 foreach (WorldTile tile in line)
                 {
