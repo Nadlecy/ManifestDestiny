@@ -16,7 +16,7 @@ class Program
         worldMap.Init();
         worldMap.SetMap("Map01.txt");
         Display display = new Display();
-
+        /*
         while (true)
         {
             gameManager.keyInfo = Console.ReadKey();
@@ -24,6 +24,8 @@ class Program
 
             display.SetWorldDisplay(worldMap.WorldMapTiles);
             display.WorldDisplay();
-        }
+        }*/
+
+
     }
 }
