@@ -17,6 +17,9 @@ namespace ManifestDestiny
 
         public void Init ()
         {
+            WorldTile player = new WorldTile("@", ConsoleColor.Black, ConsoleColor.Red);
+            _worldTiles.Add("player", player);
+
             WorldTile floor = new WorldTile("▒", ConsoleColor.Red, ConsoleColor.DarkRed);
             _worldTiles.Add("floor", floor);
 
