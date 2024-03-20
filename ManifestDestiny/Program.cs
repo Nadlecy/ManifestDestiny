@@ -6,6 +6,10 @@ class Program
 
     static void Main(string[] args)
     {
+        //a few setting changes before we start
+        Console.CursorVisible = false;
+
+        //entering the code proper
         GameManager gameManager = new GameManager();
 
         WorldMap worldMap = new WorldMap();
@@ -17,7 +21,9 @@ class Program
         {
             gameManager.keyInfo = Console.ReadKey();
 
-            display.SetDisplay(worldMap.WorldMapTiles);
+
+
+            display.SetWorldDisplay(worldMap.WorldMapTiles);
             display.ShowDisplay();
         }
     }

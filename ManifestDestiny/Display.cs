@@ -8,16 +8,21 @@ namespace ManifestDestiny
 {
     internal class Display
     {
-        List<List<WorldTile>> _currentDisplay = new List<List<WorldTile>>();
+        List<List<WorldTile>> _currentWorldDisplay = new List<List<WorldTile>>();
 
-        public void SetDisplay(List<List<WorldTile>> worldMap)
+        public void SetWorldDisplay(List<List<WorldTile>> worldMap)
         {
-            _currentDisplay = worldMap;
+            _currentWorldDisplay = worldMap;
+        }
+
+        public void PlayerWorldDisplay()
+        {
+
         }
 
         public void ShowDisplay()
         {
-            foreach (List<WorldTile> line in _currentDisplay)
+            foreach (List<WorldTile> line in _currentWorldDisplay)
             {
                 foreach (WorldTile tile in line)
                 {

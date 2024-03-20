@@ -9,6 +9,7 @@ class GameManager
     enum GameStates {
         Exploration,
         Battle,
+        Menu,
     }
     
     public ConsoleKeyInfo keyInfo;
