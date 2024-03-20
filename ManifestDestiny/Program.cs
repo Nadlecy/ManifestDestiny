@@ -10,9 +10,14 @@ class Program
         //Console.CursorVisible = false;
 
         //entering the code proper
+
+        int width = 150; // Largeur désirée en caractères
+        int height = 50; // Hauteur désirée en lignes
+        Console.SetWindowSize(width, height);
+
         GameManager gameManager = new GameManager();
         gameManager.GameLoop();
 
-        
+
     }
 }

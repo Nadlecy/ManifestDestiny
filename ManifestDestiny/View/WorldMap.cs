@@ -17,22 +17,19 @@ namespace ManifestDestiny
 
         public void Init ()
         {
-            WorldTile player = new WorldTile("@", ConsoleColor.Black, ConsoleColor.Red);
-            _worldTiles.Add("player", player);
-
-            WorldTile floor = new WorldTile("▒", ConsoleColor.Red, ConsoleColor.DarkRed);
+            WorldTile floor = new WorldTile("▒", ConsoleColor.DarkGreen, ConsoleColor.Green, true);
             _worldTiles.Add("floor", floor);
 
-            WorldTile grass = new WorldTile("▓", ConsoleColor.DarkYellow, ConsoleColor.Yellow);
+            WorldTile grass = new WorldTile("▒", ConsoleColor.DarkYellow, ConsoleColor.Yellow, true);
             _worldTiles.Add("grass", grass);
 
-            WorldTile exterior = new WorldTile(" ", ConsoleColor.DarkGray, ConsoleColor.White);
+            WorldTile exterior = new WorldTile(" ", ConsoleColor.DarkGray, ConsoleColor.White, false);
             _worldTiles.Add("exterior", exterior);
         }
 
         public void SetMap(string textFile)
         {
-            string path = "../../../";
+            string path = "../../../Map/";
             if (File.Exists(path + textFile))
             { 
                 string[] lines = File.ReadAllLines(path + textFile); 

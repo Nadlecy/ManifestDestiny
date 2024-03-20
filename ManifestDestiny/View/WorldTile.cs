@@ -21,10 +21,10 @@ namespace ManifestDestiny
         public string Apparence { get => _apparence; }
         public bool Walkable { get => _walkable; }
 
-        public WorldTile(string apparence, ConsoleColor colorBackground, ConsoleColor colorText)
+        public WorldTile(string apparence, ConsoleColor colorBackground, ConsoleColor colorText, bool walkable)
         {
             _apparence = apparence;
-            _walkable = true;
+            _walkable = walkable;
             _colorBackground = colorBackground;
             _colorText = colorText;
         }
