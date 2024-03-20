@@ -15,6 +15,8 @@ class GameManager
     
     public ConsoleKeyInfo keyInfo;
     public static Random rand;
+    public static CustomMaths cMaths;
+    public List<Seraph> playerTeam;
 
     public GameManager()
     {

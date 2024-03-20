@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 class BattleManager
 {
+    List<Seraph> enemyTeam;
 
     public BattleManager()
     {
 
     }
 
-    public void StartBattle()
+    public void StartBattle(List<Seraph>foeTeam)
     {
 
+        List<Seraph> enemyTeam;
     }
 
     public void PlayerChoice()
