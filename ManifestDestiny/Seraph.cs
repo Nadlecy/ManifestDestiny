@@ -88,6 +88,8 @@ class Seraph
     public void StatChange(Stats stat, int level)
     {
         _statsAlterations[stat] += level;
+        if (_statsAlterations[stat] < -4) { _statsAlterations[stat] = -4; }
+        else if (_statsAlterations[stat] > 4) { _statsAlterations[stat] -= 4; }
 
         _currentStats[stat] = (int)(_baseStats[stat] * GameManager.cMaths.StatAlterationMultiplier(this, stat));
     }

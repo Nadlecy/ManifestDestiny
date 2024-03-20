@@ -9,7 +9,11 @@ namespace ManifestDestiny
 {
     internal class BattleAbilityStatAlteration : BattleAbility
     {
-        BattleAbilityStatAlteration(string name, BattleType type, int accuracy, int critChance, int power, int cost, string description) : base(name, type, accuracy, critChance, power, cost, description)
+        /*
+        the alteration string parameter must be presented like "000000"
+        where the first three numbers are the 
+        */
+        BattleAbilityStatAlteration(string name, BattleType type, int accuracy, int critChance, int power, int cost, string description, string alteration) : base(name, type, accuracy, critChance, power, cost, description)
         {
         }
 
