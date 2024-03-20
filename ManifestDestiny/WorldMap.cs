@@ -17,10 +17,10 @@ namespace ManifestDestiny
 
         public void Init ()
         {
-            WorldTile floor = new WorldTile("▒", ConsoleColor.Gray, ConsoleColor.DarkGray);
+            WorldTile floor = new WorldTile("▒", ConsoleColor.Red, ConsoleColor.DarkRed);
             _worldTiles.Add("floor", floor);
 
-            WorldTile grass = new WorldTile("▓", ConsoleColor.Green, ConsoleColor.DarkGreen);
+            WorldTile grass = new WorldTile("▓", ConsoleColor.DarkYellow, ConsoleColor.Yellow);
             _worldTiles.Add("grass", grass);
 
             WorldTile exterior = new WorldTile(" ", ConsoleColor.DarkGray, ConsoleColor.White);
