@@ -46,16 +46,13 @@ namespace ManifestDestiny
                         if (c == 'f')
                         {
                             row.Add(_worldTiles["floor"]);
-                            row.Add(_worldTiles["floor"]);
                         }
                         else if (c == 'g')
                         {
                             row.Add(_worldTiles["grass"]);
-                            row.Add(_worldTiles["grass"]);
                         }
                         else if (c == 'e')
                         {
-                            row.Add(_worldTiles["exterior"]);
                             row.Add(_worldTiles["exterior"]);
                         }
                     }
