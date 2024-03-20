@@ -22,7 +22,6 @@ class Program
             gameManager.keyInfo = Console.ReadKey();
 
 
-
             display.SetWorldDisplay(worldMap.WorldMapTiles);
             display.WorldDisplay();
         }
