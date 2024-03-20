@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManifestDestiny;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,8 @@ class GameManager
     
     public ConsoleKeyInfo keyInfo;
     public static Random rand;
+    public static CustomMaths cMaths;
+    public List<Seraph> playerTeam;
 
     public GameManager()
     {

@@ -7,7 +7,7 @@ class Program
     static void Main(string[] args)
     {
         //a few setting changes before we start
-        Console.CursorVisible = false;
+        //Console.CursorVisible = false;
 
         //entering the code proper
         GameManager gameManager = new GameManager();
