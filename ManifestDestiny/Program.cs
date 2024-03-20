@@ -11,8 +11,6 @@ class Program
 
         //entering the code proper
         GameManager gameManager = new GameManager();
-        gameManager.GameLoop();
-
-        
+        gameManager.GameLoop();       
     }
 }

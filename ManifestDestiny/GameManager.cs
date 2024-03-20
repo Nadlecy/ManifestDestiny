@@ -1,7 +1,9 @@
 ﻿using ManifestDestiny;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,13 +35,55 @@ class GameManager
         display.SetWorldDisplay(worldMap.WorldMapTiles);
         display.WorldDisplay();
 
+        bool menuOpen = false;
+
+        Menu mainMenu = new Menu("MainMenu", new List<string> { "CLOSE", "AMOGUS" });
+
         while (true)
         {
             keyInfo = Console.ReadKey();
 
-            if (keyInfo.Key == ConsoleKey.LeftArrow)
+            switch (keyInfo.Key)
             {
-                display.PlayerWorldDisplay(10, 10);
+                case ConsoleKey.LeftArrow:
+                    display.PlayerWorldDisplay(10, 10);
+                    break;
+                case ConsoleKey.DownArrow:
+                    if (menuOpen)
+                    {
+                        mainMenu.NextLine();
+                        display.MenuDisplay(mainMenu); // Update display
+                    } else
+                    {
+                        // walk
+                    }
+                    break;
+                case ConsoleKey.UpArrow:
+                    if (menuOpen)
+                    {
+                        mainMenu.PreviousLine();
+                        display.MenuDisplay(mainMenu); // Update display
+                    }
+                    else
+                    {
+                        // walk
+                    }
+                    break;
+                case ConsoleKey.Enter:
+                    mainMenu.Enter();
+                    break;
+                case ConsoleKey.Escape:
+                    menuOpen = !menuOpen;
+                    // Open menu
+                    if (menuOpen==true)
+                    {
+                        display.MenuDisplay(mainMenu); 
+                    } else { 
+                        display.WorldDisplay(); 
+                    }
+                    //Console.WriteLine(menuOpen);
+                    break;
+                default: break;
             }
         }
     }
