@@ -24,7 +24,7 @@ class Program
 
 
             display.SetWorldDisplay(worldMap.WorldMapTiles);
-            display.ShowDisplay();
+            display.WorldDisplay();
         }
     }
 }

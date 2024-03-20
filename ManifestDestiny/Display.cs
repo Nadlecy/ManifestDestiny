@@ -20,10 +20,11 @@ namespace ManifestDestiny
 
         }
 
-        public void ShowDisplay()
+
+        public void WorldDisplay()
         {
             Console.SetCursorPosition(0, 0);
-            foreach (List<WorldTile> line in _currentDisplay)
+            foreach (List<WorldTile> line in _currentWorldDisplay)
             {
                 foreach (WorldTile tile in line)
                 {
