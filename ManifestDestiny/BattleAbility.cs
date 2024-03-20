@@ -37,4 +37,9 @@ class BattleAbility
 
         caster._currentStats[Seraph.Stats.mana] -= Cost;
     }
+
+    protected void AlterStat(Seraph target, Seraph.Stats stat)
+    {
+        Seraph.
+    }
 }

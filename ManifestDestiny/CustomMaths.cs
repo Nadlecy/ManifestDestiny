@@ -22,5 +22,19 @@ namespace ManifestDestiny
 
             return (int)damage;
         }
+        public float StatAlterationMultiplier(Seraph target, Seraph.Stats stat)
+        {
+            if (target._statsAlterations[stat] < 0)
+            {
+                return (2.0f / (-1 * target._statsAlterations[stat]));
+            }else if (target._statsAlterations[stat] > 0)
+            {
+                return (target._statsAlterations[stat] / 2.0f);
+            }
+            else
+            {
+                return 1.0f;
+            }
+        }
     }
 }

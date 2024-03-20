@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 class BattleManager
 {
-    List<Seraph> enemyTeam;
+    public List<Seraph> enemyTeam;
 
     public BattleManager()
     {

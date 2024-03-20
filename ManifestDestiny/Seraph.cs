@@ -53,7 +53,6 @@ class Seraph
         {
             {Stats.attack, 0 },
             {Stats.defense, 0 },
-            {Stats.mana, 0 },
             {Stats.magic, 0 },
             {Stats.speed, 0 },
         };
@@ -70,20 +69,26 @@ class Seraph
 
     public event Action OnLevelUp;
 
-    public int Experience {
+    public int Experience
+    {
         get => _experience;
-        set { 
+        set
+        {
             _experience = value;
             // Compare to see if lvl up
-            if(_experience >= _xpForLevel[Level+1])
+            if (_experience >= _xpForLevel[Level + 1])
             {
                 // Level up
                 OnLevelUp?.Invoke();
-                Level ++;
+                Level++;
             }
         }
-        
-}
+    }
 
-    
+    public void StatChange(Stats stat, int level)
+    {
+        _statsAlterations[stat] += level;
+
+        _currentStats[stat] = (int)(_baseStats[stat] * GameManager.cMaths.StatAlterationMultiplier(this, stat));
+    }
 }
