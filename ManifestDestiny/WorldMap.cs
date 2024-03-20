@@ -14,6 +14,12 @@ namespace ManifestDestiny
 
         public List<List<WorldTile>> WorldMapTiles { get => _worldMapTiles; }
 
+        public void SetPlayerPosition (int x, int y)
+        {
+            _playerPosition[0] = x;
+            _playerPosition[1] = y;
+        }
+
         public void Init ()
         {
             WorldTile floor = new WorldTile("▒", ConsoleColor.Gray, ConsoleColor.DarkGray);
