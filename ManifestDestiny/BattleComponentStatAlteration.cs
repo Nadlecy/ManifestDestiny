@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ManifestDestiny
 {
-    internal class BattleAbilityStatAlteration : BattleAbility
+    internal class BattleComponentStatAlteration : BattleComponent
     {
         /*
         the alteration list parameter must be presented like [a,b,c, x,y,z]
@@ -16,7 +16,7 @@ namespace ManifestDestiny
         */
         private List<int> alterationList = new List<int>();
 
-        BattleAbilityStatAlteration(string name, BattleType type, int accuracy, int critChance, int power, int cost, string description, List<int> alterations) : base(name, type, accuracy, critChance, power, cost, description)
+        public BattleComponentStatAlteration(List<int> alterations) 
         {
             foreach(int num in alterations)
             {
@@ -24,7 +24,7 @@ namespace ManifestDestiny
             }
         }
 
-        public override void Use(Seraph caster, Seraph target)
+        public override void Activate(Seraph caster, Seraph target)
         {
             caster.StatChange(Seraph.Stats.attack, alterationList[0]);
             caster.StatChange(Seraph.Stats.defense, alterationList[1]);
@@ -32,8 +32,6 @@ namespace ManifestDestiny
             target.StatChange(Seraph.Stats.attack, alterationList[3]);
             target.StatChange(Seraph.Stats.defense, alterationList[4]);
             target.StatChange(Seraph.Stats.speed, alterationList[5]);
-
-            base.Use(caster, target);
         }
     }
 }
