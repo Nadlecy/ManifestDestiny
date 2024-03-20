@@ -9,10 +9,17 @@ namespace ManifestDestiny
     internal class Display
     {
         List<List<WorldTile>> _currentDisplay = new List<List<WorldTile>>();
+        int[] _playerPosition = new int[2];
 
         public void SetDisplay(List<List<WorldTile>> worldMap)
         {
             _currentDisplay = worldMap;
+        }
+
+        public void SetPlayerPosition(int x, int y)
+        {
+            _playerPosition[0] = x;
+            _playerPosition[1] = y;
         }
 
         public void ShowDisplay()
