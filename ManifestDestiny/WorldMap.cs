@@ -9,16 +9,11 @@ namespace ManifestDestiny
     internal class WorldMap
     {
         List<List<WorldTile>> _worldMapTiles = new List<List<WorldTile>>();
-        Dictionary<string, WorldTile> _worldTiles = new Dictionary<string, WorldTile>();
-        int[] _playerPosition = new int[2];
+        public Dictionary<string, WorldTile> _worldTiles = new Dictionary<string, WorldTile>();
 
         public List<List<WorldTile>> WorldMapTiles { get => _worldMapTiles; }
 
-        public void SetPlayerPosition (int x, int y)
-        {
-            _playerPosition[0] = x;
-            _playerPosition[1] = y;
-        }
+        
 
         public void Init ()
         {
