@@ -9,7 +9,7 @@ namespace ManifestDestiny
     internal class WorldMap
     {
         List<List<WorldTile>> _worldMapTiles = new List<List<WorldTile>>();
-        Dictionary<string, WorldTile> _worldTiles = new Dictionary<string, WorldTile>();
+        public Dictionary<string, WorldTile> _worldTiles = new Dictionary<string, WorldTile>();
 
         public List<List<WorldTile>> WorldMapTiles { get => _worldMapTiles; }
 
@@ -25,9 +25,6 @@ namespace ManifestDestiny
 
             WorldTile exterior = new WorldTile(" ", ConsoleColor.DarkGray, ConsoleColor.White);
             _worldTiles.Add("exterior", exterior);
-
-            WorldTile player = new WorldTile("@", ConsoleColor.Black, ConsoleColor.Red);
-            _worldTiles.Add("player", player);
         }
 
         public void SetMap(string textFile)

@@ -11,19 +11,8 @@ class Program
 
         //entering the code proper
         GameManager gameManager = new GameManager();
+        gameManager.GameLoop();
 
-        WorldMap worldMap = new WorldMap();
-        worldMap.Init();
-        worldMap.SetMap("Map01.txt");
-        Display display = new Display();
-
-        while (true)
-        {
-            gameManager.keyInfo = Console.ReadKey();
-
-
-            display.SetWorldDisplay(worldMap.WorldMapTiles);
-            display.WorldDisplay();
-        }
+        
     }
 }
