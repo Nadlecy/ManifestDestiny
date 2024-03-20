@@ -13,7 +13,7 @@ namespace ManifestDestiny
 
         public void SetWorldDisplay(List<List<WorldTile>> worldMap)
         {
-            _currentWorldDisplay = worldMap;
+            _currentDisplay = worldMap;
         }
 
         public void PlayerWorldDisplay()
@@ -30,7 +30,7 @@ namespace ManifestDestiny
         public void WorldDisplay()
         {
             Console.SetCursorPosition(0, 0);
-            foreach (List<WorldTile> line in _currentWorldDisplay)
+            foreach (List<WorldTile> line in _currentDisplay)
             {
                 foreach (WorldTile tile in line)
                 {
