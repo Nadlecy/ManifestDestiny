@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class BattleAttributeAttack : BattleAttribute
+class AbilityAttributeAttack : AbilityAttribute
 {
     public int CritChance { get; set; }
     public int Power { get; set; }
     public BattleType BattleType { get; set; }
 
-    public BattleAttributeAttack(int critChance, int power, BattleType battleType) : base()
+    public AbilityAttributeAttack(int critChance, int power, BattleType battleType) : base()
     {
         CritChance = critChance;
         Power = power;

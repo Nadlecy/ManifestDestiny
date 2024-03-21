@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-class BattleAttributeStatAlteration : BattleAttribute
+class AbilityAttributeStatAlteration : AbilityAttribute
 {
     /*
     the alteration list parameter must be presented like [a,b,c, x,y,z]
@@ -14,7 +14,7 @@ class BattleAttributeStatAlteration : BattleAttribute
     */
     private List<int> alterationList;
 
-    public BattleAttributeStatAlteration(List<int> alterations) : base()
+    public AbilityAttributeStatAlteration(List<int> alterations) : base()
     {
         alterationList = new List<int>();
 
