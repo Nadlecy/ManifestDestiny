@@ -51,30 +51,6 @@ class GameManager
             keyInfo = Console.ReadKey();
             Selection = null;
 
-
-            /*
-            if (keyInfo.Key == ConsoleKey.LeftArrow)
-            {
-                
-            }
-            else if (keyInfo.Key == ConsoleKey.RightArrow)
-            {
-                
-            }
-            else if (keyInfo.Key == ConsoleKey.UpArrow)
-            {
-                display.PlayerWorldDisplay(-1, 0);
-            }
-            else if (keyInfo.Key == ConsoleKey.DownArrow)
-            {
-                display.PlayerWorldDisplay(1, 0);
-            }
-            else if (keyInfo.Key == ConsoleKey.Escape)
-            {
-                break;
-            }
-            */
-
             switch (GameState)
             {
                 case GameStates.Exploration:
