@@ -1,5 +1,4 @@
-﻿using ManifestDestiny;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
@@ -16,7 +15,7 @@ class BattleAbility
 
     public BattleAbility(string name, BattleType type, int accuracy, int cost, string description)
     {
-        List<BattleAttribute> battleAttributes = new();
+        List<AbilityAttribute> attributes = new();
 
         Name = name;
         BattleType = type;

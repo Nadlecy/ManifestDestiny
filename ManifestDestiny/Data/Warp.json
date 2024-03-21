@@ -1,0 +1,28 @@
+{
+  "warps": [
+    {
+      "StartPosition": {
+        "X": 23,
+        "Y": 12
+      },
+      "StartMap": "Map01.txt",
+      "DestinationPosition": {
+        "X": 1,
+        "Y": 12
+      },
+      "DestinationMap": "Map02.txt"
+    },
+    {
+      "StartPosition": {
+        "X": 5,
+        "Y": 15
+      },
+      "StartMap": "Map01.txt",
+      "DestinationPosition": {
+        "X": 25,
+        "Y": 35
+      },
+      "DestinationMap": "Map03.txt"
+    }
+  ]
+}

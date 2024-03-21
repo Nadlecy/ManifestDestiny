@@ -24,13 +24,13 @@ class GameManager
     public static CustomMaths cMaths;
     public GameStates GameState { get; set;}
     public List<Seraph> playerTeam;
-    public bool MenuOpen { get; set; }
     public string Selection { get; set; }
-    public ItemStorage _inventory = null;
+    public ItemStorage Inventory { get; set; }
 
     public GameManager()
     {
         rand = new Random();
+        Inventory = new ItemStorage();
         GameState = GameStates.Exploration;
     }
 
