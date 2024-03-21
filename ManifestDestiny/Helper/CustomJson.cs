@@ -10,7 +10,7 @@ namespace ManifestDestiny.Helper.Json
 
         public CustomJson(string filePath)
         {
-            _filePath = "../../../Map/" + filePath;
+            _filePath = "../../../Data/" + filePath;
         }
 
         public T Read()
