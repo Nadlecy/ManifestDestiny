@@ -16,7 +16,7 @@ class BattleAbility
 
     public BattleAbility(string name, BattleType type, int accuracy, int cost, string description)
     {
-        List<BattleComponent> battleComponents = new();
+        List<BattleAttribute> battleAttributes = new();
 
         Name = name;
         BattleType = type;
@@ -26,6 +26,8 @@ class BattleAbility
     }
 
     public virtual void Use(Seraph caster, Seraph target) {
+
+
 
         caster._currentStats[Seraph.Stats.mana] -= Cost;
     }

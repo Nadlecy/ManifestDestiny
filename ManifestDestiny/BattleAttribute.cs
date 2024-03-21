@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ManifestDestiny
 {
-    internal class BattleComponent
+    internal class BattleAttribute
     {
 
-        public BattleComponent() { }
+        public BattleAttribute() { }
 
         public virtual void Activate(Seraph user, Seraph target)
         {

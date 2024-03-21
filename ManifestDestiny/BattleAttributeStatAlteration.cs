@@ -7,17 +7,19 @@ using System.Threading.Tasks;
 
 namespace ManifestDestiny
 {
-    internal class BattleComponentStatAlteration : BattleComponent
+    internal class BattleAttributeStatAlteration : BattleAttribute
     {
         /*
         the alteration list parameter must be presented like [a,b,c, x,y,z]
         where the first three numbers are the atk/def/spd of the user
         and the last three are the atk/def/spd of the target
         */
-        private List<int> alterationList = new List<int>();
+        private List<int> alterationList;
 
-        public BattleComponentStatAlteration(List<int> alterations) 
+        public BattleAttributeStatAlteration(List<int> alterations) : base()
         {
+            alterationList = new List<int>();
+            
             foreach(int num in alterations)
             {
                 alterationList.Add(num);
