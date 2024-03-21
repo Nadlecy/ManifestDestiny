@@ -24,7 +24,7 @@ namespace ManifestDestiny
             if (Power != 0)
             {
                 int dmg = GameManager.cMaths.DamageCalculator(user, target, Power, CritChance, BattleType);
-                target._currentStats[Seraph.Stats.hp] -= dmg;
+                target.TakeDamage(dmg);
             }
         }
     }
