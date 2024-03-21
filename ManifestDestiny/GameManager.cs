@@ -1,6 +1,7 @@
 ﻿using ManifestDestiny;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
@@ -19,6 +20,8 @@ class GameManager
     public static Random rand;
     public static CustomMaths cMaths;
     public List<Seraph> playerTeam;
+    public bool MenuOpen {  get; set; }
+    public string Selection { get; set; }
 
     public GameManager()
     {
@@ -35,13 +38,14 @@ class GameManager
         display.SetWorldDisplay(worldMap.WorldMapTiles);
         display.WorldDisplay();
 
-        bool menuOpen = false;
+        MenuOpen = false;
 
-        Menu mainMenu = new Menu("MainMenu", new List<string> { "CLOSE", "AMOGUS" });
+        Menu mainMenu = new Menu("MainMenu", new List<string> { "CLOSE", "SAVE AND QUIT GAME" });
 
         while (true)
         {
             keyInfo = Console.ReadKey();
+            Selection = null;
 
             switch (keyInfo.Key)
             {
@@ -49,7 +53,7 @@ class GameManager
                     display.PlayerWorldDisplay(10, 10);
                     break;
                 case ConsoleKey.DownArrow:
-                    if (menuOpen)
+                    if (MenuOpen)
                     {
                         mainMenu.NextLine();
                         display.MenuDisplay(mainMenu); // Update display
@@ -59,7 +63,7 @@ class GameManager
                     }
                     break;
                 case ConsoleKey.UpArrow:
-                    if (menuOpen)
+                    if (MenuOpen)
                     {
                         mainMenu.PreviousLine();
                         display.MenuDisplay(mainMenu); // Update display
@@ -70,20 +74,34 @@ class GameManager
                     }
                     break;
                 case ConsoleKey.Enter:
-                    mainMenu.Enter();
+                    Selection = mainMenu.Enter();
                     break;
                 case ConsoleKey.Escape:
-                    menuOpen = !menuOpen;
+                    MenuOpen = !MenuOpen;
                     // Open menu
-                    if (menuOpen==true)
+                    if (MenuOpen == true)
                     {
-                        display.MenuDisplay(mainMenu); 
-                    } else { 
-                        display.WorldDisplay(); 
+                        display.MenuDisplay(mainMenu);
                     }
-                    //Console.WriteLine(menuOpen);
+                    else
+                    {
+                        display.WorldDisplay();
+                    }
+
+                    //Console.WriteLine(MenuOpen);
                     break;
                 default: break;
+            }
+
+            switch (Selection)
+            {
+                case "CLOSE":
+                    MenuOpen = false;
+                    display.WorldDisplay();
+                    break;
+                case "SAVE AND QUIT GAME":
+                    // TODO
+                    break;
             }
         }
     }

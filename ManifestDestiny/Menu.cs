@@ -23,7 +23,7 @@ namespace ManifestDestiny
         }
 
         // Select the next line in the menu
-        public void NextLine()
+        public virtual void NextLine()
         {
             SelectedLine++;
             if(SelectedLine >= _lines.Count) { 
@@ -32,7 +32,7 @@ namespace ManifestDestiny
         }
 
         // Select the previous line in the menu
-        public void PreviousLine()
+        public virtual void PreviousLine()
         {
             SelectedLine--;
             if (SelectedLine < 0)
@@ -42,9 +42,10 @@ namespace ManifestDestiny
         }
 
         // Confirm line selection
-        public void Enter()
+        public virtual string Enter()
         {
-            Console.WriteLine("omg hiii");
+            return _lines[SelectedLine];
+            //Console.WriteLine("omg hiii");
         }
     }
 }
