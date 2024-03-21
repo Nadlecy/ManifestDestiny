@@ -44,13 +44,11 @@ class GameManager
         display.SetPlayerPosition(15, 15);
 
         // Create debug inventory
-        _inventory = new ItemStorage();
+        ItemStorage _inventory = new ItemStorage();
         Item blueFlower = new Item("Blue flower", "A beatifull blue flower.");
         _inventory.AddItem(blueFlower,7);
         Item blackFlower = new Item("Black flower", "I don't like this one.");
         _inventory.AddItem(blackFlower);
-
-        MenuOpen = false;
 
         Menu mainMenu = new Menu("MAIN MENU", new List<string> { "SERAPHIM", "BAG", "QUIT GAME", "CLOSE" });
         Menu bagMenu = new Menu("BAG", _inventory.getList());
