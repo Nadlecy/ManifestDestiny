@@ -112,7 +112,7 @@ class GameManager
                             Selection = mainMenu.Enter();
                             break;
                         case ConsoleKey.Escape:
-                            mainMenu.Back();
+                            //mainMenu.Back();
                             break;
                     }   
                     break;
