@@ -23,13 +23,13 @@ class GameManager
     public static CustomMaths cMaths;
     public GameStates GameState { get; set;}
     public List<Seraph> playerTeam;
-    public bool MenuOpen { get; set; }
     public string Selection { get; set; }
     public ItemStorage Inventory { get; set; }
 
     public GameManager()
     {
         rand = new Random();
+        Inventory = new ItemStorage();
         GameState = GameStates.Exploration;
     }
 
@@ -41,8 +41,6 @@ class GameManager
         display.SetWorldDisplay(worldMap.WorldMapTiles);
         display.WorldDisplay();
         display.SetPlayerPosition(15, 15);
-
-        MenuOpen = false;
 
         Menu mainMenu = new Menu("MAIN MENU", new List<string> { "SERAPHIM", "BAG", "QUIT GAME", "CLOSE" });
 
