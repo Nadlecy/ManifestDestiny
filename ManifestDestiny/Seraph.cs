@@ -53,7 +53,6 @@ class Seraph
         {
             {Stats.attack, 0 },
             {Stats.defense, 0 },
-            {Stats.mana, 0 },
             {Stats.magic, 0 },
             {Stats.speed, 0 },
         };
@@ -70,20 +69,47 @@ class Seraph
 
     public event Action OnLevelUp;
 
-    public int Experience {
+    public int Experience
+    {
         get => _experience;
-        set { 
+        set
+        {
             _experience = value;
             // Compare to see if lvl up
-            if(_experience >= _xpForLevel[Level+1])
+            if (_experience >= _xpForLevel[Level + 1])
             {
                 // Level up
                 OnLevelUp?.Invoke();
-                Level ++;
+                Level++;
             }
         }
-        
-}
+    }
 
-    
+    public void StatChange(Stats stat, int level)
+    {
+        _statsAlterations[stat] += level;
+        if (_statsAlterations[stat] < -4) { _statsAlterations[stat] = -4; }
+        else if (_statsAlterations[stat] > 4) { _statsAlterations[stat] -= 4; }
+
+        _currentStats[stat] = (int)(_baseStats[stat] * GameManager.cMaths.StatAlterationMultiplier(this, stat));
+    }
+
+
+    public void HealHp(int amount)
+    {
+        if (amount < 0) { throw new ArgumentException("Cannot heal in the negatives.", nameof(amount)); }
+        _currentStats[Stats.hp] += amount;
+
+        //making sure hp doesnt go over the maximum
+        if (_currentStats[Stats.hp] > _baseStats[Stats.hp]) { _currentStats[Stats.hp] = _baseStats[Stats.hp]; }
+    }
+
+    public void TakeDamage(int amount)
+    {
+        if (amount < 0) { throw new ArgumentException("Something went wrong with the damage calculation.", nameof(amount)); }
+        _currentStats[Stats.hp] -= amount;
+
+        //making sure hp doesn't go under 0
+        if (_currentStats[Stats.hp] < 0) { _currentStats[Stats.hp] = 0; }
+    }
 }
