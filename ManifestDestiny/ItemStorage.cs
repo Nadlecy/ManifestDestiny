@@ -8,5 +8,24 @@ namespace ManifestDestiny
 {
     internal class ItemStorage
     {
+        public Dictionary<Item, int> Items = new();
+        public ItemStorage() { }
+
+        public void AddItem(Item item)
+        {
+            if (Items.ContainsKey(item))
+            {
+                if (Items[item] < 99)
+                {
+                    Items[item] += 1;
+                }
+            }
+            else
+            {
+                Items.Add(item, 1);
+            }
+        }
+
+
     }
 }
