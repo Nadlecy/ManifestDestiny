@@ -26,6 +26,8 @@ namespace ManifestDestiny
         public string Apparence { get => _apparence; }
         public bool Walkable { get => _walkable; }
 
+        public Warp Warp { get => _warp; }
+
         public void SetWarp(Warp warp)
         {
             _warp = warp;
@@ -39,6 +41,14 @@ namespace ManifestDestiny
             _colorBackground = colorBackground;
             _colorText = colorText;
             _isWarp = false;
+        }
+
+        public WorldTile Clone()
+        {
+            var wt = new WorldTile(_apparence, _colorBackground, _colorText, _walkable);
+
+            return wt;
+
         }
     }
 }

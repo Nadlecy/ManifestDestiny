@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ManifestDestiny.Helper.Json;
+using ManifestDestiny.Helper.Position;
 using ManifestDestiny.View;
 
 namespace ManifestDestiny
@@ -11,13 +12,17 @@ namespace ManifestDestiny
     internal class WorldMap
     {
         List<List<WorldTile>> _worldMapTiles;
-        public Dictionary<string, WorldTile> _worldTiles;
+        Dictionary<string, WorldTile> _worldTiles;
+
+        Dictionary<Position, bool> _warpTiles;
 
         public List<List<WorldTile>> WorldMapTiles { get => _worldMapTiles; }
 
         public WorldMap()
         {
             _worldTiles = new Dictionary<string, WorldTile>();
+
+            _warpTiles = new Dictionary<Position, bool>();
 
             _worldMapTiles = new List<List<WorldTile>>();
 
@@ -47,15 +52,15 @@ namespace ManifestDestiny
                     {
                         if (c == 'f')
                         {
-                            row.Add(_worldTiles["floor"]);
+                            row.Add(_worldTiles["floor"].Clone());
                         }
                         else if (c == 'g')
                         {
-                            row.Add(_worldTiles["grass"]);
+                            row.Add(_worldTiles["grass"].Clone());
                         }
                         else if (c == 'e')
                         {
-                            row.Add(_worldTiles["exterior"]);
+                            row.Add(_worldTiles["exterior"].Clone());
                         }
                     }
                     _worldMapTiles.Add(row);
