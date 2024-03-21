@@ -40,7 +40,7 @@ class GameManager
 
         MenuOpen = false;
 
-        Menu mainMenu = new Menu("MainMenu", new List<string> { "CLOSE", "SAVE AND QUIT GAME" });
+        Menu mainMenu = new Menu("MAIN MENU", new List<string> {"SERAPHIM","BAG","QUIT GAME","CLOSE"});
 
         while (true)
         {
@@ -78,7 +78,8 @@ class GameManager
                     break;
                 case ConsoleKey.Escape:
                     MenuOpen = !MenuOpen;
-                    // Open menu
+                    mainMenu.SelectedLine = 0;
+                    // Display or erase menu
                     if (MenuOpen == true)
                     {
                         display.MenuDisplay(mainMenu);
@@ -87,12 +88,12 @@ class GameManager
                     {
                         display.WorldDisplay();
                     }
-
                     //Console.WriteLine(MenuOpen);
                     break;
                 default: break;
             }
 
+            // Main Menu
             switch (Selection)
             {
                 case "CLOSE":

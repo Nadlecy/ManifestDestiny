@@ -77,15 +77,39 @@ namespace ManifestDestiny
                     Console.SetCursorPosition(0, 0);
                     Console.BackgroundColor = ConsoleColor.White;
                     Console.ForegroundColor = ConsoleColor.Black;
-                    Console.WriteLine("≡ " + menu.Name);
+                    
 
+
+                    int maxLength = 0;
                     for (int i = 0; i < menu._lines.Count; i++)
                     {
+                        if (menu._lines[i].Length > maxLength)
+                        {
+                            maxLength = menu._lines[i].Length;
+                        }
+                    }
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < maxLength - menu.Name.Length + 2; i++) // Add 2 cause the menu is 2 characters to the left from the lines
+                    {
+                        sb.Append(" ");
+                    }
+                    Console.WriteLine(" " + menu.Name + sb.ToString());
+
+                    for (int i = 0; i < menu._lines.Count; i++)
+                    {   
+                        // Padding
+                        StringBuilder padding = new StringBuilder();
+                        int paddingLength = maxLength - menu._lines[i].Length;
+                        for (int j = 0; j < paddingLength; j++)
+                        {
+                            padding.Append(" ");
+                        }
+
                         if (i == menu.SelectedLine) {
-                            Console.WriteLine(" ► " + menu._lines[i]);
+                            Console.WriteLine(" ► " + menu._lines[i] + padding.ToString());
                         } else
                         {
-                            Console.WriteLine("   " + menu._lines[i]);
+                            Console.WriteLine("   " + menu._lines[i] + padding.ToString());
                         }
                     }
                     break;

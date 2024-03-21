@@ -15,6 +15,7 @@ namespace ManifestDestiny
         // Creates a menu with a name and a dictionary of lines. A default menu is called "Menu" and has 1 line called "close"
         public Menu(string name = "MENU", List<string> lines = null)
         {
+            SelectedLine = 0;
             Name = name;
             if (lines == null)
             {
