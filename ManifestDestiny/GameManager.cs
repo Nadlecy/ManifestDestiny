@@ -78,7 +78,6 @@ class GameManager
                     break;
                 case ConsoleKey.Escape:
                     MenuOpen = !MenuOpen;
-                    mainMenu.SelectedLine = 0;
                     // Display or erase menu
                     if (MenuOpen == true)
                     {
@@ -88,7 +87,7 @@ class GameManager
                     {
                         display.WorldDisplay();
                     }
-                    //Console.WriteLine(MenuOpen);
+                    mainMenu.SelectedLine = 0;
                     break;
                 default: break;
             }
@@ -96,6 +95,11 @@ class GameManager
             // Main Menu
             switch (Selection)
             {
+                case "BAG":
+                    MenuOpen = false;
+                    display.WorldDisplay();
+                    display.BagDisplay();
+                    break;
                 case "CLOSE":
                     MenuOpen = false;
                     display.WorldDisplay();

@@ -12,7 +12,8 @@ namespace ManifestDestiny
         rightSide, // Pokemon style menu
         leftSide, //Pokemon style menu but on the left side
         bottom, 
-        battle
+        battle,
+        list
     }
 
     internal class Display
@@ -116,6 +117,35 @@ namespace ManifestDestiny
                 default: Console.Write("Menu Display Type is not in list ?\n"); break;
             }
             
+        }
+
+        public void BagDisplay()
+        {
+            Console.SetCursorPosition(0, 0);
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Black;
+            StringBuilder padding = new StringBuilder();
+
+            int maxLength = 0;
+            /*for (int i = 0; i < bag._lines.Count; i++)
+            {
+                if (menu._lines[i].Length > maxLength)
+                {
+                    maxLength = menu._lines[i].Length;
+                }
+            }*/
+
+            Console.WriteLine(" BAG  " + padding.ToString());
+
+            //foreach (var item in bag)
+            //{
+            //    // Padding
+            //    int paddingLength = maxLength - menu._lines[i].Length;
+            //    for (int j = 0; j < paddingLength; j++)
+            //    {
+            //        padding.Append(" ");
+            //    }
+            //}
         }
     }
 }
