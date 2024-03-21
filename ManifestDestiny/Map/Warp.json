@@ -1,0 +1,28 @@
+{
+  "warps": [
+    {
+      "StartPosition": {
+        "x": 23,
+        "y": 12
+      },
+      "StartMap": "Map01",
+      "DestinationPosition": {
+        "x": 1,
+        "y": 12
+      },
+      "DestinationMap": "Map02"
+    },
+    {
+      "StartPosition": {
+        "x": 5,
+        "y": 15
+      },
+      "StartMap": "Map01",
+      "DestinationPosition": {
+        "x": 25,
+        "y": 35
+      },
+      "DestinationMap": "Map03"
+    }
+  ]
+}
