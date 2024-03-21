@@ -1,4 +1,5 @@
 ﻿using ManifestDestiny;
+using ManifestDestiny.Helper.Math;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,6 @@ class GameManager
     public void GameLoop()
     {
         WorldMap worldMap = new WorldMap();
-        worldMap.Init();
         worldMap.SetMap("Map01.txt");
         Display display = new Display();
         display.SetWorldDisplay(worldMap.WorldMapTiles);

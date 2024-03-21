@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManifestDestiny.Helper.Position;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,18 @@ namespace ManifestDestiny
 {
     internal class Display
     {
-        List<List<WorldTile>> _currentDisplay = new List<List<WorldTile>>();
-        WorldTile _player = new WorldTile("@", ConsoleColor.Black, ConsoleColor.Black, true);
-        int[] _playerPosition = { 0, 0 };
+        List<List<WorldTile>> _currentDisplay;
+        WorldTile _player;
+        Position _playerPosition;
 
+        public Display()
+        {
+            _playerPosition = new Position();
+            _playerPosition.X = 0;
+            _playerPosition.Y = 0;
+            _player = new WorldTile("@", ConsoleColor.Black, ConsoleColor.Black, true);
+            _currentDisplay = new List<List<WorldTile>>();
+        }
 
         public void SetWorldDisplay(List<List<WorldTile>> worldMap)
         {
@@ -19,15 +28,15 @@ namespace ManifestDestiny
         }
         public void SetPlayerPosition(int x, int y)
         {
-            _playerPosition[0] = x;
-            _playerPosition[1] = y;
+            _playerPosition.X = x;
+            _playerPosition.Y = y;
             PlayerWorldDisplay(0, 0);
         }
 
         public void PlayerWorldDisplay(int x, int y)
         {
-            int playerX = _playerPosition[0];
-            int playerY = _playerPosition[1];
+            int playerX = _playerPosition.X;
+            int playerY = _playerPosition.Y;
 
             if (playerX + x >= 0 && playerY + y >= 0 && _currentDisplay.Count() > playerX + x && _currentDisplay[playerX + x].Count() > playerY + y)
             {
@@ -35,16 +44,21 @@ namespace ManifestDestiny
                 {
                     string apparence = _currentDisplay[playerX][playerY].Apparence;
 
+                    if (_currentDisplay[playerX + x][playerY + y].IsWarp == true)
+                    {
+                        
+                    }
+
                     Console.SetCursorPosition(playerY, playerX);
                     Console.BackgroundColor = _currentDisplay[playerX][playerY].ColorBackground;
                     Console.ForegroundColor = _currentDisplay[playerX][playerY].ColorText;
                     Console.Write(apparence);
 
-                    _playerPosition[0] += x;
-                    _playerPosition[1] += y;
+                    _playerPosition.X += x;
+                    _playerPosition.Y += y;
 
-                    playerX = _playerPosition[0];
-                    playerY = _playerPosition[1];
+                    playerX = _playerPosition.X;
+                    playerY = _playerPosition.Y;
 
                     Console.SetCursorPosition(playerY, playerX);
                     Console.BackgroundColor = _currentDisplay[playerX][playerY].ColorBackground;
@@ -53,7 +67,9 @@ namespace ManifestDestiny
 
                     Console.BackgroundColor = ConsoleColor.Black;
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.SetCursorPosition(0, Console.WindowHeight - 1);
+                    Console.SetCursorPosition(0, Console.WindowHeight - 5);
+                    Console.WriteLine(_playerPosition.X);
+                    Console.WriteLine(_playerPosition.Y);
 
                 }
             }
