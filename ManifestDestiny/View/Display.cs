@@ -56,7 +56,9 @@ namespace ManifestDestiny
 
                     if (_currentDisplay[playerX + x][playerY + y].IsWarp == true)
                     {
-                        
+                        _playerPosition = _currentDisplay[playerX + x][playerY + y].Warp.DestinationPosition;
+                        x = 0;
+                        y = 0;
                     }
 
                     Console.SetCursorPosition(playerY, playerX);

@@ -2,27 +2,27 @@
   "warps": [
     {
       "StartPosition": {
-        "x": 23,
-        "y": 12
+        "X": 23,
+        "Y": 12
       },
-      "StartMap": "Map01",
+      "StartMap": "Map01.txt",
       "DestinationPosition": {
-        "x": 1,
-        "y": 12
+        "X": 1,
+        "Y": 12
       },
-      "DestinationMap": "Map02"
+      "DestinationMap": "Map02.txt"
     },
     {
       "StartPosition": {
-        "x": 5,
-        "y": 15
+        "X": 5,
+        "Y": 15
       },
-      "StartMap": "Map01",
+      "StartMap": "Map01.txt",
       "DestinationPosition": {
-        "x": 25,
-        "y": 35
+        "X": 25,
+        "Y": 35
       },
-      "DestinationMap": "Map03"
+      "DestinationMap": "Map03.txt"
     }
   ]
 }
