@@ -26,6 +26,16 @@ namespace ManifestDestiny
             }
         }
 
-
+        public void RemoveItem(Item item)
+        {
+            if (Items.ContainsKey(item))
+            {
+                Items[item] -= 1;
+                if (Items[item] == 0)
+                {
+                    Items.Remove(item);
+                }
+            }
+        }
     }
 }
