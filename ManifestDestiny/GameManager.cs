@@ -25,6 +25,7 @@ class GameManager
     public List<Seraph> playerTeam;
     public bool MenuOpen { get; set; }
     public string Selection { get; set; }
+    public ItemStorage Inventory { get; set; }
 
     public GameManager()
     {
