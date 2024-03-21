@@ -11,23 +11,25 @@ using System.Threading.Tasks;
 
 class GameManager
 {
-    enum GameStates {
+    public enum GameStates
+    {
         Exploration,
         Battle,
         Menu,
     }
-    
+
     public ConsoleKeyInfo keyInfo;
     public static Random rand;
     public static CustomMaths cMaths;
+    public GameStates GameState { get; set;}
     public List<Seraph> playerTeam;
-    public bool MenuOpen {  get; set; }
+    public bool MenuOpen { get; set; }
     public string Selection { get; set; }
 
     public GameManager()
     {
         rand = new Random();
-        GameStates gameState = GameStates.Exploration;
+        GameState = GameStates.Exploration;
     }
 
     public void GameLoop()
@@ -37,62 +39,88 @@ class GameManager
         Display display = new Display();
         display.SetWorldDisplay(worldMap.WorldMapTiles);
         display.WorldDisplay();
-        display.SetPlayerPosition(15,15);
+        display.SetPlayerPosition(15, 15);
 
         MenuOpen = false;
 
-        Menu mainMenu = new Menu("MAIN MENU", new List<string> {"SERAPHIM","BAG","QUIT GAME","CLOSE"});
+        Menu mainMenu = new Menu("MAIN MENU", new List<string> { "SERAPHIM", "BAG", "QUIT GAME", "CLOSE" });
 
         while (true)
         {
             keyInfo = Console.ReadKey();
             Selection = null;
 
-            switch (keyInfo.Key)
-            {
-                case ConsoleKey.LeftArrow:
-                    display.PlayerWorldDisplay(10, 10);
-                    break;
-                case ConsoleKey.DownArrow:
-                    if (MenuOpen)
-                    {
-                        mainMenu.NextLine();
-                        display.MenuDisplay(mainMenu); // Update display
-                    } else
-                    {
-                        // walk
-                    }
-                    break;
-                case ConsoleKey.UpArrow:
-                    if (MenuOpen)
-                    {
-                        mainMenu.PreviousLine();
-                        display.MenuDisplay(mainMenu); // Update display
-                    }
-                    else
-                    {
-                        // walk
-                    }
-                    break;
-                case ConsoleKey.Enter:
-                    Selection = mainMenu.Enter();
-                    break;
-                case ConsoleKey.Escape:
-                    MenuOpen = !MenuOpen;
-                    // Display or erase menu
-                    if (MenuOpen == true)
-                    {
-                        display.MenuDisplay(mainMenu);
-                    }
-                    else
-                    {
-                        display.WorldDisplay();
-                    }
-                    mainMenu.SelectedLine = 0;
-                    break;
-                default: break;
-            }
 
+            /*
+            if (keyInfo.Key == ConsoleKey.LeftArrow)
+            {
+                
+            }
+            else if (keyInfo.Key == ConsoleKey.RightArrow)
+            {
+                
+            }
+            else if (keyInfo.Key == ConsoleKey.UpArrow)
+            {
+                display.PlayerWorldDisplay(-1, 0);
+            }
+            else if (keyInfo.Key == ConsoleKey.DownArrow)
+            {
+                display.PlayerWorldDisplay(1, 0);
+            }
+            else if (keyInfo.Key == ConsoleKey.Escape)
+            {
+                break;
+            }
+            */
+
+            switch (GameState)
+            {
+                case GameStates.Exploration:
+                    switch (keyInfo.Key)
+                    {
+                        case ConsoleKey.LeftArrow:
+                            display.PlayerWorldDisplay(0, -1);
+                            break;
+                        case ConsoleKey.RightArrow:
+                            display.PlayerWorldDisplay(0, 1);
+                            break;
+                        case ConsoleKey.UpArrow:
+                            display.PlayerWorldDisplay(-1, 0);
+                            break;
+                        case ConsoleKey.DownArrow:
+                            display.PlayerWorldDisplay(1, 0);
+                            break;
+                    }
+                    break;
+                case GameStates.Menu:
+                    switch (keyInfo.Key)
+                    {
+                        case ConsoleKey.LeftArrow:
+                            break;
+                        case ConsoleKey.RightArrow:
+                            break;
+                        case ConsoleKey.UpArrow:
+                            mainMenu.PreviousLine();
+                            display.MenuDisplay(mainMenu); // Update display
+                            break;
+                        case ConsoleKey.DownArrow:
+                            mainMenu.NextLine();
+                            display.MenuDisplay(mainMenu); // Update display
+                            break;
+                        case ConsoleKey.Enter:
+                            Selection = mainMenu.Enter();
+                            break;
+                        case ConsoleKey.Escape:
+                            mainMenu.Back();
+                            break;
+                    }   
+                    break;
+
+                default:
+                    break;
+            }
+            /*
             // Main Menu
             switch (Selection)
             {
@@ -108,23 +136,8 @@ class GameManager
                 case "SAVE AND QUIT GAME":
                     // TODO
                     break;
-
-            if (keyInfo.Key == ConsoleKey.LeftArrow)
-            {
-                display.PlayerWorldDisplay(0, -1);
-            } else if(keyInfo.Key == ConsoleKey.RightArrow)
-            {
-                display.PlayerWorldDisplay(0, 1);
-            } else if(keyInfo.Key == ConsoleKey.UpArrow)
-            {
-                display.PlayerWorldDisplay(-1, 0);
-            } else if(keyInfo.Key == ConsoleKey.DownArrow)
-            {
-                display.PlayerWorldDisplay(1, 0);
-            } else if(keyInfo.Key == ConsoleKey.Escape)
-            {
-                break;
-            }
+            }*/ 
+            // MOVE THIS TO MENU CLASS
         }
     }
 }
