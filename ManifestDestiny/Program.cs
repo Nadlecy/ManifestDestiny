@@ -17,7 +17,5 @@ class Program
 
         GameManager gameManager = new GameManager();
         gameManager.GameLoop();
-
-
     }
 }

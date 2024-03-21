@@ -9,7 +9,6 @@ namespace ManifestDestiny
 {
     internal class Display
     {
-
         public enum MenuDisplayType
         {
             rightSide, // Pokemon style menu
@@ -80,7 +79,6 @@ namespace ManifestDestiny
                     Console.SetCursorPosition(0, Console.WindowHeight - 5);
                     Console.WriteLine(_playerPosition.X);
                     Console.WriteLine(_playerPosition.Y);
-
                 }
             }
         }
@@ -116,8 +114,6 @@ namespace ManifestDestiny
                     Console.SetCursorPosition(0, 0);
                     Console.BackgroundColor = ConsoleColor.White;
                     Console.ForegroundColor = ConsoleColor.Black;
-
-
 
                     int maxLength = 0;
                     for (int i = 0; i < menu._lines.Count; i++)
@@ -156,11 +152,11 @@ namespace ManifestDestiny
                     break;
                 default: Console.Write("Menu Display Type is not in list ?\n"); break;
             }
-
         }
 
-        public void BagDisplay()
+        public void BagDisplay(Menu bagMenu, ItemStorage inventory)
         {
+            int selectedItem = 0;
             Console.SetCursorPosition(0, 0);
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.Black;
@@ -177,15 +173,30 @@ namespace ManifestDestiny
 
             Console.WriteLine(" BAG  " + padding.ToString());
 
-            //foreach (var item in bag)
+            List<string> lines = new List<string>();
+
+            //foreach (KeyValuePair<Item, int> entry in inventory.Items)
             //{
-            //    // Padding
-            //    int paddingLength = maxLength - menu._lines[i].Length;
-            //    for (int j = 0; j < paddingLength; j++)
-            //    {
-            //        padding.Append(" ");
-            //    }
+            //    ////Padding
+            //    //int paddingLength = maxLength - lines._lines[i].Length;
+            //    //for (int j = 0; j < paddingLength; j++)
+            //    //{
+            //    //    padding.Append(" ");
+            //    //}
+            //    lines.Add(entry.Key.Name + " x" + entry.Value);
+            //   //Console.WriteLine("   " + entry.Value + "x" + entry.Key.Name);
             //}
+
+            for (int i = 0; i < lines.Count; i++)
+            {
+                if (i == selectedItem)
+                {
+                    Console.WriteLine(" ► " + lines[i].ToString());
+                } else
+                {
+                    Console.WriteLine("   " + lines[i].ToString());
+                }
+            }
         }
     }
 }

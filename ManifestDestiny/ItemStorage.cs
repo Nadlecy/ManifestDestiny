@@ -11,31 +11,49 @@ namespace ManifestDestiny
         public Dictionary<Item, int> Items = new();
         public ItemStorage() { }
 
-        public void AddItem(Item item)
+        public void AddItem(Item item, int count = 1)
         {
-            if (Items.ContainsKey(item))
+            while(count > 0)
             {
-                if (Items[item] < 99)
+                if (Items.ContainsKey(item))
                 {
-                    Items[item] += 1;
+                    if (Items[item] < 99)
+                    {
+                        Items[item] += 1;
+                    }
                 }
-            }
-            else
-            {
-                Items.Add(item, 1);
+                else
+                {
+                    Items.Add(item, 1);
+                }
+                count--;
             }
         }
 
-        public void RemoveItem(Item item)
+        public void RemoveItem(Item item, int count = 1)
         {
-            if (Items.ContainsKey(item))
+            while (count > 0)
             {
-                Items[item] -= 1;
-                if (Items[item] == 0)
+                if (Items.ContainsKey(item))
                 {
-                    Items.Remove(item);
+                    Items[item] -= 1;
+                    if (Items[item] == 0)
+                    {
+                        Items.Remove(item);
+                    }
                 }
+                count--;
             }
+        }
+
+        public List<string> getList()
+        {
+            List<string> list = new List<string>();
+            foreach (KeyValuePair<Item, int> entry in Items)
+            {
+                list.Add(entry.Key.Name + " x" + entry.Value);
+            }
+            return list;
         }
     }
 }

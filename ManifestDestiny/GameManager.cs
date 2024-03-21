@@ -16,6 +16,7 @@ class GameManager
         Exploration,
         Battle,
         Menu,
+        Inventory
     }
 
     public ConsoleKeyInfo keyInfo;
@@ -25,6 +26,7 @@ class GameManager
     public List<Seraph> playerTeam;
     public bool MenuOpen { get; set; }
     public string Selection { get; set; }
+    public ItemStorage _inventory = null;
 
     public GameManager()
     {
@@ -41,38 +43,22 @@ class GameManager
         display.WorldDisplay();
         display.SetPlayerPosition(15, 15);
 
+        // Create debug inventory
+        _inventory = new ItemStorage();
+        Item blueFlower = new Item("Blue flower", "A beatifull blue flower.");
+        _inventory.AddItem(blueFlower,7);
+        Item blackFlower = new Item("Black flower", "I don't like this one.");
+        _inventory.AddItem(blackFlower);
+
         MenuOpen = false;
 
         Menu mainMenu = new Menu("MAIN MENU", new List<string> { "SERAPHIM", "BAG", "QUIT GAME", "CLOSE" });
+        Menu bagMenu = new Menu("BAG", _inventory.getList());
 
         while (true)
         {
             keyInfo = Console.ReadKey();
             Selection = null;
-
-
-            /*
-            if (keyInfo.Key == ConsoleKey.LeftArrow)
-            {
-                
-            }
-            else if (keyInfo.Key == ConsoleKey.RightArrow)
-            {
-                
-            }
-            else if (keyInfo.Key == ConsoleKey.UpArrow)
-            {
-                display.PlayerWorldDisplay(-1, 0);
-            }
-            else if (keyInfo.Key == ConsoleKey.DownArrow)
-            {
-                display.PlayerWorldDisplay(1, 0);
-            }
-            else if (keyInfo.Key == ConsoleKey.Escape)
-            {
-                break;
-            }
-            */
 
             switch (GameState)
             {
@@ -90,6 +76,11 @@ class GameManager
                             break;
                         case ConsoleKey.DownArrow:
                             display.PlayerWorldDisplay(1, 0);
+                            break;
+                        case ConsoleKey.Escape:
+                            GameState = GameStates.Menu;
+                            display.MenuDisplay(mainMenu);
+                            //mainMenu.Back();
                             break;
                     }
                     break;
@@ -116,27 +107,50 @@ class GameManager
                             break;
                     }   
                     break;
+                case GameStates.Inventory:
+                    switch (keyInfo.Key)
+                    {
+                        case ConsoleKey.LeftArrow:
+                            break;
+                        case ConsoleKey.RightArrow:
+                            break;
+                        case ConsoleKey.UpArrow:
+                            bagMenu.PreviousLine();
+                            display.MenuDisplay(bagMenu); // Update display
+                            break;
+                        case ConsoleKey.DownArrow:
+                            bagMenu.NextLine();
+                            display.MenuDisplay(bagMenu); // Update display
+                            break;
+                        case ConsoleKey.Enter:
+                            Selection = bagMenu.Enter();
+                            break;
+                        case ConsoleKey.Escape:
+                            //mainMenu.Back();
+                            break;
+                    }
+                    break;
 
                 default:
                     break;
             }
-            /*
+            
             // Main Menu
             switch (Selection)
             {
                 case "BAG":
-                    MenuOpen = false;
-                    display.WorldDisplay();
-                    display.BagDisplay();
+                    GameState = GameStates.Inventory;
+                    //display.WorldDisplay();
+                    display.MenuDisplay(bagMenu);
                     break;
                 case "CLOSE":
-                    MenuOpen = false;
+                    GameState = GameStates.Exploration;
                     display.WorldDisplay();
                     break;
                 case "SAVE AND QUIT GAME":
                     // TODO
                     break;
-            }*/ 
+            }
             // MOVE THIS TO MENU CLASS
         }
     }

@@ -46,7 +46,6 @@ namespace ManifestDestiny
         public virtual string Enter()
         {
             return _lines[SelectedLine];
-            //Console.WriteLine("omg hiii");
         }
     }
 }
