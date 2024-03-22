@@ -39,5 +39,10 @@ namespace ManifestDestiny.Helper.Json
                 return default(T);
             }
         }
+
+        public void Write(T content)
+        {
+
+        }
     }
 }
