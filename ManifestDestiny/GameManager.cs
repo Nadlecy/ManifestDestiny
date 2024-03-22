@@ -38,7 +38,7 @@ class GameManager
     {
         WorldMap worldMap = new WorldMap();
         worldMap.SetMap("Map01.txt");
-        Display display = new Display();
+        Display display = new Display(worldMap);
         display.SetWorldDisplay(worldMap.WorldMapTiles);
         display.WorldDisplay();
         display.SetPlayerPosition(15, 15);

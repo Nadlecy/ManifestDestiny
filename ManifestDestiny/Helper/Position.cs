@@ -11,5 +11,13 @@ namespace ManifestDestiny.Helper.Position
     {
         public int X { get; set; }
         public int Y { get; set; }
+
+        public Position Clone()
+        {
+            var pos = new Position();
+            pos.X = X;
+            pos.Y = Y;
+            return pos;
+        }
     }
 }

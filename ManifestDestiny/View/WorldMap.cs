@@ -36,9 +36,9 @@ namespace ManifestDestiny
             _worldTiles.Add("exterior", exterior);
         }
 
-
         public void SetMap(string textFile)
         {
+            _worldMapTiles.Clear();
             string path = "../../../Map/";
             if (File.Exists(path + textFile))
             { 
