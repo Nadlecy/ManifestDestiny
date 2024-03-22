@@ -21,14 +21,16 @@ namespace ManifestDestiny
         List<List<WorldTile>> _currentDisplay;
         WorldTile _player;
         Position _playerPosition;
+        WorldMap _worldMap;
 
-        public Display()
+        public Display(WorldMap worldMap)
         {
             _playerPosition = new Position();
             _playerPosition.X = 0;
             _playerPosition.Y = 0;
             _player = new WorldTile("@", ConsoleColor.Black, ConsoleColor.Black, true);
             _currentDisplay = new List<List<WorldTile>>();
+            _worldMap = worldMap;
         }
 
         public void SetWorldDisplay(List<List<WorldTile>> worldMap)
@@ -55,7 +57,10 @@ namespace ManifestDestiny
 
                     if (_currentDisplay[playerX + x][playerY + y].IsWarp == true)
                     {
-                        _playerPosition = _currentDisplay[playerX + x][playerY + y].Warp.DestinationPosition;
+                        _playerPosition = _currentDisplay[playerX + x][playerY + y].Warp.DestinationPosition.Clone();
+                        _worldMap.SetMap(_currentDisplay[playerX + x][playerY + y].Warp.DestinationMap);
+                        SetWorldDisplay(_worldMap.WorldMapTiles);
+                        WorldDisplay();
                         x = 0;
                         y = 0;
                     }
@@ -79,8 +84,8 @@ namespace ManifestDestiny
                     Console.BackgroundColor = ConsoleColor.Black;
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.SetCursorPosition(0, Console.WindowHeight - 5);
-                    Console.WriteLine(_playerPosition.X);
-                    Console.WriteLine(_playerPosition.Y);
+                    //Console.WriteLine(_playerPosition.X);
+                    //Console.WriteLine(_playerPosition.Y);
                 }
             }
         }
