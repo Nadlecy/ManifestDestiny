@@ -1,32 +1,144 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="ManifestDestiny.Display" Collapsed="true">
-    <Position X="9" Y="1.5" Width="1.5" />
+    <Position X="9" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAgEAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
-      <FileName>Display.cs</FileName>
+      <HashCode>AAAhAAAAAAIAAAAIAAgACAEAAAAgAAAACAAAAAAAAgA=</HashCode>
+      <FileName>View\Display.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Program" Collapsed="true">
-    <Position X="9" Y="3.25" Width="1.5" />
+    <Position X="9" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ManifestDestiny.WorldMap" Collapsed="true">
-    <Position X="5.5" Y="3" Width="1.5" />
+    <Position X="5.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAACACAAAAEAA=</HashCode>
-      <FileName>WorldMap.cs</FileName>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAgQEAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>View\WorldMap.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ManifestDestiny.WorldTile" Collapsed="true">
-    <Position X="5.5" Y="1.5" Width="1.75" />
+    <Position X="5.5" Y="2.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAIAEAAAAAAAAAQBAAAAAAAAAAAgAAAAAA=</HashCode>
-      <FileName>WorldTile.cs</FileName>
+      <HashCode>AkQAIAIAAEAIAEAAAAAAAAAQRAAAAAAAAAgAgAAAABA=</HashCode>
+      <FileName>View\WorldTile.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="ManifestDestiny.Item" Collapsed="true">
+    <Position X="14.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ManifestDestiny.ItemStorage" Collapsed="true">
+    <Position X="16.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAgAAAAAAEAAAAAgAAAAA=</HashCode>
+      <FileName>Items\ItemStorage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ManifestDestiny.Menu" Collapsed="true">
+    <Position X="18" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAABAAQAAAAEEAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ManifestDestiny.Helper.Json.CustomJson&lt;T&gt;" Collapsed="true">
+    <Position X="18" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helper\CustomJson.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ManifestDestiny.Helper.Position.Position" Collapsed="true">
+    <Position X="12.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYBA=</HashCode>
+      <FileName>Helper\Position.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbilityAttribute" Collapsed="true">
+    <Position X="6" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Battle\AbilityAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbilityAttributeAttack" Collapsed="true">
+    <Position X="4.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAABAAIAAAAAAAE=</HashCode>
+      <FileName>Battle\AbilityAttributeAttack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AbilityAttributeStatAlteration" Collapsed="true">
+    <Position X="7" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Battle\AbilityAttributeStatAlteration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleAbility" Collapsed="true">
+    <Position X="12.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAIABQAAAAEAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Battle\BattleAbility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleManager" Collapsed="true">
+    <Position X="14.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAIAAABAAAAQIAAAAAAAAAgAAAAAAgABAAAA=</HashCode>
+      <FileName>Battle\BattleManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleType" Collapsed="true">
+    <Position X="16.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAYAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Battle\BattleType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Seraph" Collapsed="true">
+    <Position X="14.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgABAAgAAACAACAAIQIACgQAAAJAQAAgEAAQAA=</HashCode>
+      <FileName>Seraph\Seraph.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager" Collapsed="true">
+    <Position X="12.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAQAAAABABAAAAAAAAAAAQgAAYAA=</HashCode>
+      <FileName>GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ManifestDestiny.View.Warp" Collapsed="true">
+    <Position X="16.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACEAAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAAA=</HashCode>
+      <FileName>View\Warp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ManifestDestiny.View.WarpContainer" Collapsed="true">
+    <Position X="18" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>View\WarpContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="ManifestDestiny.Helper.Math.CustomMaths" Collapsed="true">
+    <Position X="12.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helper\CustomMaths.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
