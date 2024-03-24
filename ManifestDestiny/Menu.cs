@@ -112,7 +112,16 @@ namespace ManifestDestiny
         // Confirm line selection
         public virtual string Enter()
         {
-            return _lines[SelectedLine];
+            switch (LineType)
+            {
+                case LinesType.text:
+                    return _lines[SelectedLine];
+                    break;
+                default :
+                    return "default";
+                    break;
+            }
+            
         }
     }
 }
