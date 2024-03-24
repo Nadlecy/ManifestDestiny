@@ -20,7 +20,6 @@ namespace ManifestDestiny
         public List<string> _lines;
         public ItemStorage ItemStorage { get; set; }
         public int SelectedLine { get; set; }
-        public Item SelectedItem { get; set; }
         public LinesType LineType { get; private set; }
 
         // Creates a menu with a name and a dictionary of lines. A default menu is called "Menu" and has 1 line called "close"

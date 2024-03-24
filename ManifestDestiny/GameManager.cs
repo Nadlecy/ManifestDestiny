@@ -78,7 +78,6 @@ class GameManager
                         case ConsoleKey.Escape:
                             GameState = GameStates.Menu;
                             display.MenuDisplay(mainMenu);
-                            //mainMenu.Back();
                             break;
                     }
                     break;
@@ -101,7 +100,7 @@ class GameManager
                             Selection = mainMenu.Enter();
                             break;
                         case ConsoleKey.Escape:
-                            //mainMenu.Back();
+                            Selection = "CLOSE";
                             break;
                     }   
                     break;
@@ -125,6 +124,8 @@ class GameManager
                             Console.WriteLine(Selection);
                             break;
                         case ConsoleKey.Escape:
+                            bagMenu.SelectedLine = 0;
+                            Selection = "CLOSE";
                             //mainMenu.Back();
                             break;
                     }
@@ -143,8 +144,21 @@ class GameManager
                     display.MenuDisplay(bagMenu);
                     break;
                 case "CLOSE":
-                    GameState = GameStates.Exploration;
-                    display.WorldDisplay();
+                    switch (GameState)
+                    {
+                        case GameStates.Inventory:
+                            bagMenu.SelectedLine = 0;
+                            GameState = GameStates.Menu;
+                            display.WorldDisplay();
+                            display.MenuDisplay(mainMenu);
+                            break;
+                        case GameStates.Menu:
+                            mainMenu.SelectedLine = 0;
+                            GameState = GameStates.Exploration;
+                            display.WorldDisplay();
+                            break;
+                    }
+                    
                     break;
                 case "SAVE AND QUIT GAME":
                     // TODO
