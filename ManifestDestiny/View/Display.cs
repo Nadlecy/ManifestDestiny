@@ -124,8 +124,8 @@ namespace ManifestDestiny
 
                     switch (menu.LineType)
                     {
+                        // ---- TEXT DISPLAY ---- //
                         case Menu.LinesType.text:
-                            // BASIC MENU DISPLAY
                             int maxLength = 0;
                             for (int i = 0; i < menu._lines.Count; i++)
                             {
@@ -203,16 +203,15 @@ namespace ManifestDestiny
                                 }
                             }
 
+                            if (menu.SelectedLine == menu.ItemStorage.Items.Count)
+                            {
+                                Console.WriteLine(" ► CLOSE");
+                            }
+                            else
+                            {
+                                Console.WriteLine("   CLOSE");
+                            }
 
-                            // Close menu
-                            //if (menu.SelectedLine == menu.ItemStorage.Items.Count-1)
-                            //{
-                            //    Console.WriteLine(" ► CLOSE");
-                            //} else
-                            //{
-                            //    Console.WriteLine("   CLOSE");
-                            //}
-                            
 
                             break;
                         default:

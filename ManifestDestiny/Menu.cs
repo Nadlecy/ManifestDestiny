@@ -58,7 +58,7 @@ namespace ManifestDestiny
                     }
                     break;
                 case LinesType.items:
-                    if(SelectedLine >= ItemStorage.Items.Count)
+                    if(SelectedLine > ItemStorage.Items.Count)
                     {
                         SelectedLine = 0;
                     }
@@ -81,7 +81,7 @@ namespace ManifestDestiny
                 }
                 else if (LineType == LinesType.items)
                 {
-                    SelectedLine = ItemStorage.Items.Count - 1;
+                    SelectedLine = ItemStorage.Items.Count;
                 }
             }
         }
@@ -93,13 +93,14 @@ namespace ManifestDestiny
             {
                 case LinesType.text:
                     return _lines[SelectedLine];
-                    break;
                 case LinesType.items:
+                    if (SelectedLine == ItemStorage.Items.Count)
+                    {
+                        return "CLOSE";
+                    }
                     return ItemStorage.Items[SelectedLine].Description;
-                    break;
                 default :
                     return "default";
-                    break;
             }
             
         }
