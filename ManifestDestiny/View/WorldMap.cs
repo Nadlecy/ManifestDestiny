@@ -41,34 +41,51 @@ namespace ManifestDestiny
             _worldMapTiles.Clear();
             string path = "../../../Data/Map/";
             if (File.Exists(path + textFile))
-            { 
-                string[] lines = File.ReadAllLines(path + textFile); 
+            {
+                string pathGrass = "TallGrass/Grass" + textFile.Substring(0, 5) + ".json";
 
-                foreach (string line in lines)
+                if (File.Exists("../../../Data/" + pathGrass))
                 {
-                    List<WorldTile> row = new List<WorldTile>();
+                    CustomJson<EncountersChanceContainer> jsonReader = new CustomJson<EncountersChanceContainer>(pathGrass);
 
-                    foreach (char c in line)
+                    // Lire les données JSON et obtenir la liste de warps
+                    EncountersChanceContainer encountersChance = jsonReader.Read();
+
+                    string[] lines = File.ReadAllLines(path + textFile);
+
+                    foreach (string line in lines)
                     {
-                        if (c == 'f')
+                        List<WorldTile> row = new List<WorldTile>();
+
+                        foreach (char c in line)
                         {
-                            row.Add(_worldTiles["floor"].Clone());
+                            if (c == 'f')
+                            {
+                                row.Add(_worldTiles["floor"].Clone());
+                            }
+                            else if (c == 'g')
+                            {
+                                row.Add(_worldTiles["grass"].Clone());
+                                row[row.Count - 1].EncounterChance = encountersChance.Chance;
+                                row[row.Count - 1].Encounters = encountersChance.Encounter;
+                            }
+                            else if (c == 'e')
+                            {
+                                row.Add(_worldTiles["exterior"].Clone());
+                            }
                         }
-                        else if (c == 'g')
-                        {
-                            row.Add(_worldTiles["grass"].Clone());
-                        }
-                        else if (c == 'e')
-                        {
-                            row.Add(_worldTiles["exterior"].Clone());
-                        }
+                        _worldMapTiles.Add(row);
                     }
-                    _worldMapTiles.Add(row);
+                }else
+                {
+                    throw new FileNotFoundException("Le fichier JSON n'existe pas.", "../../../Data/" + pathGrass);
                 }
+
+                
             }
             else
             {
-                Console.WriteLine("File do not exist");
+                throw new FileNotFoundException("Le fichier JSON n'existe pas.", path + textFile);
             }
 
             string pathWarp = "Warps/Warp" + textFile.Substring(0, 5) + ".json";

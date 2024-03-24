@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManifestDestiny.View;
+using System;
 using System.IO;
 using System.Text.Json;
 
@@ -20,6 +21,7 @@ namespace ManifestDestiny.Helper.Json
                 // Vérifier si le fichier existe
                 if (File.Exists(_filePath))
                 {
+
                     // Lire le contenu du fichier JSON
                     string jsonContent = File.ReadAllText(_filePath);
                     // Désérialiser le contenu JSON en objet de type T
