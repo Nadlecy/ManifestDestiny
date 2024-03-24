@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 class BattleManager
 {
     public List<Seraph> enemyTeam;
-    public GameManager GameManager {  get; private set; }
+    public List<Seraph> playerTeam;
     public Seraph CurrentPlayer { get; private set; }
     public Seraph CurrentEnemy { get; private set; }
 
-    public BattleManager(GameManager manager)
+    public BattleManager(List<Seraph> playerList)
     {
-        GameManager = manager;
+        playerTeam = playerList;
         enemyTeam = new List<Seraph>();
 
     }
@@ -22,7 +22,7 @@ class BattleManager
     {
         if (foeTeam.Count > 6) { throw new ArgumentException("too many ennemies", nameof(foeTeam)); }
         enemyTeam = foeTeam;
-        CurrentPlayer = GameManager.playerTeam[0];
+        CurrentPlayer = playerTeam[0];
         CurrentEnemy = enemyTeam[0];
     }
 

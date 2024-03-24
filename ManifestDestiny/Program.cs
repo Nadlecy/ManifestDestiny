@@ -15,22 +15,12 @@ class Program
 
 
         // capacités de test
-        /*
-        List<BattleAbility> abilities = new();
+        List<Tuple<BattleAbility, List<AbilityAttribute>>> abilities = new();
 
-        BattleType Absolute = new("Absolute");
-        BattleAbility test = new("testAbility",Absolute, 90, 12, "A test ability, lowers enemy defense");
-        test.AddAttribute(new AbilityAttributeAttack(10, 40, test.BattleType));
-        test.AddAttribute(new AbilityAttributeStatAlteration(new List<int> { 0, 0, 0, 0, -1, 0 }));
-        abilities.Add(test);
+        GameData gameData = new GameData();
 
-        //on serialize tout ça
-        string fileName = "../../../Data/Attacks.json";
-        string jsonString = JsonSerializer.Serialize(abilities);
-        File.WriteAllText(fileName, jsonString);
+        Seraph test = gameData.Summon("Lambda", 3);
 
-        */
-        
         int width = 150; // Largeur désirée en caractères
         int height = 50; // Hauteur désirée en lignes
         Console.SetWindowSize(width, height);

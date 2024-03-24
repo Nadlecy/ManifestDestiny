@@ -113,6 +113,16 @@ namespace ManifestDestiny
             }
         }
 
+        public void BattleDisplay(BattleManager battleManager)
+        {
+            Console.SetCursorPosition(0, 0);
+        }
+
+        public void BattleDisplayUpdate()
+        {
+            Console.SetCursorPosition(0, 0);
+        }
+
         public void MenuDisplay(Menu menu, MenuDisplayType displayType = MenuDisplayType.leftSide)
         {
             switch (displayType)
