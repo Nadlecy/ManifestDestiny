@@ -51,7 +51,7 @@ class GameManager
         _inventory.AddItem(blackFlower);
 
         Menu mainMenu = new Menu("MAIN MENU", new List<string> { "SERAPHIM", "BAG", "QUIT GAME", "CLOSE" });
-        Menu bagMenu = new Menu("BAG", _inventory.getList());
+        Menu bagMenu = new Menu("BAG", _inventory);
 
         while (true)
         {

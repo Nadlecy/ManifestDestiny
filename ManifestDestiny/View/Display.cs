@@ -122,88 +122,124 @@ namespace ManifestDestiny
                     Console.BackgroundColor = ConsoleColor.White;
                     Console.ForegroundColor = ConsoleColor.Black;
 
-                    int maxLength = 0;
-                    for (int i = 0; i < menu._lines.Count; i++)
+                    switch (menu.LineType)
                     {
-                        if (menu._lines[i].Length > maxLength)
-                        {
-                            maxLength = menu._lines[i].Length;
-                        }
-                    }
-                    StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < maxLength - menu.Name.Length + 2; i++) // Add 2 cause the menu is 2 characters to the left from the lines
-                    {
-                        sb.Append(" ");
-                    }
-                    Console.WriteLine(" " + menu.Name + sb.ToString());
+                        case Menu.LinesType.text:
+                            // BASIC MENU DISPLAY
+                            int maxLength = 0;
+                            for (int i = 0; i < menu._lines.Count; i++)
+                            {
+                                if (menu._lines[i].Length > maxLength)
+                                {
+                                    maxLength = menu._lines[i].Length;
+                                }
+                            }
+                            StringBuilder sb = new StringBuilder();
+                            for (int i = 0; i < maxLength - menu.Name.Length + 2; i++) // Add 2 cause the menu is 2 characters to the left from the lines
+                            {
+                                sb.Append(" ");
+                            }
+                            Console.WriteLine(" " + menu.Name + sb.ToString());
 
-                    for (int i = 0; i < menu._lines.Count; i++)
-                    {
-                        // Padding
-                        StringBuilder padding = new StringBuilder();
-                        int paddingLength = maxLength - menu._lines[i].Length;
-                        for (int j = 0; j < paddingLength; j++)
-                        {
-                            padding.Append(" ");
-                        }
+                            for (int i = 0; i < menu._lines.Count; i++)
+                            {
+                                // Padding
+                                StringBuilder newPadding = new StringBuilder();
+                                int paddingLength = maxLength - menu._lines[i].Length;
+                                for (int j = 0; j < paddingLength; j++)
+                                {
+                                    newPadding.Append(" ");
+                                }
 
-                        if (i == menu.SelectedLine)
-                        {
-                            Console.WriteLine(" ► " + menu._lines[i] + padding.ToString());
-                        }
-                        else
-                        {
-                            Console.WriteLine("   " + menu._lines[i] + padding.ToString());
-                        }
+                                if (i == menu.SelectedLine)
+                                {
+                                    Console.WriteLine(" ► " + menu._lines[i] + newPadding.ToString());
+                                }
+                                else
+                                {
+                                    Console.WriteLine("   " + menu._lines[i] + newPadding.ToString());
+                                }
+                            }
+                            break;
+
+                        // ---- ITEMS DISPLAY ---- //
+                        case Menu.LinesType.items:
+                            Console.SetCursorPosition(0, 0);
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            Console.ForegroundColor = ConsoleColor.Black;
+
+                            // Pading
+                            maxLength = 0;
+                            // Get padding length
+                            foreach (KeyValuePair<Item, int> entry in menu.ItemStorage.Items)
+                            {
+                                if (entry.Key.Name.Length > maxLength)
+                                {
+                                    maxLength = entry.Key.Name.Length;
+                                }
+                            }
+                            StringBuilder padding = new StringBuilder();
+                            // Add padding
+
+
+                            //int i = -1;
+                            //foreach (string key in myDict.Keys)
+                            //{
+                            //    i++;
+                            //    Console.Write(i.ToString() + " : " + key);
+                            //}
+                            int index = 0;
+                            //foreach (Item key in menu.ItemStorage.Items.Keys)
+                            foreach (KeyValuePair<Item, int> entry in menu.ItemStorage.Items)
+                            {
+                                //int paddingLength = maxLength - entry.Key.Name.Length;
+                                //for (int j = 0; j < paddingLength; j++)
+                                //{
+                                //    padding.Append(" ");
+                                //}
+                                // Display
+                                if (menu.SelectedItem == entry.Key)
+                                {
+                                    Console.WriteLine(" ► " + entry.Value + "x" + entry.Key.Name);
+                                } else
+                                {
+                                    Console.WriteLine("   " + entry.Value + "x" + entry.Key.Name);
+                                }
+                                
+                                //Console.WriteLine("   " + index + " " + menu.ItemStorage.Items[key] + "x" + + padding.ToString());
+                                index++;
+                            }
+                            break;
+                        default:
+                            break;
                     }
                     break;
                 default: Console.Write("Menu Display Type is not in list ?\n"); break;
             }
         }
 
-        public void BagDisplay(Menu bagMenu, ItemStorage inventory)
+        public void BagDisplay(Menu bagMenu) // NOT USED
         {
             int selectedItem = 0;
-            Console.SetCursorPosition(0, 0);
-            Console.BackgroundColor = ConsoleColor.Red;
-            Console.ForegroundColor = ConsoleColor.Black;
+            
             StringBuilder padding = new StringBuilder();
 
-            int maxLength = 0;
-            /*for (int i = 0; i < bag._lines.Count; i++)
-            {
-                if (menu._lines[i].Length > maxLength)
-                {
-                    maxLength = menu._lines[i].Length;
-                }
-            }*/
+            
 
             Console.WriteLine(" BAG  " + padding.ToString());
 
-            List<string> lines = new List<string>();
+            
 
-            //foreach (KeyValuePair<Item, int> entry in inventory.Items)
+            //for (int i = 0; i < lines.Count; i++)
             //{
-            //    ////Padding
-            //    //int paddingLength = maxLength - lines._lines[i].Length;
-            //    //for (int j = 0; j < paddingLength; j++)
-            //    //{
-            //    //    padding.Append(" ");
-            //    //}
-            //    lines.Add(entry.Key.Name + " x" + entry.Value);
-            //   //Console.WriteLine("   " + entry.Value + "x" + entry.Key.Name);
+            //    if (i == selectedItem)
+            //    {
+            //        Console.WriteLine(" ► " + lines[i].ToString());
+            //    } else
+            //    {
+            //        Console.WriteLine("   " + lines[i].ToString());
+            //    }
             //}
-
-            for (int i = 0; i < lines.Count; i++)
-            {
-                if (i == selectedItem)
-                {
-                    Console.WriteLine(" ► " + lines[i].ToString());
-                } else
-                {
-                    Console.WriteLine("   " + lines[i].ToString());
-                }
-            }
         }
     }
 }
