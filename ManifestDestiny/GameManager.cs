@@ -122,6 +122,7 @@ class GameManager
                             break;
                         case ConsoleKey.Enter:
                             Selection = bagMenu.Enter();
+                            Console.WriteLine(Selection);
                             break;
                         case ConsoleKey.Escape:
                             //mainMenu.Back();
@@ -138,7 +139,7 @@ class GameManager
             {
                 case "BAG":
                     GameState = GameStates.Inventory;
-                    //display.WorldDisplay();
+                    display.WorldDisplay();
                     display.MenuDisplay(bagMenu);
                     break;
                 case "CLOSE":

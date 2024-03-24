@@ -42,10 +42,7 @@ namespace ManifestDestiny
             ItemStorage = itemStorage;
 
             // Select first item
-            foreach (KeyValuePair<Item, int> entry in ItemStorage.Items)
-            {
-                if (SelectedItem == null) { SelectedItem = entry.Key; }
-            }
+            SelectedLine = 0;
         }
 
         // Select the next line in the menu
@@ -61,16 +58,9 @@ namespace ManifestDestiny
                     }
                     break;
                 case LinesType.items:
-                    bool selectNext = false;
-                    foreach (KeyValuePair<Item, int> entry in ItemStorage.Items)
+                    if(SelectedLine >= ItemStorage.Items.Count)
                     {
-                        if (selectNext)
-                        {
-                            SelectedItem = entry.Key;
-                        }
-                        if (SelectedItem == entry.Key) {
-                            selectNext = true;
-                        }
+                        SelectedLine = 0;
                     }
                     break;
                 default:
@@ -81,31 +71,18 @@ namespace ManifestDestiny
         // Select the previous line in the menu
         public virtual void PreviousLine()
         {
+            //Console.WriteLine("MAOGFGIS");
             SelectedLine--;
-            switch (LineType)
+            if (SelectedLine < 0)
             {
-                case LinesType.text:
-                    if (SelectedLine < 0)
-                    {
-                        SelectedLine = _lines.Count - 1;
-                    }
-                    break;
-                case LinesType.items:
-                    bool selectPrevious = false;
-                    foreach (KeyValuePair<Item, int> entry in ItemStorage.Items.Reverse())
-                    {
-                        if (selectPrevious)
-                        {
-                            SelectedItem = entry.Key;
-                        }
-                        if (SelectedItem == entry.Key)
-                        {
-                            selectPrevious = true;
-                        }
-                    }
-                    break;
-                default:
-                    break;
+                if(LineType == LinesType.text)
+                {
+                    SelectedLine = _lines.Count - 1;
+                }
+                else if (LineType == LinesType.items)
+                {
+                    SelectedLine = ItemStorage.Items.Count - 1;
+                }
             }
         }
 
@@ -116,6 +93,9 @@ namespace ManifestDestiny
             {
                 case LinesType.text:
                     return _lines[SelectedLine];
+                    break;
+                case LinesType.items:
+                    return ItemStorage.Items[SelectedLine].Description;
                     break;
                 default :
                     return "default";

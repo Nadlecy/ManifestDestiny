@@ -168,47 +168,52 @@ namespace ManifestDestiny
                             Console.BackgroundColor = ConsoleColor.Red;
                             Console.ForegroundColor = ConsoleColor.Black;
 
-                            // Pading
                             maxLength = 0;
-                            // Get padding length
-                            foreach (KeyValuePair<Item, int> entry in menu.ItemStorage.Items)
+                            for (int i = 0; i < menu.ItemStorage.Items.Count; i++)
                             {
-                                if (entry.Key.Name.Length > maxLength)
+                                if (menu.ItemStorage.Items[i].Name.Length > maxLength)
                                 {
-                                    maxLength = entry.Key.Name.Length;
+                                    maxLength = menu.ItemStorage.Items[i].Name.Length;
                                 }
                             }
-                            StringBuilder padding = new StringBuilder();
-                            // Add padding
-
-
-                            //int i = -1;
-                            //foreach (string key in myDict.Keys)
-                            //{
-                            //    i++;
-                            //    Console.Write(i.ToString() + " : " + key);
-                            //}
-                            int index = 0;
-                            //foreach (Item key in menu.ItemStorage.Items.Keys)
-                            foreach (KeyValuePair<Item, int> entry in menu.ItemStorage.Items)
+                            StringBuilder titlePadding = new StringBuilder();
+                            for (int i = 0; i < maxLength - menu.Name.Length + 2; i++) // Add 2 cause the menu is 2 characters to the left from the lines
                             {
-                                //int paddingLength = maxLength - entry.Key.Name.Length;
+                                titlePadding.Append(" ");
+                            }
+                            Console.WriteLine(" " + menu.Name + titlePadding.ToString());
+
+                            for (int i = 0; i < menu.ItemStorage.Items.Count; i++)
+                            {
+                                // Padding
+                                //StringBuilder newPadding = new StringBuilder();
+                                //int paddingLength = maxLength - menu.ItemStorage.Items[i].Name.Length;
                                 //for (int j = 0; j < paddingLength; j++)
                                 //{
-                                //    padding.Append(" ");
+                                //    newPadding.Append(" ");
                                 //}
-                                // Display
-                                if (menu.SelectedItem == entry.Key)
+
+                                if (i == menu.SelectedLine)
                                 {
-                                    Console.WriteLine(" ► " + entry.Value + "x" + entry.Key.Name);
-                                } else
-                                {
-                                    Console.WriteLine("   " + entry.Value + "x" + entry.Key.Name);
+                                    Console.WriteLine(" ► " + menu.ItemStorage.Items[i].Name /*+ newPadding.ToString()*/);
                                 }
-                                
-                                //Console.WriteLine("   " + index + " " + menu.ItemStorage.Items[key] + "x" + + padding.ToString());
-                                index++;
+                                else
+                                {
+                                    Console.WriteLine("   " + menu.ItemStorage.Items[i].Name /*+ newPadding.ToString()*/);
+                                }
                             }
+
+
+                            // Close menu
+                            //if (menu.SelectedLine == menu.ItemStorage.Items.Count-1)
+                            //{
+                            //    Console.WriteLine(" ► CLOSE");
+                            //} else
+                            //{
+                            //    Console.WriteLine("   CLOSE");
+                            //}
+                            
+
                             break;
                         default:
                             break;
@@ -216,30 +221,6 @@ namespace ManifestDestiny
                     break;
                 default: Console.Write("Menu Display Type is not in list ?\n"); break;
             }
-        }
-
-        public void BagDisplay(Menu bagMenu) // NOT USED
-        {
-            int selectedItem = 0;
-            
-            StringBuilder padding = new StringBuilder();
-
-            
-
-            Console.WriteLine(" BAG  " + padding.ToString());
-
-            
-
-            //for (int i = 0; i < lines.Count; i++)
-            //{
-            //    if (i == selectedItem)
-            //    {
-            //        Console.WriteLine(" ► " + lines[i].ToString());
-            //    } else
-            //    {
-            //        Console.WriteLine("   " + lines[i].ToString());
-            //    }
-            //}
         }
     }
 }
