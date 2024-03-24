@@ -10,10 +10,13 @@ namespace ManifestDestiny
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public Item(string name, string description)
+
+        public int Count { get; set; }
+        public Item(string name, string description, int count = 1)
         {
             Name = name;
             Description = description;
+            Count = count;
         }
 
         public virtual void Use()

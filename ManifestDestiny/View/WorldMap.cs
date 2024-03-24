@@ -39,7 +39,7 @@ namespace ManifestDestiny
         public void SetMap(string textFile)
         {
             _worldMapTiles.Clear();
-            string path = "../../../Map/";
+            string path = "../../../Data/Map/";
             if (File.Exists(path + textFile))
             { 
                 string[] lines = File.ReadAllLines(path + textFile); 
@@ -71,21 +71,26 @@ namespace ManifestDestiny
                 Console.WriteLine("File do not exist");
             }
 
+            string pathWarp = "Warps/Warp" + textFile.Substring(0, 5) + ".json";
 
-            // Créer une instance de JsonReader pour désérialiser une liste de warps
-            CustomJson<WarpContainer> jsonReader = new CustomJson<WarpContainer>("Warp.json");
-
-            // Lire les données JSON et obtenir la liste de warps
-            WarpContainer warps = jsonReader.Read();
-
-            // Utiliser les données des warps dans votre jeu
-            foreach (var warp in warps.warps)
+            if (File.Exists("../../../Data/" + pathWarp))
             {
-                if (warp.StartMap == textFile)
+                // Créer une instance de JsonReader pour désérialiser une liste de warps
+                CustomJson<WarpContainer> jsonReader = new CustomJson<WarpContainer>(pathWarp);
+
+                // Lire les données JSON et obtenir la liste de warps
+                WarpContainer warps = jsonReader.Read();
+
+                // Utiliser les données des warps dans votre jeu
+                foreach (var warp in warps.warps)
                 {
-                    _worldMapTiles[warp.StartPosition.X][warp.StartPosition.Y].SetWarp(warp);
+                    if (warp.StartMap == textFile)
+                    {
+                        _worldMapTiles[warp.StartPosition.X][warp.StartPosition.Y].SetWarp(warp);
+                    }
                 }
             }
+            
         }
 
     }

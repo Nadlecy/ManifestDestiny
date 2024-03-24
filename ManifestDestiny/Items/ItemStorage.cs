@@ -8,23 +8,26 @@ namespace ManifestDestiny
 {
     internal class ItemStorage
     {
-        public Dictionary<Item, int> Items = new();
+        //public Dictionary<Item, int> Items = new();
+        public List<Item> Items = new();
         public ItemStorage() { }
 
         public void AddItem(Item item, int count = 1)
         {
             while(count > 0)
             {
-                if (Items.ContainsKey(item))
+                if (Items.Contains(item))
                 {
-                    if (Items[item] < 99)
+                    
+                    if (Items[Items.IndexOf(item)].Count < 99)
                     {
-                        Items[item] += 1;
+                        Items[Items.IndexOf(item)].Count += count;
+                        if(Items[Items.IndexOf(item)].Count > 99) { Items[Items.IndexOf(item)].Count = 99; }
                     }
                 }
                 else
                 {
-                    Items.Add(item, 1);
+                    Items.Add(item);
                 }
                 count--;
             }
@@ -34,26 +37,16 @@ namespace ManifestDestiny
         {
             while (count > 0)
             {
-                if (Items.ContainsKey(item))
+                if (Items.Contains(item))
                 {
-                    Items[item] -= 1;
-                    if (Items[item] == 0)
+                    Items[Items.IndexOf(item)].Count -= count;
+                    if (Items[Items.IndexOf(item)].Count == 0)
                     {
                         Items.Remove(item);
                     }
                 }
                 count--;
             }
-        }
-
-        public List<string> getList()
-        {
-            List<string> list = new List<string>();
-            foreach (KeyValuePair<Item, int> entry in Items)
-            {
-                list.Add(entry.Key.Name + " x" + entry.Value);
-            }
-            return list;
         }
     }
 }

@@ -57,7 +57,7 @@ class GameManager
         _inventory.AddItem(blackFlower);
 
         Menu mainMenu = new Menu("MAIN MENU", new List<string> { "SERAPHIM", "BAG", "QUIT GAME", "CLOSE" });
-        Menu bagMenu = new Menu("BAG", _inventory.getList());
+        Menu bagMenu = new Menu("BAG", _inventory);
 
         while (true)
         {
@@ -134,6 +134,7 @@ class GameManager
                             break;
                         case ConsoleKey.Enter:
                             Selection = bagMenu.Enter();
+                            Console.WriteLine(Selection);
                             break;
                         case ConsoleKey.Escape:
                             //mainMenu.Back();
@@ -150,7 +151,7 @@ class GameManager
             {
                 case "BAG":
                     GameState = GameStates.Inventory;
-                    //display.WorldDisplay();
+                    display.WorldDisplay();
                     display.MenuDisplay(bagMenu);
                     break;
                 case "CLOSE":
