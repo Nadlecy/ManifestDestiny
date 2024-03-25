@@ -26,7 +26,7 @@ class Program
 
         gameManager.playerTeam.Add(test);
 
-        gameManager.BattleHandler.StartBattle(new List<Seraph> { testest });
+        gameManager.BattleHandler.StartBattle(new List<Seraph> { testest }, 1);
         /*
         Console.WriteLine("player hp : " + gameManager.BattleHandler.CurrentPlayer._currentStats[Seraph.Stats.hp]);
         Console.WriteLine("enemy hp : " + gameManager.BattleHandler.CurrentEnemy._currentStats[Seraph.Stats.hp]);
