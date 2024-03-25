@@ -34,7 +34,8 @@ class Seraph
         speed
     }
 
-    public Dictionary<Stats, int> _baseStats;
+    public Dictionary<Stats, int> BaseStats { get; set; }
+
     public Dictionary<Stats, int> _currentStats;
     public Dictionary<Stats, int> _maxStats;
     public Dictionary<Stats, int> _statsAlterations;
@@ -49,7 +50,7 @@ class Seraph
         Type = type;
         Description = description;
 
-        _baseStats = baseStats;
+        BaseStats = baseStats;
         _currentStats = baseStats;
         _maxStats = maxStats;
         _statsAlterations = new Dictionary<Stats, int>()
@@ -92,7 +93,7 @@ class Seraph
                 // Level up
                 foreach (Stats currentStat in Enum.GetValues(typeof(Stats)))
                 {
-                    _baseStats[currentStat] = (_maxStats[currentStat] - _baseStats[currentStat]) / (100 - Level);
+                    BaseStats[currentStat] = (_maxStats[currentStat] - BaseStats[currentStat]) / (100 - Level);
                 }
 
                 OnLevelUp?.Invoke();
@@ -108,7 +109,7 @@ class Seraph
         if (_statsAlterations[stat] < -4) { _statsAlterations[stat] = -4; }
         else if (_statsAlterations[stat] > 4) { _statsAlterations[stat] -= 4; }
 
-        _currentStats[stat] = (int)(_baseStats[stat] * GameManager.cMaths.StatAlterationMultiplier(this, stat));
+        _currentStats[stat] = (int)(BaseStats[stat] * GameManager.cMaths.StatAlterationMultiplier(this, stat));
     }
 
     public void StatReset()
@@ -126,7 +127,7 @@ class Seraph
         _currentStats[Stats.hp] += amount;
 
         //making sure hp doesnt go over the maximum
-        if (_currentStats[Stats.hp] > _baseStats[Stats.hp]) { _currentStats[Stats.hp] = _baseStats[Stats.hp]; }
+        if (_currentStats[Stats.hp] > BaseStats[Stats.hp]) { _currentStats[Stats.hp] = BaseStats[Stats.hp]; }
     }
 
     public void TakeDamage(int amount)
@@ -147,7 +148,7 @@ class Seraph
         copy._abilitiesUnlocks = _abilitiesUnlocks;
 
         //these four need to be their own instances, however
-        copy._baseStats = new Dictionary<Stats, int>(_baseStats);
+        copy.BaseStats = new Dictionary<Stats, int>(BaseStats);
         copy._currentStats = new Dictionary<Stats, int>(_currentStats);
         copy._statsAlterations = new Dictionary<Stats, int>(_statsAlterations);
         copy._abilities = new();

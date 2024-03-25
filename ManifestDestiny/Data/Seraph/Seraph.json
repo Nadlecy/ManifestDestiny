@@ -1,53 +1,29 @@
 {
-    "Seraph": {
+    "Seraph": [
 
-        "Lambda": {
-            "_name": "Lambda",
-            "_type": "Absolute",
+        {
+            "Name": "Lambda",
+            "Type": "Absolute",
 
-            "_hp": 35,
-            "_atk": 28,
-            "_def": 19,
-            "_mana": 36,
-            "_spd": 13,
-            "_magic": 7,
+            "HP": 35,
+            "Attack": 28,
+            "Defense": 19,
+            "Mana": 36,
+            "Speed": 13,
+            "Magic": 7,
 
-            "_hp100": 105,
-            "_atk1100": 84,
-            "_def100": 57,
-            "_mana100": 108,
-            "_spd100": 39,
-            "_magic100": 21,
+            "HP100": 105,
+            "Attack100": 84,
+            "Defense100": 57,
+            "Mana100": 108,
+            "Speed100": 39,
+            "Magic100": 21,
 
-            "_expReward": 20,
-            "_ability": {
+            "ExpReward": 20,
+            "Ability": {
                 "1": "Bash"
             },
-            "_description": "An Average Monster"
-        },
-        "Lambda2": {
-            "_name": "Lambda2",
-            "_type": "Absolute",
-
-            "_hp": 35,
-            "_atk": 28,
-            "_def": 19,
-            "_mana": 36,
-            "_spd": 13,
-            "_magic": 7,
-
-            "_hp100": 105,
-            "_atk1100": 84,
-            "_def100": 57,
-            "_mana100": 108,
-            "_spd100": 39,
-            "_magic100": 21,
-
-            "_expReward": 20,
-            "_ability": {
-                "1": "Bash"
-            },
-            "_description": "An Average Monster"
+            "Description": "An Average Monster"
         }
-    }
+    ]
 }

@@ -9,19 +9,18 @@ namespace ManifestDestiny
     [System.Serializable]
     class AbilityContainer
     {
-        Dictionary<string, AbilityData> _ability;
 
-        public Dictionary<string, AbilityData> Ability { get => _ability; }
+        public List<AbilityData> Ability { get; set; }
     }
 
     class AbilityData
     {
-        string _name;
-        string _type;
-        string _description;
-        int _power;
-        int _accuracy;
-        int _manaCost;
-        int _critChance;
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public string Description { get; set; }
+        public int Power { get; set; }
+        public int Accuracy { get; set; }
+        public int ManaCost { get; set; }
+        public int CritChance { get; set; }
     }
 }
