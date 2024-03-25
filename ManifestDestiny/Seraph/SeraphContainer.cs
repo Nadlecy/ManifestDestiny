@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace ManifestDestiny
 {
-    internal class SeraphContainer
+    [System.Serializable]
+    class SeraphContainer
     {
         Dictionary<string, SeraphData> _seraph;
     }
 
-    internal class SeraphData
+    class SeraphData
     {
         string _name;
         string _type;
