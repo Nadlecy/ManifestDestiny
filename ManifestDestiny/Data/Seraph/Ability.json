@@ -1,5 +1,5 @@
 {
-    "_ability": {
+    "Ability": {
         "Bash": {
             "_name": "Bash",
             "_type": "Scramble",

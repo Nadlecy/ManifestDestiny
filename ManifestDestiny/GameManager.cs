@@ -13,7 +13,9 @@ class GameManager
 {
     public enum GameStates
     {
+        StartExploration,
         Exploration,
+        StartBattle,
         Battle,
         Menu,
         Inventory
@@ -26,9 +28,13 @@ class GameManager
     public List<Seraph> playerTeam;
     public string Selection { get; set; }
     public ItemStorage Inventory { get; set; }
+    public BattleManager BattleHandler;
 
     public GameManager()
     {
+        playerTeam = new List<Seraph>();
+        BattleHandler = new BattleManager(playerTeam);
+        Selection = ""; 
         rand = new Random();
         Inventory = new ItemStorage();
         GameState = GameStates.Exploration;
@@ -56,7 +62,7 @@ class GameManager
         while (true)
         {
             keyInfo = Console.ReadKey();
-            Selection = null;
+            Selection = "";
 
             switch (GameState)
             {
@@ -80,6 +86,15 @@ class GameManager
                             display.MenuDisplay(mainMenu);
                             break;
                     }
+                    break;
+
+                    //initiate the battle
+                case GameStates.StartBattle:
+                    display.BattleDisplay(BattleHandler);
+                    GameState = GameStates.Battle;
+                    break;
+                case GameStates.Battle:
+                    display.BattleDisplayUpdate();
                     break;
                 case GameStates.Menu:
                     switch (keyInfo.Key)

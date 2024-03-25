@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 class BattleManager
 {
     public List<Seraph> enemyTeam;
-    public GameManager GameManager {  get; private set; }
-    public Seraph CurrentPlayer { get; private set; }
+    public List<Seraph> playerTeam;
+    public Seraph CurrentPlayer { get; set; }
     public Seraph CurrentEnemy { get; private set; }
 
-    public BattleManager(GameManager manager)
+    public BattleManager(List<Seraph> playerList)
     {
-        GameManager = manager;
+        playerTeam = playerList;
         enemyTeam = new List<Seraph>();
 
     }
@@ -22,13 +22,55 @@ class BattleManager
     {
         if (foeTeam.Count > 6) { throw new ArgumentException("too many ennemies", nameof(foeTeam)); }
         enemyTeam = foeTeam;
-        CurrentPlayer = GameManager.playerTeam[0];
+        CurrentPlayer = playerTeam[0];
         CurrentEnemy = enemyTeam[0];
     }
 
     public void PlayerChoice()
     {
 
+    }
+
+    public void BattlePhase(BattleAbility playerAbility, BattleAbility enemyAbility)
+    {
+        //check for priority/speed advantage
+
+        //if the current player seraph is slower than the enemy, enemy attacks first.
+        if (CurrentPlayer._currentStats[Seraph.Stats.speed] < CurrentEnemy._currentStats[Seraph.Stats.speed])
+        {
+            enemyAbility.Use(CurrentEnemy, CurrentPlayer);
+            //death check + player switch-in/gameover
+            playerAbility.Use(CurrentPlayer, CurrentEnemy);
+            //death check + enemy switch-in/battle end
+        }
+        else
+        {
+            playerAbility.Use(CurrentPlayer, CurrentEnemy);
+            //death check + enemy switch-in/battle end
+            enemyAbility.Use(CurrentEnemy, CurrentPlayer);
+            //death check + player switch-in/gameover
+        }
+
+    }
+
+    public bool DeathCheck(Seraph seraph)
+    {
+        if (seraph._currentStats[Seraph.Stats.hp] == 0)
+        {
+            return true;
+        }else return false;
+    }
+
+    public bool TeamDeathCheck(List<Seraph> team)
+    {
+        foreach (var member in team)
+        {
+            if (member._currentStats[Seraph.Stats.hp] > 0)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public bool Escape()
