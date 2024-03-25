@@ -128,7 +128,7 @@ namespace ManifestDestiny
         {
             Seraph newGuy = seraphim[name].Clone();
             newGuy.Experience = level * 100;
-
+            
             return newGuy;
         }
     }

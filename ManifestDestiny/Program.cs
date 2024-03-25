@@ -8,7 +8,7 @@ class Program
     static void Main(string[] args)
     {
         //a few setting changes before we start
-        //Console.CursorVisible = false;
+        Console.CursorVisible = false;
 
         //entering the code proper
 
@@ -19,8 +19,8 @@ class Program
 
         GameData gameData = new GameData();
 
-        Seraph test = gameData.Summon("Lambda", 3);
-        Seraph testest = gameData.Summon("Lambda", 2);
+        Seraph test = gameData.Summon("Lambda", 5);
+        Seraph testest = gameData.Summon("Lambda", 3);
 
         GameManager gameManager = new GameManager();
 
@@ -37,13 +37,13 @@ class Program
         Console.WriteLine("enemy hp : " + gameManager.BattleHandler.CurrentEnemy._currentStats[Seraph.Stats.hp]);
         */
 
-        
+
         int width = 150; // Largeur désirée en caractères
         int height = 50; // Hauteur désirée en lignes
         Console.SetWindowSize(width, height);
 
         
-        gameManager.GameLoop();
+        //gameManager.GameLoop();
         
     }
 }
