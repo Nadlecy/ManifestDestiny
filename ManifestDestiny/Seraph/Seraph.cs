@@ -36,14 +36,14 @@ class Seraph
 
     public Dictionary<Stats, int> _baseStats;
     public Dictionary<Stats, int> _currentStats;
+    public Dictionary<Stats, int> _maxStats;
     public Dictionary<Stats, int> _statsAlterations;
     //Dictionary<StatusEffect, int> Effect;
 
     private Dictionary<int, BattleAbility> _abilitiesUnlocks; // List of all abilities this seraph can have, and the level at which it unlocks them.
     public List<BattleAbility> _abilities;
-    public Dictionary<int, int> _xpForLevel;
 
-    public Seraph(string name, BattleType type, Dictionary<Stats, int> baseStats, int experienceReward, Dictionary<int,int> xpForLevel, Dictionary<int, BattleAbility> AbilitiesUnlocks, string description)
+    public Seraph(string name, BattleType type, Dictionary<Stats, int> baseStats, Dictionary<Stats, int> maxStats, int experienceReward, Dictionary<int, BattleAbility> AbilitiesUnlocks, string description)
     {
         Name = name;
         Type = type;
@@ -51,6 +51,7 @@ class Seraph
 
         _baseStats = baseStats;
         _currentStats = baseStats;
+        _maxStats = maxStats;
         _statsAlterations = new Dictionary<Stats, int>()
         {
             {Stats.attack, 0 },
@@ -64,7 +65,6 @@ class Seraph
 
         Level = 0;
         _experience = 0;
-        _xpForLevel = xpForLevel;
         _experienceReward = experienceReward;
     }
 
@@ -86,9 +86,15 @@ class Seraph
         {
             _experience = value;
             // Compare to see if lvl up
-            while (_experience >= _xpForLevel[Level + 1])
+            while (_experience >= 100)
             {
+                _experience -= 100;
                 // Level up
+                foreach (Stats currentStat in Enum.GetValues(typeof(Stats)))
+                {
+                    _baseStats[currentStat] = (_maxStats[currentStat] - _baseStats[currentStat]) / (100 - Level);
+                }
+
                 OnLevelUp?.Invoke();
                 Level++;
                 GainSkill();
@@ -129,7 +135,7 @@ class Seraph
     {
         Seraph copy = (Seraph) MemberwiseClone();
         //these two do not change so we can refer to the same instance
-        copy._xpForLevel = _xpForLevel;
+        copy._maxStats = _maxStats;
         copy._abilitiesUnlocks = _abilitiesUnlocks;
 
         //these four need to be their own instances, however

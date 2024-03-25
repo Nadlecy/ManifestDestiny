@@ -53,19 +53,18 @@ namespace ManifestDestiny
                     { Seraph.Stats.mana, 36 },
                     { Seraph.Stats.magic, 7 },
                     { Seraph.Stats.speed, 13 }
-                },
-                20,
-                new Dictionary<int, int>
+                }, new Dictionary<Seraph.Stats, int>
                 {
-                    { 1, 0 },
-                    { 2, 20 },
-                    { 3, 52 },
-                    { 4, 112 },
-                    { 5, 184 },
+                    { Seraph.Stats.hp, 35 },
+                    { Seraph.Stats.attack, 28 },
+                    { Seraph.Stats.defense, 19 },
+                    { Seraph.Stats.mana, 36 },
+                    { Seraph.Stats.magic, 7 },
+                    { Seraph.Stats.speed, 13 }
                 },
-                new Dictionary<int, BattleAbility>
+                20,new Dictionary<int, BattleAbility>
                 {
-                    { 1, abilities["Bash"] },
+                    {1, abilities["bash"] }
                 },
                 "Average monster"
                 ));
@@ -75,7 +74,7 @@ namespace ManifestDestiny
         public Seraph Summon(string name, int level)
         {
             Seraph newGuy = seraphim[name].Clone();
-            newGuy.Experience = newGuy._xpForLevel[level];
+            newGuy.Experience = level * 100;
 
             return newGuy;
         }
