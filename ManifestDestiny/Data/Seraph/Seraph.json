@@ -1,0 +1,53 @@
+{
+    "_seraph": {
+
+        "Lambda": {
+            "_name": "Lambda",
+            "_type": "Absolute",
+
+            "_hp": 35,
+            "_atk": 28,
+            "_def": 19,
+            "_mana": 36,
+            "_spd": 13,
+            "_magic": 7,
+
+            "_hp100": 105,
+            "_atk1100": 84,
+            "_def100": 57,
+            "_mana100": 108,
+            "_spd100": 39,
+            "_magic100": 21,
+
+            "_expReward": 20,
+            "_ability": {
+                "1": "Bash"
+            },
+            "_description": "An Average Monster"
+        },
+        "Lambda2": {
+            "_name": "Lambda2",
+            "_type": "Absolute",
+
+            "_hp": 35,
+            "_atk": 28,
+            "_def": 19,
+            "_mana": 36,
+            "_spd": 13,
+            "_magic": 7,
+
+            "_hp100": 105,
+            "_atk1100": 84,
+            "_def100": 57,
+            "_mana100": 108,
+            "_spd100": 39,
+            "_magic100": 21,
+
+            "_expReward": 20,
+            "_ability": {
+                "1": "Bash"
+            },
+            "_description": "An Average Monster"
+        }
+    }
+}
