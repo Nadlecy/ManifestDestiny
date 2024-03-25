@@ -17,14 +17,13 @@ namespace ManifestDestiny
         bool _isWarp;
         Warp _warp;
 
-        //Dictionary<int, string> _encounters;
-        //int _encounterChance;
-
         public bool IsWarp { get => _isWarp; }
         public ConsoleColor ColorBackground { get => _colorBackground; }
         public ConsoleColor ColorText { get => _colorText; }
         public string Apparence { get => _apparence; }
         public bool Walkable { get => _walkable; }
+        public Dictionary<string, int> Encounters { get; set; }
+        public int EncounterChance { get; set; }
 
         public Warp Warp { get => _warp; }
 

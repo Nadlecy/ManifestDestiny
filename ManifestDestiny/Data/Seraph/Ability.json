@@ -1,0 +1,13 @@
+{
+    "_ability": {
+        "Bash": {
+            "_name": "Bash",
+            "_type": "Scramble",
+            "_description": "A simple tackle",
+            "_power": 40,
+            "_accuracy": 95,
+            "_manaCost": 4,
+            "_critChance": 10
+        }
+    }
+}
