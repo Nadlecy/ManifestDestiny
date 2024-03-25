@@ -12,12 +12,12 @@
             "Speed": 13,
             "Magic": 7,
 
-            "HP100": 105,
-            "Attack100": 84,
-            "Defense100": 57,
-            "Mana100": 108,
-            "Speed100": 39,
-            "Magic100": 21,
+            "HP100": 175,
+            "Attack100": 140,
+            "Defense100": 95,
+            "Mana100": 180,
+            "Speed100": 65,
+            "Magic100": 35,
 
             "ExpReward": 20,
             "Ability": {
