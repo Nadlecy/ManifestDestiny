@@ -1,13 +1,13 @@
 {
-    "Ability": {
-        "Bash": {
-            "_name": "Bash",
-            "_type": "Scramble",
-            "_description": "A simple tackle",
-            "_power": 40,
-            "_accuracy": 95,
-            "_manaCost": 4,
-            "_critChance": 10
+    "Ability": [
+        {
+            "Name": "Bash",
+            "Type": "Scramble",
+            "Description": "A simple tackle",
+            "Power": 40,
+            "Accuracy": 95,
+            "ManaCost": 4,
+            "CritChance": 10
         }
-    }
+    ]
 }
