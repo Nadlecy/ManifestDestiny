@@ -9,6 +9,8 @@ namespace ManifestDestiny
     internal class SeraphContainer
     {
         Dictionary<string, SeraphData> _seraph;
+        public Dictionary<string, SeraphData> Seraph { get => _seraph; }
+
     }
 
     internal class SeraphData

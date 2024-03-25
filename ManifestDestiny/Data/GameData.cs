@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
+using ManifestDestiny.Helper.Json;
 
 namespace ManifestDestiny
 {
@@ -36,12 +38,20 @@ namespace ManifestDestiny
 
         private void CreateAbilities()
         {
+            /*
             abilities.Add("Bash", new BattleAbility("Bash", battleTypes["Scramble"], 95, 4, ""));
             abilities["Bash"].AddAttribute(new AbilityAttributeAttack(10, 40, battleTypes["Scramble"]));
+            */
         }
 
         private void CreateSeraphim()
         {
+            string pathSeraph = "../../../Data/Seraph/Seraph.json";
+            CustomJson<SeraphContainer> jsonReader = new CustomJson<SeraphContainer>(pathSeraph);
+            SeraphContainer Seraphim = jsonReader.Read();
+
+
+            /*
             //creating Lambda
             seraphim.Add("Lambda", new Seraph("Lambda",
                 battleTypes["Absolute"],
@@ -68,6 +78,7 @@ namespace ManifestDestiny
                 },
                 "Average monster"
                 ));
+            */
 
         }
 
