@@ -96,9 +96,6 @@ class GameManager
                     display.BattleDisplay(BattleHandler);
                     GameState = GameStates.Battle;
                     break;
-                case GameStates.Battle:
-                    display.BattleDisplayUpdate();
-                    break;
                 case GameStates.Menu:
                     switch (keyInfo.Key)
                     {
@@ -149,6 +146,7 @@ class GameManager
                     }
                     break;
                 case GameStates.Battle:
+                    display.BattleDisplayUpdate();
                     InBattle = true;
                     switch (keyInfo.Key)
                     {
