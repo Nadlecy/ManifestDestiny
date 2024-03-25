@@ -9,8 +9,7 @@ class BattleType
     public string StatusEffectImmunity{ get; set; }
     public string Name { get; private set; }
 
-    Dictionary<string, float> _typeRelations = new Dictionary<string, float>()
-    {
+    public Dictionary<string, float> _typeRelations = new () {
         {"Scramble",1.0f},
         {"Occult", 1.0f},
         {"Mechanic", 1.0f},
@@ -79,8 +78,8 @@ class BattleType
         }
     }
 
-    public float GetBattleTypeInteraction(string type)
+    public float GetBattleTypeInteraction(BattleType type)
     {
-        return _typeRelations[type];
+        return _typeRelations[type.Name];
     }
 }

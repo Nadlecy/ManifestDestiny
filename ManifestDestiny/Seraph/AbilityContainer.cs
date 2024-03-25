@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace ManifestDestiny
 {
-    internal class AbilityContainer
+    [System.Serializable]
+    class AbilityContainer
     {
         Dictionary<string, AbilityData> _ability;
+
+        public Dictionary<string, AbilityData> Ability { get => _ability; }
     }
 
-    internal class AbilityData
+    class AbilityData
     {
         string _name;
         string _type;
