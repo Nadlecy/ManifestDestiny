@@ -14,8 +14,8 @@ namespace ManifestDestiny
             rightSide, // Pokemon style menu
             leftSide, //Pokemon style menu but on the left side
             bottom,
-            battle,
-            list
+            battle, // choice of action at start of round
+            attacks // choice of attacks during battle
         }
 
         List<List<WorldTile>> _currentDisplay;
@@ -215,6 +215,75 @@ namespace ManifestDestiny
 
                             break;
                         default:
+                            break;
+                    }
+                    break;
+                case MenuDisplayType.battle:
+                    Console.SetCursorPosition(0, 0);
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    switch (menu.LineType) {
+                        case Menu.LinesType.text:
+                            int topPadding = 24 - menu._lines.Count;
+                            for (int i = 0; i < topPadding; i++)
+                            {
+                                if(i == 2)
+                                {
+                                    // Display enemy
+                                    StringBuilder newPadding = new StringBuilder();
+                                    string name = "DANY LE CAILLOU";
+                                    for (int j = 0; j < 64 - name.Length - 2; j++)
+                                    {
+                                        newPadding.Append(" ");
+                                    }
+                                    Console.WriteLine(newPadding + name + "  ");
+                                } else if(i == 15)
+                                {
+                                    // Display friendly
+                                    StringBuilder newPadding = new StringBuilder();
+                                    string name = "MON COPAIN";
+                                    for (int j = 0; j < 64 - name.Length - 2; j++)
+                                    {
+                                        newPadding.Append(" ");
+                                    }
+                                    Console.WriteLine("  " + name + newPadding);
+                                } else
+                                {
+                                    if (i == topPadding - 1)
+                                    {
+                                        Console.BackgroundColor = ConsoleColor.Red;
+                                    }
+                                    StringBuilder newPadding = new StringBuilder();
+                                    for (int j = 0; j < 64; j++)
+                                    {
+                                        newPadding.Append(" ");
+                                    }
+                                    Console.WriteLine(newPadding.ToString());
+                                }
+                            }
+
+
+                            Console.BackgroundColor = ConsoleColor.Gray;
+                            for (int i = 0; i < menu._lines.Count; i++)
+                            {
+                                // Padding
+                                StringBuilder newPadding = new StringBuilder();
+                                int paddingLength = 61 - menu._lines[i].Length; // 64 = window width 24 = height
+                                
+                                for (int j = 0; j < paddingLength; j++)
+                                {
+                                    newPadding.Append(" ");
+                                }
+
+                                if (i == menu.SelectedLine)
+                                {
+                                    Console.WriteLine(" ► " + menu._lines[i] + newPadding.ToString());
+                                }
+                                else
+                                {
+                                    Console.WriteLine("   " + menu._lines[i] + newPadding.ToString());
+                                }
+                            }
                             break;
                     }
                     break;
