@@ -79,17 +79,6 @@ class Seraph
         }
     }
 
-    public void GainLevelSkills ()
-    {
-        for (int i = 1; i <= Level; i++)
-        {
-            if (_abilitiesUnlocks.ContainsKey(i) && _abilities.Contains(_abilitiesUnlocks[i]) == false)
-            {
-                _abilities.Add(_abilitiesUnlocks[i]);
-            }
-        }
-    }
-
     public int Experience
     {
         get => _experience;
@@ -97,7 +86,7 @@ class Seraph
         {
             _experience = value;
             // Compare to see if lvl up
-            if (_experience >= _xpForLevel[Level + 1])
+            while (_experience >= _xpForLevel[Level + 1])
             {
                 // Level up
                 OnLevelUp?.Invoke();
@@ -136,7 +125,7 @@ class Seraph
     }
 
     //performs a deep copy of a seraph
-    public Seraph Copy()
+    public Seraph Clone()
     {
         Seraph copy = (Seraph) MemberwiseClone();
         //these two do not change so we can refer to the same instance

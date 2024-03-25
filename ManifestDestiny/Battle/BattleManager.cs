@@ -61,6 +61,18 @@ class BattleManager
         }else return false;
     }
 
+    public bool TeamDeathCheck(List<Seraph> team)
+    {
+        foreach (var member in team)
+        {
+            if (member._currentStats[Seraph.Stats.hp] > 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public bool Escape()
     {
 
