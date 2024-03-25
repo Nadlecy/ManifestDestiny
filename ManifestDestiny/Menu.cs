@@ -19,6 +19,7 @@ namespace ManifestDestiny
         public string Name { get; set; }
         public List<string> _lines;
         public ItemStorage ItemStorage { get; set; }
+        public SeraphContainer Seraphim {  get; set; }
         public int SelectedLine { get; set; }
         public LinesType LineType { get; private set; }
 

@@ -9,31 +9,30 @@ namespace ManifestDestiny
     [System.Serializable]
     class SeraphContainer
     {
-        Dictionary<string, SeraphData> _seraph;
-        public Dictionary<string, SeraphData> Seraph { get => _seraph; }
+        public List<SeraphData> Seraph { get; set; }
 
     }
 
     class SeraphData
     {
-        string _name;
-        string _type;
-        int _hp;
-        int _atk;
-        int _def;
-        int _spd;
-        int _mana;
-        int _magic;
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public int HP { get; set; }
+        public int Attack { get; set; }
+        public int Defense { get; set; }
+        public int Speed { get; set; }
+        public int Mana { get; set; }
+        public int Magic { get; set; }
 
-        int _hp100;
-        int _atk100;
-        int _def100;
-        int _spd100;
-        int _mana100;
-        int _magic100;
+        public int HP100 { get; set; }
+        public int Attack100 { get; set; }
+        public int Defense100 { get; set; }
+        public int Speed100 { get; set; }
+        public int Mana100 { get; set; }
+        public int Magic100 { get; set; }
+        public int ExpReward { get; set; }
+        public Dictionary<int, string> Ability { get; set; }
+        public string Description { get; set; }
 
-        int _expReward;
-        Dictionary<int, string> _ability;
-        string _description;
     }
 }

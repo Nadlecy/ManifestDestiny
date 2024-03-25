@@ -37,13 +37,13 @@ class Program
         Console.WriteLine("enemy hp : " + gameManager.BattleHandler.CurrentEnemy._currentStats[Seraph.Stats.hp]);
         */
 
-        /*
+        
         int width = 150; // Largeur désirée en caractères
         int height = 50; // Hauteur désirée en lignes
         Console.SetWindowSize(width, height);
 
         
         gameManager.GameLoop();
-        */
+        
     }
 }

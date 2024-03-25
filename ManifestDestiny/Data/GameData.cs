@@ -38,6 +38,16 @@ namespace ManifestDestiny
 
         private void CreateAbilities()
         {
+
+            string pathAbility = "Seraph/Ability.json";
+            CustomJson<AbilityContainer> jsonReader = new CustomJson<AbilityContainer>(pathAbility);
+            AbilityContainer abilityContain = jsonReader.Read();
+
+            foreach (AbilityData ability in abilityContain.Ability)
+            {
+                abilities.Add(ability.Name, new BattleAbility(ability.Name, battleTypes[ability.Type], ability.Accuracy, ability.ManaCost, ability.Description));
+                abilities[ability.Name].AddAttribute(new AbilityAttributeAttack(ability.CritChance, ability.Power, battleTypes[ability.Type]));
+            }
             /*
             abilities.Add("Bash", new BattleAbility("Bash", battleTypes["Scramble"], 95, 4, ""));
             abilities["Bash"].AddAttribute(new AbilityAttributeAttack(10, 40, battleTypes["Scramble"]));
@@ -46,10 +56,42 @@ namespace ManifestDestiny
 
         private void CreateSeraphim()
         {
-            string pathSeraph = "../../../Data/Seraph/Seraph.json";
+            string pathSeraph = "Seraph/Seraph.json";
             CustomJson<SeraphContainer> jsonReader = new CustomJson<SeraphContainer>(pathSeraph);
-            SeraphContainer Seraphim = jsonReader.Read();
+            SeraphContainer seraphimContain = jsonReader.Read();
 
+            foreach(SeraphData seraph in seraphimContain.Seraph)
+            {
+                seraphim.Add(seraph.Name, new Seraph(
+                    seraph.Name,
+                    battleTypes[seraph.Type],
+                    new Dictionary<Seraph.Stats, int>
+                    {
+                        {Seraph.Stats.hp, seraph.HP},
+                        {Seraph.Stats.attack, seraph.Attack},
+                        {Seraph.Stats.defense, seraph.Defense},
+                        {Seraph.Stats.mana, seraph.Mana},
+                        {Seraph.Stats.magic, seraph.Magic},
+                        {Seraph.Stats.speed, seraph.Speed}
+                    }, new Dictionary<Seraph.Stats, int>
+                    {
+                        {Seraph.Stats.hp, seraph.HP100},
+                        {Seraph.Stats.attack, seraph.Attack100},
+                        {Seraph.Stats.defense, seraph.Defense100},
+                        {Seraph.Stats.mana, seraph.Mana100},
+                        {Seraph.Stats.magic, seraph.Magic100},
+                        {Seraph.Stats.speed, seraph.Speed100}
+                    }, seraph.ExpReward,
+                    new Dictionary<int, BattleAbility>(),
+                    seraph.Description
+                ));
+
+
+                foreach (string abilityName in seraph.Ability.Values)
+                {
+                    seraphim[seraph.Name]._abilities.Add(abilities[abilityName]);
+                }
+            }   
 
             /*
             //creating Lambda
