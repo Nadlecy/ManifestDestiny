@@ -75,10 +75,8 @@ namespace ManifestDestiny
         public Seraph Summon(string name, int level)
         {
             Seraph newGuy = seraphim[name].Copy();
-            newGuy.Level = level;
             newGuy.Experience = newGuy._xpForLevel[level];
-
-            //check for new abilities
+            newGuy.GainLevelSkills();           
 
             return newGuy;
         }

@@ -71,6 +71,25 @@ class Seraph
 
     public event Action OnLevelUp;
 
+    public void GainSkill()
+    {
+        if (_abilitiesUnlocks.ContainsKey(Level) && _abilities.Contains(_abilitiesUnlocks[Level]) == false)
+        {
+            _abilities.Add(_abilitiesUnlocks[Level]);
+        }
+    }
+
+    public void GainLevelSkills ()
+    {
+        for (int i = 1; i <= Level; i++)
+        {
+            if (_abilitiesUnlocks.ContainsKey(i) && _abilities.Contains(_abilitiesUnlocks[i]) == false)
+            {
+                _abilities.Add(_abilitiesUnlocks[i]);
+            }
+        }
+    }
+
     public int Experience
     {
         get => _experience;
@@ -83,6 +102,7 @@ class Seraph
                 // Level up
                 OnLevelUp?.Invoke();
                 Level++;
+                GainSkill();
             }
         }
     }
