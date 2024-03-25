@@ -111,6 +111,14 @@ class Seraph
         _currentStats[stat] = (int)(_baseStats[stat] * GameManager.cMaths.StatAlterationMultiplier(this, stat));
     }
 
+    public void StatReset()
+    {
+        foreach (Stats key in _statsAlterations.Keys)
+        {
+            _statsAlterations[key] = 0;
+        }
+    }
+
 
     public void HealHp(int amount)
     {
