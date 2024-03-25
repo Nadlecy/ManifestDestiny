@@ -10,6 +10,8 @@ namespace ManifestDestiny
     class AbilityContainer
     {
         Dictionary<string, AbilityData> _ability;
+
+        public Dictionary<string, AbilityData> Ability { get => _ability; }
     }
 
     class AbilityData
