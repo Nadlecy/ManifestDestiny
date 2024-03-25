@@ -189,6 +189,12 @@ class GameManager
                     display.MenuDisplay(bagMenu);
                     break;
                 case "RUN":
+                    InBattle = false;
+                    battleMenu.SelectedLine = 0;
+                    GameState = GameStates.Menu;
+                    display.WorldDisplay();
+                    display.MenuDisplay(mainMenu);
+                    break;
                 case "CLOSE":
                     switch (GameState)
                     {
