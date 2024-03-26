@@ -27,10 +27,10 @@ namespace ManifestDestiny
             _worldMapTiles = new List<List<WorldTile>>();
 
             WorldTile floor = new WorldTile("▒", ConsoleColor.DarkGreen, ConsoleColor.Green, true);
-            _worldTiles.Add("floor", floor);
+            _worldTiles.Add("grass", floor);
 
             WorldTile grass = new WorldTile("▒", ConsoleColor.DarkYellow, ConsoleColor.Yellow, true);
-            _worldTiles.Add("grass", grass);
+            _worldTiles.Add("floor", grass);
 
             WorldTile exterior = new WorldTile(" ", ConsoleColor.DarkGray, ConsoleColor.White, false);
             _worldTiles.Add("exterior", exterior);

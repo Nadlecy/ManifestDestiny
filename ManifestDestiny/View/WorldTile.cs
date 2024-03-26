@@ -40,6 +40,7 @@ namespace ManifestDestiny
             _colorBackground = colorBackground;
             _colorText = colorText;
             _isWarp = false;
+            EncounterChance = 0;
         }
 
         public WorldTile Clone()
