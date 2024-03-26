@@ -19,6 +19,7 @@ namespace ManifestDestiny
         public string Name { get; set; }
         public List<string> _lines;
         public ItemStorage ItemStorage { get; set; }
+        public List<BattleAbility> Abilities {  get; set; }
         public SeraphContainer Seraphim {  get; set; }
         public int SelectedLine { get; set; }
         public LinesType LineType { get; private set; }
@@ -45,6 +46,16 @@ namespace ManifestDestiny
             SelectedLine = 0;
         }
 
+        public Menu(string name, List<BattleAbility> abilities)
+        {
+            LineType = LinesType.ability;
+            Name = name;
+            Abilities = abilities;
+
+            // Select first item
+            SelectedLine = 0;
+        }
+
         // Select the next line in the menu
         public virtual void NextLine()
         {
@@ -57,6 +68,7 @@ namespace ManifestDestiny
                         SelectedLine = 0;
                     }
                     break;
+                case LinesType.ability:
                 case LinesType.items:
                     if(SelectedLine > ItemStorage.Items.Count)
                     {
@@ -82,6 +94,9 @@ namespace ManifestDestiny
                 else if (LineType == LinesType.items)
                 {
                     SelectedLine = ItemStorage.Items.Count;
+                } else if(LineType == LinesType.ability)
+                {
+                    SelectedLine = Abilities.Count;
                 }
             }
         }
@@ -98,7 +113,12 @@ namespace ManifestDestiny
                     {
                         return "CLOSE";
                     }
+                    Console.SetCursorPosition(0, ItemStorage.Items.Count + 2);
+                    Console.WriteLine(ItemStorage.Items[SelectedLine].Description);
                     return ItemStorage.Items[SelectedLine].Description;
+                case LinesType.ability:
+                    return Abilities[SelectedLine].Name;
+                    break;
                 default :
                     return "default";
             }

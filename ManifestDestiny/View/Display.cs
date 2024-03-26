@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace ManifestDestiny
 {
@@ -22,8 +23,9 @@ namespace ManifestDestiny
         WorldTile _player;
         Position _playerPosition;
         WorldMap _worldMap;
+        GameManager _gameManager;
 
-        public Display(WorldMap worldMap)
+        public Display(WorldMap worldMap, GameManager gameManager)
         {
             _playerPosition = new Position();
             _playerPosition.X = 0;
@@ -31,6 +33,7 @@ namespace ManifestDestiny
             _player = new WorldTile("@", ConsoleColor.Black, ConsoleColor.Black, true);
             _currentDisplay = new List<List<WorldTile>>();
             _worldMap = worldMap;
+            _gameManager = gameManager;
         }
 
         public void SetWorldDisplay(List<List<WorldTile>> worldMap)
@@ -233,8 +236,9 @@ namespace ManifestDestiny
                     Console.BackgroundColor = ConsoleColor.Gray;
                     Console.ForegroundColor = ConsoleColor.Black;
                     switch (menu.LineType) {
+                        // -- Choice selection -- //
                         case Menu.LinesType.text:
-                            int topPadding = 24 - menu._lines.Count;
+                            int topPadding = 23 - menu._lines.Count;
                             for (int i = 0; i < topPadding; i++)
                             {
                                 if(i == 2)
@@ -250,13 +254,21 @@ namespace ManifestDestiny
                                 } else if(i == 15)
                                 {
                                     // Display friendly
-                                    StringBuilder newPadding = new StringBuilder();
-                                    string name = "MON COPAIN";
+                                    Seraph playerSeraph = _gameManager.BattleHandler.CurrentPlayer;
+                                    StringBuilder namePadding = new StringBuilder();
+                                    string name = playerSeraph.Name;
                                     for (int j = 0; j < 64 - name.Length - 2; j++)
                                     {
-                                        newPadding.Append(" ");
+                                        namePadding.Append(" ");
                                     }
-                                    Console.WriteLine("  " + name + newPadding);
+                                    Console.WriteLine("  " + name + namePadding);
+                                    StringBuilder hpPadding = new StringBuilder();
+                                    string hp = playerSeraph.CurrentStats[Seraph.Stats.hp] + "/" + playerSeraph.BaseStats[Seraph.Stats.hp];
+                                    for (int j = 0; j < 64 - hp.Length - 2; j++)
+                                    {
+                                        hpPadding.Append(" ");
+                                    }
+                                    Console.WriteLine("  " + hp + hpPadding.ToString());
                                 } else
                                 {
                                     if (i == topPadding - 1)
@@ -271,8 +283,6 @@ namespace ManifestDestiny
                                     Console.WriteLine(newPadding.ToString());
                                 }
                             }
-
-
                             Console.BackgroundColor = ConsoleColor.Gray;
                             for (int i = 0; i < menu._lines.Count; i++)
                             {
@@ -294,6 +304,10 @@ namespace ManifestDestiny
                                     Console.WriteLine("   " + menu._lines[i] + newPadding.ToString());
                                 }
                             }
+                            break;
+                        // -- Attack Selection -- //
+                        case Menu.LinesType.ability:
+
                             break;
                     }
                     break;
