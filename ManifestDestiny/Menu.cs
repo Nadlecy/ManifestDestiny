@@ -98,6 +98,8 @@ namespace ManifestDestiny
                     {
                         return "CLOSE";
                     }
+                    Console.SetCursorPosition(0, ItemStorage.Items.Count + 2);
+                    Console.WriteLine(ItemStorage.Items[SelectedLine].Description);
                     return ItemStorage.Items[SelectedLine].Description;
                 default :
                     return "default";

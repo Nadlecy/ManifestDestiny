@@ -25,7 +25,7 @@ class GameManager
     public static Random rand;
     public static CustomMaths cMaths;
     public GameStates GameState { get; set;}
-    public List<Seraph> playerTeam;
+    public List<Seraph> PlayerTeam { get; set; }
     public string Selection { get; set; }
     public ItemStorage Inventory { get; set; }
     public bool InBattle { get; set; }
@@ -33,8 +33,8 @@ class GameManager
 
     public GameManager()
     {
-        playerTeam = new List<Seraph>();
-        BattleHandler = new BattleManager(playerTeam);
+        PlayerTeam = new List<Seraph>();
+        BattleHandler = new BattleManager(PlayerTeam);
         Selection = ""; 
         rand = new Random();
         Inventory = new ItemStorage();
@@ -45,14 +45,14 @@ class GameManager
     {
         WorldMap worldMap = new WorldMap();
         worldMap.SetMap("Map01.txt");
-        Display display = new Display(worldMap);
+        Display display = new Display(worldMap, this);
         display.SetWorldDisplay(worldMap.WorldMapTiles);
         display.WorldDisplay();
         display.SetPlayerPosition(15, 15);
 
         // Create debug inventory
         ItemStorage _inventory = new ItemStorage();
-        Item blueFlower = new Item("Blue flower", "A beatifull blue flower.");
+        Item blueFlower = new Item("Blue flower", "A beautifull blue flower.");
         _inventory.AddItem(blueFlower,7);
         Item blackFlower = new Item("Black flower", "I don't like this one.");
         _inventory.AddItem(blackFlower);
@@ -136,7 +136,6 @@ class GameManager
                             break;
                         case ConsoleKey.Enter:
                             Selection = bagMenu.Enter();
-                            Console.WriteLine(Selection);
                             break;
                         case ConsoleKey.Escape:
                             bagMenu.SelectedLine = 0;

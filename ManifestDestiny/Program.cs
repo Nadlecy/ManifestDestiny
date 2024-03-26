@@ -4,7 +4,6 @@ using ManifestDestiny;
 using System.Text.Json;
 class Program
 {
-
     static void Main(string[] args)
     {
         //a few setting changes before we start
@@ -24,7 +23,7 @@ class Program
 
         GameManager gameManager = new GameManager();
 
-        gameManager.playerTeam.Add(test);
+        gameManager.PlayerTeam.Add(test);
 
         gameManager.BattleHandler.StartBattle(new List<Seraph> { testest }, 1);
         /*
@@ -43,7 +42,7 @@ class Program
         Console.SetWindowSize(width, height);
 
         
-        //gameManager.GameLoop();
+        gameManager.GameLoop();
         
     }
 }
