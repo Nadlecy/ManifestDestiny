@@ -40,7 +40,7 @@ class BattleAbility
             attribute.Activate(caster, target);
         }
         //remove the corresponding amount of mana
-        caster._currentStats[Seraph.Stats.mana] -= Cost;
+        caster.CurrentStats[Seraph.Stats.mana] -= Cost;
     }
 }
 
