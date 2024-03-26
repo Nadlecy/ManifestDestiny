@@ -82,11 +82,17 @@ class BattleManager
     {
         //menu de switch, peut pas choisir un seraph dont les pv sont à 0
 
-        
+
+        //if the new seraph has not fought before, add it to the list of participants
+        if (PlayerParticipants.Contains(CurrentPlayer) == false)
+        {
+            PlayerParticipants.Add(CurrentPlayer);
+        }
     }
 
     public bool EnemyDeath()
     {
+        GetEnemyExp();
 
         foreach (Seraph seraph in EnemyTeam)
         {
@@ -101,7 +107,11 @@ class BattleManager
 
     public void GetEnemyExp()
     {
-        CurrentPlayer.Experience += CurrentEnemy._experienceReward * (CurrentEnemy.Level / CurrentPlayer.Level);
+        foreach (Seraph seraph in PlayerParticipants)
+        {
+            seraph.Experience += CurrentEnemy._experienceReward * (CurrentEnemy.Level / CurrentPlayer.Level);
+        }
+
         PlayerParticipants.Clear();
     }
 
