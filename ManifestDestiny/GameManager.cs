@@ -179,6 +179,12 @@ class GameManager
                     GameState = GameStates.Battle;
                     display.MenuDisplay(battleMenu, Display.MenuDisplayType.battle);
                     break;
+                case "FIGHT":
+                    battleMenu.SelectedLine = 0;
+                    Menu abilitiesMenu = new Menu("ABILITIES", BattleHandler.CurrentPlayer._abilities);
+                    display.MenuDisplay(abilitiesMenu, Display.MenuDisplayType.abilities);
+                    
+                    break;
                 case "BAG":
                     GameState = GameStates.Inventory;
                     if(InBattle == false)
