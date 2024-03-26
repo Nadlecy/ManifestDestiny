@@ -40,17 +40,13 @@ class BattleManager
         //if the current player seraph is slower than the enemy, enemy attacks first.
         if (CurrentPlayer.CurrentStats[Seraph.Stats.speed] < CurrentEnemy.CurrentStats[Seraph.Stats.speed])
         {
-            enemyAbility.Use(CurrentEnemy, CurrentPlayer);
-            //death check + player switch-in/gameover
-
+            BattlePhaseEnemy(enemyAbility);
             BattlePhasePlayer(playerAbility);
         }
         else
         {
             BattlePhasePlayer(playerAbility);
-
-            enemyAbility.Use(CurrentEnemy, CurrentPlayer);
-            //death check + player switch-in/gameover
+            BattlePhaseEnemy(enemyAbility);
         }
 
     }
@@ -60,19 +56,26 @@ class BattleManager
         playerAbility.Use(CurrentPlayer, CurrentEnemy);
         if (IsDead(CurrentEnemy))
         {
-            if (EnemyDeath())
-            {
-                return true;
-            }
-            else
+            if (EnemyDeath() == false)
             {
                 return false;
             }
         }
-        else
+        return true;
+    }
+
+    public bool BattlePhaseEnemy(BattleAbility enemyAbility)
+    {
+        enemyAbility.Use(CurrentEnemy, CurrentPlayer);
+        if (IsDead(CurrentPlayer))
         {
-            return true;
+            if (PlayerSwitch() == false)
+            {
+                return false;
+            }
         }
+        return true;
+
     }
 
     public bool IsDead(Seraph seraph)
@@ -83,16 +86,36 @@ class BattleManager
         }else return false;
     }
 
-    public void PlayerSwitch()
+    public bool PlayerSwitch()
     {
-        //menu de switch, peut pas choisir un seraph dont les pv sont à 0
-
-
-        //if the new seraph has not fought before, add it to the list of participants
-        if (PlayerParticipants.Contains(CurrentPlayer) == false)
+        List<Seraph> alive = new();
+        //check if player can switch
+        foreach (Seraph seraph in PlayerTeam)
         {
-            PlayerParticipants.Add(CurrentPlayer);
+            if (seraph.CurrentStats[Seraph.Stats.hp] > 0)
+            {
+                alive.Add(seraph);
+            }
         }
+        if (alive.Count > 0)
+        {
+            //force player to select new seraph to send out, in a menu
+            /*
+             * MENU THING HERE
+             */
+
+            //if the new seraph has not fought before, add it to the list of participants
+            if (PlayerParticipants.Contains(CurrentPlayer) == false)
+            {
+                PlayerParticipants.Add(CurrentPlayer);
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
     public bool EnemyDeath()
