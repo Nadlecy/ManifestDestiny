@@ -16,7 +16,7 @@ namespace ManifestDestiny
             leftSide, //Pokemon style menu but on the left side
             bottom,
             battle, // choice of action at start of round
-            attacks // choice of attacks during battle
+            abilities // choice of attacks during battle
         }
 
         List<List<WorldTile>> _currentDisplay;
