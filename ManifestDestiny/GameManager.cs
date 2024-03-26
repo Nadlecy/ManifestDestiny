@@ -184,13 +184,13 @@ class GameManager
                 case "DEBUG BATTLE":
                     mainMenu.SelectedLine = 0;
                     GameState = GameStates.StartBattle;
+                    display.BattleDisplay(BattleHandler);
                     display.MenuDisplay(battleMenu, Display.MenuDisplayType.battle);
                     break;
                 case "FIGHT":
                     battleMenu.SelectedLine = 0;
                     Menu abilitiesMenu = new Menu("ABILITIES", BattleHandler.CurrentPlayer._abilities);
                     display.MenuDisplay(abilitiesMenu, Display.MenuDisplayType.abilities);
-                    
                     break;
                 case "BAG":
                     GameState = GameStates.Inventory;
@@ -215,6 +215,7 @@ class GameManager
                             if (InBattle)
                             {
                                 GameState = GameStates.Battle;
+                                display.BattleDisplay(BattleHandler);
                                 display.MenuDisplay(battleMenu, Display.MenuDisplayType.battle);
                             } else
                             {
@@ -232,7 +233,7 @@ class GameManager
                             break;
                         case GameStates.Battle:
                             battleMenu.SelectedLine = 0;
-                            GameState = GameStates.Menu;
+                            GameState = GameStates.Exploration;
                             display.WorldDisplay();
                             display.MenuDisplay(mainMenu);
                             break;
