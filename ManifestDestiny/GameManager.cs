@@ -101,6 +101,8 @@ class GameManager
                     display.BattleDisplay(BattleHandler);
                     GameState = GameStates.Battle;
                     break;
+
+
                 case GameStates.Menu:
                     switch (keyInfo.Key)
                     {
@@ -181,7 +183,7 @@ class GameManager
             {
                 case "DEBUG BATTLE":
                     mainMenu.SelectedLine = 0;
-                    GameState = GameStates.Battle;
+                    GameState = GameStates.StartBattle;
                     display.MenuDisplay(battleMenu, Display.MenuDisplayType.battle);
                     break;
                 case "FIGHT":
@@ -204,6 +206,7 @@ class GameManager
                     GameState = GameStates.Menu;
                     display.WorldDisplay();
                     display.MenuDisplay(mainMenu);
+                    BattleHandler.EndBattle();
                     break;
                 case "CLOSE":
                     switch (GameState)
