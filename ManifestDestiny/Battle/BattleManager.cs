@@ -8,7 +8,7 @@ class BattleManager
 {
     public List<Seraph> EnemyTeam { get; set; } 
     public List<Seraph> PlayerTeam { get; set; }
-    public List<Seraph> PlaerParticipants { get; set; }
+    public List<Seraph> PlayerParticipants { get; set; }
     public int EnemyAILevel { get; set; } 
     public Seraph CurrentPlayer { get; set; }
     public Seraph CurrentEnemy { get; private set; }
@@ -18,6 +18,7 @@ class BattleManager
         PlayerTeam = playerList;
         EnemyTeam = new List<Seraph>();
         EnemyAILevel = 1;
+        PlayerParticipants = new List<Seraph>();
     }
 
     public void StartBattle(List<Seraph>foeTeam, int AILevel)
@@ -80,11 +81,12 @@ class BattleManager
     public void PlayerSwitch()
     {
         //menu de switch, peut pas choisir un seraph dont les pv sont à 0
+
+        
     }
 
     public bool EnemyDeath()
     {
-        CurrentPlayer.Experience += CurrentEnemy._experienceReward * (CurrentEnemy.Level/CurrentPlayer.Level);
 
         foreach (Seraph seraph in EnemyTeam)
         {
@@ -97,6 +99,12 @@ class BattleManager
         return false;
     }
 
+    public void GetEnemyExp()
+    {
+        CurrentPlayer.Experience += CurrentEnemy._experienceReward * (CurrentEnemy.Level / CurrentPlayer.Level);
+        PlayerParticipants.Clear();
+    }
+
     public bool Escape()
     {
         return true;
@@ -105,7 +113,7 @@ class BattleManager
     public void EndBattle()
     {
         EnemyTeam.Clear();
-        
+        PlayerParticipants.Clear();
     }
 }
 
