@@ -36,7 +36,7 @@ class Seraph
 
     public Dictionary<Stats, int> BaseStats { get; set; }
 
-    public Dictionary<Stats, int> _currentStats;
+    public Dictionary<Stats, int> CurrentStats { get; set; }
     public Dictionary<Stats, int> _maxStats;
     public Dictionary<Stats, int> _statsAlterations;
     //Dictionary<StatusEffect, int> Effect;
@@ -51,7 +51,7 @@ class Seraph
         Description = description;
 
         BaseStats = baseStats;
-        _currentStats = baseStats;
+        CurrentStats = baseStats;
         _maxStats = maxStats;
         _statsAlterations = new Dictionary<Stats, int>()
         {
@@ -94,6 +94,7 @@ class Seraph
                 foreach (Stats currentStat in Enum.GetValues(typeof(Stats)))
                 {
                     BaseStats[currentStat] += (_maxStats[currentStat] - BaseStats[currentStat]) / (100 - Level);
+                    CurrentStats[currentStat] += (_maxStats[currentStat] - BaseStats[currentStat]) / (100 - Level);
                 }
 
                 OnLevelUp?.Invoke();
@@ -109,7 +110,7 @@ class Seraph
         if (_statsAlterations[stat] < -4) { _statsAlterations[stat] = -4; }
         else if (_statsAlterations[stat] > 4) { _statsAlterations[stat] -= 4; }
 
-        _currentStats[stat] = (int)(BaseStats[stat] * GameManager.cMaths.StatAlterationMultiplier(this, stat));
+        CurrentStats[stat] = (int)(BaseStats[stat] * GameManager.cMaths.StatAlterationMultiplier(this, stat));
     }
 
     public void StatReset()
@@ -124,19 +125,19 @@ class Seraph
     public void HealHp(int amount)
     {
         if (amount < 0) { throw new ArgumentException("Cannot heal in the negatives.", nameof(amount)); }
-        _currentStats[Stats.hp] += amount;
+        CurrentStats[Stats.hp] += amount;
 
         //making sure hp doesnt go over the maximum
-        if (_currentStats[Stats.hp] > BaseStats[Stats.hp]) { _currentStats[Stats.hp] = BaseStats[Stats.hp]; }
+        if (CurrentStats[Stats.hp] > BaseStats[Stats.hp]) { CurrentStats[Stats.hp] = BaseStats[Stats.hp]; }
     }
 
     public void TakeDamage(int amount)
     {
         if (amount < 0) { throw new ArgumentException("Something went wrong with the damage calculation.", nameof(amount)); }
-        _currentStats[Stats.hp] -= amount;
+        CurrentStats[Stats.hp] -= amount;
 
         //making sure hp doesn't go under 0
-        if (_currentStats[Stats.hp] < 0) { _currentStats[Stats.hp] = 0; }
+        if (CurrentStats[Stats.hp] < 0) { CurrentStats[Stats.hp] = 0; }
     }
 
     //performs a deep copy of a seraph
@@ -149,7 +150,7 @@ class Seraph
 
         //these four need to be their own instances, however
         copy.BaseStats = new Dictionary<Stats, int>(BaseStats);
-        copy._currentStats = new Dictionary<Stats, int>(_currentStats);
+        copy.CurrentStats = new Dictionary<Stats, int>(CurrentStats);
         copy._statsAlterations = new Dictionary<Stats, int>(_statsAlterations);
         copy._abilities = new();
 
