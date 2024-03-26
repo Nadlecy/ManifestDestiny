@@ -31,8 +31,9 @@ namespace ManifestDestiny.Helper.Json
                 }
                 else
                 {
-                    Console.WriteLine(_filePath + ": Le fichier JSON n'existe pas.");
-                    return default(T);
+                    //Console.WriteLine(_filePath + ": Le fichier JSON n'existe pas.");
+                    throw new Exception(_filePath + ": Le fichier JSON n'existe pas.");
+                    //return default(T);
                 }
             }
             catch (Exception ex)

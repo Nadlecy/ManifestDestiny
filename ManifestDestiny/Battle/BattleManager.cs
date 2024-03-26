@@ -143,11 +143,6 @@ class BattleManager
         PlayerParticipants.Clear();
     }
 
-    public bool Escape()
-    {
-        return true;
-    }
-
     public void EndBattle()
     {
         EnemyTeam.Clear();

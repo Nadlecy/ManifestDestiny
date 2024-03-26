@@ -1,29 +1,53 @@
 {
     "Seraph": [
 
-        {
-            "Name": "Lambda",
-            "Type": "Absolute",
+      {
+        "Name": "Lambda",
+        "Type": "Absolute",
 
-            "HP": 35,
-            "Attack": 28,
-            "Defense": 19,
-            "Mana": 36,
-            "Speed": 13,
-            "Magic": 7,
+        "HP": 35,
+        "Attack": 28,
+        "Defense": 19,
+        "Mana": 36,
+        "Magic": 7,
+        "Speed": 13,
 
-            "HP100": 175,
-            "Attack100": 140,
-            "Defense100": 95,
-            "Mana100": 180,
-            "Speed100": 65,
-            "Magic100": 35,
+        "HP100": 175,
+        "Attack100": 140,
+        "Defense100": 95,
+        "Mana100": 180,
+        "Speed100": 65,
+        "Magic100": 35,
 
-            "ExpReward": 20,
-            "Ability": {
-                "1": "Bash"
-            },
-            "Description": "An Average Monster"
-        }
+        "ExpReward": 20,
+        "Ability": {
+          "1": "Bash"
+        },
+        "Description": "An Average Monster"
+      },
+      {
+        "Name": "Bit",
+        "Type": "Mechanic",
+
+        "HP": 20,
+        "Attack": 10,
+        "Defense": 5,
+        "Mana": 25,
+        "Magic": 10,
+        "Speed": 20,
+
+        "HP100": 100,
+        "Attack100": 50,
+        "Defense100": 25,
+        "Mana100": 125,
+        "Speed100": 50,
+        "Magic100": 100,
+
+        "ExpReward": 10,
+        "Ability": {
+          "1": "Compact"
+        },
+        "Description": "Tiny Robot"
+      }
     ]
 }
