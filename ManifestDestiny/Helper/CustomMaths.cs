@@ -18,7 +18,7 @@ namespace ManifestDestiny.Helper.Math
             if (user.Type == battleType) STAB = 1.5f;
             float TypeEffectiveness = battleType.GetBattleTypeInteraction(target.Type);
             float randomMultiplyer = GameManager.rand.Next(217, 256) / 255.0f;
-            float damage = ((((((2 * user.Level * Critical) / 5) + 2) * power * user._currentStats[Seraph.Stats.attack] / target._currentStats[Seraph.Stats.defense]) / 50 + 2) * STAB * TypeEffectiveness * randomMultiplyer);
+            float damage = ((((((2 * user.Level * Critical) / 5) + 2) * power * user.CurrentStats[Seraph.Stats.attack] / target.CurrentStats[Seraph.Stats.defense]) / 50 + 2) * STAB * TypeEffectiveness * randomMultiplyer);
 
             return (int)damage;
         }

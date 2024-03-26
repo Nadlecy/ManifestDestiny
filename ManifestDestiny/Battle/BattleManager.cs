@@ -38,7 +38,7 @@ class BattleManager
     public void BattlePhase(BattleAbility playerAbility, BattleAbility enemyAbility)
     {
         //if the current player seraph is slower than the enemy, enemy attacks first.
-        if (CurrentPlayer._currentStats[Seraph.Stats.speed] < CurrentEnemy._currentStats[Seraph.Stats.speed])
+        if (CurrentPlayer.CurrentStats[Seraph.Stats.speed] < CurrentEnemy.CurrentStats[Seraph.Stats.speed])
         {
             enemyAbility.Use(CurrentEnemy, CurrentPlayer);
             //death check + player switch-in/gameover
@@ -61,7 +61,7 @@ class BattleManager
 
     public bool IsDead(Seraph seraph)
     {
-        if (seraph._currentStats[Seraph.Stats.hp] == 0)
+        if (seraph.CurrentStats[Seraph.Stats.hp] == 0)
         {
             return true;
         }else return false;
@@ -71,7 +71,7 @@ class BattleManager
     {
         foreach (var member in team)
         {
-            if (member._currentStats[Seraph.Stats.hp] > 0)
+            if (member.CurrentStats[Seraph.Stats.hp] > 0)
             {
                 return false;
             }
@@ -90,7 +90,7 @@ class BattleManager
 
         foreach (Seraph seraph in EnemyTeam)
         {
-            if (seraph._currentStats[Seraph.Stats.hp] > 0)
+            if (seraph.CurrentStats[Seraph.Stats.hp] > 0)
             {
                 CurrentEnemy = seraph;
                 return true;
