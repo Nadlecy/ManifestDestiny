@@ -8,7 +8,7 @@ class BattleManager
 {
     public List<Seraph> EnemyTeam { get; set; } 
     public List<Seraph> PlayerTeam { get; set; }
-    public List<Seraph> PlaerParticipants { get; set; }
+    public List<Seraph> PlayerParticipants { get; set; }
     public int EnemyAILevel { get; set; } 
     public Seraph CurrentPlayer { get; set; }
     public Seraph CurrentEnemy { get; private set; }
@@ -18,6 +18,7 @@ class BattleManager
         PlayerTeam = playerList;
         EnemyTeam = new List<Seraph>();
         EnemyAILevel = 1;
+        PlayerParticipants = new List<Seraph>();
     }
 
     public void StartBattle(List<Seraph>foeTeam, int AILevel)
@@ -39,22 +40,41 @@ class BattleManager
         //if the current player seraph is slower than the enemy, enemy attacks first.
         if (CurrentPlayer.CurrentStats[Seraph.Stats.speed] < CurrentEnemy.CurrentStats[Seraph.Stats.speed])
         {
-            enemyAbility.Use(CurrentEnemy, CurrentPlayer);
-            //death check + player switch-in/gameover
-            
-            playerAbility.Use(CurrentPlayer, CurrentEnemy);
-            //death check + enemy switch-in/battle end
-
+            BattlePhaseEnemy(enemyAbility);
+            BattlePhasePlayer(playerAbility);
         }
         else
         {
-            playerAbility.Use(CurrentPlayer, CurrentEnemy);
-            //death check + enemy switch-in/battle end
-            
-            enemyAbility.Use(CurrentEnemy, CurrentPlayer);
-            //death check + player switch-in/gameover
-
+            BattlePhasePlayer(playerAbility);
+            BattlePhaseEnemy(enemyAbility);
         }
+
+    }
+
+    public bool BattlePhasePlayer(BattleAbility playerAbility)
+    {
+        playerAbility.Use(CurrentPlayer, CurrentEnemy);
+        if (IsDead(CurrentEnemy))
+        {
+            if (EnemyDeath() == false)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public bool BattlePhaseEnemy(BattleAbility enemyAbility)
+    {
+        enemyAbility.Use(CurrentEnemy, CurrentPlayer);
+        if (IsDead(CurrentPlayer))
+        {
+            if (PlayerSwitch() == false)
+            {
+                return false;
+            }
+        }
+        return true;
 
     }
 
@@ -66,25 +86,41 @@ class BattleManager
         }else return false;
     }
 
-    public bool IsTeamDead(List<Seraph> team)
+    public bool PlayerSwitch()
     {
-        foreach (var member in team)
+        List<Seraph> alive = new();
+        //check if player can switch
+        foreach (Seraph seraph in PlayerTeam)
         {
-            if (member.CurrentStats[Seraph.Stats.hp] > 0)
+            if (seraph.CurrentStats[Seraph.Stats.hp] > 0)
             {
-                return false;
+                alive.Add(seraph);
             }
-        } return true;
-    }
+        }
+        if (alive.Count > 0)
+        {
+            //force player to select new seraph to send out, in a menu
+            /*
+             * MENU THING HERE
+             */
 
-    public void PlayerSwitch()
-    {
-        //menu de switch, peut pas choisir un seraph dont les pv sont à 0
+            //if the new seraph has not fought before, add it to the list of participants
+            if (PlayerParticipants.Contains(CurrentPlayer) == false)
+            {
+                PlayerParticipants.Add(CurrentPlayer);
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
     public bool EnemyDeath()
     {
-        CurrentPlayer.Experience += CurrentEnemy._experienceReward * (CurrentEnemy.Level/CurrentPlayer.Level);
+        GetEnemyExp();
 
         foreach (Seraph seraph in EnemyTeam)
         {
@@ -97,6 +133,16 @@ class BattleManager
         return false;
     }
 
+    public void GetEnemyExp()
+    {
+        foreach (Seraph seraph in PlayerParticipants)
+        {
+            seraph.Experience += CurrentEnemy._experienceReward * (CurrentEnemy.Level / CurrentPlayer.Level);
+        }
+
+        PlayerParticipants.Clear();
+    }
+
     public bool Escape()
     {
         return true;
@@ -105,7 +151,7 @@ class BattleManager
     public void EndBattle()
     {
         EnemyTeam.Clear();
-        
+        PlayerParticipants.Clear();
     }
 }
 
