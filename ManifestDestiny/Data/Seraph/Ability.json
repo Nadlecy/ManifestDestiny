@@ -8,6 +8,15 @@
             "Accuracy": 95,
             "ManaCost": 4,
             "CritChance": 10
+        },
+        {
+          "Name": "Compact",
+          "Type": "Mechanic",
+          "Description": "",
+          "Power": 40,
+          "Accuracy": 95,
+          "ManaCost": 8,
+          "CritChance": 15
         }
     ]
 }

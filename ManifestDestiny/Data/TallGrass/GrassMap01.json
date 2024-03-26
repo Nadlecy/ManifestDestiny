@@ -1,6 +1,7 @@
 {
   "Encounter": {
-    "Racaillou": 20
+    "Racaillou": 20,
+    "TaDaronne":  20
   },
   "Chance": 20
 }

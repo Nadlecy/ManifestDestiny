@@ -67,6 +67,34 @@ namespace ManifestDestiny
                         x = 0;
                         y = 0;
                     }
+                    else if (_currentDisplay[playerX + x][playerY + y].EncounterChance != 0)
+                    {
+                        Random aleatoire = new Random();
+                        int chance = aleatoire.Next(1, 100);
+                        if (chance <= _currentDisplay[playerX + x][playerY + y].EncounterChance)
+                        {
+                            int aleaSeraph = 0;
+                            foreach (var sera in _currentDisplay[playerX + x][playerY + y].Encounters)
+                            {
+                                aleaSeraph += sera.Value;
+                            }
+
+
+                            foreach (var sera in _currentDisplay[playerX + x][playerY + y].Encounters)
+                            {
+                                int seraChoice = aleatoire.Next(1, aleaSeraph);
+                                if (seraChoice <= sera.Value)
+                                {
+                                    // Comabt ??
+                                    break;
+                                }
+                                else
+                                {
+                                    aleaSeraph -= sera.Value;
+                                }
+                            }
+                        }
+                    }
 
                     Console.SetCursorPosition(playerY, playerX);
                     Console.BackgroundColor = _currentDisplay[playerX][playerY].ColorBackground;
@@ -235,12 +263,13 @@ namespace ManifestDestiny
                     Console.SetCursorPosition(0, 0);
                     Console.BackgroundColor = ConsoleColor.Gray;
                     Console.ForegroundColor = ConsoleColor.Black;
-                    switch (menu.LineType) {
+                    switch (menu.LineType)
+                    {
                         case Menu.LinesType.text:
                             int topPadding = 23 - menu._lines.Count;
                             for (int i = 0; i < topPadding; i++)
                             {
-                                if(i == 2)
+                                if (i == 2)
                                 {
                                     // Display enemy
                                     StringBuilder newPadding = new StringBuilder();
@@ -250,7 +279,8 @@ namespace ManifestDestiny
                                         newPadding.Append(" ");
                                     }
                                     Console.WriteLine(newPadding + name + "  ");
-                                } else if(i == 15)
+                                }
+                                else if (i == 15)
                                 {
                                     // Display friendly
                                     Seraph playerSeraph = _gameManager.BattleHandler.CurrentPlayer;
@@ -261,8 +291,9 @@ namespace ManifestDestiny
                                         newPadding.Append(" ");
                                     }
                                     Console.WriteLine("  " + name + newPadding);
-                                    Console.WriteLine("  " + playerSeraph._currentStats[Seraph.Stats.hp] + "/" + playerSeraph.BaseStats[Seraph.Stats.hp]);
-                                } else
+                                    Console.WriteLine("  " + playerSeraph.CurrentStats[Seraph.Stats.hp] + "/" + playerSeraph.BaseStats[Seraph.Stats.hp]);
+                                }
+                                else
                                 {
                                     if (i == topPadding - 1)
                                     {
@@ -284,7 +315,7 @@ namespace ManifestDestiny
                                 // Padding
                                 StringBuilder newPadding = new StringBuilder();
                                 int paddingLength = 61 - menu._lines[i].Length; // 64 = window width 24 = height
-                                
+
                                 for (int j = 0; j < paddingLength; j++)
                                 {
                                     newPadding.Append(" ");
