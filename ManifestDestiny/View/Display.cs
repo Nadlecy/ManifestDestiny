@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
+using static GameManager;
 
 namespace ManifestDestiny
 {
@@ -85,7 +86,11 @@ namespace ManifestDestiny
                                 int seraChoice = aleatoire.Next(1, aleaSeraph);
                                 if (seraChoice <= sera.Value)
                                 {
-                                    // Comabt ??
+                                    //_gameManager.GameState = GameManager.GameStates.StartBattle;
+                                    // FAUT LANCER LE COMBAT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                                    _gameManager.GameState = GameStates.Battle;
+                                    MenuDisplay(_gameManager.battleMenu, Display.MenuDisplayType.battle);
                                     break;
                                 }
                                 else
@@ -96,27 +101,30 @@ namespace ManifestDestiny
                         }
                     }
 
-                    Console.SetCursorPosition(playerY, playerX);
-                    Console.BackgroundColor = _currentDisplay[playerX][playerY].ColorBackground;
-                    Console.ForegroundColor = _currentDisplay[playerX][playerY].ColorText;
-                    Console.Write(apparence);
+                    if (_gameManager.GameState == GameStates.Exploration)
+                    {
+                        Console.SetCursorPosition(playerY, playerX);
+                        Console.BackgroundColor = _currentDisplay[playerX][playerY].ColorBackground;
+                        Console.ForegroundColor = _currentDisplay[playerX][playerY].ColorText;
+                        Console.Write(apparence);
 
-                    _playerPosition.X += x;
-                    _playerPosition.Y += y;
+                        _playerPosition.X += x;
+                        _playerPosition.Y += y;
 
-                    playerX = _playerPosition.X;
-                    playerY = _playerPosition.Y;
+                        playerX = _playerPosition.X;
+                        playerY = _playerPosition.Y;
 
-                    Console.SetCursorPosition(playerY, playerX);
-                    Console.BackgroundColor = _currentDisplay[playerX][playerY].ColorBackground;
-                    Console.ForegroundColor = _player.ColorText;
-                    Console.Write(_player.Apparence);
+                        Console.SetCursorPosition(playerY, playerX);
+                        Console.BackgroundColor = _currentDisplay[playerX][playerY].ColorBackground;
+                        Console.ForegroundColor = _player.ColorText;
+                        Console.Write(_player.Apparence);
 
-                    Console.BackgroundColor = ConsoleColor.Black;
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.SetCursorPosition(0, Console.WindowHeight - 5);
-                    //Console.WriteLine(_playerPosition.X);
-                    //Console.WriteLine(_playerPosition.Y);
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.SetCursorPosition(0, Console.WindowHeight - 5);
+                        //Console.WriteLine(_playerPosition.X);
+                        //Console.WriteLine(_playerPosition.Y);
+                    }
                 }
             }
         }

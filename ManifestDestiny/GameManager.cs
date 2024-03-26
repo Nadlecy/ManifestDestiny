@@ -30,6 +30,7 @@ class GameManager
     public ItemStorage Inventory { get; set; }
     public bool InBattle { get; set; }
     public BattleManager BattleHandler;
+    public Menu battleMenu;
 
     public GameManager()
     {
@@ -60,7 +61,7 @@ class GameManager
         Menu mainMenu = new Menu("MAIN MENU", new List<string> { "SERAPHIM", "BAG", "QUIT GAME", "CLOSE", "DEBUG BATTLE" });
         Menu bagMenu = new Menu("BAG", _inventory);
 
-        Menu battleMenu = new Menu("What will you do?", new List<string> { "FIGHT", "BAG", "SERAPH", "RUN" });
+        battleMenu = new Menu("What will you do?", new List<string> { "FIGHT", "BAG", "SERAPH", "RUN" });
 
         while (true)
         {
@@ -69,6 +70,10 @@ class GameManager
 
             switch (GameState)
             {
+                case GameStates.StartExploration:
+                    display.WorldDisplay();
+                    GameState = GameStates.Exploration;
+                    break;
                 case GameStates.Exploration:
                     switch (keyInfo.Key)
                     {
