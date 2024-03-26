@@ -42,21 +42,37 @@ class BattleManager
         {
             enemyAbility.Use(CurrentEnemy, CurrentPlayer);
             //death check + player switch-in/gameover
-            
-            playerAbility.Use(CurrentPlayer, CurrentEnemy);
-            //death check + enemy switch-in/battle end
 
+            BattlePhasePlayer(playerAbility);
         }
         else
         {
-            playerAbility.Use(CurrentPlayer, CurrentEnemy);
-            //death check + enemy switch-in/battle end
-            
+            BattlePhasePlayer(playerAbility);
+
             enemyAbility.Use(CurrentEnemy, CurrentPlayer);
             //death check + player switch-in/gameover
-
         }
 
+    }
+
+    public bool BattlePhasePlayer(BattleAbility playerAbility)
+    {
+        playerAbility.Use(CurrentPlayer, CurrentEnemy);
+        if (IsDead(CurrentEnemy))
+        {
+            if (EnemyDeath())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return true;
+        }
     }
 
     public bool IsDead(Seraph seraph)
@@ -65,17 +81,6 @@ class BattleManager
         {
             return true;
         }else return false;
-    }
-
-    public bool IsTeamDead(List<Seraph> team)
-    {
-        foreach (var member in team)
-        {
-            if (member.CurrentStats[Seraph.Stats.hp] > 0)
-            {
-                return false;
-            }
-        } return true;
     }
 
     public void PlayerSwitch()
