@@ -30,6 +30,21 @@ class BattleManager
         EnemyAILevel = AILevel;
     }
 
+    public string EnemyAbilityChoice()
+    {
+        string choice;
+        int choiceID;
+        switch(EnemyAILevel)
+        {
+            case 1:
+                choiceID = GameManager.rand.Next(0, CurrentEnemy._abilities.Count);
+                choice = CurrentEnemy._abilities[choiceID].Name;
+
+                return choice;
+            default: throw new ArgumentException();
+        }
+    }
+
     public void BattlePhase(BattleAbility playerAbility, BattleAbility enemyAbility)
     {
         //if the current player seraph is slower than the enemy, enemy attacks first.
