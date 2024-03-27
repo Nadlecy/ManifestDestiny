@@ -124,8 +124,8 @@ namespace ManifestDestiny
                         Console.BackgroundColor = ConsoleColor.Black;
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.SetCursorPosition(0, Console.WindowHeight - 5);
-                        //Console.WriteLine(_playerPosition.X);
-                        //Console.WriteLine(_playerPosition.Y);
+                        Console.WriteLine("Player X Posittion: " + _playerPosition.X);
+                        Console.WriteLine("Player Y Posittion: " + _playerPosition.Y);
                     }
                 }
             }

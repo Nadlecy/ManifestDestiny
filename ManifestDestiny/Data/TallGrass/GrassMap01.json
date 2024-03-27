@@ -1,7 +1,8 @@
 {
   "Encounter": {
     "Bit": 20,
-    "Lambda": 20
+    "Lambda": 20,
+    "Goku":  1
   },
   "Chance": 20,
   "LevelMin": 1,
