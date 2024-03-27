@@ -1,0 +1,16 @@
+{
+  "ItemList": {
+    "Tasty Ration": {
+      "Name": "Tasty Ration",
+      "Description": "restore a bit of health",
+      "Heal": 25,
+      "Character": "T"
+    },
+    "Black Flower": {
+      "Name": "Black Flower",
+      "Description": "restore a lot of health",
+      "Heal": 100,
+      "Character": "B"
+    }
+  }
+}

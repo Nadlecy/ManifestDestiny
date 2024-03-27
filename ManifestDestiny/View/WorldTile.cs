@@ -27,6 +27,8 @@ namespace ManifestDestiny
         public int LevelMin { get; set; }
         public int LevelMax { get; set; }
         public int AILevel { get; set; }
+        public bool AsObject { get; set; }
+        public Item Item { get; set; }
 
         public Warp Warp { get => _warp; }
 
@@ -44,6 +46,12 @@ namespace ManifestDestiny
             _colorText = colorText;
             _isWarp = false;
             EncounterChance = 0;
+        }
+
+        public Item GiveObject()
+        {
+            AsObject = false;
+            return Item;
         }
 
         public WorldTile Clone()

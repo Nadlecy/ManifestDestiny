@@ -1,22 +1,31 @@
 {
-    "Ability": [
-        {
-            "Name": "Bash",
-            "Type": "Scramble",
-            "Description": "A simple tackle",
-            "Power": 40,
-            "Accuracy": 95,
-            "ManaCost": 4,
-            "CritChance": 10
-        },
-        {
-          "Name": "Compact",
-          "Type": "Mechanic",
-          "Description": "",
-          "Power": 40,
-          "Accuracy": 95,
-          "ManaCost": 8,
-          "CritChance": 15
-        }
-    ]
+  "Ability": [
+    {
+      "Name": "Bash",
+      "Type": "Scramble",
+      "Description": "A simple tackle",
+      "Power": 40,
+      "Accuracy": 95,
+      "ManaCost": 4,
+      "CritChance": 10
+    },
+    {
+      "Name": "Compact",
+      "Type": "Mechanic",
+      "Description": "",
+      "Power": 40,
+      "Accuracy": 95,
+      "ManaCost": 8,
+      "CritChance": 15
+    },
+    {
+      "Name": "Biden Blast",
+      "Type": "Occult",
+      "Description": "Biden that shoot a laser",
+      "Power": 60,
+      "Accuracy": 85,
+      "ManaCost": 12,
+      "CritChance": 15
+    }
+  ]
 }
