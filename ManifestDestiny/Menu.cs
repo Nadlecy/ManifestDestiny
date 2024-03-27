@@ -27,9 +27,9 @@ namespace ManifestDestiny
 
         public string Name { get; set; }
         public List<string> _lines;
-        public ItemStorage ItemStorage { get; set; }
-        public List<BattleAbility> Abilities {  get; set; }
-        public List<Seraph> Seraphim {  get; set; }
+        public ItemStorage? ItemStorage { get; set; }
+        public List<BattleAbility>? Abilities {  get; set; }
+        public List<Seraph>? Seraphim {  get; set; }
         public int SelectedLine { get; set; }
         public LinesType LineType { get; private set; }
         public MenuDisplayType DisplayType { get; private set; }
