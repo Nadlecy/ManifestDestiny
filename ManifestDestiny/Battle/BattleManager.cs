@@ -13,6 +13,8 @@ class BattleManager
     public Seraph CurrentPlayer { get; set; }
     public Seraph CurrentEnemy { get; private set; }
 
+    public int FleeAttemps { get; set; }
+
     public BattleManager(List<Seraph> playerList)
     {
         PlayerTeam = playerList;

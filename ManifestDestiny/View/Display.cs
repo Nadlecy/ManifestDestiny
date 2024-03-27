@@ -158,19 +158,27 @@ namespace ManifestDestiny
             Console.BackgroundColor = ConsoleColor.Gray;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.SetCursorPosition(0, 0);
-            int topPadding = 23;
+            int topPadding = 22;
             for (int i = 0; i < topPadding; i++)
             {
                 if (i == 2)
                 {
                     // Display enemy
                     StringBuilder newPadding = new StringBuilder();
-                    string name = "DANY LE CAILLOU";
-                    for (int j = 0; j < 64 - name.Length - 2; j++)
+                    Seraph enemy = battleManager.CurrentEnemy;
+                    for (int j = 0; j < 64 - enemy.Name.Length - 2; j++)
                     {
                         newPadding.Append(" ");
                     }
-                    Console.WriteLine(newPadding + name + "  ");
+                    Console.WriteLine(newPadding + enemy.Name + "  ");
+
+                    StringBuilder hpPadding = new StringBuilder();
+                    string hp = "HP:" + enemy.CurrentStats[Seraph.Stats.hp] + "/" + enemy.BaseStats[Seraph.Stats.hp];
+                    for (int j = 0; j < 64 - hp.Length - 2; j++)
+                    {
+                        hpPadding.Append(" ");
+                    }
+                    Console.WriteLine(hpPadding.ToString() + hp + "  ");
                 }
                 else if (i == 15)
                 {
@@ -184,7 +192,7 @@ namespace ManifestDestiny
                     }
                     Console.WriteLine("  " + name + namePadding);
                     StringBuilder hpPadding = new StringBuilder();
-                    string hp = playerSeraph.CurrentStats[Seraph.Stats.hp] + "/" + playerSeraph.BaseStats[Seraph.Stats.hp];
+                    string hp = "HP:" + playerSeraph.CurrentStats[Seraph.Stats.hp] + "/" + playerSeraph.BaseStats[Seraph.Stats.hp];
                     for (int j = 0; j < 64 - hp.Length - 2; j++)
                     {
                         hpPadding.Append(" ");
@@ -193,10 +201,6 @@ namespace ManifestDestiny
                 }
                 else
                 {
-                    if (i == topPadding - 1)
-                    {
-                        Console.BackgroundColor = ConsoleColor.Red;
-                    }
                     StringBuilder newPadding = new StringBuilder();
                     for (int j = 0; j < 64; j++)
                     {
