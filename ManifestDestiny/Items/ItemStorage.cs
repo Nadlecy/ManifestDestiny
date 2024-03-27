@@ -16,16 +16,21 @@ namespace ManifestDestiny
         {
             while(count > 0)
             {
-                if (Items.Contains(item))
+                bool alreadyHave = false;
+                for (int i = 0; i <  Items.Count; i++)
                 {
-                    
-                    if (Items[Items.IndexOf(item)].Count < 99)
+                    if (Items[i].Name == item.Name)
                     {
-                        Items[Items.IndexOf(item)].Count += count;
-                        if(Items[Items.IndexOf(item)].Count > 99) { Items[Items.IndexOf(item)].Count = 99; }
+                        alreadyHave = true;
+                        if (Items[i].Count < 99)
+                        {
+                            Items[i].Count += count;
+                            if (Items[i].Count > 99) { Items[i].Count = 99; }
+                        }
                     }
                 }
-                else
+
+                if (alreadyHave == false)
                 {
                     Items.Add(item);
                 }
