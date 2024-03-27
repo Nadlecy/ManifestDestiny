@@ -62,7 +62,7 @@ class GameManager
 
         Menu mainMenu = new Menu("MAIN MENU", new List<string> { "SERAPHIM", "BAG", "QUIT GAME", "CLOSE", /*"DEBUG BATTLE"*/ });
         Menu bagMenu = new Menu("BAG", _inventory);
-        Menu seraphMenu = new Menu("SERAPH", PlayerTeam);
+        Menu seraphMenu = new Menu("SERAPHIM", PlayerTeam); 
 
         battleMenu = new Menu("What will you do?", new List<string> { "FIGHT", "BAG", "SERAPH", "RUN" }, Menu.MenuDisplayType.battle);
 
@@ -180,7 +180,7 @@ class GameManager
                     }
                     display.MenuDisplay(bagMenu);
                     break;
-                case "SERAPH":
+                case "SERAPHIM":
                     CurrentMenu = seraphMenu;
                     if (GameState != GameStates.Battle)
                     {
