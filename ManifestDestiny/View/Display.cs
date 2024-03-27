@@ -22,7 +22,7 @@ namespace ManifestDestiny
             _playerPosition = new Position();
             _playerPosition.X = 0;
             _playerPosition.Y = 0;
-            _player = new WorldTile("@", ConsoleColor.Black, ConsoleColor.Black, true);
+            _player = new WorldTile("♀", ConsoleColor.Black, ConsoleColor.DarkRed, true);
             _currentDisplay = new List<List<WorldTile>>();
             _worldMap = worldMap;
             _gameManager = gameManager;
