@@ -88,8 +88,7 @@ namespace ManifestDestiny
                                 {
                                     //_gameManager.GameState = GameManager.GameStates.StartBattle;
                                     // FAUT LANCER LE COMBAT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-                                    _gameManager.GameState = GameStates.Battle;
+                                    _gameManager.GameState = GameStates.StartBattle;
                                     MenuDisplay(_gameManager.battleMenu, Display.MenuDisplayType.battle);
                                     break;
                                 }
