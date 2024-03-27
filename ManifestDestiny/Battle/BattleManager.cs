@@ -158,7 +158,8 @@ class BattleManager
     {
         foreach (Seraph seraph in PlayerParticipants)
         {
-            seraph.Experience += CurrentEnemy._experienceReward * (CurrentEnemy.Level / CurrentPlayer.Level);
+            //seraph.Experience += CurrentEnemy._experienceReward * (CurrentEnemy.Level / CurrentPlayer.Level);
+            seraph.Experience += CurrentEnemy._experienceReward;
         }
 
         PlayerParticipants.Clear();

@@ -177,11 +177,11 @@ namespace ManifestDestiny
                     // Display enemy
                     StringBuilder newPadding = new StringBuilder();
                     Seraph enemy = battleManager.CurrentEnemy;
-                    for (int j = 0; j < 64 - enemy.Name.Length - 2; j++)
+                    for (int j = 0; j < 64 - enemy.Name.Length - enemy.Level.ToString().Length - 9; j++)
                     {
                         newPadding.Append(" ");
                     }
-                    Console.WriteLine(newPadding + enemy.Name + "  ");
+                    Console.WriteLine(newPadding + enemy.Name + "  " + "LVL: " + enemy.Level + "  ");
 
                     StringBuilder hpPadding = new StringBuilder();
                     string hp = "HP:" + enemy.CurrentStats[Seraph.Stats.hp] + "/" + enemy.BaseStats[Seraph.Stats.hp];
@@ -197,11 +197,11 @@ namespace ManifestDestiny
                     Seraph playerSeraph = battleManager.CurrentPlayer;
                     StringBuilder namePadding = new StringBuilder();
                     string name = playerSeraph.Name;
-                    for (int j = 0; j < 64 - name.Length - 2; j++)
+                    for (int j = 0; j < 64 - name.Length - playerSeraph.Level.ToString().Length - 9; j++)
                     {
                         namePadding.Append(" ");
                     }
-                    Console.WriteLine("  " + name + namePadding);
+                    Console.WriteLine("  " + name + "  " + "LVL: " + playerSeraph.Level + namePadding);
                     StringBuilder hpPadding = new StringBuilder();
                     string hp = "HP:" + playerSeraph.CurrentStats[Seraph.Stats.hp] + "/" + playerSeraph.BaseStats[Seraph.Stats.hp];
                     for (int j = 0; j < 64 - hp.Length - 2; j++)

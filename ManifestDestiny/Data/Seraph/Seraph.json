@@ -31,14 +31,14 @@
 
       "HP": 20,
       "Attack": 10,
-      "Defense": 5,
+      "Defense": 10,
       "Mana": 25,
       "Magic": 10,
       "Speed": 20,
 
       "HP100": 100,
       "Attack100": 50,
-      "Defense100": 25,
+      "Defense100": 50,
       "Mana100": 125,
       "Speed100": 50,
       "Magic100": 100,
