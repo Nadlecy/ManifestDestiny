@@ -41,7 +41,7 @@ class Seraph
     public Dictionary<Stats, int> _statsAlterations;
     //Dictionary<StatusEffect, int> Effect;
 
-    private Dictionary<int, BattleAbility> _abilitiesUnlocks; // List of all abilities this seraph can have, and the level at which it unlocks them.
+    public Dictionary<int, BattleAbility> _abilitiesUnlocks; // List of all abilities this seraph can have, and the level at which it unlocks them.
     public List<BattleAbility> _abilities;
 
     public Seraph(string name, BattleType type, Dictionary<Stats, int> baseStats, Dictionary<Stats, int> maxStats, int experienceReward, Dictionary<int, BattleAbility> AbilitiesUnlocks, string description)

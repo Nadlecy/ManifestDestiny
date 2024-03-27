@@ -87,9 +87,9 @@ namespace ManifestDestiny
                 ));
 
 
-                foreach (string abilityName in seraph.Ability.Values)
+                foreach (KeyValuePair<int, string> pair in seraph.Ability)
                 {
-                    seraphim[seraph.Name]._abilities.Add(abilities[abilityName]);
+                    seraphim[seraph.Name]._abilitiesUnlocks.Add(pair.Key, abilities[pair.Value]);
                 }
             }   
 
