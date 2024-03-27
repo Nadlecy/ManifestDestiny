@@ -31,6 +31,7 @@ class GameManager
     public bool InBattle { get; set; }
     public BattleManager BattleHandler;
     public Menu battleMenu;
+    public GameData Data { get; set; }
 
     public GameManager()
     {
@@ -40,6 +41,7 @@ class GameManager
         rand = new Random();
         Inventory = new ItemStorage();
         GameState = GameStates.Exploration;
+        Data = new GameData();
     }
 
     public void GameLoop()
@@ -63,6 +65,10 @@ class GameManager
 
         battleMenu = new Menu("What will you do?", new List<string> { "FIGHT", "BAG", "SERAPH", "RUN" });
 
+        Seraph playerSeraph = Data.Summon("Lambda", 5);
+
+        PlayerTeam.Add(playerSeraph);
+
         while (true)
         {
             keyInfo = Console.ReadKey();
@@ -72,6 +78,7 @@ class GameManager
             {
                 case GameStates.StartExploration:
                     display.WorldDisplay();
+                    display.PlayerWorldDisplay(0,0);
                     GameState = GameStates.Exploration;
                     break;
                 case GameStates.Exploration:
@@ -167,11 +174,6 @@ class GameManager
                         case ConsoleKey.Enter:
                             Selection = battleMenu.Enter();
                             break;
-                        case ConsoleKey.Escape:
-                            battleMenu.SelectedLine = 0;
-                            Selection = "CLOSE";
-                            //mainMenu.Back();
-                            break;
                     }
                     break;
                 default:
@@ -203,7 +205,7 @@ class GameManager
                 case "RUN":
                     InBattle = false;
                     battleMenu.SelectedLine = 0;
-                    GameState = GameStates.Menu;
+                    GameState = GameStates.StartExploration;
                     display.WorldDisplay();
                     display.MenuDisplay(mainMenu);
                     BattleHandler.EndBattle();

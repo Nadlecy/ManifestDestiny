@@ -89,7 +89,16 @@ namespace ManifestDestiny
                                     //_gameManager.GameState = GameManager.GameStates.StartBattle;
                                     // FAUT LANCER LE COMBAT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-                                    _gameManager.GameState = GameStates.Battle;
+                                    int level = aleatoire.Next(_currentDisplay[playerX + x][playerY + y].LevelMin, _currentDisplay[playerX + x][playerY + y].LevelMax);
+
+                                    Seraph seraph = _gameManager.Data.Summon(sera.Key, level);
+
+                                    List<Seraph> listSeraph = new List<Seraph>();
+                                    listSeraph.Add(seraph);
+
+                                    _gameManager.BattleHandler.StartBattle(listSeraph, _currentDisplay[playerX + x][playerY + y].AILevel);
+
+                                    _gameManager.GameState = GameStates.StartBattle;
                                     MenuDisplay(_gameManager.battleMenu, Display.MenuDisplayType.battle);
                                     break;
                                 }

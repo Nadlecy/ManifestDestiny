@@ -68,6 +68,9 @@ namespace ManifestDestiny
                                 row.Add(_worldTiles["grass"].Clone());
                                 row[row.Count - 1].EncounterChance = encountersChance.Chance;
                                 row[row.Count - 1].Encounters = encountersChance.Encounter;
+                                row[row.Count - 1].LevelMin = encountersChance.LevelMin;
+                                row[row.Count - 1].LevelMax = encountersChance.LevelMax;
+                                row[row.Count - 1].AILevel = encountersChance.AILevel;
                             }
                             else if (c == 'e')
                             {

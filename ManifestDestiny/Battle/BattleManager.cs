@@ -30,11 +30,6 @@ class BattleManager
         EnemyAILevel = AILevel;
     }
 
-    public void PlayerActionSelect()
-    {
-
-    }
-
     public void BattlePhase(BattleAbility playerAbility, BattleAbility enemyAbility)
     {
         //if the current player seraph is slower than the enemy, enemy attacks first.
@@ -75,7 +70,6 @@ class BattleManager
             }
         }
         return true;
-
     }
 
     public bool IsDead(Seraph seraph)

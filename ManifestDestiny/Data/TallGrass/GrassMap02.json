@@ -2,5 +2,8 @@
   "Encounter": {
     "Racaillou": 20
   },
-  "Chance": 20
+  "Chance": 20,
+  "LevelMin": 3,
+  "LevelMax": 7,
+  "AILevel": 1
 }
