@@ -137,7 +137,7 @@ class GameManager
                             Selection = CurrentMenu.Enter();
                             break;
                         case ConsoleKey.Escape:
-                            CurrentMenu.SelectedLine = 0;
+                            //CurrentMenu.SelectedLine = 0;
                             Selection = "CLOSE";
                             break;
                     }
@@ -199,9 +199,28 @@ class GameManager
                     display.MenuDisplay(seraphMenu);
                     break;
                 case "RUN":
-                    GameState = GameStates.StartExploration;
-                    display.WorldDisplay();
-                    BattleHandler.EndBattle();
+                    bool sucess = false;
+                    // Calcul
+                    BattleHandler.FleeAttemps++;
+                    int flee = (playerSeraph.CurrentStats[Seraph.Stats.speed] * 32) / BattleHandler.CurrentEnemy.CurrentStats[Seraph.Stats.speed] + 30 * BattleHandler.FleeAttemps;
+                    if(flee > 255)
+                    {
+                        sucess = true;   
+                    } else if(rand.Next(256) <= flee)
+                    {
+                        sucess=true;
+                    }
+
+                    if (sucess)
+                    {
+                        GameState = GameStates.StartExploration;
+                        display.WorldDisplay();
+                        BattleHandler.EndBattle();
+                    } else
+                    {
+                        Console.WriteLine("Fleeing failed.");
+                    }
+                    
                     break;
                 case "CLOSE":
                     CurrentMenu.SelectedLine = 0;
@@ -222,11 +241,11 @@ class GameManager
                         }
                     } else if(CurrentMenu == mainMenu)
                     {
-                        GameState = GameStates.Exploration;
+                        GameState = GameStates.StartExploration;
                         display.WorldDisplay();
                     } else if(CurrentMenu == battleMenu)
                     {
-                        GameState = GameStates.Exploration;
+                        GameState = GameStates.StartExploration;
                         display.WorldDisplay();
                         display.MenuDisplay(mainMenu);
                     } else if(CurrentMenu.LineType == Menu.LinesType.ability)
