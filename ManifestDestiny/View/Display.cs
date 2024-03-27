@@ -220,6 +220,7 @@ namespace ManifestDestiny
                     Console.SetCursorPosition(0, 0);
                     Console.BackgroundColor = ConsoleColor.White;
                     Console.ForegroundColor = ConsoleColor.Black;
+                    StringBuilder titlePadding;
 
                     switch (menu.LineType)
                     {
@@ -275,7 +276,7 @@ namespace ManifestDestiny
                                     maxLength = menu.ItemStorage.Items[i].Name.Length;
                                 }
                             }
-                            StringBuilder titlePadding = new StringBuilder();
+                            titlePadding = new StringBuilder();
                             for (int i = 0; i < maxLength - menu.Name.Length + 2; i++) // Add 2 cause the menu is 2 characters to the left from the lines
                             {
                                 titlePadding.Append(" ");
@@ -303,6 +304,59 @@ namespace ManifestDestiny
                             }
 
                             if (menu.SelectedLine == menu.ItemStorage.Items.Count)
+                            {
+                                Console.WriteLine(" ► CLOSE");
+                            }
+                            else
+                            {
+                                Console.WriteLine("   CLOSE");
+                            }
+
+
+                            break;
+
+                        //SERAPH MENU
+                        case Menu.LinesType.seraph:
+                            Console.SetCursorPosition(0, 0);
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            Console.ForegroundColor = ConsoleColor.Black;
+
+                            maxLength = 0;
+                            for (int i = 0; i < menu.Seraphim.Count; i++)
+                            {
+                                if (menu.Seraphim[i].Name.Length > maxLength)
+                                {
+                                    maxLength = menu.Seraphim[i].Name.Length;
+                                }
+                            }
+                            titlePadding = new StringBuilder();
+                            for (int i = 0; i < maxLength - menu.Name.Length + 2; i++) // Add 2 cause the menu is 2 characters to the left from the lines
+                            {
+                                titlePadding.Append(" ");
+                            }
+                            Console.WriteLine(" " + menu.Name + titlePadding.ToString());
+
+                            for (int i = 0; i < menu.Seraphim.Count; i++)
+                            {
+                                // Padding
+                                //StringBuilder newPadding = new StringBuilder();
+                                //int paddingLength = maxLength - menu.ItemStorage.Items[i].Name.Length;
+                                //for (int j = 0; j < paddingLength; j++)
+                                //{
+                                //    newPadding.Append(" ");
+                                //}
+
+                                if (i == menu.SelectedLine)
+                                {
+                                    Console.WriteLine(" ► " + menu.Seraphim[i].Name /*+ newPadding.ToString()*/);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("   " + menu.Seraphim[i].Name /*+ newPadding.ToString()*/);
+                                }
+                            }
+
+                            if (menu.SelectedLine == menu.Seraphim.Count)
                             {
                                 Console.WriteLine(" ► CLOSE");
                             }

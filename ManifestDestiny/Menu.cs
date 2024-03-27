@@ -63,11 +63,6 @@ namespace ManifestDestiny
             Name = name;
             Seraphim = seraphim;
 
-            foreach(Seraph seraph in seraphim)
-            {
-                _lines.Add(seraph.Name);
-            }
-
             // Select first item
             SelectedLine = 0;
         }
