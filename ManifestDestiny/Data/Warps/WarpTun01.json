@@ -32,9 +32,9 @@
       "StartMap": "Tun01.txt",
       "DestinationPosition": {
         "X": 1,
-        "Y": 49
+        "Y": 33
       },
-      "DestinationMap": "Map02.txt"
+      "DestinationMap": "Map03.txt"
     },
     {
       "StartPosition": {
@@ -44,9 +44,9 @@
       "StartMap": "Tun01.txt",
       "DestinationPosition": {
         "X": 1,
-        "Y": 49
+        "Y": 34
       },
-      "DestinationMap": "Map02.txt"
+      "DestinationMap": "Map03.txt"
     }
   ]
 }
