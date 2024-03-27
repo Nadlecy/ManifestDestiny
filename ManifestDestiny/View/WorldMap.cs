@@ -15,10 +15,11 @@ namespace ManifestDestiny
         Dictionary<string, WorldTile> _worldTiles;
 
         Dictionary<Position, bool> _warpTiles;
+        GameManager _gameManager;
 
         public List<List<WorldTile>> WorldMapTiles { get => _worldMapTiles; }
 
-        public WorldMap()
+        public WorldMap(GameManager gameManager)
         {
             _worldTiles = new Dictionary<string, WorldTile>();
 
@@ -34,6 +35,8 @@ namespace ManifestDestiny
 
             WorldTile exterior = new WorldTile(" ", ConsoleColor.DarkGray, ConsoleColor.White, false);
             _worldTiles.Add("exterior", exterior);
+
+            _gameManager = gameManager;
         }
 
         public void SetMap(string textFile)
@@ -46,10 +49,10 @@ namespace ManifestDestiny
 
                 if (File.Exists("../../../Data/" + pathGrass))
                 {
-                    CustomJson<EncountersChanceContainer> jsonReader = new CustomJson<EncountersChanceContainer>(pathGrass);
+                    CustomJson<EncountersChanceContainer> jsonReaderGrass = new CustomJson<EncountersChanceContainer>(pathGrass);
 
                     // Lire les données JSON et obtenir la liste de warps
-                    EncountersChanceContainer encountersChance = jsonReader.Read();
+                    EncountersChanceContainer encountersChance = jsonReaderGrass.Read();
 
                     string[] lines = File.ReadAllLines(path + textFile);
 
@@ -92,25 +95,32 @@ namespace ManifestDestiny
             }
 
             string pathWarp = "Warps/Warp" + textFile.Substring(0, 5) + ".json";
+            string itemWarp = "Item/Items" + textFile.Substring(0, 5) + ".json";
 
-            if (File.Exists("../../../Data/" + pathWarp))
+            // Créer une instance de JsonReader pour désérialiser une liste de warps
+            CustomJson<WarpContainer> jsonReader = new CustomJson<WarpContainer>(pathWarp);
+            CustomJson<ItemTilesContainer> jsonReaderItem = new CustomJson<ItemTilesContainer>(itemWarp);
+
+            // Lire les données JSON et obtenir la liste de warps
+            WarpContainer warps = jsonReader.Read();
+            ItemTilesContainer itemTiles = jsonReaderItem.Read();
+
+            // Utiliser les données des warps dans votre jeu
+            foreach (var warp in warps.warps)
             {
-                // Créer une instance de JsonReader pour désérialiser une liste de warps
-                CustomJson<WarpContainer> jsonReader = new CustomJson<WarpContainer>(pathWarp);
-
-                // Lire les données JSON et obtenir la liste de warps
-                WarpContainer warps = jsonReader.Read();
-
-                // Utiliser les données des warps dans votre jeu
-                foreach (var warp in warps.warps)
+                if (warp.StartMap == textFile)
                 {
-                    if (warp.StartMap == textFile)
-                    {
-                        _worldMapTiles[warp.StartPosition.X][warp.StartPosition.Y].SetWarp(warp);
-                    }
+                    _worldMapTiles[warp.StartPosition.X][warp.StartPosition.Y].SetWarp(warp);
                 }
             }
-            
+            foreach (var itemT in itemTiles.ItemTiles)
+            {
+                _worldMapTiles[itemT.Position.X][itemT.Position.Y].AsObject = true;
+                Item it = _gameManager.Items.ItemList[itemT.ItemName].Clone();
+                _worldMapTiles[itemT.Position.X][itemT.Position.Y].Item = it;
+
+            }
+
         }
 
     }
