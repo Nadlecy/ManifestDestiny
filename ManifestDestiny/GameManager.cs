@@ -17,6 +17,7 @@ class GameManager
         Exploration,
         StartBattle,
         Battle,
+        AbilitySelection,
         Menu,
         Inventory,
         SeraphMenu
@@ -33,6 +34,8 @@ class GameManager
     public BattleManager BattleHandler;
     public Menu battleMenu;
     public GameData Data { get; set; }
+
+    public Menu CurrentMenu { get; set; }
 
     public GameManager()
     {
@@ -65,7 +68,7 @@ class GameManager
         Menu bagMenu = new Menu("BAG", _inventory);
         Menu seraphMenu = new Menu("SERAPH", PlayerTeam);
 
-        battleMenu = new Menu("What will you do?", new List<string> { "FIGHT", "BAG", "SERAPH", "RUN" });
+        battleMenu = new Menu("What will you do?", new List<string> { "FIGHT", "BAG", "SERAPH", "RUN" }, Menu.MenuDisplayType.battle);
 
         Seraph playerSeraph = Data.Summon("Lambda", 5);
 
@@ -100,6 +103,7 @@ class GameManager
                             break;
                         case ConsoleKey.Escape:
                             GameState = GameStates.Menu;
+                            CurrentMenu = mainMenu;
                             display.MenuDisplay(mainMenu);
                             break;
                     }
@@ -116,15 +120,15 @@ class GameManager
                     switch (keyInfo.Key)
                     {
                         case ConsoleKey.UpArrow:
-                            mainMenu.PreviousLine();
-                            display.MenuDisplay(mainMenu); // Update display
+                            CurrentMenu.PreviousLine();
+                            display.MenuDisplay(CurrentMenu); // Update display
                             break;
                         case ConsoleKey.DownArrow:
-                            mainMenu.NextLine();
-                            display.MenuDisplay(mainMenu); // Update display
+                            CurrentMenu.NextLine();
+                            display.MenuDisplay(CurrentMenu); // Update display
                             break;
                         case ConsoleKey.Enter:
-                            Selection = mainMenu.Enter();
+                            Selection = CurrentMenu.Enter();
                             break;
                         case ConsoleKey.Escape:
                             Selection = "CLOSE";
@@ -159,11 +163,11 @@ class GameManager
                     {
                         case ConsoleKey.UpArrow:
                             battleMenu.PreviousLine();
-                            display.MenuDisplay(battleMenu, Display.MenuDisplayType.battle); // Update display
+                            display.MenuDisplay(battleMenu); // Update display
                             break;
                         case ConsoleKey.DownArrow:
                             battleMenu.NextLine();
-                            display.MenuDisplay(battleMenu, Display.MenuDisplayType.battle); // Update display
+                            display.MenuDisplay(battleMenu); // Update display
                             break;
                         case ConsoleKey.Enter:
                             Selection = battleMenu.Enter();
@@ -186,7 +190,7 @@ class GameManager
                 case "FIGHT":
                     battleMenu.SelectedLine = 0;
                     Menu abilitiesMenu = new Menu("ABILITIES", BattleHandler.CurrentPlayer._abilities);
-                    display.MenuDisplay(abilitiesMenu, Display.MenuDisplayType.abilities);
+                    display.MenuDisplay(abilitiesMenu);
                     break;
                 case "BAG":
                     GameState = GameStates.Inventory;
@@ -225,7 +229,7 @@ class GameManager
                             {
                                 GameState = GameStates.Battle;
                                 display.BattleDisplay(BattleHandler);
-                                display.MenuDisplay(battleMenu, Display.MenuDisplayType.battle);
+                                display.MenuDisplay(battleMenu);
                             } else
                             {
                                 GameState = GameStates.Menu;

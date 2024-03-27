@@ -11,15 +11,6 @@ namespace ManifestDestiny
 {
     internal class Display
     {
-        public enum MenuDisplayType
-        {
-            rightSide, // Pokemon style menu
-            leftSide, //Pokemon style menu but on the left side
-            bottom,
-            battle, // choice of action at start of round
-            abilities // choice of attacks during battle
-        }
-
         List<List<WorldTile>> _currentDisplay;
         WorldTile _player;
         Position _playerPosition;
@@ -99,7 +90,7 @@ namespace ManifestDestiny
                                     _gameManager.BattleHandler.StartBattle(listSeraph, _currentDisplay[playerX + x][playerY + y].AILevel);
 
                                     _gameManager.GameState = GameStates.StartBattle;
-                                    MenuDisplay(_gameManager.battleMenu, Display.MenuDisplayType.battle);
+                                    MenuDisplay(_gameManager.battleMenu);
                                     break;
                                 }
                                 else
@@ -221,11 +212,12 @@ namespace ManifestDestiny
             Console.SetCursorPosition(0, 0);
         }
 
-        public void MenuDisplay(Menu menu, MenuDisplayType displayType = MenuDisplayType.leftSide)
+        public void MenuDisplay(Menu menu)
         {
+            Menu.MenuDisplayType displayType = menu.DisplayType;
             switch (displayType)
             {
-                case MenuDisplayType.leftSide:
+                case Menu.MenuDisplayType.leftSide:
                     Console.SetCursorPosition(0, 0);
                     Console.BackgroundColor = ConsoleColor.White;
                     Console.ForegroundColor = ConsoleColor.Black;
@@ -380,7 +372,7 @@ namespace ManifestDestiny
                             break;
                     }
                     break;
-                case MenuDisplayType.battle:
+                case Menu.MenuDisplayType.battle:
                     Console.SetCursorPosition(0, 0);
                     Console.BackgroundColor = ConsoleColor.DarkGray;
                     Console.ForegroundColor = ConsoleColor.Black;
@@ -418,7 +410,7 @@ namespace ManifestDestiny
                             break;
                     }
                     break;
-                case MenuDisplayType.abilities:
+                case Menu.MenuDisplayType.abilities:
 
                     Seraph playerSeraph = _gameManager.BattleHandler.CurrentPlayer;
 
