@@ -23,6 +23,30 @@
         "Y": 13
       },
       "DestinationMap": "Map01.txt"
+    },
+    {
+      "StartPosition": {
+        "X": 20,
+        "Y": 52
+      },
+      "StartMap": "Map02.txt",
+      "DestinationPosition": {
+        "X": 0,
+        "Y": 52
+      },
+      "DestinationMap": "Tun01.txt"
+    },
+    {
+      "StartPosition": {
+        "X": 20,
+        "Y": 53
+      },
+      "StartMap": "Map02.txt",
+      "DestinationPosition": {
+        "X": 0,
+        "Y": 53
+      },
+      "DestinationMap": "Tun01.txt"
     }
   ]
 }
