@@ -16,7 +16,7 @@ namespace ManifestDestiny.Helper.Math
 
             float STAB = 1.0f; // Same Type Attack Bonus (1.5 if the move is the same type as the user)
             if (user.Type == battleType) STAB = 1.5f;
-            float TypeEffectiveness = battleType.GetBattleTypeInteraction(target.Type.Name);
+            float TypeEffectiveness = battleType.GetBattleTypeInteraction(target.Type);
             float randomMultiplyer = GameManager.rand.Next(217, 256) / 255.0f;
             float damage = ((((((2 * user.Level * Critical) / 5) + 2) * power * user.CurrentStats[Seraph.Stats.attack] / target.CurrentStats[Seraph.Stats.defense]) / 50 + 2) * STAB * TypeEffectiveness * randomMultiplyer);
 
