@@ -94,14 +94,14 @@ namespace ManifestDestiny
                         SelectedLine = 0;
                     }
                     break;
-                case LinesType.seraph:
-                    if (SelectedLine > Seraphim.Count)
+                case LinesType.ability:
+                    if (SelectedLine > Abilities.Count)
                     {
                         SelectedLine = 0;
                     }
                     break;
-                case LinesType.ability:
-                    if (SelectedLine > Abilities.Count)
+                case LinesType.seraph:
+                    if (SelectedLine > Seraphim.Count)
                     {
                         SelectedLine = 0;
                     }
@@ -134,6 +134,9 @@ namespace ManifestDestiny
                 } else if(LineType == LinesType.ability)
                 {
                     SelectedLine = Abilities.Count;
+                } else if (LineType == LinesType.seraph)
+                {
+                    SelectedLine = Seraphim.Count;
                 }
             }
         }
@@ -159,7 +162,8 @@ namespace ManifestDestiny
                         return "CLOSE";
                     }
                     return Abilities[SelectedLine].Name;
-                    break;
+                case LinesType.seraph:
+                    return Seraphim[SelectedLine].Name;
                 default :
                     return "default";
             }

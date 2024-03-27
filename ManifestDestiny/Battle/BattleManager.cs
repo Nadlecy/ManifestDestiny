@@ -35,15 +35,25 @@ class BattleManager
         //if the current player seraph is slower than the enemy, enemy attacks first.
         if (CurrentPlayer.CurrentStats[Seraph.Stats.speed] < CurrentEnemy.CurrentStats[Seraph.Stats.speed])
         {
-            BattlePhaseEnemy(enemyAbility);
-            BattlePhasePlayer(playerAbility);
+            if(BattlePhaseEnemy(enemyAbility) == false)
+            {
+
+            }else if(BattlePhasePlayer(playerAbility) == false)
+            {
+
+            }
         }
         else
         {
-            BattlePhasePlayer(playerAbility);
-            BattlePhaseEnemy(enemyAbility);
-        }
+            if (BattlePhasePlayer(playerAbility) == false)
+            {
 
+            }
+            else if (BattlePhaseEnemy(enemyAbility) == false)
+            {
+
+            }
+        }
     }
 
     public bool BattlePhasePlayer(BattleAbility playerAbility)
@@ -86,7 +96,7 @@ class BattleManager
         //check if player can switch
         foreach (Seraph seraph in PlayerTeam)
         {
-            if (seraph.CurrentStats[Seraph.Stats.hp] > 0)
+            if (IsDead(seraph) == false)
             {
                 alive.Add(seraph);
             }
