@@ -190,6 +190,7 @@ class GameManager
                     break;
                 case "BAG":
                     GameState = GameStates.Inventory;
+                    battleMenu.SelectedLine = 0;
                     if(InBattle == false)
                     {
                         display.WorldDisplay(); // to erase main menu
@@ -198,6 +199,7 @@ class GameManager
                     break;
                 case "SERAPH":
                     GameState = GameStates.SeraphMenu;
+                    battleMenu.SelectedLine = 0;
                     if (InBattle == false)
                     {
                         display.WorldDisplay(); // to erase main menu
@@ -213,7 +215,6 @@ class GameManager
                     battleMenu.SelectedLine = 0;
                     GameState = GameStates.StartExploration;
                     display.WorldDisplay();
-                    display.MenuDisplay(mainMenu);
                     BattleHandler.EndBattle();
                     break;
                 case "CLOSE":

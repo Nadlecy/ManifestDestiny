@@ -25,7 +25,7 @@ namespace ManifestDestiny
         public LinesType LineType { get; private set; }
 
         // Creates a menu with a name and a dictionary of lines. A default menu is called "Menu" and has 1 line called "close"
-        public Menu(string name = "MENU", List<string> lines = null)
+        public Menu(string name = "MENU", List<string>? lines = null)
         {
             LineType = LinesType.text;
             SelectedLine = 0;
@@ -80,6 +80,17 @@ namespace ManifestDestiny
                     }
                     break;
                 case LinesType.ability:
+                    if (SelectedLine > Abilities.Count)
+                    {
+                        SelectedLine = 0;
+                    }
+                    break;
+                case LinesType.seraph:
+                    if (SelectedLine > Seraphim.Count)
+                    {
+                        SelectedLine = 0;
+                    }
+                    break;
                 case LinesType.items:
                     if(SelectedLine > ItemStorage.Items.Count)
                     {
@@ -108,6 +119,9 @@ namespace ManifestDestiny
                 } else if(LineType == LinesType.ability)
                 {
                     SelectedLine = Abilities.Count;
+                } else if (LineType == LinesType.seraph)
+                {
+                    SelectedLine = Seraphim.Count;
                 }
             }
         }
@@ -129,7 +143,8 @@ namespace ManifestDestiny
                     return ItemStorage.Items[SelectedLine].Description;
                 case LinesType.ability:
                     return Abilities[SelectedLine].Name;
-                    break;
+                case LinesType.seraph:
+                    return Seraphim[SelectedLine].Name;
                 default :
                     return "default";
             }
