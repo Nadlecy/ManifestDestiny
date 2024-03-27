@@ -166,12 +166,6 @@ class GameManager
             // Main Menu
             switch (Selection)
             {
-                //case "DEBUG BATTLE":
-                //    mainMenu.SelectedLine = 0;
-                //    GameState = GameStates.StartBattle;
-                //    display.BattleDisplay(BattleHandler);
-                //    display.MenuDisplay(battleMenu, Display.MenuDisplayType.battle);
-                //    break;
                 case "FIGHT":
                     CurrentMenu.SelectedLine = 0;
                     Menu abilitiesMenu = new Menu("ABILITIES", BattleHandler.CurrentPlayer._abilities);
