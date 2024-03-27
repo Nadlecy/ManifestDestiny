@@ -39,6 +39,9 @@ namespace ManifestDestiny
             WorldTile empty = new WorldTile(" ", ConsoleColor.Black, ConsoleColor.White, false);
             _worldTiles.Add("empty", empty);
 
+            WorldTile water = new WorldTile("~", ConsoleColor.Black, ConsoleColor.White, false);
+            _worldTiles.Add("water", water);
+
             _gameManager = gameManager;
         }
 
@@ -86,6 +89,10 @@ namespace ManifestDestiny
                             {
                                 row.Add(_worldTiles["exterior"].Clone());
                             }
+                            else if (c == '~')
+                            {
+                                row.Add(_worldTiles["water"].Clone());
+                            }
                         }
                         _worldMapTiles.Add(row);
                     }
@@ -114,6 +121,10 @@ namespace ManifestDestiny
                             else if (c == 'X')
                             {
                                 row.Add(_worldTiles["exterior"].Clone());
+                            }
+                            else if (c == '~')
+                            {
+                                row.Add(_worldTiles["water"].Clone());
                             }
                         }
                         _worldMapTiles.Add(row);

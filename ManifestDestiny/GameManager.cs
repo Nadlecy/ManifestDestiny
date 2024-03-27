@@ -167,6 +167,11 @@ class GameManager
                             break;
                         case ConsoleKey.Enter:
                             Selection = CurrentMenu.Enter();
+                            if (CurrentMenu.LineType == Menu.LinesType.ability)
+                            {
+                                BattleHandler.BattlePhase(playerSeraph._abilities[CurrentMenu.SelectedLine], BattleHandler.CurrentEnemy._abilities[0]);
+                                Selection = "CLOSE";
+                            }
                             break;
                     }
                     break;
