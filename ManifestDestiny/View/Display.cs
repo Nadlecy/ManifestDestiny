@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
+using static GameManager;
 
 namespace ManifestDestiny
 {
@@ -85,7 +86,11 @@ namespace ManifestDestiny
                                 int seraChoice = aleatoire.Next(1, aleaSeraph);
                                 if (seraChoice <= sera.Value)
                                 {
-                                    // Comabt ??
+                                    //_gameManager.GameState = GameManager.GameStates.StartBattle;
+                                    // FAUT LANCER LE COMBAT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                                    _gameManager.GameState = GameStates.Battle;
+                                    MenuDisplay(_gameManager.battleMenu, Display.MenuDisplayType.battle);
                                     break;
                                 }
                                 else
@@ -96,27 +101,30 @@ namespace ManifestDestiny
                         }
                     }
 
-                    Console.SetCursorPosition(playerY, playerX);
-                    Console.BackgroundColor = _currentDisplay[playerX][playerY].ColorBackground;
-                    Console.ForegroundColor = _currentDisplay[playerX][playerY].ColorText;
-                    Console.Write(apparence);
+                    if (_gameManager.GameState == GameStates.Exploration)
+                    {
+                        Console.SetCursorPosition(playerY, playerX);
+                        Console.BackgroundColor = _currentDisplay[playerX][playerY].ColorBackground;
+                        Console.ForegroundColor = _currentDisplay[playerX][playerY].ColorText;
+                        Console.Write(apparence);
 
-                    _playerPosition.X += x;
-                    _playerPosition.Y += y;
+                        _playerPosition.X += x;
+                        _playerPosition.Y += y;
 
-                    playerX = _playerPosition.X;
-                    playerY = _playerPosition.Y;
+                        playerX = _playerPosition.X;
+                        playerY = _playerPosition.Y;
 
-                    Console.SetCursorPosition(playerY, playerX);
-                    Console.BackgroundColor = _currentDisplay[playerX][playerY].ColorBackground;
-                    Console.ForegroundColor = _player.ColorText;
-                    Console.Write(_player.Apparence);
+                        Console.SetCursorPosition(playerY, playerX);
+                        Console.BackgroundColor = _currentDisplay[playerX][playerY].ColorBackground;
+                        Console.ForegroundColor = _player.ColorText;
+                        Console.Write(_player.Apparence);
 
-                    Console.BackgroundColor = ConsoleColor.Black;
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.SetCursorPosition(0, Console.WindowHeight - 5);
-                    //Console.WriteLine(_playerPosition.X);
-                    //Console.WriteLine(_playerPosition.Y);
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.SetCursorPosition(0, Console.WindowHeight - 5);
+                        //Console.WriteLine(_playerPosition.X);
+                        //Console.WriteLine(_playerPosition.Y);
+                    }
                 }
             }
         }
@@ -146,6 +154,56 @@ namespace ManifestDestiny
 
         public void BattleDisplay(BattleManager battleManager)
         {
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.SetCursorPosition(0, 0);
+            int topPadding = 23;
+            for (int i = 0; i < topPadding; i++)
+            {
+                if (i == 2)
+                {
+                    // Display enemy
+                    StringBuilder newPadding = new StringBuilder();
+                    string name = "DANY LE CAILLOU";
+                    for (int j = 0; j < 64 - name.Length - 2; j++)
+                    {
+                        newPadding.Append(" ");
+                    }
+                    Console.WriteLine(newPadding + name + "  ");
+                }
+                else if (i == 15)
+                {
+                    // Display friendly
+                    Seraph playerSeraph = _gameManager.BattleHandler.CurrentPlayer;
+                    StringBuilder namePadding = new StringBuilder();
+                    string name = playerSeraph.Name;
+                    for (int j = 0; j < 64 - name.Length - 2; j++)
+                    {
+                        namePadding.Append(" ");
+                    }
+                    Console.WriteLine("  " + name + namePadding);
+                    StringBuilder hpPadding = new StringBuilder();
+                    string hp = playerSeraph.CurrentStats[Seraph.Stats.hp] + "/" + playerSeraph.BaseStats[Seraph.Stats.hp];
+                    for (int j = 0; j < 64 - hp.Length - 2; j++)
+                    {
+                        hpPadding.Append(" ");
+                    }
+                    Console.WriteLine("  " + hp + hpPadding.ToString());
+                }
+                else
+                {
+                    if (i == topPadding - 1)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Red;
+                    }
+                    StringBuilder newPadding = new StringBuilder();
+                    for (int j = 0; j < 64; j++)
+                    {
+                        newPadding.Append(" ");
+                    }
+                    Console.WriteLine(newPadding.ToString());
+                }
+            }
             Console.SetCursorPosition(0, 0);
         }
 
@@ -261,57 +319,14 @@ namespace ManifestDestiny
                     break;
                 case MenuDisplayType.battle:
                     Console.SetCursorPosition(0, 0);
-                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.BackgroundColor = ConsoleColor.DarkGray;
                     Console.ForegroundColor = ConsoleColor.Black;
                     switch (menu.LineType) {
                         // -- Choice selection -- //
                         case Menu.LinesType.text:
-                            int topPadding = 23 - menu._lines.Count;
-                            for (int i = 0; i < topPadding; i++)
-                            {
-                                if (i == 2)
-                                {
-                                    // Display enemy
-                                    StringBuilder newPadding = new StringBuilder();
-                                    string name = "DANY LE CAILLOU";
-                                    for (int j = 0; j < 64 - name.Length - 2; j++)
-                                    {
-                                        newPadding.Append(" ");
-                                    }
-                                    Console.WriteLine(newPadding + name + "  ");
-                                }
-                                else if (i == 15)
-                                {
-                                    // Display friendly
-                                    Seraph playerSeraph = _gameManager.BattleHandler.CurrentPlayer;
-                                    StringBuilder namePadding = new StringBuilder();
-                                    string name = playerSeraph.Name;
-                                    for (int j = 0; j < 64 - name.Length - 2; j++)
-                                    {
-                                        namePadding.Append(" ");
-                                    }
-                                    Console.WriteLine("  " + name + namePadding);
-                                    StringBuilder hpPadding = new StringBuilder();
-                                    string hp = playerSeraph.CurrentStats[Seraph.Stats.hp] + "/" + playerSeraph.BaseStats[Seraph.Stats.hp];
-                                    for (int j = 0; j < 64 - hp.Length - 2; j++)
-                                    {
-                                        hpPadding.Append(" ");
-                                    }
-                                    Console.WriteLine("  " + hp + hpPadding.ToString());
-                                } else
-                                {
-                                    if (i == topPadding - 1)
-                                    {
-                                        Console.BackgroundColor = ConsoleColor.Red;
-                                    }
-                                    StringBuilder newPadding = new StringBuilder();
-                                    for (int j = 0; j < 64; j++)
-                                    {
-                                        newPadding.Append(" ");
-                                    }
-                                    Console.WriteLine(newPadding.ToString());
-                                }
-                            }
+                            int topPadding = 24 - menu._lines.Count;
+                            
+                            Console.SetCursorPosition(0, topPadding-1);
                             Console.BackgroundColor = ConsoleColor.Gray;
                             for (int i = 0; i < menu._lines.Count; i++)
                             {

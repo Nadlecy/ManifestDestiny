@@ -20,7 +20,7 @@ namespace ManifestDestiny
         public List<string> _lines;
         public ItemStorage ItemStorage { get; set; }
         public List<BattleAbility> Abilities {  get; set; }
-        public SeraphContainer Seraphim {  get; set; }
+        public List<Seraph> Seraphim {  get; set; }
         public int SelectedLine { get; set; }
         public LinesType LineType { get; private set; }
 
@@ -51,6 +51,21 @@ namespace ManifestDestiny
             LineType = LinesType.ability;
             Name = name;
             Abilities = abilities;
+
+            // Select first item
+            SelectedLine = 0;
+        }
+
+        public Menu(string name, List<Seraph> seraphim)
+        {
+            LineType = LinesType.seraph;
+            Name = name;
+            Seraphim = seraphim;
+
+            foreach(Seraph seraph in seraphim)
+            {
+                _lines.Add(seraph.Name);
+            }
 
             // Select first item
             SelectedLine = 0;
