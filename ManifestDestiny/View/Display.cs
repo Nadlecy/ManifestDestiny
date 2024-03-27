@@ -402,11 +402,11 @@ namespace ManifestDestiny
 
                         if (i == menu.SelectedLine)
                         {
-                            Console.WriteLine(" ► " + playerSeraph._abilities[i] + newPadding.ToString());
+                            Console.WriteLine(" ► " + playerSeraph._abilities[i].Name + newPadding.ToString());
                         }
                         else
                         {
-                            Console.WriteLine("   " + playerSeraph._abilities[i] + newPadding.ToString());
+                            Console.WriteLine("   " + playerSeraph._abilities[i].Name + newPadding.ToString());
                         }
                     }
 
