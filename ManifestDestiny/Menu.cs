@@ -94,12 +94,6 @@ namespace ManifestDestiny
                         SelectedLine = 0;
                     }
                     break;
-                case LinesType.seraph:
-                    if (SelectedLine > Seraphim.Count)
-                    {
-                        SelectedLine = 0;
-                    }
-                    break;
                 case LinesType.ability:
                     if (SelectedLine > Abilities.Count)
                     {
