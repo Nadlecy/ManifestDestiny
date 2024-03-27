@@ -60,7 +60,7 @@ class GameManager
         Item blackFlower = new Item("Black flower", "I don't like this one.");
         _inventory.AddItem(blackFlower);
 
-        Menu mainMenu = new Menu("MAIN MENU", new List<string> { "SERAPHIM", "BAG", "QUIT GAME", "CLOSE", "DEBUG BATTLE" });
+        Menu mainMenu = new Menu("MAIN MENU", new List<string> { "SERAPHIM", "BAG", "QUIT GAME", "CLOSE", /*"DEBUG BATTLE"*/ });
         Menu bagMenu = new Menu("BAG", _inventory);
 
         battleMenu = new Menu("What will you do?", new List<string> { "FIGHT", "BAG", "SERAPH", "RUN" });
@@ -183,12 +183,12 @@ class GameManager
             // Main Menu
             switch (Selection)
             {
-                case "DEBUG BATTLE":
-                    mainMenu.SelectedLine = 0;
-                    GameState = GameStates.StartBattle;
-                    display.BattleDisplay(BattleHandler);
-                    display.MenuDisplay(battleMenu, Display.MenuDisplayType.battle);
-                    break;
+                //case "DEBUG BATTLE":
+                //    mainMenu.SelectedLine = 0;
+                //    GameState = GameStates.StartBattle;
+                //    display.BattleDisplay(BattleHandler);
+                //    display.MenuDisplay(battleMenu, Display.MenuDisplayType.battle);
+                //    break;
                 case "FIGHT":
                     battleMenu.SelectedLine = 0;
                     Menu abilitiesMenu = new Menu("ABILITIES", BattleHandler.CurrentPlayer._abilities);
