@@ -57,14 +57,14 @@ class BattleManager
 
             }else if(BattlePhasePlayer(playerAbility) == false)
             {
-
+                EndBattle();
             }
         }
         else
         {
             if (BattlePhasePlayer(playerAbility) == false)
             {
-
+                EndBattle();
             }
             else if (BattlePhaseEnemy(enemyAbility) == false)
             {
