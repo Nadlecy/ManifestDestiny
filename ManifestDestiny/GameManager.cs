@@ -127,6 +127,14 @@ class GameManager
                             CurrentMenu.NextLine();
                             display.MenuDisplay(CurrentMenu); // Update display
                             break;
+                        case ConsoleKey.LeftArrow:
+                            CurrentMenu.PreviousLine();
+                            display.MenuDisplay(CurrentMenu); // Update display
+                            break;
+                        case ConsoleKey.RightArrow:
+                            CurrentMenu.NextLine();
+                            display.MenuDisplay(CurrentMenu); // Update display
+                            break;
                         case ConsoleKey.Enter:
                             Selection = CurrentMenu.Enter();
                             break;
