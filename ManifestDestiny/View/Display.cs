@@ -53,35 +53,40 @@ namespace ManifestDestiny
             int playerX = _playerPosition.X;
             int playerY = _playerPosition.Y;
 
+            WorldTile tile = _currentDisplay[playerX + x][playerY + y];
+
             if (playerX + x >= 0 && playerY + y >= 0 && _currentDisplay.Count() > playerX + x && _currentDisplay[playerX + x].Count() > playerY + y)
             {
-                if (_currentDisplay[playerX + x][playerY + y].Walkable == true)
+                if (tile.Walkable == true)
                 {
                     string apparence = _currentDisplay[playerX][playerY].Apparence;
 
-                    if (_currentDisplay[playerX + x][playerY + y].IsWarp == true)
+                    if (tile.IsWarp == true)
                     {
-                        _playerPosition = _currentDisplay[playerX + x][playerY + y].Warp.DestinationPosition.Clone();
-                        _worldMap.SetMap(_currentDisplay[playerX + x][playerY + y].Warp.DestinationMap);
+                        _playerPosition = tile.Warp.DestinationPosition.Clone();
+                        _worldMap.SetMap(tile.Warp.DestinationMap);
                         SetWorldDisplay(_worldMap.WorldMapTiles);
                         WorldDisplay();
                         x = 0;
                         y = 0;
                     }
-                    else if (_currentDisplay[playerX + x][playerY + y].EncounterChance != 0)
+                    else if (tile.AsObject == true)
+                    {
+                        _gameManager.Inventory.AddItem(tile.GiveObject());
+                    }
+                    else if (tile.EncounterChance != 0)
                     {
                         Random aleatoire = new Random();
                         int chance = aleatoire.Next(1, 100);
-                        if (chance <= _currentDisplay[playerX + x][playerY + y].EncounterChance)
+                        if (chance <= tile.EncounterChance)
                         {
                             int aleaSeraph = 0;
-                            foreach (var sera in _currentDisplay[playerX + x][playerY + y].Encounters)
+                            foreach (var sera in tile.Encounters)
                             {
                                 aleaSeraph += sera.Value;
                             }
 
-
-                            foreach (var sera in _currentDisplay[playerX + x][playerY + y].Encounters)
+                            foreach (var sera in tile.Encounters)
                             {
                                 int seraChoice = aleatoire.Next(1, aleaSeraph);
                                 if (seraChoice <= sera.Value)
@@ -89,15 +94,11 @@ namespace ManifestDestiny
                                     //_gameManager.GameState = GameManager.GameStates.StartBattle;
                                     // FAUT LANCER LE COMBAT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-                                    int level = aleatoire.Next(_currentDisplay[playerX + x][playerY + y].LevelMin, _currentDisplay[playerX + x][playerY + y].LevelMax);
-
+                                    int level = aleatoire.Next(tile.LevelMin, tile.LevelMax);
                                     Seraph seraph = _gameManager.Data.Summon(sera.Key, level);
-
                                     List<Seraph> listSeraph = new List<Seraph>();
                                     listSeraph.Add(seraph);
-
-                                    _gameManager.BattleHandler.StartBattle(listSeraph, _currentDisplay[playerX + x][playerY + y].AILevel);
-
+                                    _gameManager.BattleHandler.StartBattle(listSeraph, tile.AILevel);
                                     _gameManager.GameState = GameStates.StartBattle;
                                     MenuDisplay(_gameManager.battleMenu, Display.MenuDisplayType.battle);
                                     break;
@@ -110,7 +111,7 @@ namespace ManifestDestiny
                         }
                     }
 
-                    if (_gameManager.GameState == GameStates.Exploration)
+                    if (_gameManager.GameState == GameStates.Exploration || _gameManager.GameState == GameStates.StartExploration)
                     {
                         Console.SetCursorPosition(playerY, playerX);
                         Console.BackgroundColor = _currentDisplay[playerX][playerY].ColorBackground;
@@ -153,7 +154,17 @@ namespace ManifestDestiny
                     {
                         Console.ForegroundColor = tile.ColorText;
                     }
-                    Console.Write(tile.Apparence);
+
+                    if (tile.AsObject == true)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.Write(tile.Item.Character);
+                        Console.ForegroundColor = tile.ColorText;
+                    }
+                    else
+                    {
+                        Console.Write(tile.Apparence);
+                    }
                 }
                 Console.BackgroundColor = ConsoleColor.Black;
                 Console.ForegroundColor = ConsoleColor.White;

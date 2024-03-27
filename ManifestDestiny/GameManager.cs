@@ -1,5 +1,8 @@
 ﻿using ManifestDestiny;
+using ManifestDestiny.Helper.Json;
 using ManifestDestiny.Helper.Math;
+using ManifestDestiny.Items;
+using ManifestDestiny.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -28,6 +31,7 @@ class GameManager
     public List<Seraph> PlayerTeam { get; set; }
     public string Selection { get; set; }
     public ItemStorage Inventory { get; set; }
+    public ItemContainer Items { get; set; }
     public bool InBattle { get; set; }
     public BattleManager BattleHandler;
     public Menu battleMenu;
@@ -46,28 +50,34 @@ class GameManager
 
     public void GameLoop()
     {
-        WorldMap worldMap = new WorldMap();
-        worldMap.SetMap("Map01.txt");
-        Display display = new Display(worldMap, this);
-        display.SetWorldDisplay(worldMap.WorldMapTiles);
-        display.WorldDisplay();
-        display.SetPlayerPosition(15, 15);
 
         // Create debug inventory
-        ItemStorage _inventory = new ItemStorage();
-        Item blueFlower = new Item("Blue flower", "A beautifull blue flower.");
-        _inventory.AddItem(blueFlower,7);
-        Item blackFlower = new Item("Black flower", "I don't like this one.");
-        _inventory.AddItem(blackFlower);
+
+        // Créer une instance de JsonReader pour désérialiser une liste de warps
+        CustomJson<ItemContainer> jsonReader = new CustomJson<ItemContainer>("Item/Items.json");
+
+        // Lire les données JSON et obtenir la liste de warps
+        Items = jsonReader.Read();
+
+
+        //_inventory.AddItem(Items.ItemList["Tasty Ration"].Clone(),7);
+        Inventory.AddItem(Items.ItemList["Black Flower"].Clone());
 
         Menu mainMenu = new Menu("MAIN MENU", new List<string> { "SERAPHIM", "BAG", "QUIT GAME", "CLOSE", "DEBUG BATTLE" });
-        Menu bagMenu = new Menu("BAG", _inventory);
+        Menu bagMenu = new Menu("BAG", Inventory);
 
         battleMenu = new Menu("What will you do?", new List<string> { "FIGHT", "BAG", "SERAPH", "RUN" });
 
         Seraph playerSeraph = Data.Summon("Lambda", 5);
 
         PlayerTeam.Add(playerSeraph);
+
+        WorldMap worldMap = new WorldMap(this);
+        worldMap.SetMap("Map01.txt");
+        Display display = new Display(worldMap, this);
+        display.SetWorldDisplay(worldMap.WorldMapTiles);
+        display.WorldDisplay();
+        display.SetPlayerPosition(15, 15);
 
         while (true)
         {
