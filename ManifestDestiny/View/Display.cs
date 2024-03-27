@@ -312,11 +312,11 @@ namespace ManifestDestiny
 
                                 if (i == menu.SelectedLine)
                                 {
-                                    Console.WriteLine(" ► " + menu.ItemStorage.Items[i].Name /*+ newPadding.ToString()*/);
+                                    Console.WriteLine(" ► " + menu.ItemStorage.Items[i].Name + " x" + menu.ItemStorage.Items[i].Count /*+ newPadding.ToString()*/);
                                 }
                                 else
                                 {
-                                    Console.WriteLine("   " + menu.ItemStorage.Items[i].Name /*+ newPadding.ToString()*/);
+                                    Console.WriteLine("   " + menu.ItemStorage.Items[i].Name + " x" + menu.ItemStorage.Items[i].Count /*+ newPadding.ToString()*/);
                                 }
                             }
 
