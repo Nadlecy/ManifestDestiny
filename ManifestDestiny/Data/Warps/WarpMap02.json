@@ -26,25 +26,25 @@
     },
     {
       "StartPosition": {
-        "X": 20,
-        "Y": 52
+        "X": 19,
+        "Y": 49
       },
       "StartMap": "Map02.txt",
       "DestinationPosition": {
-        "X": 0,
-        "Y": 52
+        "X": 1,
+        "Y": 32
       },
       "DestinationMap": "Tun01.txt"
     },
     {
       "StartPosition": {
-        "X": 20,
-        "Y": 53
+        "X": 19,
+        "Y": 48
       },
       "StartMap": "Map02.txt",
       "DestinationPosition": {
-        "X": 0,
-        "Y": 53
+        "X": 1,
+        "Y": 31
       },
       "DestinationMap": "Tun01.txt"
     }

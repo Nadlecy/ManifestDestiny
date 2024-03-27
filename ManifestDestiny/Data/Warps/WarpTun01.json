@@ -1,0 +1,52 @@
+{
+  "warps": [
+    {
+      "StartPosition": {
+        "X": 0,
+        "Y": 31
+      },
+      "StartMap": "Tun01.txt",
+      "DestinationPosition": {
+        "X": 18,
+        "Y": 48
+      },
+      "DestinationMap": "Map02.txt"
+    },
+    {
+      "StartPosition": {
+        "X": 0,
+        "Y": 32
+      },
+      "StartMap": "Tun01.txt",
+      "DestinationPosition": {
+        "X": 18,
+        "Y": 49
+      },
+      "DestinationMap": "Map02.txt"
+    },
+    {
+      "StartPosition": {
+        "X": 23,
+        "Y": 31
+      },
+      "StartMap": "Tun01.txt",
+      "DestinationPosition": {
+        "X": 1,
+        "Y": 49
+      },
+      "DestinationMap": "Map02.txt"
+    },
+    {
+      "StartPosition": {
+        "X": 23,
+        "Y": 32
+      },
+      "StartMap": "Tun01.txt",
+      "DestinationPosition": {
+        "X": 1,
+        "Y": 49
+      },
+      "DestinationMap": "Map02.txt"
+    }
+  ]
+}
