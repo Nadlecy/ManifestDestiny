@@ -154,6 +154,10 @@ namespace ManifestDestiny
                     Console.WriteLine(ItemStorage.Items[SelectedLine].Description);
                     return ItemStorage.Items[SelectedLine].Description;
                 case LinesType.ability:
+                    if (SelectedLine == Abilities.Count)
+                    {
+                        return "CLOSE";
+                    }
                     return Abilities[SelectedLine].Name;
                     break;
                 default :

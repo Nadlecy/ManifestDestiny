@@ -90,7 +90,8 @@ namespace ManifestDestiny
                                     _gameManager.BattleHandler.StartBattle(listSeraph, _currentDisplay[playerX + x][playerY + y].AILevel);
 
                                     _gameManager.GameState = GameStates.StartBattle;
-                                    MenuDisplay(_gameManager.battleMenu);
+                                    _gameManager.CurrentMenu = _gameManager.battleMenu;
+                                    //MenuDisplay(_gameManager.battleMenu);
                                     break;
                                 }
                                 else
@@ -404,17 +405,13 @@ namespace ManifestDestiny
                                 }
                             }
                             break;
-                        // -- Attack Selection -- //
-                        case Menu.LinesType.ability:
-                            
-                            break;
                     }
                     break;
                 case Menu.MenuDisplayType.abilities:
 
                     Seraph playerSeraph = _gameManager.BattleHandler.CurrentPlayer;
 
-                    int topPadding2 = 24 - playerSeraph._abilities.Count;
+                    int topPadding2 = 23 - playerSeraph._abilities.Count;
                     Console.BackgroundColor = ConsoleColor.DarkCyan;
                     Console.ForegroundColor = ConsoleColor.White;
 
@@ -454,6 +451,24 @@ namespace ManifestDestiny
                         {
                             Console.WriteLine("   " + playerSeraph._abilities[i].Name + newPadding.ToString());
                         }
+                    }
+
+                    // CLOSE button
+                    // Padding
+                    StringBuilder closePadding = new StringBuilder();
+                    int closePaddingLength = 61 - "CLOSE".Length; // 64 = window width 24 = height
+                    for (int j = 0; j < closePaddingLength; j++)
+                    {
+                        closePadding.Append(" ");
+                    }
+
+                    if (menu.SelectedLine == menu.Abilities.Count)
+                    {
+                        Console.WriteLine(" ► CLOSE"+ closePadding.ToString());
+                    }
+                    else
+                    {
+                        Console.WriteLine("   CLOSE"+ closePadding.ToString());
                     }
 
                     break;
