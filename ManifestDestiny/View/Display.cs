@@ -360,11 +360,59 @@ namespace ManifestDestiny
                             break;
                         // -- Attack Selection -- //
                         case Menu.LinesType.ability:
-
+                            
                             break;
                     }
                     break;
-                default: Console.Write("Menu Display Type is not in list ?\n"); break;
+                case MenuDisplayType.abilities:
+
+                    Seraph playerSeraph = _gameManager.BattleHandler.CurrentPlayer;
+
+                    int topPadding2 = 24 - playerSeraph._abilities.Count;
+                    Console.BackgroundColor = ConsoleColor.DarkCyan;
+                    Console.ForegroundColor = ConsoleColor.White;
+
+                    for (int i = 0; i < topPadding2; i++)
+                    {
+                        // Padding
+                        Console.WriteLine("                                                                "); //64
+                    }
+
+                    // -- Abilities -- //
+                    Console.SetCursorPosition(0, topPadding2 - 1);
+                    if(playerSeraph._abilities.Count == 0)
+                    {
+                        Console.WriteLine(playerSeraph.Name + " doesn't have any abilities. What a loser.");
+                    } else
+                    {
+                        Console.WriteLine(playerSeraph.Name + " has " + playerSeraph._abilities.Count + " abilities:");
+                    }
+
+
+                    for (int i = 0; i < playerSeraph._abilities.Count; i++)
+                    {
+                        // Padding
+                        StringBuilder newPadding = new StringBuilder();
+                        int paddingLength = 61 - playerSeraph._abilities[i].Name.Length; // 64 = window width 24 = height
+
+                        for (int j = 0; j < paddingLength; j++)
+                        {
+                            newPadding.Append(" ");
+                        }
+
+                        if (i == menu.SelectedLine)
+                        {
+                            Console.WriteLine(" ► " + playerSeraph._abilities[i] + newPadding.ToString());
+                        }
+                        else
+                        {
+                            Console.WriteLine("   " + playerSeraph._abilities[i] + newPadding.ToString());
+                        }
+                    }
+
+                    break;
+                default:
+                    throw new ArgumentException("Menu Display Type is not in list");
             }
         }
     }
