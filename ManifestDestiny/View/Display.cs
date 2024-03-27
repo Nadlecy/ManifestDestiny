@@ -174,7 +174,7 @@ namespace ManifestDestiny
                 else if (i == 15)
                 {
                     // Display friendly
-                    Seraph playerSeraph = _gameManager.BattleHandler.CurrentPlayer;
+                    Seraph playerSeraph = battleManager.CurrentPlayer;
                     StringBuilder namePadding = new StringBuilder();
                     string name = playerSeraph.Name;
                     for (int j = 0; j < 64 - name.Length - 2; j++)
@@ -318,7 +318,7 @@ namespace ManifestDestiny
                         //SERAPH MENU
                         case Menu.LinesType.seraph:
                             Console.SetCursorPosition(0, 0);
-                            Console.BackgroundColor = ConsoleColor.Red;
+                            Console.BackgroundColor = ConsoleColor.White;
                             Console.ForegroundColor = ConsoleColor.Black;
 
                             maxLength = 0;
@@ -326,7 +326,7 @@ namespace ManifestDestiny
                             {
                                 if (menu.Seraphim[i].Name.Length > maxLength)
                                 {
-                                    maxLength = menu.Seraphim[i].Name.Length;
+                                    maxLength = menu.Seraphim[i].Name.Length + 1;
                                 }
                             }
                             titlePadding = new StringBuilder();

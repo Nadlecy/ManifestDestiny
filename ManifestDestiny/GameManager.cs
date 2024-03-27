@@ -18,7 +18,8 @@ class GameManager
         StartBattle,
         Battle,
         Menu,
-        Inventory
+        Inventory,
+        SeraphMenu
     }
 
     public ConsoleKeyInfo keyInfo;
@@ -60,6 +61,7 @@ class GameManager
 
         Menu mainMenu = new Menu("MAIN MENU", new List<string> { "SERAPHIM", "BAG", "QUIT GAME", "CLOSE", "DEBUG BATTLE" });
         Menu bagMenu = new Menu("BAG", _inventory);
+        Menu seraphMenu = new Menu("SERAPH", PlayerTeam);
 
         battleMenu = new Menu("What will you do?", new List<string> { "FIGHT", "BAG", "SERAPH", "RUN" });
 
@@ -106,10 +108,6 @@ class GameManager
                 case GameStates.Menu:
                     switch (keyInfo.Key)
                     {
-                        case ConsoleKey.LeftArrow:
-                            break;
-                        case ConsoleKey.RightArrow:
-                            break;
                         case ConsoleKey.UpArrow:
                             mainMenu.PreviousLine();
                             display.MenuDisplay(mainMenu); // Update display
@@ -129,10 +127,6 @@ class GameManager
                 case GameStates.Inventory:
                     switch (keyInfo.Key)
                     {
-                        case ConsoleKey.LeftArrow:
-                            break;
-                        case ConsoleKey.RightArrow:
-                            break;
                         case ConsoleKey.UpArrow:
                             bagMenu.PreviousLine();
                             display.MenuDisplay(bagMenu); // Update display
@@ -194,6 +188,18 @@ class GameManager
                         display.WorldDisplay(); // to erase main menu
                     }
                     display.MenuDisplay(bagMenu);
+                    break;
+                case "SERAPH":
+                    GameState = GameStates.SeraphMenu;
+                    if (InBattle == false)
+                    {
+                        display.WorldDisplay(); // to erase main menu
+                    }
+                    else
+                    {
+                        display.BattleDisplay(BattleHandler); // to show only the normal battle
+                    }
+                    display.MenuDisplay(seraphMenu);
                     break;
                 case "RUN":
                     InBattle = false;
