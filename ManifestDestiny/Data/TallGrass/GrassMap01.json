@@ -3,5 +3,8 @@
     "Bit": 20,
     "Lambda": 20
   },
-  "Chance": 20
+  "Chance": 20,
+  "LevelMin": 1,
+  "LevelMax": 5,
+  "AILevel": 1 
 }

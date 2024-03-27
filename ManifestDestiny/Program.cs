@@ -14,18 +14,18 @@ class Program
 
 
         // capacités de test
-        List<Tuple<BattleAbility, List<AbilityAttribute>>> abilities = new();
+        //List<Tuple<BattleAbility, List<AbilityAttribute>>> abilities = new();
 
-        GameData gameData = new GameData();
+        //GameData gameData = new GameData();
 
-        Seraph test = gameData.Summon("Lambda", 5);
-        Seraph testest = gameData.Summon("Lambda", 3);
+        //Seraph test = gameData.Summon("Lambda", 5);
+        //Seraph testest = gameData.Summon("Lambda", 3);
 
         GameManager gameManager = new GameManager();
 
-        gameManager.PlayerTeam.Add(test);
+        //gameManager.PlayerTeam.Add(test);
 
-        gameManager.BattleHandler.StartBattle(new List<Seraph> { testest }, 1);
+        //gameManager.BattleHandler.StartBattle(new List<Seraph> { testest }, 1);
         /*
         Console.WriteLine("player hp : " + gameManager.BattleHandler.CurrentPlayer._currentStats[Seraph.Stats.hp]);
         Console.WriteLine("enemy hp : " + gameManager.BattleHandler.CurrentEnemy._currentStats[Seraph.Stats.hp]);

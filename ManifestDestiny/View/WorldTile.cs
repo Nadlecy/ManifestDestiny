@@ -24,6 +24,9 @@ namespace ManifestDestiny
         public bool Walkable { get => _walkable; }
         public Dictionary<string, int> Encounters { get; set; }
         public int EncounterChance { get; set; }
+        public int LevelMin { get; set; }
+        public int LevelMax { get; set; }
+        public int AILevel { get; set; }
 
         public Warp Warp { get => _warp; }
 
