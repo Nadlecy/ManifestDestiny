@@ -47,30 +47,34 @@ class BattleManager
         }
     }
 
-    public void BattlePhase(BattleAbility playerAbility, BattleAbility enemyAbility)
+    public string BattlePhase(BattleAbility playerAbility, BattleAbility enemyAbility)
     {
         //if the current player seraph is slower than the enemy, enemy attacks first.
         if (CurrentPlayer.CurrentStats[Seraph.Stats.speed] < CurrentEnemy.CurrentStats[Seraph.Stats.speed])
         {
-            if(BattlePhaseEnemy(enemyAbility) == false)
+            if(BattlePhaseEnemy(enemyAbility) == true)
             {
-
-            }else if(BattlePhasePlayer(playerAbility) == false)
+                return "gameOver";
+                //gameover
+            }
+            else if(BattlePhasePlayer(playerAbility) == true)
             {
-                EndBattle();
+                return "win";
             }
         }
         else
         {
-            if (BattlePhasePlayer(playerAbility) == false)
+            if (BattlePhasePlayer(playerAbility) == true)
             {
-                EndBattle();
+                return "win";
             }
-            else if (BattlePhaseEnemy(enemyAbility) == false)
+            else if (BattlePhaseEnemy(enemyAbility) == true)
             {
-
+                //gameover
+                return "gameOver";
             }
         }
+        return "";
     }
 
     public bool BattlePhasePlayer(BattleAbility playerAbility)
@@ -80,10 +84,10 @@ class BattleManager
         {
             if (EnemyDeath() == false)
             {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public bool BattlePhaseEnemy(BattleAbility enemyAbility)
@@ -93,10 +97,10 @@ class BattleManager
         {
             if (PlayerSwitch() == false)
             {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public bool IsDead(Seraph seraph)

@@ -427,8 +427,8 @@ namespace ManifestDestiny
                     Seraph playerSeraph = _gameManager.BattleHandler.CurrentPlayer;
 
                     int topPadding2 = 23 - playerSeraph._abilities.Count;
-                    Console.BackgroundColor = ConsoleColor.DarkCyan;
-                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Black;
 
                     for (int i = 0; i < topPadding2; i++)
                     {
@@ -440,7 +440,7 @@ namespace ManifestDestiny
                     Console.SetCursorPosition(0, topPadding2 - 1);
                     if(playerSeraph._abilities.Count == 0)
                     {
-                        Console.WriteLine(playerSeraph.Name + " doesn't have any abilities. What a loser.");
+                        Console.WriteLine(playerSeraph.Name + " does not have any available abilities.");
                     } else
                     {
                         Console.WriteLine(playerSeraph.Name + " has " + playerSeraph._abilities.Count + " abilities:");
@@ -460,11 +460,11 @@ namespace ManifestDestiny
 
                         if (i == menu.SelectedLine)
                         {
-                            Console.WriteLine(" ► " + playerSeraph._abilities[i].Name + newPadding.ToString());
+                            Console.WriteLine(" ► " + playerSeraph._abilities[i].Name + "  " + playerSeraph._abilities[i].Cost + " MP  " + playerSeraph._abilities[i].BattleType.Name + newPadding.ToString());
                         }
                         else
                         {
-                            Console.WriteLine("   " + playerSeraph._abilities[i].Name + newPadding.ToString());
+                            Console.WriteLine("   " + playerSeraph._abilities[i].Name + " " + playerSeraph._abilities[i].Cost + " MP  " + playerSeraph._abilities[i].BattleType.Name + newPadding.ToString());
                         }
                     }
 
