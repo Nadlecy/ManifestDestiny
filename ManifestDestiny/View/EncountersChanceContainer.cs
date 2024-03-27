@@ -10,6 +10,9 @@ namespace ManifestDestiny.View
     {
         public Dictionary<string, int> Encounter { get; set; }
         public int Chance { get; set; }
+        public int LevelMin { get; set; }
+        public int LevelMax { get; set; }
+        public int AILevel { get; set; }
         
         public EncountersChanceContainer()
         {
