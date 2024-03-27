@@ -163,6 +163,10 @@ namespace ManifestDestiny
                     }
                     return Abilities[SelectedLine].Name;
                 case LinesType.seraph:
+                    if(SelectedLine == Seraphim.Count)
+                    {
+                        return "CLOSE";
+                    }
                     return Seraphim[SelectedLine].Name;
                 default :
                     return "default";
