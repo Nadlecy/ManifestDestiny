@@ -36,6 +36,9 @@ namespace ManifestDestiny
             WorldTile exterior = new WorldTile(" ", ConsoleColor.DarkGray, ConsoleColor.White, false);
             _worldTiles.Add("exterior", exterior);
 
+            WorldTile empty = new WorldTile(" ", ConsoleColor.Black, ConsoleColor.White, false);
+            _worldTiles.Add("empty", empty);
+
             _gameManager = gameManager;
         }
 
@@ -62,11 +65,15 @@ namespace ManifestDestiny
 
                         foreach (char c in line)
                         {
-                            if (c == 'f')
+                            if (c == 'V')
+                            {
+                                row.Add(_worldTiles["empty"].Clone());
+                            }
+                            if (c == '/')
                             {
                                 row.Add(_worldTiles["floor"].Clone());
                             }
-                            else if (c == 'g')
+                            else if (c == '#')
                             {
                                 row.Add(_worldTiles["grass"].Clone());
                                 row[row.Count - 1].EncounterChance = encountersChance.Chance;
@@ -75,7 +82,7 @@ namespace ManifestDestiny
                                 row[row.Count - 1].LevelMax = encountersChance.LevelMax;
                                 row[row.Count - 1].AILevel = encountersChance.AILevel;
                             }
-                            else if (c == 'e')
+                            else if (c == 'X')
                             {
                                 row.Add(_worldTiles["exterior"].Clone());
                             }
@@ -84,7 +91,33 @@ namespace ManifestDestiny
                     }
                 }else
                 {
-                    throw new FileNotFoundException("Le fichier JSON n'existe pas.", "../../../Data/" + pathGrass);
+                    string[] lines = File.ReadAllLines(path + textFile);
+
+                    foreach (string line in lines)
+                    {
+                        List<WorldTile> row = new List<WorldTile>();
+
+                        foreach (char c in line)
+                        {
+                            if (c == 'V')
+                            {
+                                row.Add(_worldTiles["empty"].Clone());
+                            }
+                            if (c == '/')
+                            {
+                                row.Add(_worldTiles["floor"].Clone());
+                            }
+                            else if (c == '#')
+                            {
+                                row.Add(_worldTiles["grass"].Clone());
+                            }
+                            else if (c == 'X')
+                            {
+                                row.Add(_worldTiles["exterior"].Clone());
+                            }
+                        }
+                        _worldMapTiles.Add(row);
+                    }
                 }
 
                 
@@ -93,32 +126,39 @@ namespace ManifestDestiny
             {
                 throw new FileNotFoundException("Le fichier JSON n'existe pas.", path + textFile);
             }
-
-            string pathWarp = "Warps/Warp" + textFile.Substring(0, 5) + ".json";
-            string itemWarp = "Item/Items" + textFile.Substring(0, 5) + ".json";
-
-            // Créer une instance de JsonReader pour désérialiser une liste de warps
-            CustomJson<WarpContainer> jsonReader = new CustomJson<WarpContainer>(pathWarp);
-            CustomJson<ItemTilesContainer> jsonReaderItem = new CustomJson<ItemTilesContainer>(itemWarp);
-
-            // Lire les données JSON et obtenir la liste de warps
-            WarpContainer warps = jsonReader.Read();
-            ItemTilesContainer itemTiles = jsonReaderItem.Read();
-
-            // Utiliser les données des warps dans votre jeu
-            foreach (var warp in warps.warps)
+            if (File.Exists("../../../Data/Warps/Warp" + textFile.Substring(0, 5) + ".json"))
             {
-                if (warp.StartMap == textFile)
+                string pathWarp = "Warps/Warp" + textFile.Substring(0, 5) + ".json";
+                CustomJson<WarpContainer> jsonReader = new CustomJson<WarpContainer>(pathWarp);
+                WarpContainer warps = jsonReader.Read();
+                foreach (var warp in warps.warps)
                 {
-                    _worldMapTiles[warp.StartPosition.X][warp.StartPosition.Y].SetWarp(warp);
+                    if (warp.StartMap == textFile)
+                    {
+                        _worldMapTiles[warp.StartPosition.X][warp.StartPosition.Y].SetWarp(warp);
+                    }
                 }
             }
-            foreach (var itemT in itemTiles.ItemTiles)
+            if (File.Exists("../../../Data/Item/Items" + textFile.Substring(0, 5) + ".json"))
             {
-                _worldMapTiles[itemT.Position.X][itemT.Position.Y].AsObject = true;
-                Item it = _gameManager.Items.ItemList[itemT.ItemName].Clone();
-                _worldMapTiles[itemT.Position.X][itemT.Position.Y].Item = it;
+                string itemWarp = "Item/Items" + textFile.Substring(0, 5) + ".json";
 
+                // Créer une instance de JsonReader pour désérialiser une liste de warps
+                CustomJson<ItemTilesContainer> jsonReaderItem = new CustomJson<ItemTilesContainer>(itemWarp);
+
+                // Lire les données JSON et obtenir la liste de warps
+                ItemTilesContainer itemTiles = jsonReaderItem.Read();
+
+                // Utiliser les données des warps dans votre jeu
+
+
+                foreach (var itemT in itemTiles.ItemTiles)
+                {
+                    _worldMapTiles[itemT.Position.X][itemT.Position.Y].AsObject = true;
+                    Item it = _gameManager.Items.ItemList[itemT.ItemName].Clone();
+                    _worldMapTiles[itemT.Position.X][itemT.Position.Y].Item = it;
+
+                }
             }
 
         }
