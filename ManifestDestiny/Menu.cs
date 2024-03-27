@@ -58,6 +58,7 @@ namespace ManifestDestiny
 
         public Menu(string name, List<Seraph> seraphim)
         {
+
             LineType = LinesType.seraph;
             Name = name;
             Seraphim = seraphim;

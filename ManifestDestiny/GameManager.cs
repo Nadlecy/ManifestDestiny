@@ -167,11 +167,6 @@ class GameManager
                         case ConsoleKey.Enter:
                             Selection = battleMenu.Enter();
                             break;
-                        case ConsoleKey.Escape:
-                            battleMenu.SelectedLine = 0;
-                            Selection = "CLOSE";
-                            //mainMenu.Back();
-                            break;
                     }
                     break;
                 default:
