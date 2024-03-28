@@ -385,12 +385,13 @@ namespace ManifestDestiny
                         {
                             Console.Write("   ");                         
                         }
-                        Console.Write(_gameManager.BattleHandler.CurrentPlayer._abilities[i].Name + "  " );
                         Console.ForegroundColor = ConsoleColor.DarkBlue;
                         Console.Write(_gameManager.BattleHandler.CurrentPlayer._abilities[i].Cost + " MP  ");
                         Console.ForegroundColor = _gameManager.BattleHandler.CurrentPlayer._abilities[i].BattleType.Color;
-                        Console.Write(_gameManager.BattleHandler.CurrentPlayer._abilities[i].BattleType.Name);
+                        Console.Write(_gameManager.BattleHandler.CurrentPlayer._abilities[i].BattleType.Name + "  " );
                         Console.ForegroundColor = ConsoleColor.Black;
+                        Console.Write(_gameManager.BattleHandler.CurrentPlayer._abilities[i].Name );
+
                         Console.WriteLine(Padding(61, -(_gameManager.BattleHandler.CurrentPlayer._abilities[i].Name.Length + _gameManager.BattleHandler.CurrentPlayer._abilities[i].Cost.ToString().Length + _gameManager.BattleHandler.CurrentPlayer._abilities[i].BattleType.Name.Length + 7)));
 
                     }
