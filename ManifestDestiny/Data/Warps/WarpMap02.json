@@ -5,48 +5,48 @@
         "X": 0,
         "Y": 12
       },
-      "StartMap": "Map02.txt",
+      "StartMap": "Map02",
       "DestinationPosition": {
         "X": 22,
         "Y": 12
       },
-      "DestinationMap": "Map01.txt"
+      "DestinationMap": "Map01"
     },
     {
       "StartPosition": {
         "X": 0,
         "Y": 13
       },
-      "StartMap": "Map02.txt",
+      "StartMap": "Map02",
       "DestinationPosition": {
         "X": 22,
         "Y": 13
       },
-      "DestinationMap": "Map01.txt"
+      "DestinationMap": "Map01"
     },
     {
       "StartPosition": {
         "X": 19,
         "Y": 49
       },
-      "StartMap": "Map02.txt",
+      "StartMap": "Map02",
       "DestinationPosition": {
         "X": 1,
         "Y": 32
       },
-      "DestinationMap": "Tun01.txt"
+      "DestinationMap": "Tun01"
     },
     {
       "StartPosition": {
         "X": 19,
         "Y": 48
       },
-      "StartMap": "Map02.txt",
+      "StartMap": "Map02",
       "DestinationPosition": {
         "X": 1,
         "Y": 31
       },
-      "DestinationMap": "Tun01.txt"
+      "DestinationMap": "Tun01"
     }
   ]
 }

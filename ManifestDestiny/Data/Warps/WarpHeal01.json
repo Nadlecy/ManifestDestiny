@@ -1,0 +1,28 @@
+{
+  "warps": [
+    {
+      "StartPosition": {
+        "X": 23,
+        "Y": 31
+      },
+      "StartMap": "Heal01",
+      "DestinationPosition": {
+        "X": 12,
+        "Y": 47
+      },
+      "DestinationMap": "Map01"
+    },
+    {
+      "StartPosition": {
+        "X": 23,
+        "Y": 32
+      },
+      "StartMap": "Heal01",
+      "DestinationPosition": {
+        "X": 12,
+        "Y": 48
+      },
+      "DestinationMap": "Map01"
+    }
+  ]
+}

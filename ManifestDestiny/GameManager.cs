@@ -34,12 +34,13 @@ class GameManager
     public Menu battleMenu;
     public GameData Data { get; set; }
     public bool Gaming { get; set; }
-
+    WorldMap MapWorld { get; set;}
     public Menu CurrentMenu { get; set; }
     public Save Saving { get; set; }
     Position _playerPosition;
 
     string _map;
+    bool _isGettingKey = true;
 
     public string Map { get => _map; set => _map = value; }
     public Position PlayerPosition { get => _playerPosition; set => _playerPosition = value; }
@@ -69,6 +70,17 @@ class GameManager
     {
         Saving.TeamJsonWriter("SaveSeraph", PlayerTeam);
         Saving.PositionJsonWriter("SavePosition", PlayerPosition, ref _map);
+    }
+
+    public void DetectPlayer()
+    {
+        if (MapWorld.WorldMapTiles[PlayerPosition.X][PlayerPosition.Y].IsHealer == true)
+        {
+            foreach (var seraph in PlayerTeam)
+            {
+                seraph.FullHeal();
+            }
+        }
     }
 
     public void GameLoop()
@@ -103,21 +115,27 @@ class GameManager
 
         //save.TeamJsonWriter("SaveSeraph", PlayerTeam);
 
-        WorldMap worldMap = new WorldMap(this);
-        worldMap.SetMap(Map);
-        Display display = new Display(worldMap, this);
-        display.SetWorldDisplay(worldMap.WorldMapTiles);
+        MapWorld = new WorldMap(this);
+        MapWorld.SetMap(Map);
+        Display display = new Display(MapWorld, this);
+        display.SetWorldDisplay(MapWorld.WorldMapTiles);
         display.WorldDisplay();
         display.SetPlayerPosition(PlayerPosition.X, PlayerPosition.Y);
 
         while (Gaming)
         {
-            keyInfo = Console.ReadKey(true);
+
+            if (_isGettingKey == true)
+            {
+                keyInfo = Console.ReadKey(true);
+            }
+
             Selection = "";
             if (DialogBubbles.Count == 0) {
                 switch (GameState)
                 {
                     case GameStates.StartExploration:
+                        _isGettingKey = true;
                         display.WorldDisplay();
                         display.PlayerWorldDisplay(0, 0);
                         GameState = GameStates.Exploration;
@@ -127,15 +145,19 @@ class GameManager
                         {
                             case ConsoleKey.LeftArrow:
                                 display.PlayerWorldDisplay(0, -1);
+                                DetectPlayer();
                                 break;
                             case ConsoleKey.RightArrow:
                                 display.PlayerWorldDisplay(0, 1);
+                                DetectPlayer();
                                 break;
                             case ConsoleKey.UpArrow:
                                 display.PlayerWorldDisplay(-1, 0);
+                                DetectPlayer();
                                 break;
                             case ConsoleKey.DownArrow:
                                 display.PlayerWorldDisplay(1, 0);
+                                DetectPlayer();
                                 break;
                             case ConsoleKey.Escape:
                                 GameState = GameStates.Menu;
@@ -217,7 +239,8 @@ class GameManager
                                         Console.WriteLine("You catched the Seraph");
                                         PlayerTeam.Add(BattleHandler.CurrentEnemy);
                                         BattleHandler.EndBattle();
-                                            GameState = GameStates.StartExploration;
+                                        GameState = GameStates.StartExploration;
+                                        _isGettingKey = false;
                                     }
                                     else
                                     {
@@ -243,6 +266,7 @@ class GameManager
                                     else if (turnResult == "win")
                                     {
                                         BattleHandler.EndBattle();
+                                        _isGettingKey = false;
                                         GameState = GameStates.StartExploration;
                                     }
                                 }
@@ -334,6 +358,7 @@ class GameManager
                         }
                         else if (CurrentMenu == mainMenu)
                         {
+                            _isGettingKey = false;
                             GameState = GameStates.StartExploration;
                             display.WorldDisplay();
                         }

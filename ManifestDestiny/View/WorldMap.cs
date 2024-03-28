@@ -36,20 +36,23 @@ namespace ManifestDestiny
             WorldTile empty = new WorldTile(" ", ConsoleColor.Black, ConsoleColor.White, false);
             _worldTiles.Add("empty", empty);
 
-            WorldTile water = new WorldTile("~", ConsoleColor.Black, ConsoleColor.White, false);
+            WorldTile water = new WorldTile("~", ConsoleColor.Blue, ConsoleColor.DarkBlue, false);
             _worldTiles.Add("water", water);
+
+            WorldTile heal = new WorldTile("+", ConsoleColor.Red, ConsoleColor.Red, true);
+            _worldTiles.Add("heal", heal);
 
             _gameManager = gameManager;
         }
 
-        public void SetMap(string textFile)
+        public void SetMap(string fileName)
         {
-            _gameManager.Map = textFile;
+            _gameManager.Map = fileName + ".txt";
             _worldMapTiles.Clear();
             string path = "../../../Data/Map/";
-            if (File.Exists(path + textFile))
+            if (File.Exists(path + fileName + ".txt"))
             {
-                string pathGrass = "TallGrass/Grass" + textFile.Substring(0, 5) + ".json";
+                string pathGrass = "TallGrass/Grass" + fileName + ".json";
 
                 if (File.Exists("../../../Data/" + pathGrass))
                 {
@@ -58,7 +61,7 @@ namespace ManifestDestiny
                     // Lire les données JSON et obtenir la liste de warps
                     EncountersChanceContainer encountersChance = jsonReaderGrass.Read();
 
-                    string[] lines = File.ReadAllLines(path + textFile);
+                    string[] lines = File.ReadAllLines(path + fileName + ".txt");
 
                     foreach (string line in lines)
                     {
@@ -91,12 +94,17 @@ namespace ManifestDestiny
                             {
                                 row.Add(_worldTiles["water"].Clone());
                             }
+                            else if (c == '+')
+                            {
+                                row.Add(_worldTiles["heal"].Clone());
+                                row[row.Count - 1].IsHealer = true;
+                            }
                         }
                         _worldMapTiles.Add(row);
                     }
                 }else
                 {
-                    string[] lines = File.ReadAllLines(path + textFile);
+                    string[] lines = File.ReadAllLines(path + fileName + ".txt");
 
                     foreach (string line in lines)
                     {
@@ -124,6 +132,11 @@ namespace ManifestDestiny
                             {
                                 row.Add(_worldTiles["water"].Clone());
                             }
+                            else if (c == '+')
+                            {
+                                row.Add(_worldTiles["heal"].Clone());
+                                row[row.Count - 1].IsHealer = true;
+                            }
                         }
                         _worldMapTiles.Add(row);
                     }
@@ -133,24 +146,24 @@ namespace ManifestDestiny
             }
             else
             {
-                throw new FileNotFoundException("Le fichier JSON n'existe pas.", path + textFile);
+                throw new FileNotFoundException("Le fichier JSON n'existe pas.", path + fileName + ".txt");
             }
-            if (File.Exists("../../../Data/Warps/Warp" + textFile.Substring(0, 5) + ".json"))
+            if (File.Exists("../../../Data/Warps/Warp" + fileName + ".json"))
             {
-                string pathWarp = "Warps/Warp" + textFile.Substring(0, 5) + ".json";
+                string pathWarp = "Warps/Warp" + fileName + ".json";
                 CustomJson<WarpContainer> jsonReader = new CustomJson<WarpContainer>(pathWarp);
                 WarpContainer warps = jsonReader.Read();
                 foreach (var warp in warps.warps)
                 {
-                    if (warp.StartMap == textFile)
+                    if (warp.StartMap == fileName)
                     {
                         _worldMapTiles[warp.StartPosition.X][warp.StartPosition.Y].SetWarp(warp);
                     }
                 }
             }
-            if (File.Exists("../../../Data/Item/Items" + textFile.Substring(0, 5) + ".json"))
+            if (File.Exists("../../../Data/Item/Items" + fileName + ".json"))
             {
-                string itemWarp = "Item/Items" + textFile.Substring(0, 5) + ".json";
+                string itemWarp = "Item/Items" + fileName + ".json";
 
                 // Créer une instance de JsonReader pour désérialiser une liste de warps
                 CustomJson<ItemTilesContainer> jsonReaderItem = new CustomJson<ItemTilesContainer>(itemWarp);
