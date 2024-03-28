@@ -16,10 +16,17 @@
     },
     "Basic Xenoconverter": {
       "Name": "Basic Xenoconverter",
-      "Description": "Used to convert seraphim to your side. They come in various qualities with more or less effectiveness.",
+      "Description": "Used to convert seraphim to your side. This one is pretty basic.",
       "Heal": 0,
       "Character": "X",
-      "CatchRateMultiplier": 255
+      "CatchRateMultiplier": 1
+    },
+    "Great Xenoconverter": {
+      "Name": "Great Xenoconverter",
+      "Description": "Used to convert seraphim to your side. This one is more effective than the basic one.",
+      "Heal": 0,
+      "Character": "X",
+      "CatchRateMultiplier": 1.5
     }
   }
 }

@@ -12,7 +12,7 @@
       "Magic": 2,
       "Speed": 13,
 
-      "CatchRate":  1,
+      "CatchRate":  230,
 
       "HP100": 175,
       "Attack100": 140,
@@ -39,7 +39,7 @@
       "Magic": 10,
       "Speed": 20,
 
-      "CatchRate": 1,
+      "CatchRate": 255,
 
       "HP100": 100,
       "Attack100": 50,
@@ -66,7 +66,7 @@
       "Magic": 8,
       "Speed": 19,
 
-      "CatchRate": 1,
+      "CatchRate": 3,
 
       "HP100": 250,
       "Attack100": 200,

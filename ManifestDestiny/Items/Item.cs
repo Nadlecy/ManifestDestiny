@@ -14,7 +14,7 @@ namespace ManifestDestiny
         public string Character { get; set; }
         public int Count { get; set; }
 
-        public int CatchRateMultiplier { get; set; }
+        public float CatchRateMultiplier { get; set; }
         public Item(string name, string description, int count = 1)
         {
             Name = name;
