@@ -2,7 +2,10 @@
   "Encounter": {
     "Aether": 20,
     "Mokrox": 15,
-    "Goku": 10
+    "Goku": 5,
+    "Pestilisk": 10,
+    "Sharkshooter": 15,
+    "Shrimpet": 10,
   },
   "Chance": 20,
   "LevelMin": 10,
