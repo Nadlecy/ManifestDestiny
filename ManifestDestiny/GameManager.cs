@@ -245,6 +245,11 @@ class GameManager
                         BattleHandler.EndBattle();
                     } else
                     {
+                        
+                        // skip your turn
+                        BattleHandler.BattlePhaseEnemy();
+                        display.BattleDisplay(BattleHandler);
+                        display.MenuDisplay(battleMenu);
                         Console.WriteLine("Fleeing failed.");
                     }
                     

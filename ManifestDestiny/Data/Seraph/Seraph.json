@@ -46,7 +46,8 @@
 
       "ExpReward": 10,
       "Ability": {
-        "1": "Compact"
+        "1": "Compact",
+        "2":  "Wait"
       },
       "Description": "Tiny Robot"
     },
