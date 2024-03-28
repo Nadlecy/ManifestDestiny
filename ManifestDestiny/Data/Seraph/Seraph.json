@@ -117,6 +117,36 @@
       "Description": "A little slime"
     },
     {
+      "Name": "Lymul",
+      "Type": "Fluid",
+
+      "HP": 20,
+      "Attack": 25,
+      "Defense": 45,
+      "Mana": 50,
+      "Magic": 9,
+      "Speed": 15,
+
+      "CatchRate": 70,
+
+      "HP100": 200,
+      "Attack100": 250,
+      "Defense100": 450,
+      "Mana100": 500,
+      "Magic100": 90,
+      "Speed100": 150,
+
+      "ExpReward": 34,
+      "Ability": {
+        "1": "Wait",
+        "2": "Bash",
+        "4": "Magic Missile",
+        "6": "Liquidation",
+        "10": "Bozo Blast"
+      },
+      "Description": "A little slime"
+    },
+    {
       "Name": "Sharkshooter",
       "Type": "Fluid",
 
