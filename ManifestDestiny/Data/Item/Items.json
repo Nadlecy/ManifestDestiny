@@ -4,13 +4,22 @@
       "Name": "Tasty Ration",
       "Description": "Restore HPs of your first Seraph",
       "Heal": 25,
-      "Character": "T"
+      "Character": "T",
+      "CatchRateMultiplier": 0
     },
     "Black Flower": {
       "Name": "Black Flower",
       "Description": "Restore a lot of HPs of your first Seraph",
       "Heal": 100,
-      "Character": "B"
+      "Character": "B",
+      "CatchRateMultiplier": 0
+    },
+    "Basic Xenoconverter": {
+      "Name": "Basic Xenoconverter",
+      "Description": "Used to convert seraphim to your side. They come in various qualities with more or less effectiveness.",
+      "Heal": 0,
+      "Character": "X",
+      "CatchRateMultiplier": 255
     }
   }
 }

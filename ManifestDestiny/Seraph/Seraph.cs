@@ -12,6 +12,8 @@ class Seraph
     public BattleType Type { get; set; }
     public string Description { get; set; }
 
+    public int CatchRate { get; set; }
+
     public int Level { get; set; }
     public int _experience;
     public int _experienceReward;
@@ -44,12 +46,12 @@ class Seraph
     public Dictionary<int, BattleAbility> _abilitiesUnlocks; // List of all abilities this seraph can have, and the level at which it unlocks them.
     public List<BattleAbility> _abilities;
 
-    public Seraph(string name, BattleType type, Dictionary<Stats, int> baseStats, Dictionary<Stats, int> maxStats, int experienceReward, Dictionary<int, BattleAbility> AbilitiesUnlocks, string description)
+    public Seraph(string name, BattleType type, int catchRate, Dictionary<Stats, int> baseStats, Dictionary<Stats, int> maxStats, int experienceReward, Dictionary<int, BattleAbility> AbilitiesUnlocks, string description)
     {
         Name = name;
         Type = type;
         Description = description;
-
+        CatchRate = catchRate;
         BaseStats = baseStats;
         CurrentStats = baseStats;
         _maxStats = maxStats;

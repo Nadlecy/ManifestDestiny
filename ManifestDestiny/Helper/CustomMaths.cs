@@ -36,5 +36,16 @@ namespace ManifestDestiny.Helper.Math
                 return 1.0f;
             }
         }
+
+        public float CatchRateCalculator(Seraph enemy, Item ball)
+        {
+            float status = 1.0f;
+            // Status is a multiplier applied if the Pokémon is under the effects of a status condition. Without a status condition, Status is 1×. If the Pokémon is:
+            //    asleep or frozen, Status is 2.5×.
+            //    paralyzed, burned, or poisoned, Status is 1.5×.
+            int n = GameManager.rand.Next(ball.CatchRateMultiplier);
+            float f = (enemy.CatchRate * n * status * (1 - (2 / 3) * (enemy.CurrentStats[Seraph.Stats.hp] / enemy.BaseStats[Seraph.Stats.hp])))/255;
+            return f;
+        }
     }
 }

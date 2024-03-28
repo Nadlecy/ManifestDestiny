@@ -69,6 +69,7 @@ class GameManager
 
         //_inventory.AddItem(Items.ItemList["Tasty Ration"].Clone(),7);
         Inventory.AddItem(Items.ItemList["Black Flower"].Clone());
+        Inventory.AddItem(Items.ItemList["Basic Xenoconverter"].Clone(), 1000);
 
         Menu mainMenu = new Menu("MAIN MENU", new List<string> { "SERAPHIM", "BAG", "SAVE AND QUIT GAME", "CLOSE"});
         Menu bagMenu = new Menu("BAG", Inventory);
@@ -183,12 +184,27 @@ class GameManager
                             {
                                 // Do item thing
                                 CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].Use();
+
                                 if (CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].Heal > 0)
                                 {
                                     // Heal seraph
                                     BattleHandler.CurrentPlayer.HealHp(CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].Heal);
-                                    CurrentMenu.ItemStorage.Items.RemoveAt(CurrentMenu.SelectedLine);
+                                    CurrentMenu.ItemStorage.RemoveItem(CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine]);
                                     Selection = "CLOSE";
+                                } else if (CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].CatchRateMultiplier > 0) {
+                                    // Try to catch enemy
+                                    float catchRate = cMaths.CatchRateCalculator(BattleHandler.CurrentEnemy, CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine]);
+                                    double catchRand = rand.NextDouble();
+                                    if(catchRate > catchRand) {
+                                        Console.WriteLine("You catched the Seraph");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("That didnt work");
+                                    }
+                                    CurrentMenu.ItemStorage.RemoveItem(CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine]);
+                                    
+                                    //Selection = "CLOSE";
                                 }
                             }
 

@@ -13,6 +13,8 @@ namespace ManifestDestiny
         public int Heal {  get; set; }
         public string Character { get; set; }
         public int Count { get; set; }
+
+        public int CatchRateMultiplier { get; set; }
         public Item(string name, string description, int count = 1)
         {
             Name = name;
@@ -25,6 +27,7 @@ namespace ManifestDestiny
             Item it = new Item(Name, Description, Count);
             it.Heal = Heal;
             it.Character = Character;
+            it.CatchRateMultiplier = CatchRateMultiplier;
             return it;
         }
 

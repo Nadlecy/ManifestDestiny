@@ -12,6 +12,8 @@
       "Magic": 2,
       "Speed": 13,
 
+      "CatchRate":  1,
+
       "HP100": 175,
       "Attack100": 140,
       "Defense100": 95,
@@ -37,6 +39,8 @@
       "Magic": 10,
       "Speed": 20,
 
+      "CatchRate": 1,
+
       "HP100": 100,
       "Attack100": 50,
       "Defense100": 50,
@@ -47,7 +51,7 @@
       "ExpReward": 10,
       "Ability": {
         "2": "Compact",
-        "1":  "Wait"
+        "1": "Wait"
       },
       "Description": "Tiny Robot"
     },
@@ -62,6 +66,8 @@
       "Magic": 8,
       "Speed": 19,
 
+      "CatchRate": 1,
+
       "HP100": 250,
       "Attack100": 200,
       "Defense100": 250,
@@ -72,7 +78,7 @@
       "ExpReward": 100,
       "Ability": {
         "2": "Biden Blast",
-        "1":  "Wait"
+        "1": "Wait"
       },
       "Description": "Goku, the King of the Monkeys"
     }
