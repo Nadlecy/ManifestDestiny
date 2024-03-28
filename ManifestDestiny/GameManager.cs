@@ -117,6 +117,7 @@ class GameManager
                 {
                     DialogBubbles.RemoveAt(0);
                     justLeftBubbles = true;
+                    display.MenuDisplay(CurrentMenu);
                 }
             }
 
@@ -158,7 +159,7 @@ class GameManager
                         CurrentMenu = battleMenu;
                         display.BattleDisplay(BattleHandler);
                         display.MenuDisplay(battleMenu);
-                        DialogBubbles.Add(BattleHandler.CurrentEnemy.Name + " Appears !");
+                        DialogBubbles.Add("A wild " + BattleHandler.CurrentEnemy.Name + " appears !");
                         GameState = GameStates.Battle;
                         break;
 
@@ -183,8 +184,10 @@ class GameManager
                                 display.MenuDisplay(CurrentMenu); // Update display
                                 break;
                             case ConsoleKey.Enter:
-                                if (justLeftBubbles == false) 
+                                if (justLeftBubbles == false)
+                                {
                                     Selection = CurrentMenu.Enter();
+                                }
                                 break;
                             case ConsoleKey.Escape:
                                 //CurrentMenu.SelectedLine = 0;
