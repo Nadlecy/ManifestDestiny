@@ -19,6 +19,17 @@
       "Power": 40
     },
     {
+      "Name": "Confidence",
+      "Type": "Scramble",
+      "Description": "Increases attack and speed",
+      "Accuracy": 90,
+      "ManaCost": 5,
+      "Attributes": [ "AttributeStatAlteration" ],
+      "StatAlterations": [ 1, 1, 0, 0, 0, 0, 0, 0 ],
+      "CritChance": 0,
+      "Power": 0
+    },
+    {
       "Name": "Tempest Slash",
       "Type": "Scramble",
       "Description": "A simple tackle",
