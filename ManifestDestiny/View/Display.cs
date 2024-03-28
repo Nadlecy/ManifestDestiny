@@ -301,27 +301,27 @@ namespace ManifestDestiny
                             Console.BackgroundColor = ConsoleColor.White;
                             Console.ForegroundColor = ConsoleColor.Black;
 
-                            Console.WriteLine(" " + menu.Name + Padding(menu.Seraphim, -menu.Name.Length + 2));
+                            Console.WriteLine(" " + menu.Name + Padding(menu.Seraphim, -menu.Name.Length + 6));
 
                             for (int i = 0; i < menu.Seraphim.Count; i++)
                             {
                                 if (i == menu.SelectedLine)
                                 {
-                                    Console.WriteLine(" ► " + menu.Seraphim[i].Name + Padding(menu.Seraphim, -menu.Seraphim[i].Name.Length));
+                                    Console.WriteLine(" ► " + menu.Seraphim[i].Name + " LVL" + menu.Seraphim[i].Level.ToString() + Padding(menu.Seraphim, -menu.Seraphim[i].Name.Length - menu.Seraphim[i].Level.ToString().Length - 4));
                                 }
                                 else
                                 {
-                                    Console.WriteLine("   " + menu.Seraphim[i].Name + Padding(menu.Seraphim, -menu.Seraphim[i].Name.Length));
+                                    Console.WriteLine("   " + menu.Seraphim[i].Name + " LVL" + menu.Seraphim[i].Level.ToString() + Padding(menu.Seraphim, -menu.Seraphim[i].Name.Length - menu.Seraphim[i].Level.ToString().Length - 4));
                                 }
                             }
 
                             if (menu.SelectedLine == menu.Seraphim.Count)
                             {
-                                Console.WriteLine(" ► CLOSE" + Padding(menu.Seraphim,-5));
+                                Console.WriteLine(" ► CLOSE" + Padding(menu.Seraphim,-1));
                             }
                             else
                             {
-                                Console.WriteLine("   CLOSE" + Padding(menu.Seraphim,-5));
+                                Console.WriteLine("   CLOSE" + Padding(menu.Seraphim,-1));
                             }
 
                             break;

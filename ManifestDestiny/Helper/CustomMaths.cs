@@ -43,7 +43,7 @@ namespace ManifestDestiny
             // Status is a multiplier applied if the Pokémon is under the effects of a status condition. Without a status condition, Status is 1×. If the Pokémon is:
             //    asleep or frozen, Status is 2.5×.
             //    paralyzed, burned, or poisoned, Status is 1.5×.
-            float f = (enemy.CatchRate * ball.CatchRateMultiplier * status * (1 - (2 / 3) * (enemy.CurrentStats[Seraph.Stats.hp] / enemy.BaseStats[Seraph.Stats.hp])))/255;
+            float f = (enemy.CatchRate * ball.CatchRateMultiplier * status * (1.0f - (2.0f / 3.0f) * ((float)enemy.CurrentStats[Seraph.Stats.hp] / (float)enemy.BaseStats[Seraph.Stats.hp])))/255;
             return f;
         }
     }

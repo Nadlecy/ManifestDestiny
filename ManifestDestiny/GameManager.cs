@@ -215,6 +215,9 @@ class GameManager
                                     double catchRand = rand.NextDouble();
                                     if(catchRate > catchRand) {
                                         Console.WriteLine("You catched the Seraph");
+                                        PlayerTeam.Add(BattleHandler.CurrentEnemy);
+                                        BattleHandler.EndBattle();
+                                            GameState = GameStates.StartExploration;
                                     }
                                     else
                                     {
@@ -311,7 +314,8 @@ class GameManager
 
                         break;
                     case "CLOSE":
-                        CurrentMenu.SelectedLine = 0;
+                        if(CurrentMenu.LineType != Menu.LinesType.ability) { CurrentMenu.SelectedLine = 0; }
+                        
                         if (CurrentMenu == bagMenu)
                         {
                             if (GameState == GameStates.Battle)
