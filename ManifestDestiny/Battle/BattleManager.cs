@@ -29,6 +29,7 @@ class BattleManager
         if (foeTeam.Count > 6) { throw new ArgumentException("too many ennemies", nameof(foeTeam)); }
         EnemyTeam = foeTeam;
         CurrentPlayer = PlayerTeam[0];
+        PlayerParticipants.Add(CurrentPlayer);
         CurrentEnemy = EnemyTeam[0];
         EnemyAILevel = AILevel;
     }
