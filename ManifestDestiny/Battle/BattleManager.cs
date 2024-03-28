@@ -40,8 +40,30 @@ class BattleManager
         switch(EnemyAILevel)
         {
             case 1:
-                choiceID = GameManager.rand.Next(CurrentEnemy._abilities.Count);
-                
+                // check if seraph can do something else but wait
+                int mana = CurrentEnemy.CurrentStats[Seraph.Stats.mana];
+                List<int> validAbilities = new List<int> { };
+                for (int i = 0; i < CurrentEnemy._abilities.Count; i++)
+                {
+                    if (CurrentEnemy._abilities[i].Cost <= mana && CurrentEnemy._abilities[i].Name != "Wait")
+                    {
+                        validAbilities.Add(i);
+                    }
+                }
+                // If validAbilities is empty, use Wait
+                if(validAbilities.Count == 0)
+                {
+                    for (int i = 0; i < CurrentEnemy._abilities.Count; i++)
+                    {
+                        if (CurrentEnemy._abilities[i].Name == "Wait")
+                        {
+                            validAbilities.Add(i);
+                        }
+                    }
+                }
+
+                choiceID = validAbilities[GameManager.rand.Next(validAbilities.Count)];
+
                 return choiceID;
             default: throw new ArgumentException();
         }
@@ -176,6 +198,7 @@ class BattleManager
 
     public void EndBattle()
     {
+        FleeAttemps = 0;
         EnemyTeam.Clear();
         PlayerParticipants.Clear();
     }

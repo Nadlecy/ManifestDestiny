@@ -2,13 +2,13 @@
   "ItemList": {
     "Tasty Ration": {
       "Name": "Tasty Ration",
-      "Description": "restore a bit of health",
+      "Description": "Restore HPs of your first Seraph",
       "Heal": 25,
       "Character": "T"
     },
     "Black Flower": {
       "Name": "Black Flower",
-      "Description": "restore a lot of health",
+      "Description": "Restore a lot of HPs of your first Seraph",
       "Heal": 100,
       "Character": "B"
     }
