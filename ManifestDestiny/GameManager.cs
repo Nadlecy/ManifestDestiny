@@ -54,6 +54,7 @@ class GameManager
         Save save = new Save();
 
 
+        PlayerTeam = save.TeamJsonLoader("SaveSeraph", PlayerTeam, Data);
 
         // Create debug inventory
 
@@ -79,7 +80,7 @@ class GameManager
         PlayerTeam.Add(ju);
         PlayerTeam.Add(gagaga);
 
-        save.JsonWriter("SaveSeraph", PlayerTeam);
+        //save.TeamJsonWriter("SaveSeraph", PlayerTeam);
 
         WorldMap worldMap = new WorldMap(this);
         worldMap.SetMap("Map01.txt");
