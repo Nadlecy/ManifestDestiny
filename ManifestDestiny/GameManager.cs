@@ -64,15 +64,17 @@ class GameManager
         //_inventory.AddItem(Items.ItemList["Tasty Ration"].Clone(),7);
         Inventory.AddItem(Items.ItemList["Black Flower"].Clone());
 
-        Menu mainMenu = new Menu("MAIN MENU", new List<string> { "SERAPHIM", "BAG", "QUIT GAME", "CLOSE", "DEBUG BATTLE" });
+        Menu mainMenu = new Menu("MAIN MENU", new List<string> { "SERAPHIM", "BAG", "QUIT GAME", "CLOSE"});
         Menu bagMenu = new Menu("BAG", Inventory);
         Menu seraphMenu = new Menu("SERAPHIM", PlayerTeam);
 
-        battleMenu = new Menu("What will you do?", new List<string> { "FIGHT", "BAG", "SERAPH", "RUN" }, Menu.MenuDisplayType.battle);
+        battleMenu = new Menu("What will you do?", new List<string> { "FIGHT", "BAG", "SERAPHIM", "RUN" }, Menu.MenuDisplayType.battle);
 
         Seraph playerSeraph = Data.Summon("Lambda", 5);
+        Seraph gagaga = Data.Summon("Bit", 32);
 
         PlayerTeam.Add(playerSeraph);
+        PlayerTeam.Add(gagaga);
 
         WorldMap worldMap = new WorldMap(this);
         worldMap.SetMap("Map01.txt");
@@ -275,11 +277,24 @@ class GameManager
                         display.MenuDisplay(battleMenu);
                     } else if(CurrentMenu == seraphMenu)
                     {
-                        CurrentMenu = mainMenu;
-                        GameState = GameStates.Menu;
-                        display.WorldDisplay();
-                        display.MenuDisplay(mainMenu);
+                        if (GameState == GameStates.Battle)
+                        {
+                            CurrentMenu = battleMenu;
+                            display.BattleDisplay(BattleHandler);
+                            display.MenuDisplay(battleMenu);
+                        }
+                        else
+                        {
+                            CurrentMenu = mainMenu;
+                            GameState = GameStates.Menu;
+                            display.WorldDisplay();
+                            display.MenuDisplay(mainMenu);
+                        }
                     }
+                    break;
+                case "Switched two seraph":
+                    // update seraphim menu display
+                    display.MenuDisplay(seraphMenu);
                     break;
                 case "SAVE AND QUIT GAME":
                     // TODO
