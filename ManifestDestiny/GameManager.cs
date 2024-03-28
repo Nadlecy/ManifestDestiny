@@ -73,10 +73,10 @@ class GameManager
 
         battleMenu = new Menu("What will you do?", new List<string> { "FIGHT", "BAG", "SERAPHIM", "RUN" }, Menu.MenuDisplayType.battle);
 
-        Seraph playerSeraph = Data.Summon("Lambda", 5);
+        Seraph ju = Data.Summon("Lambda", 5);
         Seraph gagaga = Data.Summon("Bit", 32);
 
-        PlayerTeam.Add(playerSeraph);
+        PlayerTeam.Add(ju);
         PlayerTeam.Add(gagaga);
 
         save.JsonWriter("SaveSeraph", PlayerTeam);
@@ -176,7 +176,7 @@ class GameManager
                             Selection = CurrentMenu.Enter();
                             if (CurrentMenu.LineType == Menu.LinesType.ability && Selection != "CLOSE")
                             {
-                                string turnResult = BattleHandler.BattlePhase(playerSeraph._abilities[CurrentMenu.SelectedLine]);
+                                string turnResult = BattleHandler.BattlePhase(BattleHandler.CurrentPlayer._abilities[CurrentMenu.SelectedLine]);
                                 Selection = "CLOSE";
                                 if(turnResult == "gameOver")
                                 {
@@ -229,7 +229,7 @@ class GameManager
                     bool sucess = false;
                     // Calcul
                     BattleHandler.FleeAttemps++;
-                    int flee = (playerSeraph.CurrentStats[Seraph.Stats.speed] * 32) / BattleHandler.CurrentEnemy.CurrentStats[Seraph.Stats.speed] + 30 * BattleHandler.FleeAttemps;
+                    int flee = (BattleHandler.CurrentPlayer.CurrentStats[Seraph.Stats.speed] * 32) / BattleHandler.CurrentEnemy.CurrentStats[Seraph.Stats.speed] + 30 * BattleHandler.FleeAttemps;
                     if(flee > 255)
                     {
                         sucess = true;   

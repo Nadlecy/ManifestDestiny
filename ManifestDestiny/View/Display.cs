@@ -191,17 +191,16 @@ namespace ManifestDestiny
                 else if (i == 15)
                 {
                     // Display friendly
-                    Seraph playerSeraph = battleManager.CurrentPlayer;
                     StringBuilder namePadding = new StringBuilder();
-                    string name = playerSeraph.Name;
-                    for (int j = 0; j < 64 - name.Length - playerSeraph.Level.ToString().Length - 9; j++)
+                    string name = battleManager.CurrentPlayer.Name;
+                    for (int j = 0; j < 64 - name.Length - battleManager.CurrentPlayer.Level.ToString().Length - 9; j++)
                     {
                         namePadding.Append(" ");
                     }
-                    Console.WriteLine("  " + name + "  " + "LVL: " + playerSeraph.Level + namePadding);
+                    Console.WriteLine("  " + name + "  " + "LVL: " + battleManager.CurrentPlayer.Level + namePadding);
                     StringBuilder hpPadding = new StringBuilder();
-                    string hp = "  HP:" + playerSeraph.CurrentStats[Seraph.Stats.hp] + "/" + playerSeraph.BaseStats[Seraph.Stats.hp] ;
-                    string mp = "  MP:" + playerSeraph.CurrentStats[Seraph.Stats.mana] + "/" + playerSeraph.BaseStats[Seraph.Stats.mana] + " " + playerSeraph.Experience.ToString();
+                    string hp = "  HP:" + battleManager.CurrentPlayer.CurrentStats[Seraph.Stats.hp] + "/" + battleManager.CurrentPlayer.BaseStats[Seraph.Stats.hp] ;
+                    string mp = "  MP:" + battleManager.CurrentPlayer.CurrentStats[Seraph.Stats.mana] + "/" + battleManager.CurrentPlayer.BaseStats[Seraph.Stats.mana] + " " + battleManager.CurrentPlayer.Experience.ToString();
                     for (int j = 0; j < 64 - hp.Length - mp.Length; j++)
                     {
                         hpPadding.Append(" ");
@@ -355,9 +354,7 @@ namespace ManifestDestiny
                     break;
                 case Menu.MenuDisplayType.abilities:
 
-                    Seraph playerSeraph = _gameManager.BattleHandler.CurrentPlayer;
-
-                    int topPadding2 = 22 - playerSeraph._abilities.Count;
+                    int topPadding2 = 22 - _gameManager.BattleHandler.CurrentPlayer._abilities.Count;
                     Console.BackgroundColor = ConsoleColor.Gray;
                     Console.ForegroundColor = ConsoleColor.Black;
 
@@ -369,24 +366,24 @@ namespace ManifestDestiny
 
                     // -- Abilities -- //
                     Console.SetCursorPosition(0, topPadding2 - 1);
-                    if (playerSeraph._abilities.Count == 0)
+                    if (_gameManager.BattleHandler.CurrentPlayer._abilities.Count == 0)
                     {
-                        Console.WriteLine(playerSeraph.Name + " does not have any available abilities.");
+                        Console.WriteLine(_gameManager.BattleHandler.CurrentPlayer.Name + " does not have any available abilities.");
                     }
                     else
                     {
-                        Console.WriteLine(playerSeraph.Name + " has " + playerSeraph._abilities.Count + " abilities:");
+                        Console.WriteLine(_gameManager.BattleHandler.CurrentPlayer.Name + " has " + _gameManager.BattleHandler.CurrentPlayer._abilities.Count + " abilities:");
                     }
 
-                    for (int i = 0; i < playerSeraph._abilities.Count; i++)
+                    for (int i = 0; i < _gameManager.BattleHandler.CurrentPlayer._abilities.Count; i++)
                     {
                         if (i == menu.SelectedLine)
                         {
-                            Console.WriteLine(" ► " + playerSeraph._abilities[i].Name + "  " + playerSeraph._abilities[i].Cost + " MP  " + playerSeraph._abilities[i].BattleType.Name + Padding(61, -(playerSeraph._abilities[i].Name.Length + playerSeraph._abilities[i].Cost.ToString().Length + playerSeraph._abilities[i].BattleType.Name.Length + 7)));
+                            Console.WriteLine(" ► " + _gameManager.BattleHandler.CurrentPlayer._abilities[i].Name + "  " + _gameManager.BattleHandler.CurrentPlayer._abilities[i].Cost + " MP  " + _gameManager.BattleHandler.CurrentPlayer._abilities[i].BattleType.Name + Padding(61, -(_gameManager.BattleHandler.CurrentPlayer._abilities[i].Name.Length + _gameManager.BattleHandler.CurrentPlayer._abilities[i].Cost.ToString().Length + _gameManager.BattleHandler.CurrentPlayer._abilities[i].BattleType.Name.Length + 7)));
                         }
                         else
                         {
-                            Console.WriteLine("   " + playerSeraph._abilities[i].Name + "  " + playerSeraph._abilities[i].Cost + " MP  " + playerSeraph._abilities[i].BattleType.Name + Padding(61, -(playerSeraph._abilities[i].Name.Length + playerSeraph._abilities[i].Cost.ToString().Length + playerSeraph._abilities[i].BattleType.Name.Length + 7)));
+                            Console.WriteLine("   " + _gameManager.BattleHandler.CurrentPlayer._abilities[i].Name + "  " + _gameManager.BattleHandler.CurrentPlayer._abilities[i].Cost + " MP  " + _gameManager.BattleHandler.CurrentPlayer._abilities[i].BattleType.Name + Padding(61, -(_gameManager.BattleHandler.CurrentPlayer._abilities[i].Name.Length + _gameManager.BattleHandler.CurrentPlayer._abilities[i].Cost.ToString().Length + _gameManager.BattleHandler.CurrentPlayer._abilities[i].BattleType.Name.Length + 7)));
                         }
                     }
 
