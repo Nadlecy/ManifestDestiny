@@ -14,6 +14,8 @@ class BattleAbility
     public int Accuracy { get; set; }
     public int Cost { get; set; }
     public string Description { get; set; }
+
+    public List<int> StrikeNumber { get; set; }
     public List<AbilityAttribute> attributes {  get; set; }
 
     public BattleAbility(string name, BattleType type, int accuracy, int cost, string description)
@@ -24,6 +26,7 @@ class BattleAbility
         Accuracy = accuracy;
         Cost = cost;
         Description = description;
+        StrikeNumber = [1,1];
     }
 
     public void AddAttribute(AbilityAttribute attribute)

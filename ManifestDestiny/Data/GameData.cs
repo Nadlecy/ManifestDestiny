@@ -50,7 +50,10 @@ namespace ManifestDestiny
                     switch (attribute)
                     {
                         case "AttributeAttack":
-                            abilities[ability.Name].AddAttribute(new AbilityAttributeAttack((int)ability.CritChance, (int)ability.Power, battleTypes[ability.Type]));
+                            abilities[ability.Name].AddAttribute(new AbilityAttributeAttack(ability.Accuracy,(int)ability.CritChance, (int)ability.Power, battleTypes[ability.Type]));
+                            break;
+                        case "AttributeAttackMultiple":
+                            abilities[ability.Name].AddAttribute(new AbilityAttributeAttackMultiple(ability.Accuracy,(int)ability.CritChance, (int)ability.Power, battleTypes[ability.Type], ability.StrikeNumber));
                             break;
                         case "AttributeStatAlteration":
                             if(ability.StatAlterations == null)
