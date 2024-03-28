@@ -145,7 +145,7 @@ namespace ManifestDestiny
         }
 
         // Confirm line selection
-        public virtual string Enter()
+        public virtual string Enter(BattleManager BattleHandler)
         {
             switch (LineType)
             {
@@ -186,6 +186,8 @@ namespace ManifestDestiny
                     if(seraph1 != null && seraph2 != null)
                     {
                         Swap(Seraphim, Seraphim.IndexOf(seraph1), Seraphim.IndexOf(seraph2));
+                        //Swap(BattleHandler.PlayerTeam, BattleHandler.PlayerTeam.IndexOf(seraph1), BattleHandler.PlayerTeam.IndexOf(seraph2));
+                        //BattleHandler.CurrentPlayer = BattleHandler.PlayerTeam[0];
 
                         seraph1 = null;
                         seraph2 = null;

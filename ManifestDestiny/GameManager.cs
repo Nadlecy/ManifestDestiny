@@ -154,8 +154,8 @@ class GameManager
                 switch (GameState)
                 {
                     case GameStates.StartExploration:
+                        //DialogBubbles.Add("Welcome to exploration mode");
                         _isGettingKey = true;
-                        DialogBubbles.Add("Welcome to exploration mode");
                         display.WorldDisplay();
                         display.PlayerWorldDisplay(0, 0);
                         GameState = GameStates.Exploration;
@@ -219,7 +219,7 @@ class GameManager
                             case ConsoleKey.Enter:
                                 if (justLeftBubbles == false)
                                 {
-                                    Selection = CurrentMenu.Enter();
+                                    Selection = CurrentMenu.Enter(BattleHandler);
                                 }
                                 break;
                             case ConsoleKey.Escape:
@@ -243,7 +243,7 @@ class GameManager
                             case ConsoleKey.Enter:
                                 if (justLeftBubbles == false)
                                 {
-                                    Selection = CurrentMenu.Enter();
+                                    Selection = CurrentMenu.Enter(BattleHandler);
 
                                     // Item selection
                                     if (CurrentMenu.LineType == Menu.LinesType.items && Selection != "CLOSE")
@@ -265,7 +265,7 @@ class GameManager
                                             double catchRand = rand.NextDouble();
                                             if (catchRate > catchRand)
                                             {
-                                                Console.WriteLine("You catched the Seraph");
+                                                DialogBubbles.Add("You catched " + BattleHandler.CurrentEnemy.Name);
                                                 PlayerTeam.Add(BattleHandler.CurrentEnemy);
                                                 BattleHandler.EndBattle();
                                                 GameState = GameStates.StartExploration;
@@ -273,7 +273,7 @@ class GameManager
                                             }
                                             else
                                             {
-                                                Console.WriteLine("That didnt work");
+                                                DialogBubbles.Add("You missed " + BattleHandler.CurrentEnemy.Name);
                                             }
                                             CurrentMenu.ItemStorage.RemoveItem(CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine]);
 
@@ -288,12 +288,14 @@ class GameManager
                                         Selection = "CLOSE";
                                         if (turnResult == "gameOver")
                                         {
+                                            DialogBubbles.Add("Game Over");
                                             BattleHandler.EndBattle();
                                             //switch to a GameOver Gamestate or something idk
                                             LoadSave();
                                         }
                                         else if (turnResult == "win")
                                         {
+                                            DialogBubbles.Add("You won the battle");
                                             BattleHandler.EndBattle();
                                             _isGettingKey = false;
                                             GameState = GameStates.StartExploration;
@@ -352,13 +354,14 @@ class GameManager
 
                         if (sucess)
                         {
+                            DialogBubbles.Add(BattleHandler.CurrentPlayer.Name + " escaped the battle");
                             GameState = GameStates.StartExploration;
                             display.WorldDisplay();
                             BattleHandler.EndBattle();
                         }
                         else
                         {
-
+                            DialogBubbles.Add(BattleHandler.CurrentPlayer.Name + " wasn't able to escape!");
                             // skip your turn
                             BattleHandler.BattlePhaseEnemy();
                             display.BattleDisplay(BattleHandler);
@@ -423,6 +426,8 @@ class GameManager
                         break;
                     case "Switched two seraph":
                         // update seraphim menu display
+                        //BattleHandler.CurrentPlayer;
+                        display.BattleDisplay(BattleHandler);
                         display.MenuDisplay(seraphMenu);
                         break;
                     case "SAVE AND QUIT GAME":
