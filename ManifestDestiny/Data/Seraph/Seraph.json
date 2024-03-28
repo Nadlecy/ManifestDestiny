@@ -58,6 +58,35 @@
       "Description": "Tiny Robot"
     },
     {
+      "Name": "Metalynx",
+      "Type": "Mechanic",
+
+      "HP": 30,
+      "Attack": 20,
+      "Defense": 10,
+      "Mana": 20,
+      "Magic": 5,
+      "Speed": 15,
+
+      "CatchRate": 190,
+
+      "HP100": 300,
+      "Attack100": 200,
+      "Defense100": 100,
+      "Mana100": 200,
+      "Speed100": 50,
+      "Magic100": 150,
+
+      "ExpReward": 17,
+      "Ability": {
+        "2": "Compact",
+        "1": "Wait",
+        "4": "Mighty Fang",
+        "6": "Sharpshooting"
+      },
+      "Description": "Cat Robot"
+    },
+    {
       "Name": "Limy",
       "Type": "Fluid",
 
@@ -85,7 +114,38 @@
         "4": "Blind Charge",
         "10": "Bozo Blast"
       },
-      "Description": "A little doggo"
+      "Description": "A little slime"
+    },
+    {
+      "Name": "Sharkshooter",
+      "Type": "Fluid",
+
+      "HP": 20,
+      "Attack": 20,
+      "Defense": 10,
+      "Mana": 30,
+      "Magic": 7,
+      "Speed": 13,
+
+      "CatchRate": 200,
+
+      "HP100": 200,
+      "Attack100": 200,
+      "Defense100": 100,
+      "Mana100": 300,
+      "Magic100": 70,
+      "Speed100": 130,
+
+      "ExpReward": 10,
+      "Ability": {
+        "1": "Wait",
+        "2": "Bash",
+        "3": "Sharpshooting",
+        "5": "Mighty Fang",
+        "8": "Liquidation",
+        "10": "Bozo Blast"
+      },
+      "Description": "A shark with a sniper rifle"
     },
     {
       "Name": "Mudort",
@@ -251,7 +311,7 @@
 
       "HP100": 500,
       "Attack100": 220,
-      "Defense100": 3000,
+      "Defense100": 300,
       "Mana100": 340,
       "Speed100": 100,
       "Magic100": 50,
@@ -265,6 +325,68 @@
         "5": "Sting"
       },
       "Description": "A radioactive crocodile"
+    },
+    {
+      "Name": "Dodoktor",
+      "Type": "Vermin",
+
+      "HP": 50,
+      "Attack": 30,
+      "Defense": 13,
+      "Mana": 45,
+      "Magic": 7,
+      "Speed": 8,
+
+      "CatchRate": 90,
+
+      "HP100": 500,
+      "Attack100": 300,
+      "Defense100": 130,
+      "Mana100": 450,
+      "Speed100": 80,
+      "Magic100": 70,
+
+      "ExpReward": 32,
+      "Ability": {
+        "1": "Wait",
+        "2": "Bash",
+        "3": "Sting",
+        "4": "Ruckus",
+        "5": "Growl",
+        "7": "Lacerage"
+      },
+      "Description": "A radioactive crocodile"
+    },
+    {
+      "Name": "Pestilisk",
+      "Type": "Vermin",
+
+      "HP": 12,
+      "Attack": 50,
+      "Defense": 5,
+      "Mana": 50,
+      "Magic": 3,
+      "Speed": 25,
+
+      "CatchRate": 50,
+
+      "HP100": 120,
+      "Attack100": 500,
+      "Defense100": 50,
+      "Mana100": 500,
+      "Magic100": 30,
+      "Speed100": 250,
+
+      "ExpReward": 20,
+      "Ability": {
+        "1": "Wait",
+        "2": "Bash",
+        "3": "Blind Charge",
+        "4": "Ruckus",
+        "5": "Growl",
+        "6": "Sting"
+      },
+      "Description": "An annoying bug"
     },
     {
       "Name": "Shrimpet",
