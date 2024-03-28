@@ -51,6 +51,9 @@ class GameManager
 
     public void GameLoop()
     {
+        Save save = new Save();
+
+
 
         // Create debug inventory
 
@@ -70,9 +73,11 @@ class GameManager
 
         battleMenu = new Menu("What will you do?", new List<string> { "FIGHT", "BAG", "SERAPH", "RUN" }, Menu.MenuDisplayType.battle);
 
-        Seraph playerSeraph = Data.Summon("Lambda", 5);
+        Seraph playerSeraph = Data.Summon("Lambda", 95);
 
         PlayerTeam.Add(playerSeraph);
+
+        save.JsonWriter("SaveSeraph", PlayerTeam);
 
         WorldMap worldMap = new WorldMap(this);
         worldMap.SetMap("Map01.txt");
