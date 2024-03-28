@@ -1,5 +1,4 @@
 ﻿using ManifestDestiny;
-using ManifestDestiny.Helper.Json;
 using ManifestDestiny.Helper.Math;
 using ManifestDestiny.Items;
 using ManifestDestiny.View;
@@ -26,6 +25,8 @@ class GameManager
     public ConsoleKeyInfo keyInfo;
     public static Random rand;
     public static CustomMaths cMaths;
+    public static List<string> DialogBubbles {  get; set; }
+
     public GameStates GameState { get; set;}
     public List<Seraph> PlayerTeam { get; set; }
     public string Selection { get; set; }
@@ -41,6 +42,8 @@ class GameManager
 
     public GameManager()
     {
+        DialogBubbles = new List<string>();
+
         Gaming = true;
         PlayerTeam = new List<Seraph>();
         BattleHandler = new BattleManager(PlayerTeam);
