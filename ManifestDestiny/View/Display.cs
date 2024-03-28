@@ -175,24 +175,15 @@ namespace ManifestDestiny
                 if (i == 2)
                 {
                     // Display enemy
-                    StringBuilder newPadding = new StringBuilder();
                     Seraph enemy = battleManager.CurrentEnemy;
-                    for (int j = 0; j < 64 - enemy.Name.Length - enemy.Level.ToString().Length - 9; j++)
-                    {
-                        newPadding.Append(" ");
-                    }
-                    Console.WriteLine(newPadding + enemy.Name + "  " + "LVL: " + enemy.Level + "  ");
+                    Console.WriteLine(Padding(64, -enemy.Name.Length - enemy.Level.ToString().Length - 9) + enemy.Name + "  " + "LVL: " + enemy.Level + "  ");
 
                     StringBuilder hpPadding = new StringBuilder();
                     string hp = "HP:" + enemy.CurrentStats[Seraph.Stats.hp] + "/" + enemy.BaseStats[Seraph.Stats.hp] + "  ";
                     string mp = "MP:" + enemy.CurrentStats[Seraph.Stats.mana] + "/" + enemy.BaseStats[Seraph.Stats.mana];
-                    for (int j = 0; j < 64 - hp.Length - mp.Length - 2; j++)
-                    {
-                        hpPadding.Append(" ");
-                    }
 
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write(hpPadding.ToString() + hp);
+                    Console.Write(Padding(64, -hp.Length - mp.Length - 2) + hp);
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine(mp + "  ");
                     Console.ForegroundColor = ConsoleColor.Black;
@@ -350,22 +341,13 @@ namespace ManifestDestiny
                             Console.BackgroundColor = ConsoleColor.Gray;
                             for (int i = 0; i < menu._lines.Count; i++)
                             {
-                                // Padding
-                                StringBuilder newPadding = new StringBuilder();
-                                int paddingLength = 61 - menu._lines[i].Length; // 64 = window width 24 = height
-
-                                for (int j = 0; j < paddingLength; j++)
-                                {
-                                    newPadding.Append(" ");
-                                }
-
                                 if (i == menu.SelectedLine)
                                 {
-                                    Console.WriteLine(" ► " + menu._lines[i] + newPadding.ToString());
+                                    Console.WriteLine(" ► " + menu._lines[i] + Padding(61, -menu._lines[i].Length));
                                 }
                                 else
                                 {
-                                    Console.WriteLine("   " + menu._lines[i] + newPadding.ToString());
+                                    Console.WriteLine("   " + menu._lines[i] + Padding(61, -menu._lines[i].Length));
                                 }
                             }
                             break;
@@ -396,44 +378,26 @@ namespace ManifestDestiny
                         Console.WriteLine(playerSeraph.Name + " has " + playerSeraph._abilities.Count + " abilities:");
                     }
 
-
                     for (int i = 0; i < playerSeraph._abilities.Count; i++)
                     {
-                        // Padding
-                        StringBuilder newPadding = new StringBuilder();
-                        int paddingLength = 61 - (playerSeraph._abilities[i].Name.Length + playerSeraph._abilities[i].Cost.ToString().Length + playerSeraph._abilities[i].BattleType.Name.Length + 7); // 64 = window width 24 = height
-
-                        for (int j = 0; j < paddingLength; j++)
-                        {
-                            newPadding.Append(" ");
-                        }
-
                         if (i == menu.SelectedLine)
                         {
-                            Console.WriteLine(" ► " + playerSeraph._abilities[i].Name + "  " + playerSeraph._abilities[i].Cost + " MP  " + playerSeraph._abilities[i].BattleType.Name + newPadding.ToString());
+                            Console.WriteLine(" ► " + playerSeraph._abilities[i].Name + "  " + playerSeraph._abilities[i].Cost + " MP  " + playerSeraph._abilities[i].BattleType.Name + Padding(61, -(playerSeraph._abilities[i].Name.Length + playerSeraph._abilities[i].Cost.ToString().Length + playerSeraph._abilities[i].BattleType.Name.Length + 7)));
                         }
                         else
                         {
-                            Console.WriteLine("   " + playerSeraph._abilities[i].Name + "  " + playerSeraph._abilities[i].Cost + " MP  " + playerSeraph._abilities[i].BattleType.Name + newPadding.ToString());
+                            Console.WriteLine("   " + playerSeraph._abilities[i].Name + "  " + playerSeraph._abilities[i].Cost + " MP  " + playerSeraph._abilities[i].BattleType.Name + Padding(61, -(playerSeraph._abilities[i].Name.Length + playerSeraph._abilities[i].Cost.ToString().Length + playerSeraph._abilities[i].BattleType.Name.Length + 7)));
                         }
                     }
 
                     // CLOSE button
-                    // Padding
-                    StringBuilder closePadding = new StringBuilder();
-                    int closePaddingLength = 61 - "CLOSE".Length; // 64 = window width 24 = height
-                    for (int j = 0; j < closePaddingLength; j++)
-                    {
-                        closePadding.Append(" ");
-                    }
-
                     if (menu.SelectedLine == menu.Abilities.Count)
                     {
-                        Console.WriteLine(" ► CLOSE" + closePadding.ToString());
+                        Console.WriteLine(" ► CLOSE" + Padding(64,-8));
                     }
                     else
                     {
-                        Console.WriteLine("   CLOSE" + closePadding.ToString());
+                        Console.WriteLine("   CLOSE" + Padding(64, -8));
                     }
                     Console.WriteLine("                                                                ");
 
@@ -491,6 +455,18 @@ namespace ManifestDestiny
                     maxLength = input[i].Name.Length + 1;
                 }
             }
+            StringBuilder stringBuilder = new StringBuilder();
+
+            for (int i = 0; i < maxLength + offset; i++)
+            {
+                stringBuilder.Append(" ");
+            }
+            return stringBuilder.ToString();
+        }
+
+        public string Padding(int length, int offset = 0)
+        {
+            int maxLength = length;
             StringBuilder stringBuilder = new StringBuilder();
 
             for (int i = 0; i < maxLength + offset; i++)
