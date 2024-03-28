@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ManifestDestiny.Container
 {
+    [Serializable]
     internal class EncountersChanceContainer
     {
         public Dictionary<string, int> Encounter { get; set; }

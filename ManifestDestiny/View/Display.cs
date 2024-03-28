@@ -129,6 +129,7 @@ namespace ManifestDestiny
                     }
                 }
             }
+            _gameManager.PlayerPosition = _playerPosition;
         }
 
         public void WorldDisplay()

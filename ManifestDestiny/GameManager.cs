@@ -1,7 +1,8 @@
 ﻿using ManifestDestiny;
+using ManifestDestiny.Container;
 using ManifestDestiny.Helper.Json;
 using ManifestDestiny.Helper.Math;
-using ManifestDestiny.Items;
+using ManifestDestiny.Helper.Position;
 using ManifestDestiny.View;
 using System;
 using System.Collections.Generic;
@@ -38,9 +39,17 @@ class GameManager
     public bool Gaming { get; set; }
 
     public Menu CurrentMenu { get; set; }
+    public Save Saving { get; set; }
+    Position _playerPosition;
+
+    string _map;
+
+    public string Map { get => _map; set => _map = value; }
+    public Position PlayerPosition { get => _playerPosition; set => _playerPosition = value; }
 
     public GameManager()
     {
+        Saving = new Save();
         Gaming = true;
         PlayerTeam = new List<Seraph>();
         BattleHandler = new BattleManager(PlayerTeam);
@@ -51,12 +60,22 @@ class GameManager
         Data = new GameData();
     }
 
+    public void LoadSave()
+    {
+        PlayerTeam = Saving.TeamJsonLoader("SaveSeraph", PlayerTeam, Data);
+        Saving.PositionJsonLoader("SavePosition", ref _playerPosition, ref _map);
+    }
+
+    public void WriteSave()
+    {
+        Saving.TeamJsonWriter("SaveSeraph", PlayerTeam);
+        Saving.PositionJsonWriter("SavePosition", PlayerPosition, ref _map);
+    }
+
     public void GameLoop()
     {
-        Save save = new Save();
+        LoadSave();
 
-
-        PlayerTeam = save.TeamJsonLoader("SaveSeraph", PlayerTeam, Data);
 
         // Create debug inventory
 
@@ -85,11 +104,11 @@ class GameManager
         //save.TeamJsonWriter("SaveSeraph", PlayerTeam);
 
         WorldMap worldMap = new WorldMap(this);
-        worldMap.SetMap("Map01.txt");
+        worldMap.SetMap(Map);
         Display display = new Display(worldMap, this);
         display.SetWorldDisplay(worldMap.WorldMapTiles);
         display.WorldDisplay();
-        display.SetPlayerPosition(15, 15);
+        display.SetPlayerPosition(PlayerPosition.X, PlayerPosition.Y);
 
         while (Gaming)
         {
@@ -317,6 +336,6 @@ class GameManager
             }
         }
         //Fin du jeu
-        save.TeamJsonWriter("SaveSeraph", PlayerTeam);
+        WriteSave();
     }
 }
