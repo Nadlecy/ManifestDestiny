@@ -437,7 +437,7 @@ namespace ManifestDestiny
 
                     Seraph playerSeraph = _gameManager.BattleHandler.CurrentPlayer;
 
-                    int topPadding2 = 23 - playerSeraph._abilities.Count;
+                    int topPadding2 = 22 - playerSeraph._abilities.Count;
                     Console.BackgroundColor = ConsoleColor.Gray;
                     Console.ForegroundColor = ConsoleColor.Black;
 
@@ -496,6 +496,7 @@ namespace ManifestDestiny
                     {
                         Console.WriteLine("   CLOSE"+ closePadding.ToString());
                     }
+                    Console.WriteLine("                                                                ");
 
                     break;
                 default:
