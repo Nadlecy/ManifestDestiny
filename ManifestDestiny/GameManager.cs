@@ -378,7 +378,12 @@ class GameManager
             }
             else
             {
-                //display.BubbleDisplay();
+
+                display.BubbleDisplay(DialogBubbles);
+                if(keyInfo.Key == ConsoleKey.Enter)
+                {
+                    DialogBubbles.RemoveAt(0);
+                }
             }
         }
         //Fin du jeu
