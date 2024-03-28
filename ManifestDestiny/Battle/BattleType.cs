@@ -27,6 +27,7 @@ class BattleType
         switch (Name)
         {
             case "Scramble":
+                _typeRelations["Mechanic"] = 0.5f;
                 _typeRelations["Wild"] = 2.0f;
                 _typeRelations["Fluid"] = 0.5f;
                 break;

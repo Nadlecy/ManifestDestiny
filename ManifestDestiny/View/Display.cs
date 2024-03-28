@@ -184,12 +184,18 @@ namespace ManifestDestiny
                     Console.WriteLine(newPadding + enemy.Name + "  " + "LVL: " + enemy.Level + "  ");
 
                     StringBuilder hpPadding = new StringBuilder();
-                    string hp = "HP:" + enemy.CurrentStats[Seraph.Stats.hp] + "/" + enemy.BaseStats[Seraph.Stats.hp] + "  MP:" + enemy.CurrentStats[Seraph.Stats.mana] + "/" + enemy.BaseStats[Seraph.Stats.mana];
-                    for (int j = 0; j < 64 - hp.Length - 2; j++)
+                    string hp = "HP:" + enemy.CurrentStats[Seraph.Stats.hp] + "/" + enemy.BaseStats[Seraph.Stats.hp] + "  ";
+                    string mp = "MP:" + enemy.CurrentStats[Seraph.Stats.mana] + "/" + enemy.BaseStats[Seraph.Stats.mana];
+                    for (int j = 0; j < 64 - hp.Length - mp.Length- 2; j++)
                     {
                         hpPadding.Append(" ");
                     }
-                    Console.WriteLine(hpPadding.ToString() + hp + "  ");
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(hpPadding.ToString() + hp);
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine( mp + "  ");
+                    Console.ForegroundColor = ConsoleColor.Black;
                 }
                 else if (i == 15)
                 {
@@ -203,12 +209,17 @@ namespace ManifestDestiny
                     }
                     Console.WriteLine("  " + name + "  " + "LVL: " + playerSeraph.Level + namePadding);
                     StringBuilder hpPadding = new StringBuilder();
-                    string hp = "HP:" + playerSeraph.CurrentStats[Seraph.Stats.hp] + "/" + playerSeraph.BaseStats[Seraph.Stats.hp] + "  MP:" + playerSeraph.CurrentStats[Seraph.Stats.mana] + "/" + playerSeraph.BaseStats[Seraph.Stats.mana];
-                    for (int j = 0; j < 64 - hp.Length - 2; j++)
+                    string hp = "  HP:" + playerSeraph.CurrentStats[Seraph.Stats.hp] + "/" + playerSeraph.BaseStats[Seraph.Stats.hp] ;
+                    string mp = "  MP:" + playerSeraph.CurrentStats[Seraph.Stats.mana] + "/" + playerSeraph.BaseStats[Seraph.Stats.mana];
+                    for (int j = 0; j < 64 - hp.Length - mp.Length; j++)
                     {
                         hpPadding.Append(" ");
                     }
-                    Console.WriteLine("  " + hp + hpPadding.ToString());
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(hp);
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine(mp + hpPadding);
+                    Console.ForegroundColor = ConsoleColor.Black;
                 }
                 else
                 {
