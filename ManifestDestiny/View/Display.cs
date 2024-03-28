@@ -65,7 +65,7 @@ namespace ManifestDestiny
                         DialogBubbles.Add("You picked up " + tile.GiveObject().Name);
                         _gameManager.Inventory.AddItem(tile.GiveObject());
                     }
-                    else if (tile.EncounterChance != 0 && playerX + playerY != 0)
+                    else if (tile.EncounterChance != 0 && x + y != 0)
                     {
                         Random aleatoire = new Random();
                         int chance = aleatoire.Next(1, 100);
@@ -123,9 +123,6 @@ namespace ManifestDestiny
 
                         Console.BackgroundColor = ConsoleColor.Black;
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.SetCursorPosition(0, Console.WindowHeight - 5);
-                        Console.WriteLine("Player X Posittion: " + _playerPosition.X);
-                        Console.WriteLine("Player Y Posittion: " + _playerPosition.Y);
                     }
                 }
             }
