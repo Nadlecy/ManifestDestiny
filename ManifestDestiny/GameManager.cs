@@ -271,6 +271,7 @@ class GameManager
                                             {
                                                 DialogBubbles.Add("You catched " + BattleHandler.CurrentEnemy.Name);
                                                 PlayerTeam.Add(BattleHandler.CurrentEnemy);
+                                                BattleHandler.GetEnemyExp();
                                                 BattleHandler.EndBattle();
                                                 GameState = GameStates.StartExploration;
                                                 _isGettingKey = false;
