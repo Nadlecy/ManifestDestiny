@@ -1,42 +1,112 @@
 {
-    "Ability": [
-        {
-            "Name": "Wait",
-            "Type": "Absolute",
-            "Description": "Wait a turn",
-            "Accuracy": 100,
-            "ManaCost": 0,
-            "Attributes": []
-        },
-      {
-        "Name": "Bash",
-        "Type": "Scramble",
-        "Description": "A simple tackle",
-        "Accuracy": 95,
-        "ManaCost": 4,
-        "Attributes": [ "AttributeAttack" ],
-        "CritChance": 10,
-        "Power": 40
-      },
-      {
-        "Name": "Compact",
-        "Type": "Mechanic",
-        "Description": "",
-        "Accuracy": 95,
-        "ManaCost": 8,
-        "Attributes": [ "AttributeAttack" ],
-        "CritChance": 15,
-        "Power": 40
-      },
-      {
-        "Name": "Biden Blast",
-        "Type": "Occult",
-        "Description": "Biden that shoot a laser",
-        "Accuracy": 85,
-        "ManaCost": 12,
-        "Attributes": [ "AttributeAttack" ],
-        "CritChance": 15,
-        "Power": 60
-      }
-    ]
+  "Ability": [
+    {
+      "Name": "Wait",
+      "Type": "Absolute",
+      "Description": "Wait a turn",
+      "Accuracy": 100,
+      "ManaCost": 0,
+      "Attributes": []
+    },
+    {
+      "Name": "Bash",
+      "Type": "Scramble",
+      "Description": "A simple tackle",
+      "Accuracy": 95,
+      "ManaCost": 4,
+      "Attributes": [ "AttributeAttack" ],
+      "CritChance": 10,
+      "Power": 40
+    },
+    {
+      "Name": "Magic Missile",
+      "Type": "Occult",
+      "Description": "A spell infuse missile",
+      "Accuracy": 95,
+      "ManaCost": 4,
+      "Attributes": [ "AttributeAttack" ],
+      "CritChance": 20,
+      "Power": 35
+    },
+    {
+      "Name": "Eldritch Blast",
+      "Type": "Occult",
+      "Description": "A spell with high critical chance",
+      "Accuracy": 90,
+      "ManaCost": 6,
+      "Attributes": [ "AttributeAttack" ],
+      "CritChance": 80,
+      "Power": 25
+    },
+    {
+      "Name": "Biden Blast",
+      "Type": "Occult",
+      "Description": "Biden that shoot a laser",
+      "Accuracy": 85,
+      "ManaCost": 12,
+      "Attributes": [ "AttributeAttack" ],
+      "CritChance": 15,
+      "Power": 60
+    },
+    {
+      "Name": "Compact",
+      "Type": "Mechanic",
+      "Description": "",
+      "Accuracy": 95,
+      "ManaCost": 8,
+      "Attributes": [ "AttributeAttack" ],
+      "CritChance": 15,
+      "Power": 40
+    },
+    {
+      "Name": "Sharpshooting",
+      "Type": "Mechanic",
+      "Description": "A precise sniper shot",
+      "Accuracy": 95,
+      "ManaCost": 10,
+      "Attributes": [ "AttributeAttack" ],
+      "CritChance": 40,
+      "Power": 40
+    },
+    {
+      "Name": "Chomp",
+      "Type": "Wild",
+      "Description": "Chomp the enemy",
+      "Accuracy": 90,
+      "ManaCost": 4,
+      "Attributes": [ "AttributeAttack" ],
+      "CritChance": 10,
+      "Power": 40
+    },
+    {
+      "Name": "Mighty Fang",
+      "Type": "Wild",
+      "Description": "Strongly bite the enemy with a high crit chance",
+      "Accuracy": 70,
+      "ManaCost": 5,
+      "Attributes": [ "AttributeAttack" ],
+      "CritChance": 75,
+      "Power": 30
+    },
+    {
+      "Name": "Bozo Blast",
+      "Type": "Fluid",
+      "Description": "Blast the enemy with a powerfull water wave",
+      "Accuracy": 60,
+      "ManaCost": 20,
+      "Attributes": [ "AttributeAttack" ],
+      "CritChance": 1,
+      "Power": 70
+    },
+    {
+      "Name": "Sting",
+      "Type": "Vermin",
+      "Description": "Sting the enemy with a high crit chance",
+      "Accuracy": 90,
+      "ManaCost": 5,
+      "Attributes": [ "AttributeAttack" ],
+      "CritChance": 85,
+      "Power": 30
+    }
+  ]
 }
