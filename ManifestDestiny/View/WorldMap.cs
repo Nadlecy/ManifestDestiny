@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ManifestDestiny.Container;
-using ManifestDestiny.Helper.Json;
 using ManifestDestiny.Helper.Position;
+using ManifestDestiny.Helper.Json;
 
 namespace ManifestDestiny
 {
@@ -47,6 +46,7 @@ namespace ManifestDestiny
 
         public void SetMap(string textFile)
         {
+            _gameManager.Map = textFile;
             _worldMapTiles.Clear();
             string path = "../../../Data/Map/";
             if (File.Exists(path + textFile))

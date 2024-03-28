@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ManifestDestiny.View;
 
-namespace ManifestDestiny.Container
+namespace ManifestDestiny
 {
     [Serializable]
     public class WarpContainer

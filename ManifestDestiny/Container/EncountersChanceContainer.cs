@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ManifestDestiny.Container
+namespace ManifestDestiny
 {
+    [Serializable]
     internal class EncountersChanceContainer
     {
         public Dictionary<string, int> Encounter { get; set; }
