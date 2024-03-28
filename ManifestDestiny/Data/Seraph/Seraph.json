@@ -82,7 +82,7 @@
         "1": "Wait",
         "2": "Bash",
         "3": "Liquidation",
-        "4":  "Blind Charge",
+        "4": "Blind Charge",
         "10": "Bozo Blast"
       },
       "Description": "A little doggo"
@@ -141,6 +141,36 @@
         "1": "Wait",
         "2": "Magic Missile",
         "3": "Soul Drain"
+      },
+      "Description": "A sentient blob of void"
+    },
+    {
+      "Name": "Mokrox",
+      "Type": "Vermin",
+
+      "HP": 50,
+      "Attack": 22,
+      "Defense": 30,
+      "Mana": 34,
+      "Magic": 5,
+      "Speed": 10,
+
+      "CatchRate": 100,
+
+      "HP100": 500,
+      "Attack100": 220,
+      "Defense100": 3000,
+      "Mana100": 340,
+      "Speed100": 100,
+      "Magic100": 50,
+
+      "ExpReward": 30,
+      "Ability": {
+        "1": "Wait",
+        "2": "Bash",
+        "4": "Chomp",
+        "3": "Ruckus",
+        "5":  "Sting"
       },
       "Description": "A sentient blob of void"
     },
