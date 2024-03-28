@@ -1,4 +1,4 @@
-﻿using ManifestDestiny.View;
+﻿using ManifestDestiny;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
