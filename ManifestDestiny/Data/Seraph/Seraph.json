@@ -110,9 +110,9 @@
       "Ability": {
         "1": "Wait",
         "2": "Bash",
-        "3": "Liquidation",
-        "4": "Blind Charge",
-        "10": "Bozo Blast"
+        "6": "Liquidation",
+        "3": "Blind Charge",
+        "4": "Confidence"
       },
       "Description": "A little slime"
     },
@@ -140,6 +140,7 @@
       "Ability": {
         "1": "Wait",
         "2": "Bash",
+        "3": "Confidence",
         "4": "Magic Missile",
         "6": "Liquidation",
         "10": "Bozo Blast"
@@ -232,7 +233,8 @@
         "1": "Wait",
         "2": "Bash",
         "3": "Chomp",
-        "5": "Mighty Fang"
+        "4": "Confidence",
+        "7": "Mighty Fang"
       },
       "Description": "A little doggo"
     },
@@ -442,6 +444,7 @@
       "Ability": {
         "1": "Wait",
         "2": "Bash",
+        "3": "Confidence",
         "4": "Tempest Slash",
         "6": "Blind Charge",
         "7": "Liquidation"
@@ -471,7 +474,8 @@
       "ExpReward": 200,
       "Ability": {
         "2": "Biden Blast",
-        "1": "Wait"
+        "1": "Wait",
+        "3": "Confidence"
       },
       "Description": "Goku, the King of the Monkeys"
     }
