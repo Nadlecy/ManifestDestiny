@@ -290,7 +290,7 @@ class GameManager
                                         {
                                             BattleHandler.EndBattle();
                                             //switch to a GameOver Gamestate or something idk
-
+                                            LoadSave();
                                         }
                                         else if (turnResult == "win")
                                         {

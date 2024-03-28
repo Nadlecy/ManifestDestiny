@@ -68,6 +68,12 @@ class BattleManager
             default: throw new ArgumentException();
         }
     }
+    public static void Swap<T>(IList<T> list, int indexA, int indexB) // https://stackoverflow.com/questions/2094239/swap-two-items-in-listt
+    {
+        T tmp = list[indexA];
+        list[indexA] = list[indexB];
+        list[indexB] = tmp;
+    }
 
     public string BattlePhase(BattleAbility playerAbility)
     {
@@ -92,8 +98,8 @@ class BattleManager
             }
             else if (BattlePhaseEnemy() == true)
             {
-                //gameover
                 return "gameOver";
+                //gameover
             }
         }
 
@@ -105,7 +111,10 @@ class BattleManager
 
     public bool BattlePhasePlayer(BattleAbility playerAbility)
     {
-        playerAbility.Use(CurrentPlayer, CurrentEnemy);
+        if (CurrentPlayer.CurrentStats[Seraph.Stats.mana] > playerAbility.Cost)
+        {
+            playerAbility.Use(CurrentPlayer, CurrentEnemy);
+        }
         if (IsDead(CurrentEnemy))
         {
             if (EnemyDeath() == false)
@@ -119,7 +128,11 @@ class BattleManager
     public bool BattlePhaseEnemy()
     {
         int abilityID = EnemyAbilityChoice();
-        CurrentEnemy._abilities[abilityID].Use(CurrentEnemy, CurrentPlayer);
+        if (CurrentEnemy.CurrentStats[Seraph.Stats.mana] > CurrentEnemy._abilities[abilityID].Cost)
+        {
+            CurrentEnemy._abilities[abilityID].Use(CurrentEnemy, CurrentPlayer);
+        }
+
         if (IsDead(CurrentPlayer))
         {
             if (PlayerSwitch() == false)
@@ -151,6 +164,15 @@ class BattleManager
         }
         if (alive.Count > 0)
         {
+            foreach (var seraph in PlayerTeam)
+            {
+                if (IsDead(seraph) == false)
+                {
+                    Swap(PlayerTeam, PlayerTeam.IndexOf(CurrentPlayer), PlayerTeam.IndexOf(seraph));
+                    CurrentPlayer = seraph;
+                    break;
+                }
+            }
             //force player to select new seraph to send out, in a menu
             /*
              * MENU THING HERE

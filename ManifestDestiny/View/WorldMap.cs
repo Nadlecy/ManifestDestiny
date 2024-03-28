@@ -47,7 +47,7 @@ namespace ManifestDestiny
 
         public void SetMap(string fileName)
         {
-            _gameManager.Map = fileName + ".txt";
+            _gameManager.Map = fileName;
             _worldMapTiles.Clear();
             string path = "../../../Data/Map/";
             if (File.Exists(path + fileName + ".txt"))
