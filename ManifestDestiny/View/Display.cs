@@ -105,10 +105,13 @@ namespace ManifestDestiny
 
                     if (_gameManager.GameState == GameStates.Exploration || _gameManager.GameState == GameStates.StartExploration)
                     {
-                        Console.SetCursorPosition(playerY, playerX);
-                        Console.BackgroundColor = _currentDisplay[playerX][playerY].ColorBackground;
-                        Console.ForegroundColor = _currentDisplay[playerX][playerY].ColorText;
-                        Console.Write(apparence);
+                        if (tile.IsWarp == false)
+                        {
+                            Console.SetCursorPosition(playerY, playerX);
+                            Console.BackgroundColor = _currentDisplay[playerX][playerY].ColorBackground;
+                            Console.ForegroundColor = _currentDisplay[playerX][playerY].ColorText;
+                            Console.Write(apparence);
+                        }
 
                         _playerPosition.X += x;
                         _playerPosition.Y += y;

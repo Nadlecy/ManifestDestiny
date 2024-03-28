@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ManifestDestiny.View
+namespace ManifestDestiny.Container
 {
     [Serializable]
     class ItemTilesContainer
