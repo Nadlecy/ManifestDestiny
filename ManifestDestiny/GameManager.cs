@@ -1,6 +1,4 @@
 ﻿using ManifestDestiny;
-using ManifestDestiny.Helper.Math;
-using ManifestDestiny.Items;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -38,11 +36,19 @@ class GameManager
     public bool Gaming { get; set; }
 
     public Menu CurrentMenu { get; set; }
+    public Save Saving { get; set; }
+    Position _playerPosition;
+
+    string _map;
+
+    public string Map { get => _map; set => _map = value; }
+    public Position PlayerPosition { get => _playerPosition; set => _playerPosition = value; }
 
     public GameManager()
     {
         DialogBubbles = new List<string>();
 
+        Saving = new Save();
         Gaming = true;
         PlayerTeam = new List<Seraph>();
         BattleHandler = new BattleManager(PlayerTeam);
@@ -53,12 +59,22 @@ class GameManager
         Data = new GameData();
     }
 
+    public void LoadSave()
+    {
+        PlayerTeam = Saving.TeamJsonLoader("SaveSeraph", PlayerTeam, Data);
+        Saving.PositionJsonLoader("SavePosition", ref _playerPosition, ref _map);
+    }
+
+    public void WriteSave()
+    {
+        Saving.TeamJsonWriter("SaveSeraph", PlayerTeam);
+        Saving.PositionJsonWriter("SavePosition", PlayerPosition, ref _map);
+    }
+
     public void GameLoop()
     {
-        Save save = new Save();
+        LoadSave();
 
-
-        PlayerTeam = save.TeamJsonLoader("SaveSeraph", PlayerTeam, Data);
 
         // Create debug inventory
 
@@ -71,6 +87,7 @@ class GameManager
 
         //_inventory.AddItem(Items.ItemList["Tasty Ration"].Clone(),7);
         Inventory.AddItem(Items.ItemList["Black Flower"].Clone());
+        Inventory.AddItem(Items.ItemList["Basic Xenoconverter"].Clone(), 1000);
 
         Menu mainMenu = new Menu("MAIN MENU", new List<string> { "SERAPHIM", "BAG", "SAVE AND QUIT GAME", "CLOSE"});
         Menu bagMenu = new Menu("BAG", Inventory);
@@ -87,11 +104,11 @@ class GameManager
         //save.TeamJsonWriter("SaveSeraph", PlayerTeam);
 
         WorldMap worldMap = new WorldMap(this);
-        worldMap.SetMap("Map01.txt");
+        worldMap.SetMap(Map);
         Display display = new Display(worldMap, this);
         display.SetWorldDisplay(worldMap.WorldMapTiles);
         display.WorldDisplay();
-        display.SetPlayerPosition(15, 15);
+        display.SetPlayerPosition(PlayerPosition.X, PlayerPosition.Y);
 
         while (Gaming)
         {
@@ -180,19 +197,34 @@ class GameManager
                             case ConsoleKey.Enter:
                                 Selection = CurrentMenu.Enter();
 
-                                // Item selection
-                                if (CurrentMenu.LineType == Menu.LinesType.items && Selection != "CLOSE")
+                            // Item selection
+                            if(CurrentMenu.LineType == Menu.LinesType.items && Selection != "CLOSE")
+                            {
+                                // Do item thing
+                                CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].Use();
+
+                                if (CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].Heal > 0)
                                 {
-                                    // Do item thing
-                                    CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].Use();
-                                    if (CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].Heal > 0)
-                                    {
-                                        // Heal seraph
-                                        BattleHandler.CurrentPlayer.HealHp(CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].Heal);
-                                        CurrentMenu.ItemStorage.Items.RemoveAt(CurrentMenu.SelectedLine);
-                                        Selection = "CLOSE";
+                                    // Heal seraph
+                                    BattleHandler.CurrentPlayer.HealHp(CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].Heal);
+                                    CurrentMenu.ItemStorage.RemoveItem(CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine]);
+                                    Selection = "CLOSE";
+                                } else if (CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].CatchRateMultiplier > 0) {
+                                    // Try to catch enemy
+                                    float catchRate = cMaths.CatchRateCalculator(BattleHandler.CurrentEnemy, CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine]);
+                                    double catchRand = rand.NextDouble();
+                                    if(catchRate > catchRand) {
+                                        Console.WriteLine("You catched the Seraph");
                                     }
+                                    else
+                                    {
+                                        Console.WriteLine("That didnt work");
+                                    }
+                                    CurrentMenu.ItemStorage.RemoveItem(CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine]);
+                                    
+                                    //Selection = "CLOSE";
                                 }
+                            }
 
                                 // Attack selection
                                 if (CurrentMenu.LineType == Menu.LinesType.ability && Selection != "CLOSE")
@@ -346,6 +378,6 @@ class GameManager
             }
         }
         //Fin du jeu
-        save.TeamJsonWriter("SaveSeraph", PlayerTeam);
+        WriteSave();
     }
 }

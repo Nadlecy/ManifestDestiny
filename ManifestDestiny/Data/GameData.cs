@@ -74,6 +74,7 @@ namespace ManifestDestiny
                 seraphim.Add(seraph.Name, new Seraph(
                     seraph.Name,
                     battleTypes[seraph.Type],
+                    seraph.CatchRate,
                     new Dictionary<Seraph.Stats, int>
                     {
                         {Seraph.Stats.hp, seraph.HP},

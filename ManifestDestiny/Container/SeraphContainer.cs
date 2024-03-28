@@ -24,6 +24,8 @@ namespace ManifestDestiny
         public int Mana { get; set; }
         public int Magic { get; set; }
 
+        public int CatchRate { get; set; }
+
         public int HP100 { get; set; }
         public int Attack100 { get; set; }
         public int Defense100 { get; set; }

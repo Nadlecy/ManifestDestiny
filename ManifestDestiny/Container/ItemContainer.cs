@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ManifestDestiny.Items
+namespace ManifestDestiny
 {
-    [System.Serializable]
+    [Serializable]
     class ItemContainer
     {
         public Dictionary<string, Item> ItemList { get; set; }

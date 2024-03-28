@@ -6,6 +6,13 @@
         "Y": 10
       },
       "ItemName": "Tasty Ration"
+    },
+    {
+      "Position": {
+        "X": 16,
+        "Y": 10
+      },
+      "ItemName": "Basic Xenoconverter"
     }
   ]
 }
