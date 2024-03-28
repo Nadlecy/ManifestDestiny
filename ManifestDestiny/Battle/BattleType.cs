@@ -8,6 +8,7 @@ class BattleType
 {
     public string StatusEffectImmunity{ get; set; }
     public string Name { get; private set; }
+    public System.ConsoleColor Color { get; set; }
 
     public Dictionary<string, float> _typeRelations = new () {
         {"Scramble",1.0f},
@@ -30,6 +31,7 @@ class BattleType
                 _typeRelations["Mechanic"] = 0.5f;
                 _typeRelations["Wild"] = 2.0f;
                 _typeRelations["Fluid"] = 0.5f;
+                Color = ConsoleColor.DarkYellow;
                 break;
 
             case "Occult":
@@ -38,6 +40,7 @@ class BattleType
                 _typeRelations["Wild"] = 2.0f;
                 _typeRelations["Vermin"] = 2.0f;
                 StatusEffectImmunity = "Stun";
+                Color = ConsoleColor.DarkMagenta;
                 break;
 
             case "Mechanic":
@@ -48,12 +51,14 @@ class BattleType
                 _typeRelations["Fluid"] = 2.0f;
                 _typeRelations["Vermin"] = 0.0f;
                 StatusEffectImmunity = "Bleed";
+                Color = ConsoleColor.DarkGray;
                 break;
 
             case "Wild":
                 _typeRelations["Mechanic"] = 2.0f;
                 _typeRelations["Fluid"] = 0.5f;
                 _typeRelations["Vermin"] = 2.0f;
+                Color = ConsoleColor.DarkRed;
                 break;
 
             case "Fluid":
@@ -62,6 +67,7 @@ class BattleType
                 _typeRelations["Mechanic"] = 0.5f;
                 _typeRelations["Wild"] = 0.5f;
                 StatusEffectImmunity = "Burn";
+                Color = ConsoleColor.DarkCyan;
                 break;
 
             case "Vermin":
@@ -71,10 +77,12 @@ class BattleType
                 _typeRelations["Fluid"] = 2.0f;
                 _typeRelations["Vermin"] = 0.5f;
                 StatusEffectImmunity = "Poison";
+                Color = ConsoleColor.DarkGreen;
                 break;
 
             default:
                 Name = "Absolute";
+                Color = ConsoleColor.Black;
                 break;
         }
     }

@@ -379,12 +379,20 @@ namespace ManifestDestiny
                     {
                         if (i == menu.SelectedLine)
                         {
-                            Console.WriteLine(" ► " + _gameManager.BattleHandler.CurrentPlayer._abilities[i].Name + "  " + _gameManager.BattleHandler.CurrentPlayer._abilities[i].Cost + " MP  " + _gameManager.BattleHandler.CurrentPlayer._abilities[i].BattleType.Name + Padding(61, -(_gameManager.BattleHandler.CurrentPlayer._abilities[i].Name.Length + _gameManager.BattleHandler.CurrentPlayer._abilities[i].Cost.ToString().Length + _gameManager.BattleHandler.CurrentPlayer._abilities[i].BattleType.Name.Length + 7)));
+                            Console.Write(" ► ");
                         }
                         else
                         {
-                            Console.WriteLine("   " + _gameManager.BattleHandler.CurrentPlayer._abilities[i].Name + "  " + _gameManager.BattleHandler.CurrentPlayer._abilities[i].Cost + " MP  " + _gameManager.BattleHandler.CurrentPlayer._abilities[i].BattleType.Name + Padding(61, -(_gameManager.BattleHandler.CurrentPlayer._abilities[i].Name.Length + _gameManager.BattleHandler.CurrentPlayer._abilities[i].Cost.ToString().Length + _gameManager.BattleHandler.CurrentPlayer._abilities[i].BattleType.Name.Length + 7)));
+                            Console.Write("   ");                         
                         }
+                        Console.Write(_gameManager.BattleHandler.CurrentPlayer._abilities[i].Name + "  " );
+                        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                        Console.Write(_gameManager.BattleHandler.CurrentPlayer._abilities[i].Cost + " MP  ");
+                        Console.ForegroundColor = _gameManager.BattleHandler.CurrentPlayer._abilities[i].BattleType.Color;
+                        Console.Write(_gameManager.BattleHandler.CurrentPlayer._abilities[i].BattleType.Name);
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.WriteLine(Padding(61, -(_gameManager.BattleHandler.CurrentPlayer._abilities[i].Name.Length + _gameManager.BattleHandler.CurrentPlayer._abilities[i].Cost.ToString().Length + _gameManager.BattleHandler.CurrentPlayer._abilities[i].BattleType.Name.Length + 7)));
+
                     }
 
                     // CLOSE button
