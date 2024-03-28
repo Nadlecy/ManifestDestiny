@@ -451,7 +451,7 @@ namespace ManifestDestiny
                     {
                         // Padding
                         StringBuilder newPadding = new StringBuilder();
-                        int paddingLength = 61 - playerSeraph._abilities[i].Name.Length; // 64 = window width 24 = height
+                        int paddingLength = 61 - (playerSeraph._abilities[i].Name.Length + playerSeraph._abilities[i].Cost.ToString().Length + playerSeraph._abilities[i].BattleType.Name.Length + 7); // 64 = window width 24 = height
 
                         for (int j = 0; j < paddingLength; j++)
                         {
@@ -464,7 +464,7 @@ namespace ManifestDestiny
                         }
                         else
                         {
-                            Console.WriteLine("   " + playerSeraph._abilities[i].Name + " " + playerSeraph._abilities[i].Cost + " MP  " + playerSeraph._abilities[i].BattleType.Name + newPadding.ToString());
+                            Console.WriteLine("   " + playerSeraph._abilities[i].Name + "  " + playerSeraph._abilities[i].Cost + " MP  " + playerSeraph._abilities[i].BattleType.Name + newPadding.ToString());
                         }
                     }
 
