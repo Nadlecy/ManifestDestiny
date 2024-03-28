@@ -46,8 +46,8 @@
 
       "ExpReward": 10,
       "Ability": {
-        "1": "Compact",
-        "2":  "Wait"
+        "2": "Compact",
+        "1":  "Wait"
       },
       "Description": "Tiny Robot"
     },
@@ -71,7 +71,8 @@
 
       "ExpReward": 100,
       "Ability": {
-        "1": "Biden Blast"
+        "2": "Biden Blast",
+        "1":  "Wait"
       },
       "Description": "Goku, the King of the Monkeys"
     }
