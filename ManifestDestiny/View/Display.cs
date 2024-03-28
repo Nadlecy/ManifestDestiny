@@ -164,6 +164,36 @@ namespace ManifestDestiny
             }
         }
 
+        public void HPBarCreate(int currentStats, int maxStats, ConsoleColor colorBar, int paddingLeft, int paddingRight)
+        {
+            Console.ForegroundColor = ConsoleColor.Black;
+            // Calculer le pourcentage de points de vie restants
+            double percentage = (double)currentStats / maxStats;
+
+            // Déterminer le nombre de caractères verts à afficher pour les points de vie actuels
+            int Chars = (int)(percentage * 20);
+
+            Console.Write(Padding(64,paddingLeft) + "[");
+
+            // Afficher les points de vie actuels en vert
+            Console.BackgroundColor = colorBar;
+            for (int i = 0; i < Chars; i++)
+            {
+                Console.Write(" ");
+            }
+
+            // Afficher les points de vie manquants en rouge
+            Console.BackgroundColor = ConsoleColor.Red;
+            for (int i = Chars; i < 20; i++)
+            {
+                Console.Write(" ");
+            }
+
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.WriteLine("]" + Padding(64,paddingRight)); 
+
+        }
+
         public void BattleDisplay(BattleManager battleManager)
         {
             Console.BackgroundColor = ConsoleColor.Gray;
@@ -186,9 +216,12 @@ namespace ManifestDestiny
                     Console.Write(Padding(64, -hp.Length - mp.Length - 2) + hp);
                     Console.ForegroundColor = ConsoleColor.DarkBlue;
                     Console.WriteLine(mp + "  ");
-                    Console.ForegroundColor = ConsoleColor.Black;
+                    HPBarCreate(enemy.CurrentStats[Seraph.Stats.hp], enemy.BaseStats[Seraph.Stats.hp], ConsoleColor.Green, -24, -62);
+                    Console.WriteLine(Padding(64));
+                    HPBarCreate(enemy.CurrentStats[Seraph.Stats.mana], enemy.BaseStats[Seraph.Stats.mana], ConsoleColor.Blue, -24, -62);
+                    //Console.ForegroundColor = ConsoleColor.Black;
                 }
-                else if (i == 15)
+                else if (i == 9)
                 {
                     // Display friendly
                     StringBuilder namePadding = new StringBuilder();
@@ -212,6 +245,9 @@ namespace ManifestDestiny
                     Console.Write(mp);
                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                     Console.WriteLine(xp + hpPadding);
+                    HPBarCreate(battleManager.CurrentPlayer.CurrentStats[Seraph.Stats.hp], battleManager.CurrentPlayer.BaseStats[Seraph.Stats.hp], ConsoleColor.Green, -62, -24);
+                    Console.WriteLine(Padding(64, 0));
+                    HPBarCreate(battleManager.CurrentPlayer.CurrentStats[Seraph.Stats.mana], battleManager.CurrentPlayer.BaseStats[Seraph.Stats.mana], ConsoleColor.Blue, -62, -24);
                     Console.ForegroundColor = ConsoleColor.Black;
                 }
                 else
