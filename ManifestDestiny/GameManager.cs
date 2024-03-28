@@ -35,11 +35,13 @@ class GameManager
     public BattleManager BattleHandler;
     public Menu battleMenu;
     public GameData Data { get; set; }
+    public bool Gaming { get; set; }
 
     public Menu CurrentMenu { get; set; }
 
     public GameManager()
     {
+        Gaming = true;
         PlayerTeam = new List<Seraph>();
         BattleHandler = new BattleManager(PlayerTeam);
         Selection = ""; 
@@ -68,7 +70,7 @@ class GameManager
         //_inventory.AddItem(Items.ItemList["Tasty Ration"].Clone(),7);
         Inventory.AddItem(Items.ItemList["Black Flower"].Clone());
 
-        Menu mainMenu = new Menu("MAIN MENU", new List<string> { "SERAPHIM", "BAG", "QUIT GAME", "CLOSE"});
+        Menu mainMenu = new Menu("MAIN MENU", new List<string> { "SERAPHIM", "BAG", "SAVE AND QUIT GAME", "CLOSE"});
         Menu bagMenu = new Menu("BAG", Inventory);
         Menu seraphMenu = new Menu("SERAPHIM", PlayerTeam);
 
@@ -77,8 +79,8 @@ class GameManager
         Seraph ju = Data.Summon("Lambda", 5);
         Seraph gagaga = Data.Summon("Bit", 32);
 
-        PlayerTeam.Add(ju);
-        PlayerTeam.Add(gagaga);
+        //PlayerTeam.Add(ju);
+        //PlayerTeam.Add(gagaga);
 
         //save.TeamJsonWriter("SaveSeraph", PlayerTeam);
 
@@ -89,7 +91,7 @@ class GameManager
         display.WorldDisplay();
         display.SetPlayerPosition(15, 15);
 
-        while (true)
+        while (Gaming)
         {
             keyInfo = Console.ReadKey();
             Selection = "";
@@ -308,10 +310,13 @@ class GameManager
                     display.MenuDisplay(seraphMenu);
                     break;
                 case "SAVE AND QUIT GAME":
+                    Gaming = false;
                     // TODO
                     break;
 
             }
         }
+        //Fin du jeu
+        save.TeamJsonWriter("SaveSeraph", PlayerTeam);
     }
 }
