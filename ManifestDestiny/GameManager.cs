@@ -117,7 +117,14 @@ class GameManager
                 {
                     DialogBubbles.RemoveAt(0);
                     justLeftBubbles = true;
-                    display.MenuDisplay(CurrentMenu);
+                    if(GameState == GameStates.StartExploration || GameState == GameStates.Exploration)
+                    {
+                        display.WorldDisplay();
+                        display.PlayerWorldDisplay(0, 0);
+                    } else if(GameState == GameStates.Menu || GameState == GameStates.Battle)
+                    {
+                        display.MenuDisplay(CurrentMenu);
+                    }
                 }
             }
 
@@ -127,6 +134,7 @@ class GameManager
                 switch (GameState)
                 {
                     case GameStates.StartExploration:
+                        DialogBubbles.Add("Welcome to exploration mode");
                         display.WorldDisplay();
                         display.PlayerWorldDisplay(0, 0);
                         GameState = GameStates.Exploration;
