@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Text.Json;
 
-namespace ManifestDestiny
+namespace ManifestDestiny.Helper.Json
 {
     public class CustomJson<T>
     {
