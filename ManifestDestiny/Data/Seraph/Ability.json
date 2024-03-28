@@ -49,6 +49,17 @@
       "Power": 60
     },
     {
+      "Name": "Soul Drain",
+      "Type": "Occult",
+      "Description": "Reduces the enemy's mana regeneration",
+      "Accuracy": 90,
+      "ManaCost": 0,
+      "Attributes": [ "AttributeStatAlteration" ],
+      "StatAlterations": [ 0, 0, 0, 0, 0, 0, 0, -10 ],
+      "CritChance": 0,
+      "Power": 0
+    },
+    {
       "Name": "Compact",
       "Type": "Mechanic",
       "Description": "",
@@ -107,6 +118,17 @@
       "Attributes": [ "AttributeAttack" ],
       "CritChance": 85,
       "Power": 30
+    },
+    {
+      "Name": "Ruckus",
+      "Type": "Vermin",
+      "Description": "Lowers the enemy's attack'",
+      "Accuracy": 90,
+      "ManaCost": 0,
+      "Attributes": [ "AttributeStatAlteration" ],
+      "StatAlterations": [ 0, 0, 0, 0, -5, 0, 0, 0 ],
+      "CritChance": 0,
+      "Power": 0
     }
   ]
 }

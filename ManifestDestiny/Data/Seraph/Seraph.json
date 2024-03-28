@@ -24,7 +24,9 @@
       "ExpReward": 20,
       "Ability": {
         "1": "Wait",
-        "2": "Bash"
+        "2": "Bash",
+        "3": "Soul Drain",
+        "4":  "Ruckus"
       },
       "Description": "An Average Monster"
     },

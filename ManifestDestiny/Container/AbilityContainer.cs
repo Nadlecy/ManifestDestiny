@@ -27,5 +27,6 @@ namespace ManifestDestiny
         public int? CritChance { get; set; }
 
         //AttributStatAlteration
+        public List<int>? StatAlterations { get; set; }
     }
 }

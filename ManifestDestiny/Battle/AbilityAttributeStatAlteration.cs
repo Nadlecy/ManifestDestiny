@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 class AbilityAttributeStatAlteration : AbilityAttribute
 {
     /*
-    the alteration list parameter must be presented like [a,b,c, x,y,z]
+    the alteration list parameter must be presented like [a,b,c,d, w,x,y,z]
     where the first three numbers are the atk/def/spd of the user
     and the last three are the atk/def/spd of the target
     */
@@ -29,8 +29,10 @@ class AbilityAttributeStatAlteration : AbilityAttribute
         caster.StatChange(Seraph.Stats.attack, alterationList[0]);
         caster.StatChange(Seraph.Stats.defense, alterationList[1]);
         caster.StatChange(Seraph.Stats.speed, alterationList[2]);
-        target.StatChange(Seraph.Stats.attack, alterationList[3]);
-        target.StatChange(Seraph.Stats.defense, alterationList[4]);
-        target.StatChange(Seraph.Stats.speed, alterationList[5]);
+        caster.StatChange(Seraph.Stats.magic, alterationList[3]);
+        target.StatChange(Seraph.Stats.attack, alterationList[4]);
+        target.StatChange(Seraph.Stats.defense, alterationList[5]);
+        target.StatChange(Seraph.Stats.speed, alterationList[6]);
+        target.StatChange(Seraph.Stats.magic, alterationList[7]);
     }
 }
