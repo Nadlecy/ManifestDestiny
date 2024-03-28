@@ -51,6 +51,9 @@ class GameManager
 
     public void GameLoop()
     {
+        Save save = new Save();
+
+
 
         // Create debug inventory
 
@@ -75,6 +78,8 @@ class GameManager
 
         PlayerTeam.Add(playerSeraph);
         PlayerTeam.Add(gagaga);
+
+        save.JsonWriter("SaveSeraph", PlayerTeam);
 
         WorldMap worldMap = new WorldMap(this);
         worldMap.SetMap("Map01.txt");
@@ -171,7 +176,7 @@ class GameManager
                             Selection = CurrentMenu.Enter();
                             if (CurrentMenu.LineType == Menu.LinesType.ability && Selection != "CLOSE")
                             {
-                                string turnResult = BattleHandler.BattlePhase(playerSeraph._abilities[CurrentMenu.SelectedLine], BattleHandler.CurrentEnemy._abilities[0]);
+                                string turnResult = BattleHandler.BattlePhase(playerSeraph._abilities[CurrentMenu.SelectedLine]);
                                 Selection = "CLOSE";
                                 if(turnResult == "gameOver")
                                 {

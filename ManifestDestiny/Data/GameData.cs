@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using ManifestDestiny.Helper.Json;
+using ManifestDestiny.Container;
 
 namespace ManifestDestiny
 {
@@ -86,49 +87,20 @@ namespace ManifestDestiny
                     seraph.Description
                 ));
 
-
                 foreach (KeyValuePair<int, string> pair in seraph.Ability)
                 {
                     seraphim[seraph.Name]._abilitiesUnlocks.Add(pair.Key, abilities[pair.Value]);
                 }
             }   
-
-            /*
-            //creating Lambda
-            seraphim.Add("Lambda", new Seraph("Lambda",
-                battleTypes["Absolute"],
-                new Dictionary<Seraph.Stats, int>
-                {
-                    { Seraph.Stats.hp, 35 },
-                    { Seraph.Stats.attack, 28 },
-                    { Seraph.Stats.defense, 19 },
-                    { Seraph.Stats.mana, 36 },
-                    { Seraph.Stats.magic, 7 },
-                    { Seraph.Stats.speed, 13 }
-                }, new Dictionary<Seraph.Stats, int>
-                {
-                    { Seraph.Stats.hp, 35 },
-                    { Seraph.Stats.attack, 28 },
-                    { Seraph.Stats.defense, 19 },
-                    { Seraph.Stats.mana, 36 },
-                    { Seraph.Stats.magic, 7 },
-                    { Seraph.Stats.speed, 13 }
-                },
-                20,new Dictionary<int, BattleAbility>
-                {
-                    {1, abilities["bash"] }
-                },
-                "Average monster"
-                ));
-            */
-
         }
 
         public Seraph Summon(string name, int level)
         {
             Seraph newGuy = seraphim[name].Clone();
             newGuy.Experience = level * 100;
-            
+
+            newGuy.FullHeal();
+
             return newGuy;
         }
     }

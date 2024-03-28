@@ -82,9 +82,6 @@ namespace ManifestDestiny
                                 int seraChoice = aleatoire.Next(1, aleaSeraph);
                                 if (seraChoice <= sera.Value)
                                 {
-                                    //_gameManager.GameState = GameManager.GameStates.StartBattle;
-                                    // FAUT LANCER LE COMBAT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
                                     int level = aleatoire.Next(tile.LevelMin, tile.LevelMax);
                                     Seraph seraph = _gameManager.Data.Summon(sera.Key, level);
                                     List<Seraph> listSeraph = new List<Seraph>();
@@ -105,10 +102,13 @@ namespace ManifestDestiny
 
                     if (_gameManager.GameState == GameStates.Exploration || _gameManager.GameState == GameStates.StartExploration)
                     {
-                        Console.SetCursorPosition(playerY, playerX);
-                        Console.BackgroundColor = _currentDisplay[playerX][playerY].ColorBackground;
-                        Console.ForegroundColor = _currentDisplay[playerX][playerY].ColorText;
-                        Console.Write(apparence);
+                        if (tile.IsWarp == false)
+                        {
+                            Console.SetCursorPosition(playerY, playerX);
+                            Console.BackgroundColor = _currentDisplay[playerX][playerY].ColorBackground;
+                            Console.ForegroundColor = _currentDisplay[playerX][playerY].ColorText;
+                            Console.Write(apparence);
+                        }
 
                         _playerPosition.X += x;
                         _playerPosition.Y += y;
@@ -209,8 +209,8 @@ namespace ManifestDestiny
                     }
                     Console.WriteLine("  " + name + "  " + "LVL: " + playerSeraph.Level + namePadding);
                     StringBuilder hpPadding = new StringBuilder();
-                    string hp = "  HP:" + playerSeraph.CurrentStats[Seraph.Stats.hp] + "/" + playerSeraph.BaseStats[Seraph.Stats.hp];
-                    string mp = "  MP:" + playerSeraph.CurrentStats[Seraph.Stats.mana] + "/" + playerSeraph.BaseStats[Seraph.Stats.mana];
+                    string hp = "  HP:" + playerSeraph.CurrentStats[Seraph.Stats.hp] + "/" + playerSeraph.BaseStats[Seraph.Stats.hp] ;
+                    string mp = "  MP:" + playerSeraph.CurrentStats[Seraph.Stats.mana] + "/" + playerSeraph.BaseStats[Seraph.Stats.mana] + " " + playerSeraph.Experience.ToString();
                     for (int j = 0; j < 64 - hp.Length - mp.Length; j++)
                     {
                         hpPadding.Append(" ");

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ManifestDestiny;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,31 +29,30 @@ class BattleManager
         if (foeTeam.Count > 6) { throw new ArgumentException("too many ennemies", nameof(foeTeam)); }
         EnemyTeam = foeTeam;
         CurrentPlayer = PlayerTeam[0];
+        PlayerParticipants.Add(CurrentPlayer);
         CurrentEnemy = EnemyTeam[0];
         EnemyAILevel = AILevel;
     }
 
-    public string EnemyAbilityChoice()
+    public int EnemyAbilityChoice()
     {
-        string choice;
         int choiceID;
         switch(EnemyAILevel)
         {
             case 1:
-                choiceID = GameManager.rand.Next(0, CurrentEnemy._abilities.Count);
-                choice = CurrentEnemy._abilities[choiceID].Name;
-
-                return choice;
+                choiceID = GameManager.rand.Next(CurrentEnemy._abilities.Count);
+                
+                return choiceID;
             default: throw new ArgumentException();
         }
     }
 
-    public string BattlePhase(BattleAbility playerAbility, BattleAbility enemyAbility)
+    public string BattlePhase(BattleAbility playerAbility)
     {
         //if the current player seraph is slower than the enemy, enemy attacks first.
         if (CurrentPlayer.CurrentStats[Seraph.Stats.speed] < CurrentEnemy.CurrentStats[Seraph.Stats.speed])
         {
-            if(BattlePhaseEnemy(enemyAbility) == true)
+            if(BattlePhaseEnemy() == true)
             {
                 return "gameOver";
                 //gameover
@@ -68,7 +68,7 @@ class BattleManager
             {
                 return "win";
             }
-            else if (BattlePhaseEnemy(enemyAbility) == true)
+            else if (BattlePhaseEnemy() == true)
             {
                 //gameover
                 return "gameOver";
@@ -94,9 +94,10 @@ class BattleManager
         return false;
     }
 
-    public bool BattlePhaseEnemy(BattleAbility enemyAbility)
+    public bool BattlePhaseEnemy()
     {
-        enemyAbility.Use(CurrentEnemy, CurrentPlayer);
+        int abilityID = EnemyAbilityChoice();
+        CurrentEnemy._abilities[abilityID].Use(CurrentEnemy, CurrentPlayer);
         if (IsDead(CurrentPlayer))
         {
             if (PlayerSwitch() == false)

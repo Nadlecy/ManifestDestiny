@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ManifestDestiny.Container;
 using ManifestDestiny.Helper.Json;
 using ManifestDestiny.Helper.Position;
-using ManifestDestiny.View;
 
 namespace ManifestDestiny
 {

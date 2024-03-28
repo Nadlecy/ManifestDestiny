@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ManifestDestiny.View
+namespace ManifestDestiny.Container
 {
     internal class EncountersChanceContainer
     {
@@ -13,7 +13,7 @@ namespace ManifestDestiny.View
         public int LevelMin { get; set; }
         public int LevelMax { get; set; }
         public int AILevel { get; set; }
-        
+
         public EncountersChanceContainer()
         {
         }

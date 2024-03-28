@@ -8,8 +8,8 @@
       "HP": 35,
       "Attack": 28,
       "Defense": 19,
-      "Mana": 36,
-      "Magic": 7,
+      "Mana": 28,
+      "Magic": 2,
       "Speed": 13,
 
       "HP100": 175,
@@ -17,11 +17,12 @@
       "Defense100": 95,
       "Mana100": 180,
       "Speed100": 65,
-      "Magic100": 35,
+      "Magic100": 16,
 
       "ExpReward": 20,
       "Ability": {
-        "1": "Bash"
+        "1": "Wait",
+        "2": "Bash"
       },
       "Description": "An Average Monster"
     },

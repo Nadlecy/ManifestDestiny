@@ -93,8 +93,10 @@ class Seraph
                 // Level up
                 foreach (Stats currentStat in Enum.GetValues(typeof(Stats)))
                 {
-                    BaseStats[currentStat] += (_maxStats[currentStat] - BaseStats[currentStat]) / (100 - Level);
-                    CurrentStats[currentStat] += (_maxStats[currentStat] - BaseStats[currentStat]) / (100 - Level);
+                    int gain = (_maxStats[currentStat] - BaseStats[currentStat]) / (100 - Level);
+
+                    BaseStats[currentStat] += gain;
+                    CurrentStats[currentStat] += gain;
                 }
 
                 OnLevelUp?.Invoke();
@@ -136,6 +138,12 @@ class Seraph
 
         //making sure hp doesnt go over the maximum
         if (CurrentStats[Stats.hp] > BaseStats[Stats.hp]) { CurrentStats[Stats.hp] = BaseStats[Stats.hp]; }
+    }
+
+    public void FullHeal()
+    {
+        CurrentStats[Stats.hp] = BaseStats[Stats.hp];
+        CurrentStats[Stats.mana] = BaseStats[Stats.mana];
     }
 
     public void TakeDamage(int amount)
