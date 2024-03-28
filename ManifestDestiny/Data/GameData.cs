@@ -38,7 +38,6 @@ namespace ManifestDestiny
 
         private void CreateAbilities()
         {
-
             string pathAbility = "Seraph/Ability.json";
             CustomJson<AbilityContainer> jsonReader = new CustomJson<AbilityContainer>(pathAbility);
             AbilityContainer abilityContain = jsonReader.Read();
@@ -52,6 +51,13 @@ namespace ManifestDestiny
                     {
                         case "AttributeAttack":
                             abilities[ability.Name].AddAttribute(new AbilityAttributeAttack((int)ability.CritChance, (int)ability.Power, battleTypes[ability.Type]));
+                            break;
+                        case "AttributeStatAlteration":
+                            if(ability.StatAlterations == null)
+                            {
+                                throw new ArgumentNullException(ability.Name + " has no StatAlteration field enven though it is of type AttributeStatAlteration. Check the JSON");
+                            }
+                            abilities[ability.Name].AddAttribute(new AbilityAttributeStatAlteration(ability.StatAlterations));
                             break;
                     }
                 }

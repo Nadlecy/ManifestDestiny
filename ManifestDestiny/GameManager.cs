@@ -5,6 +5,7 @@ using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -107,8 +108,7 @@ class GameManager
 
         battleMenu = new Menu("What will you do?", new List<string> { "FIGHT", "BAG", "SERAPHIM", "RUN" }, Menu.MenuDisplayType.battle);
 
-        Seraph ju = Data.Summon("Lambda", 5);
-        Seraph gagaga = Data.Summon("Bit", 32);
+        bool justLeftBubbles;
 
         //PlayerTeam.Add(ju);
         //PlayerTeam.Add(gagaga);
@@ -124,18 +124,38 @@ class GameManager
 
         while (Gaming)
         {
-
+            justLeftBubbles = false;
             if (_isGettingKey == true)
             {
                 keyInfo = Console.ReadKey(true);
             }
 
-            Selection = "";
-            if (DialogBubbles.Count == 0) {
+
+            if (DialogBubbles.Count > 0)
+            {
+                if (keyInfo.Key == ConsoleKey.Enter)
+                {
+                    DialogBubbles.RemoveAt(0);
+                    justLeftBubbles = true;
+                    if(GameState == GameStates.StartExploration || GameState == GameStates.Exploration)
+                    {
+                        display.WorldDisplay();
+                        display.PlayerWorldDisplay(0, 0);
+                    } else if(GameState == GameStates.Menu || GameState == GameStates.Battle)
+                    {
+                        display.MenuDisplay(CurrentMenu);
+                    }
+                }
+            }
+
+            if (DialogBubbles.Count == 0)
+            {
+                Selection = "";
                 switch (GameState)
                 {
                     case GameStates.StartExploration:
                         _isGettingKey = true;
+                        DialogBubbles.Add("Welcome to exploration mode");
                         display.WorldDisplay();
                         display.PlayerWorldDisplay(0, 0);
                         GameState = GameStates.Exploration;
@@ -172,6 +192,7 @@ class GameManager
                         CurrentMenu = battleMenu;
                         display.BattleDisplay(BattleHandler);
                         display.MenuDisplay(battleMenu);
+                        DialogBubbles.Add("A wild " + BattleHandler.CurrentEnemy.Name + " appears !");
                         GameState = GameStates.Battle;
                         break;
 
@@ -196,7 +217,10 @@ class GameManager
                                 display.MenuDisplay(CurrentMenu); // Update display
                                 break;
                             case ConsoleKey.Enter:
-                                Selection = CurrentMenu.Enter();
+                                if (justLeftBubbles == false)
+                                {
+                                    Selection = CurrentMenu.Enter();
+                                }
                                 break;
                             case ConsoleKey.Escape:
                                 //CurrentMenu.SelectedLine = 0;
@@ -217,57 +241,63 @@ class GameManager
                                 display.MenuDisplay(CurrentMenu); // Update display
                                 break;
                             case ConsoleKey.Enter:
-                                Selection = CurrentMenu.Enter();
-
-                            // Item selection
-                            if(CurrentMenu.LineType == Menu.LinesType.items && Selection != "CLOSE")
-                            {
-                                // Do item thing
-                                CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].Use();
-
-                                if (CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].Heal > 0)
+                                if (justLeftBubbles == false)
                                 {
-                                    // Heal seraph
-                                    BattleHandler.CurrentPlayer.HealHp(CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].Heal);
-                                    CurrentMenu.ItemStorage.RemoveItem(CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine]);
-                                    Selection = "CLOSE";
-                                } else if (CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].CatchRateMultiplier > 0) {
-                                    // Try to catch enemy
-                                    float catchRate = cMaths.CatchRateCalculator(BattleHandler.CurrentEnemy, CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine]);
-                                    double catchRand = rand.NextDouble();
-                                    if(catchRate > catchRand) {
-                                        Console.WriteLine("You catched the Seraph");
-                                        PlayerTeam.Add(BattleHandler.CurrentEnemy);
-                                        BattleHandler.EndBattle();
-                                        GameState = GameStates.StartExploration;
-                                        _isGettingKey = false;
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("That didnt work");
-                                    }
-                                    CurrentMenu.ItemStorage.RemoveItem(CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine]);
-                                    
-                                    //Selection = "CLOSE";
-                                }
-                            }
+                                    Selection = CurrentMenu.Enter();
 
-                                // Attack selection
-                                if (CurrentMenu.LineType == Menu.LinesType.ability && Selection != "CLOSE")
-                                {
-                                    string turnResult = BattleHandler.BattlePhase(BattleHandler.CurrentPlayer._abilities[CurrentMenu.SelectedLine]);
-                                    Selection = "CLOSE";
-                                    if (turnResult == "gameOver")
+                                    // Item selection
+                                    if (CurrentMenu.LineType == Menu.LinesType.items && Selection != "CLOSE")
                                     {
-                                        BattleHandler.EndBattle();
-                                        //switch to a GameOver Gamestate or something idk
+                                        // Do item thing
+                                        CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].Use();
 
+                                        if (CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].Heal > 0)
+                                        {
+                                            // Heal seraph
+                                            BattleHandler.CurrentPlayer.HealHp(CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].Heal);
+                                            CurrentMenu.ItemStorage.RemoveItem(CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine]);
+                                            Selection = "CLOSE";
+                                        }
+                                        else if (CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].CatchRateMultiplier > 0)
+                                        {
+                                            // Try to catch enemy
+                                            float catchRate = cMaths.CatchRateCalculator(BattleHandler.CurrentEnemy, CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine]);
+                                            double catchRand = rand.NextDouble();
+                                            if (catchRate > catchRand)
+                                            {
+                                                Console.WriteLine("You catched the Seraph");
+                                                PlayerTeam.Add(BattleHandler.CurrentEnemy);
+                                                BattleHandler.EndBattle();
+                                                GameState = GameStates.StartExploration;
+                                                _isGettingKey = false;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("That didnt work");
+                                            }
+                                            CurrentMenu.ItemStorage.RemoveItem(CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine]);
+
+                                            //Selection = "CLOSE";
+                                        }
                                     }
-                                    else if (turnResult == "win")
+
+                                    // Attack selection
+                                    if (CurrentMenu.LineType == Menu.LinesType.ability && Selection != "CLOSE")
                                     {
-                                        BattleHandler.EndBattle();
-                                        _isGettingKey = false;
-                                        GameState = GameStates.StartExploration;
+                                        string turnResult = BattleHandler.BattlePhase(BattleHandler.CurrentPlayer._abilities[CurrentMenu.SelectedLine]);
+                                        Selection = "CLOSE";
+                                        if (turnResult == "gameOver")
+                                        {
+                                            BattleHandler.EndBattle();
+                                            //switch to a GameOver Gamestate or something idk
+
+                                        }
+                                        else if (turnResult == "win")
+                                        {
+                                            BattleHandler.EndBattle();
+                                            _isGettingKey = false;
+                                            GameState = GameStates.StartExploration;
+                                        }
                                     }
                                 }
                                 break;
@@ -338,8 +368,8 @@ class GameManager
 
                         break;
                     case "CLOSE":
-                        if(CurrentMenu.LineType != Menu.LinesType.ability) { CurrentMenu.SelectedLine = 0; }
-                        
+                        if (CurrentMenu.LineType != Menu.LinesType.ability) { CurrentMenu.SelectedLine = 0; }
+
                         if (CurrentMenu == bagMenu)
                         {
                             if (GameState == GameStates.Battle)
@@ -401,9 +431,10 @@ class GameManager
                         break;
                 }
             }
-            else
+
+            if (DialogBubbles.Count > 0)
             {
-                //display.BubbleDisplay();
+                display.BubbleDisplay(DialogBubbles);
             }
         }
         //Fin du jeu
