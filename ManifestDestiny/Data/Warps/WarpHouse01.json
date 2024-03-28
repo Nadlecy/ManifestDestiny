@@ -1,0 +1,16 @@
+{
+  "warps": [
+    {
+      "StartPosition": {
+        "X": 10,
+        "Y": 0
+      },
+      "StartMap": "House01",
+      "DestinationPosition": {
+        "X": 7,
+        "Y": 43
+      },
+      "DestinationMap": "Map03"
+    }
+  ]
+}
