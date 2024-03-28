@@ -65,7 +65,7 @@ namespace ManifestDestiny
                         DialogBubbles.Add("You picked up " + tile.GiveObject().Name);
                         _gameManager.Inventory.AddItem(tile.GiveObject());
                     }
-                    else if (tile.EncounterChance != 0)
+                    else if (tile.EncounterChance != 0 && playerX + playerY != 0)
                     {
                         Random aleatoire = new Random();
                         int chance = aleatoire.Next(1, 100);

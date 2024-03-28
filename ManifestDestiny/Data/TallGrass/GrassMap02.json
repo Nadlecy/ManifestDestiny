@@ -2,7 +2,9 @@
   "Encounter": {
     "Mudort": 20,
     "Beegle": 15,
-    "Rusklet": 10
+    "Rusklet": 10,
+    "Metalynx": 10,
+    "Ratgician": 5
   },
   "Chance": 20,
   "LevelMin": 4,
