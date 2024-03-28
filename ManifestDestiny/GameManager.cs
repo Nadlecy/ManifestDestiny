@@ -169,7 +169,7 @@ class GameManager
                             Selection = CurrentMenu.Enter();
                             if (CurrentMenu.LineType == Menu.LinesType.ability && Selection != "CLOSE")
                             {
-                                string turnResult = BattleHandler.BattlePhase(playerSeraph._abilities[CurrentMenu.SelectedLine], BattleHandler.CurrentEnemy._abilities[0]);
+                                string turnResult = BattleHandler.BattlePhase(playerSeraph._abilities[CurrentMenu.SelectedLine]);
                                 Selection = "CLOSE";
                                 if(turnResult == "gameOver")
                                 {

@@ -86,7 +86,6 @@ namespace ManifestDestiny
                     seraph.Description
                 ));
 
-
                 foreach (KeyValuePair<int, string> pair in seraph.Ability)
                 {
                     seraphim[seraph.Name]._abilitiesUnlocks.Add(pair.Key, abilities[pair.Value]);
@@ -128,7 +127,9 @@ namespace ManifestDestiny
         {
             Seraph newGuy = seraphim[name].Clone();
             newGuy.Experience = level * 100;
-            
+
+            newGuy.FullHeal();
+
             return newGuy;
         }
     }

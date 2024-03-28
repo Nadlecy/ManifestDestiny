@@ -138,6 +138,12 @@ class Seraph
         if (CurrentStats[Stats.hp] > BaseStats[Stats.hp]) { CurrentStats[Stats.hp] = BaseStats[Stats.hp]; }
     }
 
+    public void FullHeal()
+    {
+        CurrentStats[Stats.hp] = BaseStats[Stats.hp];
+        CurrentStats[Stats.mana] = BaseStats[Stats.mana];
+    }
+
     public void TakeDamage(int amount)
     {
         if (amount < 0) { throw new ArgumentException("Something went wrong with the damage calculation.", nameof(amount)); }
