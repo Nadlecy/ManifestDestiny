@@ -28,6 +28,7 @@ namespace ManifestDestiny
         public int LevelMax { get; set; }
         public int AILevel { get; set; }
         public bool AsObject { get; set; }
+        public bool IsHealer { get; set; }
         public Item Item { get; set; }
 
         public Warp Warp { get => _warp; }
@@ -40,6 +41,7 @@ namespace ManifestDestiny
 
         public WorldTile(string apparence, ConsoleColor colorBackground, ConsoleColor colorText, bool walkable)
         {
+            IsHealer = false;
             _apparence = apparence;
             _walkable = walkable;
             _colorBackground = colorBackground;

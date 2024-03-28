@@ -21,7 +21,7 @@ namespace ManifestDestiny
             _playerPosition = new Position();
             _playerPosition.X = 0;
             _playerPosition.Y = 0;
-            _player = new WorldTile("♀", ConsoleColor.Black, ConsoleColor.DarkRed, true);
+            _player = new WorldTile("@", ConsoleColor.Black, ConsoleColor.DarkRed, true);
             _currentDisplay = new List<List<WorldTile>>();
             _worldMap = worldMap;
             _gameManager = gameManager;
@@ -160,7 +160,7 @@ namespace ManifestDestiny
                 }
                 Console.BackgroundColor = ConsoleColor.Black;
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.Write("\n");
+                Console.WriteLine("");
             }
         }
 
@@ -212,16 +212,16 @@ namespace ManifestDestiny
                     string hp = "HP:" + enemy.CurrentStats[Seraph.Stats.hp] + "/" + enemy.BaseStats[Seraph.Stats.hp] + "  ";
                     string mp = "MP:" + enemy.CurrentStats[Seraph.Stats.mana] + "/" + enemy.BaseStats[Seraph.Stats.mana];
 
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write(Padding(64, -hp.Length - mp.Length - 2) + hp);
-                    Console.ForegroundColor = ConsoleColor.DarkBlue;
-                    Console.WriteLine(mp + "  ");
+                    //Console.ForegroundColor = ConsoleColor.Red;
+                    //Console.Write(Padding(64, -hp.Length - mp.Length - 2) + hp);
+                    //Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    //Console.WriteLine(mp + "  ");
                     HPBarCreate(enemy.CurrentStats[Seraph.Stats.hp], enemy.BaseStats[Seraph.Stats.hp], ConsoleColor.Green, ConsoleColor.Red, -24, -62);
                     Console.WriteLine(Padding(64));
                     HPBarCreate(enemy.CurrentStats[Seraph.Stats.mana], enemy.BaseStats[Seraph.Stats.mana], ConsoleColor.Blue, ConsoleColor.DarkGray, -24, -62);
                     //Console.ForegroundColor = ConsoleColor.Black;
                 }
-                else if (i == 9)
+                else if (i == 10)
                 {
                     // Display friendly
                     StringBuilder namePadding = new StringBuilder();
@@ -290,7 +290,7 @@ namespace ManifestDestiny
                             {
                                 if (i == menu.SelectedLine)
                                 {
-                                    Console.WriteLine(" ► " + menu._lines[i] + Padding(menu._lines, -menu._lines[i].Length));
+                                    Console.WriteLine(" > " + menu._lines[i] + Padding(menu._lines, -menu._lines[i].Length));
                                 }
                                 else
                                 {
@@ -311,7 +311,7 @@ namespace ManifestDestiny
                             {
                                 if (i == menu.SelectedLine)
                                 {
-                                    Console.WriteLine(" ► " + menu.ItemStorage.Items[i].Name + " x" + menu.ItemStorage.Items[i].Count + Padding(menu.ItemStorage.Items, -menu.ItemStorage.Items[i].Name.Length - 2));
+                                    Console.WriteLine(" > " + menu.ItemStorage.Items[i].Name + " x" + menu.ItemStorage.Items[i].Count + Padding(menu.ItemStorage.Items, -menu.ItemStorage.Items[i].Name.Length - 2));
                                 }
                                 else
                                 {
@@ -321,7 +321,7 @@ namespace ManifestDestiny
 
                             if (menu.SelectedLine == menu.ItemStorage.Items.Count)
                             {
-                                Console.WriteLine(" ► CLOSE" + Padding(menu.ItemStorage.Items, - 3));
+                                Console.WriteLine(" > CLOSE" + Padding(menu.ItemStorage.Items, - 3));
                             }
                             else
                             {
@@ -343,7 +343,7 @@ namespace ManifestDestiny
                             {
                                 if (i == menu.SelectedLine)
                                 {
-                                    Console.WriteLine(" ► " + menu.Seraphim[i].Name + " LVL" + menu.Seraphim[i].Level.ToString() + Padding(menu.Seraphim, -menu.Seraphim[i].Name.Length - menu.Seraphim[i].Level.ToString().Length - 4));
+                                    Console.WriteLine(" > " + menu.Seraphim[i].Name + " LVL" + menu.Seraphim[i].Level.ToString() + Padding(menu.Seraphim, -menu.Seraphim[i].Name.Length - menu.Seraphim[i].Level.ToString().Length - 4));
                                 }
                                 else
                                 {
@@ -353,7 +353,7 @@ namespace ManifestDestiny
 
                             if (menu.SelectedLine == menu.Seraphim.Count)
                             {
-                                Console.WriteLine(" ► CLOSE" + Padding(menu.Seraphim,-1));
+                                Console.WriteLine(" > CLOSE" + Padding(menu.Seraphim,-1));
                             }
                             else
                             {
@@ -381,7 +381,7 @@ namespace ManifestDestiny
                             {
                                 if (i == menu.SelectedLine)
                                 {
-                                    Console.WriteLine(" ► " + menu._lines[i] + Padding(61, -menu._lines[i].Length));
+                                    Console.WriteLine(" > " + menu._lines[i] + Padding(61, -menu._lines[i].Length));
                                 }
                                 else
                                 {
@@ -418,7 +418,7 @@ namespace ManifestDestiny
                     {
                         if (i == menu.SelectedLine)
                         {
-                            Console.Write(" ► ");
+                            Console.Write(" > ");
                         }
                         else
                         {
@@ -438,7 +438,7 @@ namespace ManifestDestiny
                     // CLOSE button
                     if (menu.SelectedLine == menu.Abilities.Count)
                     {
-                        Console.WriteLine(" ► CLOSE" + Padding(64,-8));
+                        Console.WriteLine(" > CLOSE" + Padding(64,-8));
                     }
                     else
                     {

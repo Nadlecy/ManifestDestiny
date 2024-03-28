@@ -3,7 +3,7 @@
   <Class Name="ManifestDestiny.Display" Collapsed="true">
     <Position X="9" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAhAAAAAAIAAAAIAAgACAEAAAAgAAAACAAAAAAAAgA=</HashCode>
+      <HashCode>AAApAAAACAIAAAAIAAgACAMAAAAgAAAAGAIAAAAAAAA=</HashCode>
       <FileName>View\Display.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -17,14 +17,14 @@
   <Class Name="ManifestDestiny.WorldMap" Collapsed="true">
     <Position X="5.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIAAAAAAAgQEAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAACAAAIAAAAAAAgQEAAAAAAAAAACAAAAAAAAA=</HashCode>
       <FileName>View\WorldMap.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ManifestDestiny.WorldTile" Collapsed="true">
     <Position X="5.5" Y="2.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AkQAIAIAAEAIAEAAAAAAAAAQRAAAAAAAAAgAgAAAABA=</HashCode>
+      <HashCode>AkYAIAIACEAIgEAAAAACAECURAAAAAAAAAgAgAAAABA=</HashCode>
       <FileName>View\WorldTile.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -45,18 +45,18 @@
   <Class Name="ManifestDestiny.Menu" Collapsed="true">
     <Position X="18" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAQAAAAAAAAAAAABAAQAAAAEEAAAAAAEAAAAAAA=</HashCode>
+      <HashCode>AAAMAQQACAAAAGAAAAABAAQAAAAFEAAAAAAEAAAAAgA=</HashCode>
       <FileName>Menu.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ManifestDestiny.Helper.Json.CustomJson&lt;T&gt;" Collapsed="true">
+  <Class Name="ManifestDestiny.CustomJson&lt;T&gt;" Collapsed="true">
     <Position X="18" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAACAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAgAAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>Helper\CustomJson.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ManifestDestiny.Helper.Position.Position" Collapsed="true">
+  <Class Name="ManifestDestiny.Position" Collapsed="true">
     <Position X="12.75" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYBA=</HashCode>
@@ -94,14 +94,14 @@
   <Class Name="BattleManager" Collapsed="true">
     <Position X="14.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAIAAABAAAAQIAAAAAAAAAgAAAAAAgABAAAA=</HashCode>
+      <HashCode>CgAAAIAAAECAABAAgAQKEQAAgAAACAAAAQAAggAAAAA=</HashCode>
       <FileName>Battle\BattleManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BattleType" Collapsed="true">
     <Position X="16.25" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAACAAAAAAAAAAAAAAAYAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAYAAAAAAAAgAAAAgAAAAAA=</HashCode>
       <FileName>Battle\BattleType.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -115,28 +115,42 @@
   <Class Name="GameManager" Collapsed="true">
     <Position X="12.75" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAAAAAAQAAAABABAAAAAAAAAAAQgAAYAA=</HashCode>
+      <HashCode>AAAgAIgAAFAIiIAAAQAAAIDABAAAEBAAQEAACgAAYAA=</HashCode>
       <FileName>GameManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ManifestDestiny.View.Warp" Collapsed="true">
+  <Class Name="ManifestDestiny.Warp" Collapsed="true">
     <Position X="16.25" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAACEAAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAAA=</HashCode>
       <FileName>View\Warp.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ManifestDestiny.View.WarpContainer" Collapsed="true">
-    <Position X="18" Y="5" Width="1.5" />
+  <Class Name="ManifestDestiny.Save" Collapsed="true">
+    <Position X="16.25" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
-      <FileName>View\WarpContainer.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAACAAAAAAAAAAEgA=</HashCode>
+      <FileName>Save.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Struct Name="ManifestDestiny.Helper.Math.CustomMaths" Collapsed="true">
-    <Position X="12.75" Y="6.25" Width="1.5" />
+  <Class Name="ManifestDestiny.TeamSaveContainer" Collapsed="true">
+    <Position X="14.5" Y="7" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACQAAAAAAAABAAAAAAAAQAA=</HashCode>
+      <FileName>Save.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ManifestDestiny.PositionSaveContainer" Collapsed="true">
+    <Position X="14.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Save.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="ManifestDestiny.CustomMaths" Collapsed="true">
+    <Position X="12.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgEAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Helper\CustomMaths.cs</FileName>
     </TypeIdentifier>
   </Struct>

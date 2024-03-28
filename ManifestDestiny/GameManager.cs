@@ -35,12 +35,13 @@ class GameManager
     public Menu battleMenu;
     public GameData Data { get; set; }
     public bool Gaming { get; set; }
-
+    WorldMap MapWorld { get; set;}
     public Menu CurrentMenu { get; set; }
     public Save Saving { get; set; }
     Position _playerPosition;
 
     string _map;
+    bool _isGettingKey = true;
 
     public string Map { get => _map; set => _map = value; }
     public Position PlayerPosition { get => _playerPosition; set => _playerPosition = value; }
@@ -72,6 +73,17 @@ class GameManager
         Saving.PositionJsonWriter("SavePosition", PlayerPosition, ref _map);
     }
 
+    public void DetectPlayer()
+    {
+        if (MapWorld.WorldMapTiles[PlayerPosition.X][PlayerPosition.Y].IsHealer == true)
+        {
+            foreach (var seraph in PlayerTeam)
+            {
+                seraph.FullHeal();
+            }
+        }
+    }
+
     public void GameLoop()
     {
         LoadSave();
@@ -98,18 +110,26 @@ class GameManager
 
         bool justLeftBubbles;
 
-        WorldMap worldMap = new WorldMap(this);
-        worldMap.SetMap(Map);
-        Display display = new Display(worldMap, this);
-        display.SetWorldDisplay(worldMap.WorldMapTiles);
+        //PlayerTeam.Add(ju);
+        //PlayerTeam.Add(gagaga);
+
+        //save.TeamJsonWriter("SaveSeraph", PlayerTeam);
+
+        MapWorld = new WorldMap(this);
+        MapWorld.SetMap(Map);
+        Display display = new Display(MapWorld, this);
+        display.SetWorldDisplay(MapWorld.WorldMapTiles);
         display.WorldDisplay();
         display.SetPlayerPosition(PlayerPosition.X, PlayerPosition.Y);
 
         while (Gaming)
         {
             justLeftBubbles = false;
+            if (_isGettingKey == true)
+            {
+                keyInfo = Console.ReadKey(true);
+            }
 
-            keyInfo = Console.ReadKey(true);
 
             if (DialogBubbles.Count > 0)
             {
@@ -135,6 +155,7 @@ class GameManager
                 {
                     case GameStates.StartExploration:
                         //DialogBubbles.Add("Welcome to exploration mode");
+                        _isGettingKey = true;
                         display.WorldDisplay();
                         display.PlayerWorldDisplay(0, 0);
                         GameState = GameStates.Exploration;
@@ -144,15 +165,19 @@ class GameManager
                         {
                             case ConsoleKey.LeftArrow:
                                 display.PlayerWorldDisplay(0, -1);
+                                DetectPlayer();
                                 break;
                             case ConsoleKey.RightArrow:
                                 display.PlayerWorldDisplay(0, 1);
+                                DetectPlayer();
                                 break;
                             case ConsoleKey.UpArrow:
                                 display.PlayerWorldDisplay(-1, 0);
+                                DetectPlayer();
                                 break;
                             case ConsoleKey.DownArrow:
                                 display.PlayerWorldDisplay(1, 0);
+                                DetectPlayer();
                                 break;
                             case ConsoleKey.Escape:
                                 GameState = GameStates.Menu;
@@ -244,6 +269,7 @@ class GameManager
                                                 PlayerTeam.Add(BattleHandler.CurrentEnemy);
                                                 BattleHandler.EndBattle();
                                                 GameState = GameStates.StartExploration;
+                                                _isGettingKey = false;
                                             }
                                             else
                                             {
@@ -271,6 +297,7 @@ class GameManager
                                         {
                                             DialogBubbles.Add("You won the battle");
                                             BattleHandler.EndBattle();
+                                            _isGettingKey = false;
                                             GameState = GameStates.StartExploration;
                                         }
                                     }
@@ -363,6 +390,7 @@ class GameManager
                         }
                         else if (CurrentMenu == mainMenu)
                         {
+                            _isGettingKey = false;
                             GameState = GameStates.StartExploration;
                             display.WorldDisplay();
                         }
