@@ -536,12 +536,12 @@ namespace ManifestDestiny
             {
                 if(lines[lineCounter].Length + word.Length + 1 < 60)
                 {
-                    lines[lineCounter] += word;
+                    lines[lineCounter] += word + " ";
                 }
                 else
                 {
                     lineCounter++; 
-                    lines[lineCounter] += word;
+                    lines[lineCounter] += word + " ";
                 }
             }
 
