@@ -177,6 +177,22 @@ class GameManager
                             break;
                         case ConsoleKey.Enter:
                             Selection = CurrentMenu.Enter();
+
+                            // Item selection
+                            if(CurrentMenu.LineType == Menu.LinesType.items && Selection != "CLOSE")
+                            {
+                                // Do item thing
+                                CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].Use();
+                                if (CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].Heal > 0)
+                                {
+                                    // Heal seraph
+                                    BattleHandler.CurrentPlayer.HealHp(CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine].Heal);
+                                    CurrentMenu.ItemStorage.Items.RemoveAt(CurrentMenu.SelectedLine);
+                                    Selection = "CLOSE";
+                                }
+                            }
+
+                            // Attack selection
                             if (CurrentMenu.LineType == Menu.LinesType.ability && Selection != "CLOSE")
                             {
                                 string turnResult = BattleHandler.BattlePhase(BattleHandler.CurrentPlayer._abilities[CurrentMenu.SelectedLine]);

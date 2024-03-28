@@ -30,7 +30,7 @@ namespace ManifestDestiny
 
         public virtual void Use()
         {
-
+            
         }
     }
 }
