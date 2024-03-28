@@ -547,12 +547,8 @@ namespace ManifestDestiny
 
             foreach(string line in lines)
             {
-                Console.WriteLine(line);
+                Console.WriteLine(line + Padding(64, -line.Length));
             }
-
-
-
         }
     }
-
 }
