@@ -2,27 +2,27 @@
   "warps": [
     {
       "StartPosition": {
-        "X": 23,
+        "X": 0,
         "Y": 31
       },
-      "StartMap": "Heal01",
+      "StartMap": "House03",
       "DestinationPosition": {
-        "X": 12,
-        "Y": 47
+        "X": 11,
+        "Y": 21
       },
-      "DestinationMap": "Map01"
+      "DestinationMap": "Map03"
     },
     {
       "StartPosition": {
-        "X": 23,
+        "X": 0,
         "Y": 32
       },
-      "StartMap": "Heal01",
+      "StartMap": "House03",
       "DestinationPosition": {
-        "X": 12,
-        "Y": 48
+        "X": 11,
+        "Y": 22
       },
-      "DestinationMap": "Map01"
+      "DestinationMap": "Map03"
     }
   ]
 }

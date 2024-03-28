@@ -23,6 +23,54 @@
         "Y": 32
       },
       "DestinationMap": "Tun01"
+    },
+    {
+      "StartPosition": {
+        "X": 7,
+        "Y": 44
+      },
+      "StartMap": "Map03",
+      "DestinationPosition": {
+        "X": 10,
+        "Y": 1
+      },
+      "DestinationMap": "House01"
+    },
+    {
+      "StartPosition": {
+        "X": 7,
+        "Y": 24
+      },
+      "StartMap": "Map03",
+      "DestinationPosition": {
+        "X": 11,
+        "Y": 62
+      },
+      "DestinationMap": "House02"
+    },
+    {
+      "StartPosition": {
+        "X": 12,
+        "Y": 21
+      },
+      "StartMap": "Map03",
+      "DestinationPosition": {
+        "X": 1,
+        "Y": 31
+      },
+      "DestinationMap": "House03"
+    },
+    {
+      "StartPosition": {
+        "X": 12,
+        "Y": 22
+      },
+      "StartMap": "Map03",
+      "DestinationPosition": {
+        "X": 1,
+        "Y": 32
+      },
+      "DestinationMap": "House03"
     }
   ]
 }
