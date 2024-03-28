@@ -88,6 +88,36 @@
       "Description": "A little doggo"
     },
     {
+      "Name": "Mudort",
+      "Type": "Fluid",
+
+      "HP": 40,
+      "Attack": 23,
+      "Defense": 47,
+      "Mana": 37,
+      "Magic": 6,
+      "Speed": 10,
+
+      "CatchRate": 170,
+
+      "HP100": 400,
+      "Attack100": 230,
+      "Defense100": 470,
+      "Mana100": 370,
+      "Magic100": 60,
+      "Speed100": 100,
+
+      "ExpReward": 30,
+      "Ability": {
+        "1": "Wait",
+        "2": "Bash",
+        "3": "Liquidation",
+        "4": "Blind Charge",
+        "10": "Bozo Blast"
+      },
+      "Description": "A little doggo"
+    },
+    {
       "Name": "Beegle",
       "Type": "Wild",
 
@@ -115,6 +145,36 @@
         "5": "Mighty Fang"
       },
       "Description": "A little doggo"
+    },
+    {
+      "Name": "Rusklet",
+      "Type": "Wild",
+
+      "HP": 38,
+      "Attack": 27,
+      "Defense": 15,
+      "Mana": 25,
+      "Magic": 5,
+      "Speed": 14,
+
+      "CatchRate": 180,
+
+      "HP100": 350,
+      "Attack100": 300,
+      "Defense100": 100,
+      "Mana100": 350,
+      "Speed100": 170,
+      "Magic100": 50,
+
+      "ExpReward": 20,
+      "Ability": {
+        "1": "Wait",
+        "2": "Bash",
+        "3": "Chomp",
+        "4":  "Lacerage",
+        "5": "Mighty Fang"
+      },
+      "Description": "A Russian bear"
     },
     {
       "Name": "Aether",
@@ -170,7 +230,7 @@
         "2": "Bash",
         "4": "Chomp",
         "3": "Ruckus",
-        "5":  "Sting"
+        "5": "Sting"
       },
       "Description": "A sentient blob of void"
     },
@@ -194,7 +254,7 @@
       "Speed100": 40,
       "Magic100": 95,
 
-      "ExpReward": 100,
+      "ExpReward": 200,
       "Ability": {
         "2": "Biden Blast",
         "1": "Wait"

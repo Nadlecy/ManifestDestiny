@@ -19,6 +19,16 @@
       "Power": 40
     },
     {
+      "Name": "Tempest Slash",
+      "Type": "Scramble",
+      "Description": "A simple tackle",
+      "Accuracy": 90,
+      "ManaCost": 12,
+      "Attributes": [ "AttributeAttack" ],
+      "CritChance": 10,
+      "Power": 65
+    },
+    {
       "Name": "Magic Missile",
       "Type": "Occult",
       "Description": "A spell infuse missile",
@@ -119,6 +129,17 @@
       "Attributes": [ "AttributeAttack" ],
       "CritChance": 75,
       "Power": 30
+    },
+    {
+      "Name": "Lacerage",
+      "Type": "Wild",
+      "Description": "Scratch the enemy multiple times",
+      "Accuracy": 85,
+      "ManaCost": 10,
+      "Attributes": [ "AttributeAttackMultiple" ],
+      "CritChance": 10,
+      "Power": 25,
+      "StrikeNumber": [ 1, 4 ]
     },
     {
       "Name": "Bozo Blast",
