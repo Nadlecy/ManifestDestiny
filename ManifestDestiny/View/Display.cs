@@ -62,6 +62,7 @@ namespace ManifestDestiny
                     }
                     else if (tile.AsObject == true)
                     {
+                        DialogBubbles.Add("You picked up " + tile.GiveObject().Name);
                         _gameManager.Inventory.AddItem(tile.GiveObject());
                     }
                     else if (tile.EncounterChance != 0)
