@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ManifestDestiny.Helper.Position;
-using ManifestDestiny.Helper.Json;
 
 namespace ManifestDestiny
 {

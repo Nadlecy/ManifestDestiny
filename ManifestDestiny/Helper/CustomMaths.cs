@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ManifestDestiny.Helper.Math
+namespace ManifestDestiny
 {
     internal struct CustomMaths
     {
