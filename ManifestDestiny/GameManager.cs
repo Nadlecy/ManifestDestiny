@@ -219,7 +219,7 @@ class GameManager
                             case ConsoleKey.Enter:
                                 if (justLeftBubbles == false)
                                 {
-                                    Selection = CurrentMenu.Enter();
+                                    Selection = CurrentMenu.Enter(BattleHandler);
                                 }
                                 break;
                             case ConsoleKey.Escape:
@@ -243,7 +243,7 @@ class GameManager
                             case ConsoleKey.Enter:
                                 if (justLeftBubbles == false)
                                 {
-                                    Selection = CurrentMenu.Enter();
+                                    Selection = CurrentMenu.Enter(BattleHandler);
 
                                     // Item selection
                                     if (CurrentMenu.LineType == Menu.LinesType.items && Selection != "CLOSE")
@@ -354,13 +354,14 @@ class GameManager
 
                         if (sucess)
                         {
+                            DialogBubbles.Add(BattleHandler.CurrentPlayer.Name + " escaped the battle");
                             GameState = GameStates.StartExploration;
                             display.WorldDisplay();
                             BattleHandler.EndBattle();
                         }
                         else
                         {
-
+                            DialogBubbles.Add(BattleHandler.CurrentPlayer.Name + " wasn't able to escape!");
                             // skip your turn
                             BattleHandler.BattlePhaseEnemy();
                             display.BattleDisplay(BattleHandler);
@@ -425,6 +426,8 @@ class GameManager
                         break;
                     case "Switched two seraph":
                         // update seraphim menu display
+                        //BattleHandler.CurrentPlayer;
+                        display.BattleDisplay(BattleHandler);
                         display.MenuDisplay(seraphMenu);
                         break;
                     case "SAVE AND QUIT GAME":
