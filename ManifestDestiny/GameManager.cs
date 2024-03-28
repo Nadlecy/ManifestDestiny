@@ -273,6 +273,12 @@ class GameManager
                         CurrentMenu = battleMenu;
                         display.BattleDisplay(BattleHandler);
                         display.MenuDisplay(battleMenu);
+                    } else if(CurrentMenu == seraphMenu)
+                    {
+                        CurrentMenu = mainMenu;
+                        GameState = GameStates.Menu;
+                        display.WorldDisplay();
+                        display.MenuDisplay(mainMenu);
                     }
                     break;
                 case "SAVE AND QUIT GAME":
