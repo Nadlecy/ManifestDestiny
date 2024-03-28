@@ -1,5 +1,4 @@
-﻿using ManifestDestiny.View;
-using Microsoft.VisualBasic;
+﻿using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;

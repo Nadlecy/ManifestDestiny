@@ -1,6 +1,4 @@
 ﻿using ManifestDestiny;
-using ManifestDestiny.Container;
-using ManifestDestiny.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
