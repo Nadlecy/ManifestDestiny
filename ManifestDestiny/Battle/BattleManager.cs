@@ -105,6 +105,7 @@ class BattleManager
 
     public bool BattlePhasePlayer(BattleAbility playerAbility)
     {
+        GameManager.DialogBubbles.Add(CurrentPlayer.Name + " used " + playerAbility.Name);
         playerAbility.Use(CurrentPlayer, CurrentEnemy);
         if (IsDead(CurrentEnemy))
         {
@@ -119,6 +120,7 @@ class BattleManager
     public bool BattlePhaseEnemy()
     {
         int abilityID = EnemyAbilityChoice();
+        GameManager.DialogBubbles.Add(CurrentEnemy.Name + " used " + CurrentEnemy._abilities[abilityID].Name);
         CurrentEnemy._abilities[abilityID].Use(CurrentEnemy, CurrentPlayer);
         if (IsDead(CurrentPlayer))
         {
@@ -134,6 +136,7 @@ class BattleManager
     {
         if (seraph.CurrentStats[Seraph.Stats.hp] == 0)
         {
+            GameManager.DialogBubbles.Add(seraph.Name + " fainted");
             return true;
         }else return false;
     }
@@ -190,6 +193,7 @@ class BattleManager
         foreach (Seraph seraph in PlayerParticipants)
         {
             //seraph.Experience += CurrentEnemy._experienceReward * (CurrentEnemy.Level / CurrentPlayer.Level);
+            GameManager.DialogBubbles.Add(seraph.Name + " got " + CurrentEnemy._experienceReward + " xp");
             seraph.Experience += CurrentEnemy._experienceReward;
         }
 

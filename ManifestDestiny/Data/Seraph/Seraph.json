@@ -58,6 +58,34 @@
       "Description": "Tiny Robot"
     },
     {
+      "Name": "Aether",
+      "Type": "Occult",
+
+      "HP": 40,
+      "Attack": 30,
+      "Defense": 30,
+      "Mana": 50,
+      "Magic": 10,
+      "Speed": 18,
+
+      "CatchRate": 100,
+
+      "HP100": 400,
+      "Attack100": 300,
+      "Defense100": 300,
+      "Mana100": 500,
+      "Speed100": 100,
+      "Magic100": 180,
+
+      "ExpReward": 30,
+      "Ability": {
+        "1": "Wait",
+        "2":  "Magic Missile",
+        "3": "Soul Drain"
+      },
+      "Description": "Goku, the King of the Monkeys"
+    },
+    {
       "Name": "Goku",
       "Type": "Absolute",
 

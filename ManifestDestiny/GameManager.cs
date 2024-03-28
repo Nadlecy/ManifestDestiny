@@ -134,7 +134,7 @@ class GameManager
                 switch (GameState)
                 {
                     case GameStates.StartExploration:
-                        DialogBubbles.Add("Welcome to exploration mode");
+                        //DialogBubbles.Add("Welcome to exploration mode");
                         display.WorldDisplay();
                         display.PlayerWorldDisplay(0, 0);
                         GameState = GameStates.Exploration;
@@ -240,14 +240,14 @@ class GameManager
                                             double catchRand = rand.NextDouble();
                                             if (catchRate > catchRand)
                                             {
-                                                Console.WriteLine("You catched the Seraph");
+                                                DialogBubbles.Add("You catched " + BattleHandler.CurrentEnemy.Name);
                                                 PlayerTeam.Add(BattleHandler.CurrentEnemy);
                                                 BattleHandler.EndBattle();
                                                 GameState = GameStates.StartExploration;
                                             }
                                             else
                                             {
-                                                Console.WriteLine("That didnt work");
+                                                DialogBubbles.Add("You missed " + BattleHandler.CurrentEnemy.Name);
                                             }
                                             CurrentMenu.ItemStorage.RemoveItem(CurrentMenu.ItemStorage.Items[CurrentMenu.SelectedLine]);
 
@@ -262,12 +262,14 @@ class GameManager
                                         Selection = "CLOSE";
                                         if (turnResult == "gameOver")
                                         {
+                                            DialogBubbles.Add("Game Over");
                                             BattleHandler.EndBattle();
                                             //switch to a GameOver Gamestate or something idk
 
                                         }
                                         else if (turnResult == "win")
                                         {
+                                            DialogBubbles.Add("You won the battle");
                                             BattleHandler.EndBattle();
                                             GameState = GameStates.StartExploration;
                                         }
