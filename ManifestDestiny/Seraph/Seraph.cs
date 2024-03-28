@@ -94,7 +94,7 @@ class Seraph
                 foreach (Stats currentStat in Enum.GetValues(typeof(Stats)))
                 {
                     BaseStats[currentStat] += (_maxStats[currentStat] - BaseStats[currentStat]) / (100 - Level);
-                    CurrentStats[currentStat] += (_maxStats[currentStat] - BaseStats[currentStat]) / (100 - Level);
+                    CurrentStats[currentStat] += BaseStats[currentStat];
                 }
 
                 OnLevelUp?.Invoke();
