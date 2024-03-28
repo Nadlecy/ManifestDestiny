@@ -34,6 +34,9 @@ namespace ManifestDestiny
         public LinesType LineType { get; private set; }
         public MenuDisplayType DisplayType { get; private set; }
 
+        public Seraph seraph1 { get; set; }
+        public Seraph seraph2 { get; set; }
+
         // Creates a menu with a name and a dictionary of lines. A default menu is called "Menu" and has 1 line called "close"
         public Menu(string name = "MENU", List<string> lines = null, MenuDisplayType displayType = MenuDisplayType.leftSide)
         {
@@ -167,11 +170,39 @@ namespace ManifestDestiny
                     {
                         return "CLOSE";
                     }
-                    return Seraphim[SelectedLine].Name;
+
+                    if(seraph1 == null && Seraphim[SelectedLine] != seraph2)
+                    {
+                        seraph1 = Seraphim[SelectedLine];
+                    } else if(seraph2 == null && Seraphim[SelectedLine] != seraph1)
+                    {
+                        seraph2 = Seraphim[SelectedLine];
+                    } else
+                    {
+                        //return Seraphim[SelectedLine].Name;
+                    }
+
+                    if(seraph1 != null && seraph2 != null)
+                    {
+                        Swap(Seraphim, Seraphim.IndexOf(seraph1), Seraphim.IndexOf(seraph2));
+
+                        seraph1 = null;
+                        seraph2 = null;
+                    }
+
+                    return "Switched two seraph";
+
                 default :
                     return "default";
             }
             
+        }
+
+        public static void Swap<T>(IList<T> list, int indexA, int indexB) // https://stackoverflow.com/questions/2094239/swap-two-items-in-listt
+        {
+            T tmp = list[indexA];
+            list[indexA] = list[indexB];
+            list[indexB] = tmp;
         }
     }
 }

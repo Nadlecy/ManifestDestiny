@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ManifestDestiny
+namespace ManifestDestiny.Container
 {
-    [System.Serializable]
+    [Serializable]
     class SeraphContainer
     {
         public List<SeraphData> Seraph { get; set; }

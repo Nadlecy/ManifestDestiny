@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ManifestDestiny.View;
 
-namespace ManifestDestiny.View
+namespace ManifestDestiny.Container
 {
-    [System.Serializable]
+    [Serializable]
     public class WarpContainer
     {
         public List<Warp> warps { get; set; }
