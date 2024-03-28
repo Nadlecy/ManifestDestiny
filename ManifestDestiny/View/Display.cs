@@ -184,7 +184,7 @@ namespace ManifestDestiny
 
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write(Padding(64, -hp.Length - mp.Length - 2) + hp);
-                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
                     Console.WriteLine(mp + "  ");
                     Console.ForegroundColor = ConsoleColor.Black;
                 }
@@ -199,16 +199,19 @@ namespace ManifestDestiny
                     }
                     Console.WriteLine("  " + name + "  " + "LVL: " + battleManager.CurrentPlayer.Level + namePadding);
                     StringBuilder hpPadding = new StringBuilder();
+                    string xp = "  EXP: " + battleManager.CurrentPlayer.Experience;
                     string hp = "  HP:" + battleManager.CurrentPlayer.CurrentStats[Seraph.Stats.hp] + "/" + battleManager.CurrentPlayer.BaseStats[Seraph.Stats.hp] ;
-                    string mp = "  MP:" + battleManager.CurrentPlayer.CurrentStats[Seraph.Stats.mana] + "/" + battleManager.CurrentPlayer.BaseStats[Seraph.Stats.mana] + " " + battleManager.CurrentPlayer.Experience.ToString();
-                    for (int j = 0; j < 64 - hp.Length - mp.Length; j++)
+                    string mp = "  MP:" + battleManager.CurrentPlayer.CurrentStats[Seraph.Stats.mana] + "/" + battleManager.CurrentPlayer.BaseStats[Seraph.Stats.mana];
+                    for (int j = 0; j < 64 - hp.Length - mp.Length - xp.Length; j++)
                     {
                         hpPadding.Append(" ");
                     }
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write(hp);
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine(mp + hpPadding);
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    Console.Write(mp);
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine(xp + hpPadding);
                     Console.ForegroundColor = ConsoleColor.Black;
                 }
                 else
