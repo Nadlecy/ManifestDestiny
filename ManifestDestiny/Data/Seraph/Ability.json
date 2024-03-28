@@ -80,6 +80,17 @@
       "Power": 40
     },
     {
+      "Name": "Liquidation",
+      "Type": "Fluid",
+      "Description": "Shoots a ray of water that can hit multiple times",
+      "Accuracy": 100,
+      "ManaCost": 8,
+      "Attributes": [ "AttributeAttackMultiple" ],
+      "CritChance": 10,
+      "Power": 10,
+      "StrikeNumber": [ 3, 7 ]
+    },
+    {
       "Name": "Chomp",
       "Type": "Wild",
       "Description": "Chomp the enemy",
@@ -88,6 +99,16 @@
       "Attributes": [ "AttributeAttack" ],
       "CritChance": 10,
       "Power": 40
+    },
+    {
+      "Name": "Blind Charge",
+      "Type": "Wild",
+      "Description": "Rush the enemy in a hurry",
+      "Accuracy": 55,
+      "ManaCost": 15,
+      "Attributes": [ "AttributeAttack" ],
+      "CritChance": 50,
+      "Power": 70
     },
     {
       "Name": "Mighty Fang",

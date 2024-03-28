@@ -20,6 +20,8 @@ namespace ManifestDestiny
         public string Description { get; set; }
         public int Accuracy { get; set; }
         public int ManaCost { get; set; }
+
+        public List<int>? StrikeNumber { get; set; }
         public List<string> Attributes { get; set; } = new();
 
         //AttributeAttack fields

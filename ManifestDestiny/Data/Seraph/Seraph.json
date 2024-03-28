@@ -12,7 +12,7 @@
       "Magic": 2,
       "Speed": 13,
 
-      "CatchRate":  230,
+      "CatchRate": 230,
 
       "HP100": 175,
       "Attack100": 140,
@@ -26,7 +26,7 @@
         "1": "Wait",
         "2": "Bash",
         "3": "Soul Drain",
-        "4":  "Ruckus"
+        "4": "Ruckus"
       },
       "Description": "An Average Monster"
     },
@@ -58,6 +58,65 @@
       "Description": "Tiny Robot"
     },
     {
+      "Name": "Limy",
+      "Type": "Fluid",
+
+      "HP": 20,
+      "Attack": 20,
+      "Defense": 10,
+      "Mana": 30,
+      "Magic": 7,
+      "Speed": 13,
+
+      "CatchRate": 200,
+
+      "HP100": 200,
+      "Attack100": 200,
+      "Defense100": 100,
+      "Mana100": 300,
+      "Magic100": 70,
+      "Speed100": 130,
+
+      "ExpReward": 10,
+      "Ability": {
+        "1": "Wait",
+        "2": "Bash",
+        "3": "Liquidation",
+        "4":  "Blind Charge",
+        "10": "Bozo Blast"
+      },
+      "Description": "A little doggo"
+    },
+    {
+      "Name": "Beegle",
+      "Type": "Wild",
+
+      "HP": 35,
+      "Attack": 30,
+      "Defense": 10,
+      "Mana": 35,
+      "Magic": 5,
+      "Speed": 17,
+
+      "CatchRate": 220,
+
+      "HP100": 350,
+      "Attack100": 300,
+      "Defense100": 100,
+      "Mana100": 350,
+      "Speed100": 170,
+      "Magic100": 50,
+
+      "ExpReward": 12,
+      "Ability": {
+        "1": "Wait",
+        "2": "Bash",
+        "3": "Chomp",
+        "5": "Mighty Fang"
+      },
+      "Description": "A little doggo"
+    },
+    {
       "Name": "Aether",
       "Type": "Occult",
 
@@ -80,10 +139,10 @@
       "ExpReward": 30,
       "Ability": {
         "1": "Wait",
-        "2":  "Magic Missile",
+        "2": "Magic Missile",
         "3": "Soul Drain"
       },
-      "Description": "Goku, the King of the Monkeys"
+      "Description": "A sentient blob of void"
     },
     {
       "Name": "Goku",

@@ -12,7 +12,11 @@ namespace ManifestDestiny
         {
             int Critical = 1; // 2 if critical hit
             bool critCheck = (GameManager.rand.Next(0, 100) <= critChance);
-            if (critCheck ) Critical = 2;
+            if (critCheck)
+            {
+                Critical = 2;
+                GameManager.DialogBubbles.Add("Its a critical hit!");
+            }
 
             float STAB = 1.0f; // Same Type Attack Bonus (1.5 if the move is the same type as the user)
             if (user.Type == battleType) STAB = 1.5f;
