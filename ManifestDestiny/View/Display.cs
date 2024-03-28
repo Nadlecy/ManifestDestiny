@@ -184,7 +184,7 @@ namespace ManifestDestiny
                     Console.WriteLine(newPadding + enemy.Name + "  " + "LVL: " + enemy.Level + "  ");
 
                     StringBuilder hpPadding = new StringBuilder();
-                    string hp = "HP:" + enemy.CurrentStats[Seraph.Stats.hp] + "/" + enemy.BaseStats[Seraph.Stats.hp];
+                    string hp = "HP:" + enemy.CurrentStats[Seraph.Stats.hp] + "/" + enemy.BaseStats[Seraph.Stats.hp] + "  MP:" + enemy.CurrentStats[Seraph.Stats.mana] + "/" + enemy.BaseStats[Seraph.Stats.mana];
                     for (int j = 0; j < 64 - hp.Length - 2; j++)
                     {
                         hpPadding.Append(" ");
@@ -203,7 +203,7 @@ namespace ManifestDestiny
                     }
                     Console.WriteLine("  " + name + "  " + "LVL: " + playerSeraph.Level + namePadding);
                     StringBuilder hpPadding = new StringBuilder();
-                    string hp = "HP:" + playerSeraph.CurrentStats[Seraph.Stats.hp] + "/" + playerSeraph.BaseStats[Seraph.Stats.hp];
+                    string hp = "HP:" + playerSeraph.CurrentStats[Seraph.Stats.hp] + "/" + playerSeraph.BaseStats[Seraph.Stats.hp] + "  MP:" + playerSeraph.CurrentStats[Seraph.Stats.mana] + "/" + playerSeraph.BaseStats[Seraph.Stats.mana];
                     for (int j = 0; j < 64 - hp.Length - 2; j++)
                     {
                         hpPadding.Append(" ");

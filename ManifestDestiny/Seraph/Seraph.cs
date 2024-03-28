@@ -121,6 +121,13 @@ class Seraph
         }
     }
 
+    public void RegenMana()
+    {
+        CurrentStats[Stats.mana] += CurrentStats[Stats.magic];
+
+        //making sure mana doesnt go over the maximum
+        if (CurrentStats[Stats.mana] > BaseStats[Stats.mana]) { CurrentStats[Stats.mana] = BaseStats[Stats.mana]; }
+    }
 
     public void HealHp(int amount)
     {

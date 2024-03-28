@@ -74,6 +74,10 @@ class BattleManager
                 return "gameOver";
             }
         }
+
+        CurrentEnemy.RegenMana();
+        CurrentPlayer.RegenMana();
+
         return "";
     }
 
