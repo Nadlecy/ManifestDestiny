@@ -111,9 +111,9 @@
       "Ability": {
         "1": "Wait",
         "2": "Bash",
-        "3": "Liquidation",
-        "4": "Blind Charge",
-        "10": "Bozo Blast"
+        "5": "Liquidation",
+        "3": "Ruckus",
+        "10": "Murky Muck"
       },
       "Description": "A little doggo"
     },
@@ -169,9 +169,9 @@
       "ExpReward": 20,
       "Ability": {
         "1": "Wait",
-        "2": "Bash",
-        "3": "Chomp",
-        "4":  "Lacerage",
+        "2": "Chomp",
+        "3": "Growl",
+        "4": "Lacerage",
         "5": "Mighty Fang"
       },
       "Description": "A Russian bear"
@@ -200,7 +200,39 @@
       "Ability": {
         "1": "Wait",
         "2": "Magic Missile",
-        "3": "Soul Drain"
+        "3": "Soul Drain",
+        "6": "Fireball"
+      },
+      "Description": "A sentient blob of void"
+    },
+    {
+      "Name": "Ratgician",
+      "Type": "Occult",
+
+      "HP": 24,
+      "Attack": 40,
+      "Defense": 17,
+      "Mana": 70,
+      "Magic": 10,
+      "Speed": 17,
+
+      "CatchRate": 100,
+
+      "HP100": 240,
+      "Attack100": 400,
+      "Defense100": 170,
+      "Mana100": 700,
+      "Speed100": 170,
+      "Magic100": 100,
+
+      "ExpReward": 35,
+      "Ability": {
+        "1": "Wait",
+        "2": "Bash",
+        "6": "Magic Missile",
+        "3": "Soul Drain",
+        "10": "Fireball",
+        "4": "Eldritch Blast"
       },
       "Description": "A sentient blob of void"
     },
@@ -232,7 +264,37 @@
         "3": "Ruckus",
         "5": "Sting"
       },
-      "Description": "A sentient blob of void"
+      "Description": "A radioactive crocodile"
+    },
+    {
+      "Name": "Shrimpet",
+      "Type": "Scramble",
+
+      "HP": 27,
+      "Attack": 38,
+      "Defense": 10,
+      "Mana": 29,
+      "Magic": 7,
+      "Speed": 21,
+
+      "CatchRate": 100,
+
+      "HP100": 500,
+      "Attack100": 220,
+      "Defense100": 3000,
+      "Mana100": 340,
+      "Speed100": 100,
+      "Magic100": 50,
+
+      "ExpReward": 20,
+      "Ability": {
+        "1": "Wait",
+        "2": "Bash",
+        "4": "Tempest Slash",
+        "6": "Blind Charge",
+        "7": "Liquidation"
+      },
+      "Description": "A fast shrimp"
     },
     {
       "Name": "Goku",

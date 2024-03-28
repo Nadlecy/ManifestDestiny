@@ -101,6 +101,26 @@
       "StrikeNumber": [ 3, 7 ]
     },
     {
+      "Name": "Murky Muck",
+      "Type": "Fluid",
+      "Description": "Kcum",
+      "Accuracy": 70,
+      "ManaCost": 16,
+      "Attributes": [ "AttributeAttack" ],
+      "CritChance": 40,
+      "Power": 45
+    },
+    {
+      "Name": "Bozo Blast",
+      "Type": "Fluid",
+      "Description": "Blast the enemy with a powerfull water wave",
+      "Accuracy": 60,
+      "ManaCost": 20,
+      "Attributes": [ "AttributeAttack" ],
+      "CritChance": 1,
+      "Power": 70
+    },
+    {
       "Name": "Chomp",
       "Type": "Wild",
       "Description": "Chomp the enemy",
@@ -142,14 +162,15 @@
       "StrikeNumber": [ 1, 4 ]
     },
     {
-      "Name": "Bozo Blast",
-      "Type": "Fluid",
-      "Description": "Blast the enemy with a powerfull water wave",
-      "Accuracy": 60,
-      "ManaCost": 20,
-      "Attributes": [ "AttributeAttack" ],
-      "CritChance": 1,
-      "Power": 70
+      "Name": "Growl",
+      "Type": "Wild",
+      "Description": "Lowers the enemy's attack",
+      "Accuracy": 90,
+      "ManaCost": 5,
+      "Attributes": [ "AttributeStatAlteration" ],
+      "StatAlterations": [ 0, 0, 0, 0, -6, 0, 0, 0 ],
+      "CritChance": 0,
+      "Power": 0
     },
     {
       "Name": "Sting",
@@ -164,13 +185,23 @@
     {
       "Name": "Ruckus",
       "Type": "Vermin",
-      "Description": "Lowers the enemy's attack'",
+      "Description": "Lowers the enemy's attack",
       "Accuracy": 90,
       "ManaCost": 0,
       "Attributes": [ "AttributeStatAlteration" ],
       "StatAlterations": [ 0, 0, 0, 0, -5, 0, 0, 0 ],
       "CritChance": 0,
       "Power": 0
+    },
+    {
+      "Name": "Fireball",
+      "Type": "Absolute",
+      "Description": "Shoots a fireball at the enemy",
+      "Accuracy": 75,
+      "ManaCost": 20,
+      "Attributes": [ "AttributeAttack" ],
+      "CritChance": 50,
+      "Power": 15
     }
   ]
 }
