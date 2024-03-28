@@ -112,7 +112,7 @@ class GameManager
 
         while (Gaming)
         {
-            keyInfo = Console.ReadKey();
+            keyInfo = Console.ReadKey(true);
             Selection = "";
             if (DialogBubbles.Count == 0) {
                 switch (GameState)

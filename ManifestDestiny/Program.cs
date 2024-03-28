@@ -37,8 +37,8 @@ class Program
         */
 
 
-        int width = 150; // Largeur désirée en caractères
-        int height = 50; // Hauteur désirée en lignes
+        int width = 64; // Largeur désirée en caractères
+        int height = 30; // Hauteur désirée en lignes
         Console.SetWindowSize(width, height);
 
         
