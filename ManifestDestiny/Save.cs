@@ -7,8 +7,6 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
-using ManifestDestiny.Helper.Json;
-using ManifestDestiny.Helper.Position;
 
 namespace ManifestDestiny
 {

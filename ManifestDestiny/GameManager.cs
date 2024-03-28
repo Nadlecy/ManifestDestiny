@@ -1,8 +1,5 @@
 ﻿using ManifestDestiny;
 using ManifestDestiny.Container;
-using ManifestDestiny.Helper.Json;
-using ManifestDestiny.Helper.Math;
-using ManifestDestiny.Helper.Position;
 using ManifestDestiny.View;
 using System;
 using System.Collections.Generic;
