@@ -1,0 +1,11 @@
+{
+  "Encounter": {
+    "Aether": 20,
+    "Mokrox": 15,
+    "Goku": 10
+  },
+  "Chance": 20,
+  "LevelMin": 10,
+  "LevelMax": 15,
+  "AILevel": 1
+}

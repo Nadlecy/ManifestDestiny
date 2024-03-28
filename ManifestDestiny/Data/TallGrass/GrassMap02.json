@@ -1,9 +1,11 @@
 {
   "Encounter": {
-    "Lambda": 20
+    "Mudort": 20,
+    "Beegle": 15,
+    "Rusklet": 10
   },
   "Chance": 20,
-  "LevelMin": 3,
-  "LevelMax": 7,
+  "LevelMin": 4,
+  "LevelMax": 9,
   "AILevel": 1
 }

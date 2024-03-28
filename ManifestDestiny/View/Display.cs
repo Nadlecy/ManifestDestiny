@@ -388,6 +388,7 @@ namespace ManifestDestiny
                                     Console.WriteLine("   " + menu._lines[i] + Padding(61, -menu._lines[i].Length));
                                 }
                             }
+                            Console.WriteLine(Padding(64));
                             break;
                     }
                     break;

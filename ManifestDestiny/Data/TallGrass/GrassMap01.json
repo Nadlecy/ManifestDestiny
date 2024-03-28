@@ -2,10 +2,11 @@
   "Encounter": {
     "Bit": 20,
     "Lambda": 20,
+    "Limy": 10,
     "Goku":  1
   },
   "Chance": 20,
-  "LevelMin": 1,
+  "LevelMin": 2,
   "LevelMax": 5,
   "AILevel": 1 
 }
