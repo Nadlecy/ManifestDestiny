@@ -10,7 +10,6 @@ namespace ManifestDestiny.Helper.Math
     {
         public int DamageCalculator(Seraph user, Seraph target, int power, int critChance, BattleType battleType)
         {
-            
             int Critical = 1; // 2 if critical hit
             bool critCheck = (GameManager.rand.Next(0, 100) <= critChance);
             if (critCheck ) Critical = 2;
