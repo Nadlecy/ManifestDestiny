@@ -70,7 +70,7 @@ class GameManager
 
         battleMenu = new Menu("What will you do?", new List<string> { "FIGHT", "BAG", "SERAPH", "RUN" }, Menu.MenuDisplayType.battle);
 
-        Seraph playerSeraph = Data.Summon("Lambda", 95);
+        Seraph playerSeraph = Data.Summon("Lambda", 6);
 
         PlayerTeam.Add(playerSeraph);
 

@@ -18,9 +18,14 @@ namespace ManifestDestiny
         public string Name { get; set; }
         public string Type { get; set; }
         public string Description { get; set; }
-        public int Power { get; set; }
         public int Accuracy { get; set; }
         public int ManaCost { get; set; }
-        public int CritChance { get; set; }
+        public List<string> Attributes { get; set; } = new();
+
+        //AttributeAttack fields
+        public int? Power { get; set; }
+        public int? CritChance { get; set; }
+
+        //AttributStatAlteration
     }
 }

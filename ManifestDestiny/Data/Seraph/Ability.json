@@ -4,37 +4,39 @@
             "Name": "Wait",
             "Type": "Absolute",
             "Description": "Wait a turn",
-            "Power": 0,
             "Accuracy": 100,
             "ManaCost": 0,
-            "CritChance": 0
+            "Attributes": []
         },
-        {
-            "Name": "Bash",
-            "Type": "Scramble",
-            "Description": "A simple tackle",
-            "Power": 40,
-            "Accuracy": 95,
-            "ManaCost": 4,
-            "CritChance": 10
-        },
-        {
-            "Name": "Compact",
-            "Type": "Mechanic",
-            "Description": "",
-            "Power": 40,
-            "Accuracy": 95,
-            "ManaCost": 8,
-            "CritChance": 15
-        },
-        {
-            "Name": "Biden Blast",
-            "Type": "Occult",
-            "Description": "Biden that shoot a laser",
-            "Power": 60,
-            "Accuracy": 85,
-            "ManaCost": 12,
-            "CritChance": 15
-        }
+      {
+        "Name": "Bash",
+        "Type": "Scramble",
+        "Description": "A simple tackle",
+        "Accuracy": 95,
+        "ManaCost": 4,
+        "Attributes": [ "AttributeAttack" ],
+        "CritChance": 10,
+        "Power": 40
+      },
+      {
+        "Name": "Compact",
+        "Type": "Mechanic",
+        "Description": "",
+        "Accuracy": 95,
+        "ManaCost": 8,
+        "Attributes": [ "AttributeAttack" ],
+        "CritChance": 15,
+        "Power": 40
+      },
+      {
+        "Name": "Biden Blast",
+        "Type": "Occult",
+        "Description": "Biden that shoot a laser",
+        "Accuracy": 85,
+        "ManaCost": 12,
+        "Attributes": [ "AttributeAttack" ],
+        "CritChance": 15,
+        "Power": 60
+      }
     ]
 }

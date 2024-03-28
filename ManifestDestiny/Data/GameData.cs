@@ -46,7 +46,16 @@ namespace ManifestDestiny
             foreach (AbilityData ability in abilityContain.Ability)
             {
                 abilities.Add(ability.Name, new BattleAbility(ability.Name, battleTypes[ability.Type], ability.Accuracy, ability.ManaCost, ability.Description));
-                abilities[ability.Name].AddAttribute(new AbilityAttributeAttack(ability.CritChance, ability.Power, battleTypes[ability.Type]));
+                foreach (string attribute in ability.Attributes)
+                {
+                    switch (attribute)
+                    {
+                        case "AttributeAttack":
+                            abilities[ability.Name].AddAttribute(new AbilityAttributeAttack((int)ability.CritChance, (int)ability.Power, battleTypes[ability.Type]));
+                            break;
+                    }
+                }
+
             }
             /*
             abilities.Add("Bash", new BattleAbility("Bash", battleTypes["Scramble"], 95, 4, ""));
