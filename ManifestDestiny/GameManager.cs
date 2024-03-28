@@ -38,6 +38,7 @@ class GameManager
     WorldMap MapWorld { get; set;}
     public Menu CurrentMenu { get; set; }
     public Save Saving { get; set; }
+    public Display Display { get; set; }
     Position _playerPosition;
 
     string _map;
@@ -63,8 +64,16 @@ class GameManager
 
     public void LoadSave()
     {
+        PlayerTeam.Clear();
         PlayerTeam = Saving.TeamJsonLoader("SaveSeraph", PlayerTeam, Data);
         Saving.PositionJsonLoader("SavePosition", ref _playerPosition, ref _map);
+
+        MapWorld = new WorldMap(this);
+        MapWorld.SetMap(Map);
+        Display = new Display(MapWorld, this);
+        Display.SetWorldDisplay(MapWorld.WorldMapTiles);
+        Display.WorldDisplay();
+        Display.SetPlayerPosition(PlayerPosition.X, PlayerPosition.Y);
     }
 
     public void WriteSave()
@@ -86,7 +95,6 @@ class GameManager
 
     public void GameLoop()
     {
-        LoadSave();
 
 
         // Create debug inventory
@@ -110,22 +118,18 @@ class GameManager
 
         bool justLeftBubbles;
 
+        LoadSave();
+
         //PlayerTeam.Add(ju);
         //PlayerTeam.Add(gagaga);
 
         //save.TeamJsonWriter("SaveSeraph", PlayerTeam);
 
-        MapWorld = new WorldMap(this);
-        MapWorld.SetMap(Map);
-        Display display = new Display(MapWorld, this);
-        display.SetWorldDisplay(MapWorld.WorldMapTiles);
-        display.WorldDisplay();
-        display.SetPlayerPosition(PlayerPosition.X, PlayerPosition.Y);
 
         while (Gaming)
         {
             justLeftBubbles = false;
-            if (_isGettingKey == true)
+            if (_isGettingKey == true || DialogBubbles.Count != 0)
             {
                 keyInfo = Console.ReadKey(true);
             }
@@ -139,11 +143,11 @@ class GameManager
                     justLeftBubbles = true;
                     if(GameState == GameStates.StartExploration || GameState == GameStates.Exploration)
                     {
-                        display.WorldDisplay();
-                        display.PlayerWorldDisplay(0, 0);
+                        Display.WorldDisplay();
+                        Display.PlayerWorldDisplay(0, 0);
                     } else if(GameState == GameStates.Menu || GameState == GameStates.Battle)
                     {
-                        display.MenuDisplay(CurrentMenu);
+                        Display.MenuDisplay(CurrentMenu);
                     }
                 }
             }
@@ -156,33 +160,33 @@ class GameManager
                     case GameStates.StartExploration:
                         //DialogBubbles.Add("Welcome to exploration mode");
                         _isGettingKey = true;
-                        display.WorldDisplay();
-                        display.PlayerWorldDisplay(0, 0);
+                        Display.WorldDisplay();
+                        Display.PlayerWorldDisplay(0, 0);
                         GameState = GameStates.Exploration;
                         break;
                     case GameStates.Exploration:
                         switch (keyInfo.Key)
                         {
                             case ConsoleKey.LeftArrow:
-                                display.PlayerWorldDisplay(0, -1);
+                                Display.PlayerWorldDisplay(0, -1);
                                 DetectPlayer();
                                 break;
                             case ConsoleKey.RightArrow:
-                                display.PlayerWorldDisplay(0, 1);
+                                Display.PlayerWorldDisplay(0, 1);
                                 DetectPlayer();
                                 break;
                             case ConsoleKey.UpArrow:
-                                display.PlayerWorldDisplay(-1, 0);
+                                Display.PlayerWorldDisplay(-1, 0);
                                 DetectPlayer();
                                 break;
                             case ConsoleKey.DownArrow:
-                                display.PlayerWorldDisplay(1, 0);
+                                Display.PlayerWorldDisplay(1, 0);
                                 DetectPlayer();
                                 break;
                             case ConsoleKey.Escape:
                                 GameState = GameStates.Menu;
                                 CurrentMenu = mainMenu;
-                                display.MenuDisplay(mainMenu);
+                                Display.MenuDisplay(mainMenu);
                                 break;
                         }
                         break;
@@ -190,8 +194,8 @@ class GameManager
                     //initiate the battle
                     case GameStates.StartBattle:
                         CurrentMenu = battleMenu;
-                        display.BattleDisplay(BattleHandler);
-                        display.MenuDisplay(battleMenu);
+                        Display.BattleDisplay(BattleHandler);
+                        Display.MenuDisplay(battleMenu);
                         DialogBubbles.Add("A wild " + BattleHandler.CurrentEnemy.Name + " appears !");
                         GameState = GameStates.Battle;
                         break;
@@ -202,19 +206,19 @@ class GameManager
                         {
                             case ConsoleKey.UpArrow:
                                 CurrentMenu.PreviousLine();
-                                display.MenuDisplay(CurrentMenu); // Update display
+                                Display.MenuDisplay(CurrentMenu); // Update display
                                 break;
                             case ConsoleKey.DownArrow:
                                 CurrentMenu.NextLine();
-                                display.MenuDisplay(CurrentMenu); // Update display
+                                Display.MenuDisplay(CurrentMenu); // Update display
                                 break;
                             case ConsoleKey.LeftArrow:
                                 CurrentMenu.PreviousLine();
-                                display.MenuDisplay(CurrentMenu); // Update display
+                                Display.MenuDisplay(CurrentMenu); // Update display
                                 break;
                             case ConsoleKey.RightArrow:
                                 CurrentMenu.NextLine();
-                                display.MenuDisplay(CurrentMenu); // Update display
+                                Display.MenuDisplay(CurrentMenu); // Update display
                                 break;
                             case ConsoleKey.Enter:
                                 if (justLeftBubbles == false)
@@ -229,16 +233,16 @@ class GameManager
                         }
                         break;
                     case GameStates.Battle:
-                        display.BattleDisplayUpdate();
+                        Display.BattleDisplayUpdate();
                         switch (keyInfo.Key)
                         {
                             case ConsoleKey.UpArrow:
                                 CurrentMenu.PreviousLine();
-                                display.MenuDisplay(CurrentMenu); // Update display
+                                Display.MenuDisplay(CurrentMenu); // Update display
                                 break;
                             case ConsoleKey.DownArrow:
                                 CurrentMenu.NextLine();
-                                display.MenuDisplay(CurrentMenu); // Update display
+                                Display.MenuDisplay(CurrentMenu); // Update display
                                 break;
                             case ConsoleKey.Enter:
                                 if (justLeftBubbles == false)
@@ -290,6 +294,8 @@ class GameManager
                                         {
                                             DialogBubbles.Add("Game Over");
                                             BattleHandler.EndBattle();
+                                            _isGettingKey = false;
+                                            GameState = GameStates.StartExploration;
                                             //switch to a GameOver Gamestate or something idk
                                             LoadSave();
                                         }
@@ -316,27 +322,27 @@ class GameManager
                         CurrentMenu.SelectedLine = 0;
                         Menu abilitiesMenu = new Menu("ABILITIES", BattleHandler.CurrentPlayer._abilities);
                         CurrentMenu = abilitiesMenu;
-                        display.MenuDisplay(abilitiesMenu);
+                        Display.MenuDisplay(abilitiesMenu);
                         break;
                     case "BAG":
                         CurrentMenu = bagMenu;
                         if (GameState != GameStates.Battle)
                         {
-                            display.WorldDisplay(); // to erase main menu
+                            Display.WorldDisplay(); // to erase main menu
                         }
-                        display.MenuDisplay(bagMenu);
+                        Display.MenuDisplay(bagMenu);
                         break;
                     case "SERAPHIM":
                         CurrentMenu = seraphMenu;
                         if (GameState != GameStates.Battle)
                         {
-                            display.WorldDisplay(); // to erase main menu
+                            Display.WorldDisplay(); // to erase main menu
                         }
                         else
                         {
-                            display.BattleDisplay(BattleHandler); // to show only the normal battle
+                            Display.BattleDisplay(BattleHandler); // to show only the normal battle
                         }
-                        display.MenuDisplay(seraphMenu);
+                        Display.MenuDisplay(seraphMenu);
                         break;
                     case "RUN":
                         bool sucess = false;
@@ -356,7 +362,7 @@ class GameManager
                         {
                             DialogBubbles.Add(BattleHandler.CurrentPlayer.Name + " escaped the battle");
                             GameState = GameStates.StartExploration;
-                            display.WorldDisplay();
+                            Display.WorldDisplay();
                             BattleHandler.EndBattle();
                         }
                         else
@@ -364,8 +370,8 @@ class GameManager
                             DialogBubbles.Add(BattleHandler.CurrentPlayer.Name + " wasn't able to escape!");
                             // skip your turn
                             BattleHandler.BattlePhaseEnemy();
-                            display.BattleDisplay(BattleHandler);
-                            display.MenuDisplay(battleMenu);
+                            Display.BattleDisplay(BattleHandler);
+                            Display.MenuDisplay(battleMenu);
                             Console.WriteLine("Fleeing failed.");
                         }
 
@@ -378,57 +384,57 @@ class GameManager
                             if (GameState == GameStates.Battle)
                             {
                                 CurrentMenu = battleMenu;
-                                display.BattleDisplay(BattleHandler);
-                                display.MenuDisplay(battleMenu);
+                                Display.BattleDisplay(BattleHandler);
+                                Display.MenuDisplay(battleMenu);
                             }
                             else
                             {
                                 CurrentMenu = mainMenu;
                                 GameState = GameStates.Menu;
-                                display.WorldDisplay();
-                                display.MenuDisplay(mainMenu);
+                                Display.WorldDisplay();
+                                Display.MenuDisplay(mainMenu);
                             }
                         }
                         else if (CurrentMenu == mainMenu)
                         {
                             _isGettingKey = false;
                             GameState = GameStates.StartExploration;
-                            display.WorldDisplay();
+                            Display.WorldDisplay();
                         }
                         else if (CurrentMenu == battleMenu)
                         {
                             GameState = GameStates.StartExploration;
-                            display.WorldDisplay();
-                            display.MenuDisplay(mainMenu);
+                            Display.WorldDisplay();
+                            Display.MenuDisplay(mainMenu);
                         }
                         else if (CurrentMenu.LineType == Menu.LinesType.ability)
                         {
                             CurrentMenu = battleMenu;
-                            display.BattleDisplay(BattleHandler);
-                            display.MenuDisplay(battleMenu);
+                            Display.BattleDisplay(BattleHandler);
+                            Display.MenuDisplay(battleMenu);
                         }
                         else if (CurrentMenu == seraphMenu)
                         {
                             if (GameState == GameStates.Battle)
                             {
                                 CurrentMenu = battleMenu;
-                                display.BattleDisplay(BattleHandler);
-                                display.MenuDisplay(battleMenu);
+                                Display.BattleDisplay(BattleHandler);
+                                Display.MenuDisplay(battleMenu);
                             }
                             else
                             {
                                 CurrentMenu = mainMenu;
                                 GameState = GameStates.Menu;
-                                display.WorldDisplay();
-                                display.MenuDisplay(mainMenu);
+                                Display.WorldDisplay();
+                                Display.MenuDisplay(mainMenu);
                             }
                         }
                         break;
                     case "Switched two seraph":
                         // update seraphim menu display
                         //BattleHandler.CurrentPlayer;
-                        display.BattleDisplay(BattleHandler);
-                        display.MenuDisplay(seraphMenu);
+                        Display.BattleDisplay(BattleHandler);
+                        Display.MenuDisplay(seraphMenu);
                         break;
                     case "SAVE AND QUIT GAME":
                         Gaming = false;
@@ -439,7 +445,7 @@ class GameManager
 
             if (DialogBubbles.Count > 0)
             {
-                display.BubbleDisplay(DialogBubbles);
+                Display.BubbleDisplay(DialogBubbles);
             }
         }
         //Fin du jeu

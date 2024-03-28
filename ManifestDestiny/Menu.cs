@@ -185,7 +185,50 @@ namespace ManifestDestiny
 
                     if(seraph1 != null && seraph2 != null)
                     {
-                        Swap(Seraphim, Seraphim.IndexOf(seraph1), Seraphim.IndexOf(seraph2));
+                        bool canSwitch = true;
+                        //Swap(Seraphim, Seraphim.IndexOf(seraph1), Seraphim.IndexOf(seraph2));
+                        if (Seraphim.IndexOf(seraph1) == 0)
+                        {
+                            if (seraph1.CurrentStats[Seraph.Stats.hp] > 0)
+                            {
+                                Swap(Seraphim, Seraphim.IndexOf(seraph1), Seraphim.IndexOf(seraph2));
+                                BattleHandler.PlayerTeam = Seraphim;
+                                BattleHandler.CurrentPlayer = BattleHandler.PlayerTeam[0];
+                                BattleHandler.BattlePhaseEnemy();
+                                return "CLOSE";
+                            }
+                            else
+                            {
+                                canSwitch = false;
+                            }
+                        }
+                        else if (Seraphim.IndexOf(seraph2) == 0)
+                        {
+                            if (seraph2.CurrentStats[Seraph.Stats.hp] > 0)
+                            {
+                                Swap(Seraphim, Seraphim.IndexOf(seraph2), Seraphim.IndexOf(seraph1));
+                                BattleHandler.PlayerTeam = Seraphim;
+                                BattleHandler.CurrentPlayer = BattleHandler.PlayerTeam[0];
+                                BattleHandler.BattlePhaseEnemy();
+                                return "CLOSE";
+                            }
+                            else
+                            {
+                                canSwitch = false;
+                            }
+                        }
+                        else
+                        {
+                            Swap(Seraphim, Seraphim.IndexOf(seraph2), Seraphim.IndexOf(seraph1));
+                            BattleHandler.PlayerTeam = Seraphim;
+                        }
+
+                        //if (((Seraphim.IndexOf(seraph1) == 0 && seraph1.CurrentStats[Seraph.Stats.hp] > 0) || (Seraphim.IndexOf(seraph1) != 0)) || ((Seraphim.IndexOf(seraph2) == 0 && seraph2.CurrentStats[Seraph.Stats.hp] > 0) || (Seraphim.IndexOf(seraph2) != 0)))
+                        //{
+                        //    Swap(Seraphim, Seraphim.IndexOf(seraph1), Seraphim.IndexOf(seraph2));
+                        //}
+
+
                         //Swap(BattleHandler.PlayerTeam, BattleHandler.PlayerTeam.IndexOf(seraph1), BattleHandler.PlayerTeam.IndexOf(seraph2));
                         //BattleHandler.CurrentPlayer = BattleHandler.PlayerTeam[0];
 
