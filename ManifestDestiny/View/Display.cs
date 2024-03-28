@@ -524,7 +524,7 @@ namespace ManifestDestiny
         public void BubbleDisplay(List<string> bubbleList)
         {
             Console.SetCursorPosition(0, 20);
-            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.BackgroundColor = ConsoleColor.DarkYellow;
             Console.ForegroundColor = ConsoleColor.Black;
 
             string[] splitWords = bubbleList[0].Split(" ");
