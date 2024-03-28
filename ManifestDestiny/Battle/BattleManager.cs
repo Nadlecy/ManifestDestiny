@@ -78,6 +78,11 @@ class BattleManager
     public string BattlePhase(BattleAbility playerAbility)
     {
         //if the current player seraph is slower than the enemy, enemy attacks first.
+        if (playerAbility.Cost > CurrentPlayer.CurrentStats[Seraph.Stats.mana])
+        {
+            GameManager.DialogBubbles.Add("Vous n'avez pas assez de mana pour lancer cette capacité");
+            return "";
+        }
         if (CurrentPlayer.CurrentStats[Seraph.Stats.speed] < CurrentEnemy.CurrentStats[Seraph.Stats.speed])
         {
             if(BattlePhaseEnemy() == true)
