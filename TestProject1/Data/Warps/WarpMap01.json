@@ -1,0 +1,52 @@
+{
+  "warps": [
+    {
+      "StartPosition": {
+        "X": 23,
+        "Y": 12
+      },
+      "StartMap": "Map01",
+      "DestinationPosition": {
+        "X": 1,
+        "Y": 12
+      },
+      "DestinationMap": "Map02"
+    },
+    {
+      "StartPosition": {
+        "X": 23,
+        "Y": 13
+      },
+      "StartMap": "Map01",
+      "DestinationPosition": {
+        "X": 1,
+        "Y": 13
+      },
+      "DestinationMap": "Map02"
+    },
+    {
+      "StartPosition": {
+        "X": 11,
+        "Y": 47
+      },
+      "StartMap": "Map01",
+      "DestinationPosition": {
+        "X": 22,
+        "Y": 31
+      },
+      "DestinationMap": "Heal01"
+    },
+    {
+      "StartPosition": {
+        "X": 11,
+        "Y": 48
+      },
+      "StartMap": "Map01",
+      "DestinationPosition": {
+        "X": 22,
+        "Y": 32
+      },
+      "DestinationMap": "Heal01"
+    }
+  ]
+}

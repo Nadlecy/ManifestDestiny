@@ -26,7 +26,7 @@ class BattleAbility
         Accuracy = accuracy;
         Cost = cost;
         Description = description;
-        StrikeNumber = [1,1];
+        StrikeNumber = new List<int> { 1, 1 };
     }
 
     public void AddAttribute(AbilityAttribute attribute)
