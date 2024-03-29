@@ -29,52 +29,51 @@ class BattleType
         {
             case "Scramble":
                 _typeRelations["Mechanic"] = 0.5f;
-                _typeRelations["Wild"] = 2.0f;
-                _typeRelations["Fluid"] = 0.5f;
+                _typeRelations["Vermin"] = 2.0f;
+                _typeRelations["Fluid"] = 0.0f;
                 Color = ConsoleColor.DarkYellow;
                 break;
 
             case "Occult":
                 _typeRelations["Occult"] = 0.5f;
-                _typeRelations["Mechanic"] = 0.5f;
-                _typeRelations["Wild"] = 2.0f;
-                _typeRelations["Vermin"] = 2.0f;
+                _typeRelations["Mechanic"] = 2.0f;
+                _typeRelations["Fluid"] = 2.0f;
                 StatusEffectImmunity = "Stun";
                 Color = ConsoleColor.DarkMagenta;
                 break;
 
             case "Mechanic":
-                _typeRelations["Scramble"] = 0.5f;
-                _typeRelations["Occult"] = 2.0f;
+                _typeRelations["Occult"] = 0.5f;
                 _typeRelations["Mechanic"] = 0.5f;
-                _typeRelations["Wild"] = 0.5f;
-                _typeRelations["Fluid"] = 2.0f;
-                _typeRelations["Vermin"] = 0.0f;
+                _typeRelations["Wild"] = 2.0f;
+                _typeRelations["Fluid"] = 0.5f;
+                _typeRelations["Vermin"] = 2.0f;
                 StatusEffectImmunity = "Bleed";
                 Color = ConsoleColor.DarkGray;
                 break;
 
             case "Wild":
-                _typeRelations["Mechanic"] = 2.0f;
+                _typeRelations["Scramble"] = 2.0f;
+                _typeRelations["Occult"] = 2.0f;
+                _typeRelations["Mechanic"] = 0.5f;
                 _typeRelations["Fluid"] = 0.5f;
-                _typeRelations["Vermin"] = 2.0f;
+                _typeRelations["Vermin"] = 0.5f;
                 Color = ConsoleColor.DarkRed;
                 break;
 
             case "Fluid":
-                _typeRelations["Scramble"] = 0.0f;
-                _typeRelations["Occult"] = 2.0f;
-                _typeRelations["Mechanic"] = 0.5f;
+                _typeRelations["Scramble"] = 0.5f;
+                _typeRelations["Mechanic"] = 2.0f;
                 _typeRelations["Wild"] = 0.5f;
+                _typeRelations["Vermin"] = 2.0f;
                 StatusEffectImmunity = "Burn";
                 Color = ConsoleColor.DarkCyan;
                 break;
 
             case "Vermin":
-                _typeRelations["Scramble"] = 2.0f;
-                _typeRelations["Mechanic"] = 2.0f;
-                _typeRelations["Wild"] = 0.5f;
-                _typeRelations["Fluid"] = 2.0f;
+                _typeRelations["Occult"] = 2.0f;
+                _typeRelations["Mechanic"] = 0.0f;
+                _typeRelations["Wild"] = 2.0f;
                 _typeRelations["Vermin"] = 0.5f;
                 StatusEffectImmunity = "Poison";
                 Color = ConsoleColor.DarkGreen;
