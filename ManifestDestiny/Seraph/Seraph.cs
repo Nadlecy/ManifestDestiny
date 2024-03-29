@@ -146,6 +146,10 @@ class Seraph
     {
         CurrentStats[Stats.hp] = BaseStats[Stats.hp];
         CurrentStats[Stats.mana] = BaseStats[Stats.mana];
+        CurrentStats[Stats.attack] = BaseStats[Stats.attack];
+        CurrentStats[Stats.defense] = BaseStats[Stats.defense];
+        CurrentStats[Stats.magic] = BaseStats[Stats.magic];
+        CurrentStats[Stats.speed] = BaseStats[Stats.speed];
     }
 
     public void TakeDamage(int amount)
