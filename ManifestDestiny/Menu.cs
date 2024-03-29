@@ -194,7 +194,6 @@ namespace ManifestDestiny
                                 Swap(Seraphim, Seraphim.IndexOf(seraph1), Seraphim.IndexOf(seraph2));
                                 BattleHandler.PlayerTeam = Seraphim;
                                 BattleHandler.CurrentPlayer = BattleHandler.PlayerTeam[0];
-                                BattleHandler.BattlePhaseEnemy();
                                 return "CLOSE";
                             }
                             else
@@ -209,7 +208,6 @@ namespace ManifestDestiny
                                 Swap(Seraphim, Seraphim.IndexOf(seraph2), Seraphim.IndexOf(seraph1));
                                 BattleHandler.PlayerTeam = Seraphim;
                                 BattleHandler.CurrentPlayer = BattleHandler.PlayerTeam[0];
-                                BattleHandler.BattlePhaseEnemy();
                                 return "CLOSE";
                             }
                             else

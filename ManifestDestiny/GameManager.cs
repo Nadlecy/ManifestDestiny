@@ -434,7 +434,10 @@ class GameManager
                     case "Switched two seraph":
                         // update seraphim menu display
                         //BattleHandler.CurrentPlayer;
-                        Display.BattleDisplay(BattleHandler);
+                        if (GameState == GameStates.Battle)
+                        {
+                            Display.BattleDisplay(BattleHandler);
+                        }
                         Display.MenuDisplay(seraphMenu);
                         break;
                     case "SAVE AND QUIT GAME":
