@@ -1,1 +1,1 @@
-Its like Pokemon but more democratic
+Pokémon-like game made in C#
